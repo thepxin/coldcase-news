@@ -9,10 +9,8 @@ from pydantic import BaseModel
 from google import genai
 from google.genai import types
 
-# Initialize the official Google Gemini client using your secret key
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# High-value tech, security, and finance follow-up angles
 TOPICS = [
     "data breach investigation",
     "ransomware attack aftermath",
@@ -35,13 +33,8 @@ class FollowUpArticle(BaseModel):
     reddit_teaser: str
 
 def fetch_clean_sources(query: str, max_items: int = 4) -> list[dict]:
-    """Fetches real, direct article URLs (no redirect blocks) and scrapes their text."""
     url = "https://hn.algolia.com/api/v1/search_by_date"
-    params = {
-        "query": query,
-        "tags": "story",
-        "hitsPerPage": 12
-    }
+    params = {"query": query, "tags": "story", "hitsPerPage": 12}
     response = requests.get(url, params=params, timeout=15)
     hits = response.json().get("hits", [])
 
@@ -68,7 +61,6 @@ def fetch_clean_sources(query: str, max_items: int = 4) -> list[dict]:
             })
         if len(sources) >= max_items:
             break
-
     return sources
 
 def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
@@ -79,13 +71,13 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
 
     INSTRUCTIONS:
     1. Set has_meaningful_update to true if there is enough factual substance here to write a compelling follow-up report.
-    2. Write markdown_body with:
-       - A direct, hard-hitting opening paragraph explaining the initial incident or claim vs. what the facts show now.
-       - A Markdown comparison table with columns: | Phase | What Was Claimed / Expected | What Actually Happened |.
+    2. Write markdown_body using clean, standard Markdown. Avoid complex raw HTML tags or unescaped braces that could break static site parsers. Include:
+       - A direct opening paragraph explaining the initial incident vs. reality today.
+       - A simple Markdown comparison table.
        - A chronological bulleted timeline with dates.
        - Outbound Markdown links citing the exact source URLs provided above.
-       - Zero robotic AI phrases (never use 'In conclusion', 'delve', 'testament', or 'fast-paced world').
-    3. Write a 3-sentence reddit_teaser summarizing the most surprising takeaway so the site owner can share it on Reddit or X.
+       - Zero robotic AI filler words.
+    3. Write a 3-sentence reddit_teaser summarizing the main takeaway.
     """
 
     response = client.models.generate_content(
@@ -111,7 +103,7 @@ def save_hugo_post(article: FollowUpArticle):
     affiliate_block = """
 ---
 ### Recommended Security & Privacy Toolkit
-* **Credential & Breach Protection:** Keep passwords isolated in an encrypted vault with **1Password** or **Bitwarden** `[Replace with your Affiliate Link]`.
+* **Credential Protection:** Isolate passwords in an encrypted vault with **1Password** or **Bitwarden** `[Replace with your Affiliate Link]`.
 * **Encrypted Network Traffic:** Protect traffic on untrusted networks with **Proton VPN** or **NordVPN** `[Replace with your Affiliate Link]`.
 """
 
@@ -135,7 +127,7 @@ draft: false
     with open("scripts/latest_social_teaser.txt", "w", encoding="utf-8") as f:
         f.write(f"HEADLINE: {article.headline}\n\n{article.reddit_teaser}\n")
 
-    print(f"SUCCESS: Created new article at {filename}")
+    print(f"SUCCESS: Created clean article at {filename}")
 
 if __name__ == "__main__":
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
