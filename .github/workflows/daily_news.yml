@@ -30,11 +30,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/generate_followup.py
 
-     - name: Save and push article to repository
+      - name: Save and push article to repository
         run: |
           git config user.name "FollowUp Editorial Bot"
           git config user.email "bot@followupdesk.local"
           git add content/posts/ scripts/latest_social_teaser.txt
           git diff --staged --quiet || git commit -m "Publish new automated follow-up article"
-          git pull origin main --rebase
-          git push origin main
+          git push
