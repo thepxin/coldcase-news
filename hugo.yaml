@@ -1,0 +1,18 @@
+baseURL: "/"
+languageCode: "en-us"
+title: "The Follow-Up Desk | Tech & Security Cold Cases"
+theme: "PaperMod"
+enableRobotsTXT: true
+
+params:
+  env: production
+  description: "Tracking what actually happened after major tech, security, and financial headlines faded."
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

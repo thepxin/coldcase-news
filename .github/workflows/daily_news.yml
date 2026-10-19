@@ -1,0 +1,39 @@
+name: Daily Cold-Case News Generator
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # Runs automatically every day at 11:30 AM IST (6:00 AM UTC)
+  workflow_dispatch:    # Adds a manual "Run workflow" button on GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - name: Generate new follow-up article
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_followup.py
+
+      - name: Save and push article to repository
+        run: |
+          git config user.name "FollowUp Editorial Bot"
+          git config user.email "bot@followupdesk.local"
+          git add content/posts/ scripts/latest_social_teaser.txt
+          git diff --staged --quiet || git commit -m "Publish new automated follow-up article"
+          git push

@@ -1,0 +1,4 @@
+requests
+trafilatura
+pydantic
+google-genai
