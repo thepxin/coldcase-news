@@ -1,18 +1,36 @@
-baseURL: "/"
-languageCode: "en-us"
-title: "The Follow-Up Desk | Tech & Security Cold Cases"
+baseURL: "https://coldcase-news.pages.dev/"
+locale: "en-us"
+title: "ColdCase Tech"
 theme: "PaperMod"
-enableRobotsTXT: true
+
+minify:
+  disableJSON: true
 
 params:
   env: production
-  description: "Tracking what actually happened after major tech, security, and financial headlines faded."
+  title: "ColdCase Tech"
+  description: "Tracking tech and security stories long after the headlines fade."
+  defaultTheme: auto
   ShowReadingTime: true
+  ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
+  ShowWordCount: true
+  UseHugoToc: true
+  TocOpen: true
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
+  homeInfoParams:
+    Title: "ColdCase Tech & Security Desk"
+    Content: "Mainstream tech media abandons major stories after 48 hours. We track the aftermath—breach investigations, post-mortems, and regulatory fallout—months later."
+
+menu:
+  main:
+    - identifier: posts
+      name: Investigations
+      url: /posts/
+      weight: 10
+    - identifier: tags
+      name: Topics
+      url: /tags/
+      weight: 20

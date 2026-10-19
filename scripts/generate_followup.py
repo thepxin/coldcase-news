@@ -71,9 +71,9 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
 
     INSTRUCTIONS:
     1. Set has_meaningful_update to true if there is enough factual substance here to write a compelling follow-up report.
-    2. Write markdown_body using clean, standard Markdown. STRICT RULE: NEVER use curly braces {{ or }} anywhere in the text body, as they break static site compilers. Include:
+    2. Write markdown_body using clean, standard Markdown. Do NOT use raw HTML tags or curly braces. Include:
        - A direct opening paragraph explaining the initial incident vs. reality today.
-       - A simple Markdown comparison table.
+       - A Markdown comparison table comparing Early Headlines vs. Current Reality.
        - A chronological bulleted timeline with dates.
        - Outbound Markdown links citing the exact source URLs provided above.
        - Zero robotic AI filler words.
@@ -90,18 +90,23 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
         ),
     )
     article = FollowUpArticle.model_validate_json(response.text)
-    # Strip any accidental curly braces to protect Hugo template parser
-    article.markdown_body = article.markdown_body.replace("{", "").replace("}", "")
+    article.markdown_body = article.markdown_body.replace("{", "(").replace("}", ")")
     return article
 
 def save_hugo_post(article: FollowUpArticle):
+    os.makedirs("content/posts", exist_ok=True)
+    os.makedirs("scripts", exist_ok=True)
+
     now = datetime.now(timezone.utc)
     today_str = now.strftime("%Y-%m-%d")
     safe_slug = re.sub(r"[^a-z0-9-]", "-", article.slug.lower()).strip("-")[:55]
+    safe_slug = re.sub(r"-+", "-", safe_slug)
     filename = f"content/posts/{today_str}-{safe_slug}.md"
 
-    clean_title = article.headline.replace('"', "'")
-    clean_desc = article.summary_description.replace('"', "'")
+    # json.dumps guarantees 100% valid YAML escaping for quotes and colons
+    safe_title = json.dumps(article.headline)
+    safe_desc = json.dumps(article.summary_description)
+    cover_image = f"https://picsum.photos/seed/{safe_slug}/1200/630"
 
     affiliate_block = """
 ---
@@ -111,10 +116,14 @@ def save_hugo_post(article: FollowUpArticle):
 """
 
     markdown_content = f"""---
-title: "{clean_title}"
+title: {safe_title}
 date: "{now.strftime('%Y-%m-%dT%H:%M:%SZ')}"
-description: "{clean_desc}"
+description: {safe_desc}
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
+cover:
+  image: "{cover_image}"
+  alt: {safe_title}
+  relative: false
 draft: false
 ---
 
@@ -133,7 +142,10 @@ draft: false
     print(f"SUCCESS: Created clean article at {filename}")
 
 if __name__ == "__main__":
+    os.makedirs("content/posts", exist_ok=True)
+    existing_files = " ".join(os.listdir("content/posts"))
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
+
     for offset in range(len(TOPICS)):
         topic = TOPICS[(day_of_year + offset) % len(TOPICS)]
         print(f"Searching sources for topic: {topic}...")
