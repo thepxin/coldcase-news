@@ -72,11 +72,11 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
     INSTRUCTIONS:
     1. Set has_meaningful_update to true if there is enough factual substance here to write a compelling follow-up report.
     2. Write markdown_body using clean, standard Markdown. Do NOT use raw HTML tags or curly braces. Include:
-       - A direct opening paragraph explaining the initial incident vs. reality today.
-       - A Markdown comparison table comparing Early Headlines vs. Current Reality.
-       - A chronological bulleted timeline with dates.
-       - Outbound Markdown links citing the exact source URLs provided above.
-       - Zero robotic AI filler words.
+        - A direct opening paragraph explaining the initial incident vs. reality today.
+        - A Markdown comparison table comparing Early Headlines vs. Current Reality.
+        - A chronological bulleted timeline with dates.
+        - Outbound Markdown links citing the exact source URLs provided above.
+        - Zero robotic AI filler words.
     3. Write a 3-sentence reddit_teaser summarizing the main takeaway.
     """
 
@@ -108,11 +108,33 @@ def save_hugo_post(article: FollowUpArticle):
     safe_desc = json.dumps(article.summary_description)
     cover_image = f"https://picsum.photos/seed/{safe_slug}/1200/630"
 
-    affiliate_block = """
+    # Dynamic affiliate recommendations based on article topic keywords
+    t_lower = (article.headline + " " + article.markdown_body).lower()
+
+    if any(k in t_lower for k in ["breach", "leak", "ransomware", "credential", "password"]):
+        affiliate_block = """
 ---
-### Recommended Security & Privacy Toolkit
-* **Credential Protection:** Isolate passwords in an encrypted vault with **1Password** or **Bitwarden** [Check Offer](https://example.com/affiliate).
-* **Encrypted Network Traffic:** Protect traffic on untrusted networks with **Proton VPN** or **NordVPN** [Check Offer](https://example.com/affiliate).
+### Verified Security & Incident Toolkit
+* **Credential Vault:** Isolate passwords and passkeys in an encrypted vault — [Bitwarden / 1Password Protection](https://example.com/affiliate-passwords)
+* **Encrypted Tunnel:** Prevent telemetry and traffic snooping on untrusted networks — [Proton VPN / NordVPN Shield](https://example.com/affiliate-vpn)
+* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag=coldcasetech-21)
+* **AI Audio & Narration Stack:** Power your media pipeline with pristine synthesis — [Try ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
+"""
+    elif any(k in t_lower for k in ["cloud", "outage", "infrastructure", "server", "architecture", "ai"]):
+        affiliate_block = """
+---
+### Infrastructure & AI Production Toolkit
+* **Hardware Firewall & Isolated Lab:** Secure internal networks with managed hardware routers — [Explore Network Security Hardware](https://www.amazon.in/s?k=hardware+firewall&tag=coldcasetech-21)
+* **AI Voice Generation:** Build lifelike virtual narrators like Dr. Neil Sterling — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
+* **Penetration Testing & Audits:** Deploy independent security assessments — [Consult Certified Penetration Testers](https://example.com/fiverr-pentest)
+"""
+    else:
+        affiliate_block = """
+---
+### Recommended Privacy & Research Tools
+* **Encrypted Network Traffic:** Route through audited no-logs infrastructure — [Privacy Shield Toolkit](https://example.com/affiliate-vpn)
+* **AI Voice Synthesis:** Create dynamic multimedia content — [Try ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
+* **Data Backup & Redundancy:** Maintain immutable offsite snapshots — [Hardware Backup Solutions](https://www.amazon.in/s?k=encrypted+external+ssd&tag=coldcasetech-21)
 """
 
     markdown_content = f"""---
