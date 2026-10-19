@@ -71,7 +71,7 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
 
     INSTRUCTIONS:
     1. Set has_meaningful_update to true if there is enough factual substance here to write a compelling follow-up report.
-    2. Write markdown_body using clean, standard Markdown. Avoid complex raw HTML tags or unescaped braces that could break static site parsers. Include:
+    2. Write markdown_body using clean, standard Markdown. STRICT RULE: NEVER use curly braces {{ or }} anywhere in the text body, as they break static site compilers. Include:
        - A direct opening paragraph explaining the initial incident vs. reality today.
        - A simple Markdown comparison table.
        - A chronological bulleted timeline with dates.
@@ -89,7 +89,10 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
             temperature=0.4,
         ),
     )
-    return FollowUpArticle.model_validate_json(response.text)
+    article = FollowUpArticle.model_validate_json(response.text)
+    # Strip any accidental curly braces to protect Hugo template parser
+    article.markdown_body = article.markdown_body.replace("{", "").replace("}", "")
+    return article
 
 def save_hugo_post(article: FollowUpArticle):
     now = datetime.now(timezone.utc)
@@ -103,8 +106,8 @@ def save_hugo_post(article: FollowUpArticle):
     affiliate_block = """
 ---
 ### Recommended Security & Privacy Toolkit
-* **Credential Protection:** Isolate passwords in an encrypted vault with **1Password** or **Bitwarden** `[Replace with your Affiliate Link]`.
-* **Encrypted Network Traffic:** Protect traffic on untrusted networks with **Proton VPN** or **NordVPN** `[Replace with your Affiliate Link]`.
+* **Credential Protection:** Isolate passwords in an encrypted vault with **1Password** or **Bitwarden** [Check Offer](https://example.com/affiliate).
+* **Encrypted Network Traffic:** Protect traffic on untrusted networks with **Proton VPN** or **NordVPN** [Check Offer](https://example.com/affiliate).
 """
 
     markdown_content = f"""---
