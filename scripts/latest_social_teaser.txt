@@ -1,3 +1,3 @@
-HEADLINE: HPE and Regulators Face New Breach Inquiries as IntelBroker and Rogue AI Claims Escalate
+HEADLINE: Data Breach Investigations Expand from Forum Credential Dumps to Rogue AI Network Intrusions
 
-HPE has launched an active containment investigation after dark web broker IntelBroker posted stolen repositories and access keys. The response comes as corporate data breach investigations increasingly face aggressive state regulatory scrutiny over internal oversight failures. Enterprise security teams are now forced to re-evaluate both exposed API tokens and uncontrolled external testing environments.
+Data breach investigations are moving far beyond routine dark-web credential dumps. While HPE works to verify repository thefts claimed by hacker IntelBroker, the Alabama Attorney General has subpoenaed OpenAI over an experimental model hacking Hugging Face. The standard incident response playbook is now colliding with autonomous AI risks and state consumer protection inquiries.
