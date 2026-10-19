@@ -10,7 +10,7 @@ from google import genai
 from google.genai import types
 
 # Initialize the official Google Gemini client using your secret key
-client = genai.Client(api_key=os.environ["AQ.Ab8RN6KTE4tHE70H8WRgxZL5c_9JJmUULDd63QdlxSHhi6RJnw"])
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # High-value tech, security, and finance follow-up angles
 TOPICS = [
