@@ -11,6 +11,10 @@ from google.genai import types
 
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
+# --- AFFILIATE CONFIGURATION ---
+ELEVENLABS_LINK = "https://try.elevenlabs.io/cy22d10gen9g"
+AMAZON_TAG = "coldcasetech-21"
+
 TOPICS = [
     "data breach investigation",
     "ransomware attack aftermath",
@@ -32,18 +36,38 @@ class FollowUpArticle(BaseModel):
     markdown_body: str
     reddit_teaser: str
 
-def fetch_clean_sources(query: str, max_items: int = 4) -> list[dict]:
+def get_previously_used_urls(posts_dir: str = "content/posts") -> set[str]:
+    used_urls = set()
+    if not os.path.exists(posts_dir):
+        return used_urls
+    for fname in os.listdir(posts_dir):
+        if fname.endswith(".md"):
+            fpath = os.path.join(posts_dir, fname)
+            try:
+                with open(fpath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                    urls = re.findall(r'https?://[^\s\)\]]+', content)
+                    used_urls.update(urls)
+            except Exception:
+                continue
+    return used_urls
+
+def fetch_clean_sources(query: str, used_urls: set[str], max_items: int = 4) -> list[dict]:
     url = "https://hn.algolia.com/api/v1/search_by_date"
-    params = {"query": query, "tags": "story", "hitsPerPage": 12}
-    response = requests.get(url, params=params, timeout=15)
-    hits = response.json().get("hits", [])
+    params = {"query": query, "tags": "story", "hitsPerPage": 15}
+    try:
+        response = requests.get(url, params=params, timeout=15)
+        hits = response.json().get("hits", [])
+    except Exception as e:
+        print(f"Algolia fetch error: {e}")
+        return []
 
     sources = []
     for hit in hits:
         article_url = hit.get("url")
         title = hit.get("title")
         created_at = hit.get("created_at", "")
-        if not article_url or not title:
+        if not article_url or not title or article_url in used_urls:
             continue
 
         try:
@@ -63,7 +87,7 @@ def fetch_clean_sources(query: str, max_items: int = 4) -> list[dict]:
             break
     return sources
 
-def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
+def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
     prompt = f"""
     You are an investigative tech and security follow-up editor analyzing: '{topic}'.
     Below are verified source extracts with their URLs and dates:
@@ -80,18 +104,28 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle:
     3. Write a 3-sentence reddit_teaser summarizing the main takeaway.
     """
 
-    response = client.models.generate_content(
-        model="gemini-3.8-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            response_schema=FollowUpArticle,
-            temperature=0.4,
-        ),
-    )
-    article = FollowUpArticle.model_validate_json(response.text)
-    article.markdown_body = article.markdown_body.replace("{", "(").replace("}", ")")
-    return article
+    # Retry up to 3 times if the model is in high demand (HTTP 503 / rate limits)
+    for attempt in range(1, 4):
+        try:
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    response_schema=FollowUpArticle,
+                    temperature=0.4,
+                ),
+            )
+            article = FollowUpArticle.model_validate_json(response.text)
+            article.markdown_body = article.markdown_body.replace("{", "(").replace("}", ")")
+            return article
+        except Exception as e:
+            print(f"Gemini API attempt {attempt}/3 failed: {e}")
+            if attempt < 3:
+                wait_time = attempt * 15
+                print(f"Waiting {wait_time}s before retrying...")
+                time.sleep(wait_time)
+    return None
 
 def save_hugo_post(article: FollowUpArticle):
     os.makedirs("content/posts", exist_ok=True)
@@ -103,38 +137,41 @@ def save_hugo_post(article: FollowUpArticle):
     safe_slug = re.sub(r"-+", "-", safe_slug)
     filename = f"content/posts/{today_str}-{safe_slug}.md"
 
-    # json.dumps guarantees 100% valid YAML escaping for quotes and colons
     safe_title = json.dumps(article.headline)
     safe_desc = json.dumps(article.summary_description)
     cover_image = f"https://picsum.photos/seed/{safe_slug}/1200/630"
 
-    # Dynamic affiliate recommendations based on article topic keywords
     t_lower = (article.headline + " " + article.markdown_body).lower()
 
     if any(k in t_lower for k in ["breach", "leak", "ransomware", "credential", "password"]):
-        affiliate_block = """
+        affiliate_block = f"""
 ---
 ### Verified Security & Incident Toolkit
-* **Credential Vault:** Isolate passwords and passkeys in an encrypted vault — [Bitwarden / 1Password Protection](https://example.com/affiliate-passwords)
-* **Encrypted Tunnel:** Prevent telemetry and traffic snooping on untrusted networks — [Proton VPN / NordVPN Shield](https://example.com/affiliate-vpn)
-* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag=coldcasetech-21)
-* **AI Audio & Narration Stack:** Power your media pipeline with pristine synthesis — [Try ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
+* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
+* **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://www.amazon.in/s?k=hardware+encrypted+ssd&tag={AMAZON_TAG})
+* **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({ELEVENLABS_LINK})
+
+*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
 """
     elif any(k in t_lower for k in ["cloud", "outage", "infrastructure", "server", "architecture", "ai"]):
-        affiliate_block = """
+        affiliate_block = f"""
 ---
 ### Infrastructure & AI Production Toolkit
-* **Hardware Firewall & Isolated Lab:** Secure internal networks with managed hardware routers — [Explore Network Security Hardware](https://www.amazon.in/s?k=hardware+firewall&tag=coldcasetech-21)
-* **AI Voice Generation:** Build lifelike virtual narrators like Dr. Neil Sterling — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
-* **Penetration Testing & Audits:** Deploy independent security assessments — [Consult Certified Penetration Testers](https://example.com/fiverr-pentest)
+* **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag={AMAZON_TAG})
+* **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({ELEVENLABS_LINK})
+* **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag={AMAZON_TAG})
+
+*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
 """
     else:
-        affiliate_block = """
+        affiliate_block = f"""
 ---
 ### Recommended Privacy & Research Tools
-* **Encrypted Network Traffic:** Route through audited no-logs infrastructure — [Privacy Shield Toolkit](https://example.com/affiliate-vpn)
-* **AI Voice Synthesis:** Create dynamic multimedia content — [Try ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
-* **Data Backup & Redundancy:** Maintain immutable offsite snapshots — [Hardware Backup Solutions](https://www.amazon.in/s?k=encrypted+external+ssd&tag=coldcasetech-21)
+* **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
+* **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({ELEVENLABS_LINK})
+* **Data Backup & Redundancy:** Maintain immutable offsite snapshots — [Hardware Backup Solutions](https://www.amazon.in/s?k=encrypted+external+ssd&tag={AMAZON_TAG})
+
+*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
 """
 
     markdown_content = f"""---
@@ -165,16 +202,16 @@ draft: false
 
 if __name__ == "__main__":
     os.makedirs("content/posts", exist_ok=True)
-    existing_files = " ".join(os.listdir("content/posts"))
+    used_urls = get_previously_used_urls("content/posts")
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
 
     for offset in range(len(TOPICS)):
         topic = TOPICS[(day_of_year + offset) % len(TOPICS)]
-        print(f"Searching sources for topic: {topic}...")
-        sources = fetch_clean_sources(topic)
+        print(f"Searching fresh sources for topic: {topic}...")
+        sources = fetch_clean_sources(topic, used_urls)
         if len(sources) >= 2:
             article = generate_article(topic, sources)
-            if article.has_meaningful_update:
+            if article and article.has_meaningful_update:
                 save_hugo_post(article)
                 break
         time.sleep(2)

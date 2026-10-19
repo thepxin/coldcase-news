@@ -2,7 +2,7 @@ name: Daily Cold-Case News Generator
 
 on:
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 6 * * *" # Runs daily at 06:00 UTC (11:30 AM IST)
   workflow_dispatch:
 
 permissions:
@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -37,7 +38,11 @@ jobs:
         run: |
           git config user.name "FollowUp Editorial Bot"
           git config user.email "bot@followupdesk.local"
-          git add -A
-          git diff --staged --quiet || git commit -m "Publish new automated follow-up article"
-          git pull origin main --rebase --autostash
-          git push origin main
+          git add content/posts/ scripts/latest_social_teaser.txt
+          if ! git diff --staged --quiet; then
+            git commit -m "Publish new automated follow-up article"
+            git pull origin main --rebase -X theirs
+            git push origin main
+          else
+            echo "No new article generated today; skipping push."
+          fi

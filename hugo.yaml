@@ -1,7 +1,8 @@
-baseURL: "https://coldcase-news.pages.dev/"
-locale: "en-us"
+baseURL: "https://coldcasetech.com/"
+languageCode: "en-us"
 title: "ColdCase Tech"
 theme: "PaperMod"
+enableRobotsTXT: true
 
 minify:
   disableJSON: true

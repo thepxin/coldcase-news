@@ -1,4 +1,4 @@
+google-genai
+pydantic
 requests
 trafilatura
-pydantic
-google-genai
