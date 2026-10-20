@@ -4,7 +4,7 @@ date: "2026-10-20T08:05:07Z"
 description: "A wave of enterprise breach investigations\u2014including probes at HPE, Finastra, and Boston University\u2014highlights the gap between sensational hacker marketing on underground forums and confirmed operational impact."
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
 cover:
-  image: "https://picsum.photos/seed/data-breach-investigations-hpe-finastra-reality-check/1200/630"
+  image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80"
   alt: "Inside Recent Breach Probes: Dark Web Claims Meet Forensic Realities at HPE and Finastra"
   relative: false
 draft: false

@@ -28,6 +28,16 @@ FTC_DISCLOSURE = (
     "GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*"
 )
 
+CYBER_COVER_IMAGES = [
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80", # Server rack dark
+    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80", # Matrix binary code
+    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80", # Cyber circuit board
+    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80", # SOC analytics screen
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80", # Abstract dark network
+    "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80", # Fiber optic cables
+    "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1200&q=80", # Terminal security lock
+]
+
 TOPICS = [
     "data breach investigation",
     "ransomware attack aftermath",
@@ -117,7 +127,6 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
     3. Write a 3-sentence reddit_teaser summarizing the main takeaway.
     """
 
-    # Retry up to 3 times if the model is in high demand (HTTP 503 / rate limits)
     for attempt in range(1, 4):
         try:
             response = client.models.generate_content(
@@ -152,7 +161,8 @@ def save_hugo_post(article: FollowUpArticle):
 
     safe_title = json.dumps(article.headline)
     safe_desc = json.dumps(article.summary_description)
-    cover_image = f"https://picsum.photos/seed/{safe_slug}/1200/630"
+    img_index = sum(ord(c) for c in safe_slug) % len(CYBER_COVER_IMAGES)
+    cover_image = CYBER_COVER_IMAGES[img_index]
 
     t_lower = (article.headline + " " + article.markdown_body).lower()
 

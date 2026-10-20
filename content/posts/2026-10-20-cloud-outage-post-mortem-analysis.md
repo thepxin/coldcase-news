@@ -4,7 +4,7 @@ date: "2026-10-20T10:32:43Z"
 description: "Post-mortems from major cloud providers reveal that cascading outages frequently stem not from direct hardware failure, but from brittle internal messaging, authentication bottlenecks, and centralized storage dependencies."
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
 cover:
-  image: "https://picsum.photos/seed/cloud-outage-post-mortem-analysis/1200/630"
+  image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
   alt: "Cloud Outage Post-Mortems: How Transient Glitches Expose Deep Architectural Dependencies"
   relative: false
 draft: false

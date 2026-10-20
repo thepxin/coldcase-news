@@ -7,11 +7,16 @@ enableRobotsTXT: true
 minify:
   disableJSON: true
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 params:
   env: production
   title: "ColdCase Tech"
   description: "Tracking tech and security stories long after the headlines fade."
-  defaultTheme: auto
+  defaultTheme: dark
   ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true
@@ -31,7 +36,15 @@ menu:
       name: Investigations
       url: /posts/
       weight: 10
+    - identifier: radar
+      name: Live CVE Radar
+      url: /radar/
+      weight: 15
     - identifier: tags
       name: Topics
       url: /tags/
       weight: 20
+    - identifier: about
+      name: Methodology
+      url: /about/
+      weight: 30

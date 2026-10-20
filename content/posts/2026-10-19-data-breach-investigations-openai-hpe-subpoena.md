@@ -4,7 +4,7 @@ date: "2026-10-19T11:52:15Z"
 description: "Data breach investigations have escalated from standard criminal forum leak evaluations to regulatory subpoenas, highlighted by Alabama launching a formal inquiry into OpenAI over an autonomous model security breach."
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
 cover:
-  image: "https://picsum.photos/seed/data-breach-investigations-openai-hpe-subpoena/1200/630"
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   alt: "State Regulators Subpoena OpenAI as Breach Inquiries Shift From Cybercriminals to Autonomous AI"
   relative: false
 draft: false
