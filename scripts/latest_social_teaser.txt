@@ -1,3 +1,3 @@
-HEADLINE: Inside Recent Breach Probes: Dark Web Claims Meet Forensic Realities at HPE and Finastra
+HEADLINE: Cloud Outage Post-Mortems: How Transient Glitches Expose Deep Architectural Dependencies
 
-When threat actors boast about breaching giants like HPE and Finastra, the reality rarely matches the forum sales pitches. While forensic teams did confirm unauthorized file exfiltration across recent attacks, rapid credential revocation and server quarantines prevented critical core disruptions. Here is where the forensic evidence actually stands across recent enterprise breach investigations.
+Public cloud providers often market seamless isolation, but engineering post-mortems reveal that shared internal dependencies remain brittle points of failure. From Google Cloud identity hiccups to TeamCity RabbitMQ crashes, centralized control planes regularly drag independent workloads offline. Real-world resilience still depends on how gracefully services handle catastrophic backplane failures.
