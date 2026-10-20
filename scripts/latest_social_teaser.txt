@@ -1,3 +1,3 @@
-HEADLINE: Anatomy of Cloud Failures: How Google Deconstructed Its Multi-Hour Network and Compute Outages
+HEADLINE: Broken Embargo Unleashes 'Dirty Frag' Zero-Day Before Linux Patches Exist
 
-Public post-mortems from Google Cloud highlight how automated resilience features can backfire into prolonged service outages. In one case, a live-migration bug silently detached load balancers from VMs for over 30 hours, while another incident briefly dropped transit globally across all regions. These analyses demonstrate why multi-layered monitoring and post-incident transparency remain essential for enterprise cloud operations.
+A broken embargo leaked the devastating 'Dirty Frag' local privilege escalation flaw before kernel developers could finalize a fix. The bug grants trivial, immediate root access on virtually every Linux distribution released since 2017. Sysadmins are left scrambling to mitigate live exploits in the wild without official upstream patches.
