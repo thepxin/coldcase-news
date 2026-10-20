@@ -15,6 +15,19 @@ client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 ELEVENLABS_LINK = "https://try.elevenlabs.io/cy22d10gen9g"
 AMAZON_TAG = "coldcasetech-21"
 
+# CJ Affiliate Tracking Links (Clean Click URLs)
+SURFSHARK_ALT_ID_LINK = "https://www.dpbolvw.net/click-101908427-15740542"
+SURFSHARK_VPN_DEAL_LINK = "https://www.dpbolvw.net/click-101908427-15438560"
+SURFSHARK_DOWNLOAD_LINK = "https://www.anrdoezrs.net/click-101908427-15438544"
+SURFSHARK_FEATURES_LINK = "https://www.anrdoezrs.net/click-101908427-15438547"
+GEARUP_SUB_LINK = "https://www.kqzyfj.com/click-101908427-17235979"
+
+FTC_DISCLOSURE = (
+    "*Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate "
+    "commission when you purchase through our partner links (including Surfshark, "
+    "GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*"
+)
+
 TOPICS = [
     "data breach investigation",
     "ransomware attack aftermath",
@@ -147,31 +160,37 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Verified Security & Incident Toolkit
-* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
-* **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://www.amazon.in/s?k=hardware+encrypted+ssd&tag={AMAZON_TAG})
-* **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({ELEVENLABS_LINK})
+- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID]({SURFSHARK_ALT_ID_LINK})
+- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN]({SURFSHARK_VPN_DEAL_LINK})
+- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
+- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://www.amazon.in/s?k=hardware+encrypted+ssd&tag={AMAZON_TAG})
+- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({ELEVENLABS_LINK})
 
-*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
+{FTC_DISCLOSURE}
 """
     elif any(k in t_lower for k in ["cloud", "outage", "infrastructure", "server", "architecture", "ai"]):
         affiliate_block = f"""
 ---
-### Infrastructure & AI Production Toolkit
-* **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag={AMAZON_TAG})
-* **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({ELEVENLABS_LINK})
-* **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag={AMAZON_TAG})
+### Infrastructure & Network Resilience Toolkit
+- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite]({SURFSHARK_FEATURES_LINK})
+- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP]({GEARUP_SUB_LINK})
+- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag={AMAZON_TAG})
+- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({ELEVENLABS_LINK})
+- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag={AMAZON_TAG})
 
-*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
+{FTC_DISCLOSURE}
 """
     else:
         affiliate_block = f"""
 ---
 ### Recommended Privacy & Research Tools
-* **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
-* **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({ELEVENLABS_LINK})
-* **Data Backup & Redundancy:** Maintain immutable offsite snapshots — [Hardware Backup Solutions](https://www.amazon.in/s?k=encrypted+external+ssd&tag={AMAZON_TAG})
+- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN]({SURFSHARK_DOWNLOAD_LINK})
+- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID]({SURFSHARK_ALT_ID_LINK})
+- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP]({GEARUP_SUB_LINK})
+- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
+- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({ELEVENLABS_LINK})
 
-*Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
+{FTC_DISCLOSURE}
 """
 
     markdown_content = f"""---
