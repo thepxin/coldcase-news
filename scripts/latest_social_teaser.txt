@@ -1,3 +1,3 @@
-HEADLINE: Cloud Outage Post-Mortems: How Transient Glitches Expose Deep Architectural Dependencies
+HEADLINE: Anatomy of Cloud Failures: How Google Deconstructed Its Multi-Hour Network and Compute Outages
 
-Public cloud providers often market seamless isolation, but engineering post-mortems reveal that shared internal dependencies remain brittle points of failure. From Google Cloud identity hiccups to TeamCity RabbitMQ crashes, centralized control planes regularly drag independent workloads offline. Real-world resilience still depends on how gracefully services handle catastrophic backplane failures.
+Public post-mortems from Google Cloud highlight how automated resilience features can backfire into prolonged service outages. In one case, a live-migration bug silently detached load balancers from VMs for over 30 hours, while another incident briefly dropped transit globally across all regions. These analyses demonstrate why multi-layered monitoring and post-incident transparency remain essential for enterprise cloud operations.
