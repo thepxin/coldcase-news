@@ -34,8 +34,8 @@ These concurrent probes reveal that while peripheral services and file transfer 
 
 ---
 ### Verified Security & Incident Toolkit
-* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag=coldcasetech-21)
-* **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://www.amazon.in/s?k=hardware+encrypted+ssd&tag=coldcasetech-21)
+* **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](/go/yubikey.html)
+* **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](/go/encrypted-ssd.html)
 * **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
 
 *Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to Partner Store...</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>body{background:#0d1117;color:#8b949e;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}</style>
+  <script>
+    (function() {
+      var tz = "";
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch(e) {}
+      var lang = (navigator.language || "").toLowerCase();
+      var domain = "www.amazon.com";
+      var tag = "coldcasetech-20"; // Default US/Global Associate Tag
+
+      if (tz === "Asia/Kolkata" || tz === "Asia/Calcutta" || lang.indexOf("-in") !== -1) {
+        domain = "www.amazon.in";
+        tag = "coldcasetech-21"; // Your active India Associate Tag
+      } else if (tz === "Europe/London" || lang.indexOf("-gb") !== -1) {
+        domain = "www.amazon.co.uk";
+      } else if (tz.indexOf("Europe/Berlin") !== -1 || lang.indexOf("-de") !== -1) {
+        domain = "www.amazon.de";
+      } else if (tz.indexOf("America/Toronto") !== -1 || tz.indexOf("America/Vancouver") !== -1 || lang.indexOf("-ca") !== -1) {
+        domain = "www.amazon.ca";
+      }
+
+      var target = "https://" + domain + "/s?k=ups+power+backup+router" + (("s?k=ups+power+backup+router").indexOf("?") !== -1 ? "&" : "?") + "tag=" + tag;
+      window.location.replace(target);
+    })();
+  </script>
+</head>
+<body>Redirecting to verified hardware partner...</body>
+</html>

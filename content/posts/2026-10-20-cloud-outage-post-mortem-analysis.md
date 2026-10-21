@@ -33,9 +33,9 @@ The post-mortems demonstrate that recovery playbooks often stumble during live c
 
 ---
 ### Infrastructure & AI Production Toolkit
-* **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag=coldcasetech-21)
+* **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](/go/firewall.html)
 * **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
-* **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag=coldcasetech-21)
+* **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](/go/ups-backup.html)
 
 *Disclosure: As an Amazon Associate, ColdCaseTech earns from qualifying purchases.*
 

@@ -170,11 +170,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Verified Security & Incident Toolkit
-- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID]({SURFSHARK_ALT_ID_LINK})
-- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN]({SURFSHARK_VPN_DEAL_LINK})
-- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
-- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://www.amazon.in/s?k=hardware+encrypted+ssd&tag={AMAZON_TAG})
-- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({ELEVENLABS_LINK})
+- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID](https://coldcasetech.com/go/surfshark-id.html)
+- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN](https://coldcasetech.com/go/surfshark-vpn.html)
+- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://coldcasetech.com/go/yubikey.html)
+- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://coldcasetech.com/go/encrypted-ssd.html)
+- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
 
 {FTC_DISCLOSURE}
 """
@@ -182,11 +182,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Infrastructure & Network Resilience Toolkit
-- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite]({SURFSHARK_FEATURES_LINK})
-- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP]({GEARUP_SUB_LINK})
-- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag={AMAZON_TAG})
-- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({ELEVENLABS_LINK})
-- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag={AMAZON_TAG})
+- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite](https://coldcasetech.com/go/surfshark-suite.html)
+- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP](https://coldcasetech.com/go/gearup.html)
+- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://coldcasetech.com/go/firewall.html)
+- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
+- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://coldcasetech.com/go/ups-backup.html)
 
 {FTC_DISCLOSURE}
 """
@@ -194,11 +194,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Recommended Privacy & Research Tools
-- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN]({SURFSHARK_DOWNLOAD_LINK})
-- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID]({SURFSHARK_ALT_ID_LINK})
-- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP]({GEARUP_SUB_LINK})
-- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://www.amazon.in/dp/B07HBD7135?tag={AMAZON_TAG})
-- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({ELEVENLABS_LINK})
+- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN](https://coldcasetech.com/go/surfshark-download.html)
+- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID](https://coldcasetech.com/go/surfshark-id.html)
+- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP](https://coldcasetech.com/go/gearup.html)
+- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://coldcasetech.com/go/yubikey.html)
+- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
 
 {FTC_DISCLOSURE}
 """

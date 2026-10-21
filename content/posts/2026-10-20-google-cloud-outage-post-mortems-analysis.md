@@ -33,9 +33,9 @@ When enterprise workloads shift to hyperscale cloud providers, reliability hinge
 ### Infrastructure & Network Resilience Toolkit
 - **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite](https://www.anrdoezrs.net/click-101908427-15438547)
 - **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP](https://www.kqzyfj.com/click-101908427-17235979)
-- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://www.amazon.in/s?k=hardware+firewall+router&tag=coldcasetech-21)
+- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](/go/firewall.html)
 - **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
-- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://www.amazon.in/s?k=ups+power+backup+router&tag=coldcasetech-21)
+- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](/go/ups-backup.html)
 
 *Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
 
