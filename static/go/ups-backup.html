@@ -25,6 +25,7 @@
       }
 
       var target = "https://" + domain + "/s?k=ups+power+backup+router" + (("s?k=ups+power+backup+router").indexOf("?") !== -1 ? "&" : "?") + "tag=" + tag;
+      try { navigator.sendBeacon('https://coldcasetech.goatcounter.com/count?p=/go/ups-backup&t=Affiliate_Click_ups-backup'); } catch(e) {}
       window.location.replace(target);
     })();
   </script>

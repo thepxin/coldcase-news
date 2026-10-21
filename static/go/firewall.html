@@ -25,6 +25,7 @@
       }
 
       var target = "https://" + domain + "/s?k=hardware+firewall+router" + (("s?k=hardware+firewall+router").indexOf("?") !== -1 ? "&" : "?") + "tag=" + tag;
+      try { navigator.sendBeacon('https://coldcasetech.goatcounter.com/count?p=/go/firewall&t=Affiliate_Click_firewall'); } catch(e) {}
       window.location.replace(target);
     })();
   </script>

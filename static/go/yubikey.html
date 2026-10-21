@@ -25,6 +25,7 @@
       }
 
       var target = "https://" + domain + "/dp/B07HBD7135" + (("dp/B07HBD7135").indexOf("?") !== -1 ? "&" : "?") + "tag=" + tag;
+      try { navigator.sendBeacon('https://coldcasetech.goatcounter.com/count?p=/go/yubikey&t=Affiliate_Click_yubikey'); } catch(e) {}
       window.location.replace(target);
     })();
   </script>
