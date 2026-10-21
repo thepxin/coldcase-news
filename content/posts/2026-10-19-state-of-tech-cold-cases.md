@@ -33,4 +33,4 @@ Mainstream news cycles move fast, abandoning major technology and security incid
 - **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP](/go/gearup.html)
 - **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs](/go/elevenlabs.html)
 
-*Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
+*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*

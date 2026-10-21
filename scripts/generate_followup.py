@@ -19,7 +19,7 @@ INDEXNOW_KEY = "cctindexnow2026key8941"
 BASE_URL = "https://coldcasetech.com"
 
 FTC_DISCLOSURE = (
-    "*Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate "
+    "*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate "
     "commission when you purchase through our partner links (including Surfshark, "
     "GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*"
 )
@@ -146,12 +146,12 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
     return None
 
 def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image: str):
-    syndication_body = f"""> **Originally published on [ColdCase Tech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
+    syndication_body = f"""> **Originally published on [ColdCaseTech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
 
 {article.markdown_body}
 
 ---
-*Track real-time breach telemetry and CISA KEV advisories on the [ColdCase Tech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
+*Track real-time breach telemetry and CISA KEV advisories on the [ColdCaseTech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
 """
 
     # 1. Dev.to Syndication

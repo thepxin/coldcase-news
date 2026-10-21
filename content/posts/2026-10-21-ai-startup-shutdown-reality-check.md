@@ -51,5 +51,5 @@ While first-wave startups shuttered, the surviving tooling landscape shifted tow
 - **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
 - **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](/go/ups-backup.html)
 
-*Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
+*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
 

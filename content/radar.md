@@ -7,7 +7,7 @@ summary: "Live feed of critical vulnerabilities and active threat telemetry."
 ShowToc: false
 ---
 
-Monitor newly indexed Common Vulnerabilities and Exposures (CVEs) and active exploit telemetry in real time. Every post-mortem on **ColdCase Tech** tracks what happens *after* these advisories hit production networks.
+Monitor newly indexed Common Vulnerabilities and Exposures (CVEs) and active exploit telemetry in real time. Every post-mortem on **ColdCaseTech** tracks what happens *after* these advisories hit production networks.
 
 <div id="cct-radar-app" style="margin-top: 24px;">
   <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;">
