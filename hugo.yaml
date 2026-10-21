@@ -48,3 +48,7 @@ menu:
       name: Methodology
       url: /about/
       weight: 30
+    - identifier: privacy
+      name: Privacy & Terms
+      url: /privacy/
+      weight: 40
