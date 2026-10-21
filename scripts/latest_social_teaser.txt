@@ -1,3 +1,3 @@
-HEADLINE: Broken Embargo Unleashes 'Dirty Frag' Zero-Day Before Linux Patches Exist
+HEADLINE: The AI Startup Graveyard: Why First-Wave AI Ventures Are Quietly Folding
 
-A broken embargo leaked the devastating 'Dirty Frag' local privilege escalation flaw before kernel developers could finalize a fix. The bug grants trivial, immediate root access on virtually every Linux distribution released since 2017. Sysadmins are left scrambling to mitigate live exploits in the wild without official upstream patches.
+Recent postmortems from startups like Cydoc and Plumb show that building AI models was only 20% of the operational challenge. Most ventures folded under enterprise integration debt, sales friction, and high customer acquisition costs. At the same time, open-source git standards and explicit 'anti-AI' software are taking their place.
