@@ -11,16 +11,10 @@ from google.genai import types
 
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# --- AFFILIATE CONFIGURATION ---
-ELEVENLABS_LINK = "https://try.elevenlabs.io/cy22d10gen9g"
-AMAZON_TAG = "coldcasetech-21"
+DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
 
-# CJ Affiliate Tracking Links (Clean Click URLs)
-SURFSHARK_ALT_ID_LINK = "https://www.dpbolvw.net/click-101908427-15740542"
-SURFSHARK_VPN_DEAL_LINK = "https://www.dpbolvw.net/click-101908427-15438560"
-SURFSHARK_DOWNLOAD_LINK = "https://www.anrdoezrs.net/click-101908427-15438544"
-SURFSHARK_FEATURES_LINK = "https://www.anrdoezrs.net/click-101908427-15438547"
-GEARUP_SUB_LINK = "https://www.kqzyfj.com/click-101908427-17235979"
+# --- AFFILIATE & BRAND CONFIGURATION ---
+BASE_URL = "https://coldcasetech.com"
 
 FTC_DISCLOSURE = (
     "*Disclosure: ColdCase Tech is reader-supported. We may earn an affiliate "
@@ -29,13 +23,13 @@ FTC_DISCLOSURE = (
 )
 
 CYBER_COVER_IMAGES = [
-    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80", # Server rack dark
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80", # Matrix binary code
-    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80", # Cyber circuit board
-    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80", # SOC analytics screen
-    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80", # Abstract dark network
-    "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80", # Fiber optic cables
-    "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1200&q=80", # Terminal security lock
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1200&q=80",
 ]
 
 TOPICS = [
@@ -149,6 +143,44 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
                 time.sleep(wait_time)
     return None
 
+def cross_post_to_devto(article: FollowUpArticle, canonical_url: str, cover_image: str):
+    if not DEVTO_API_KEY:
+        print("Dev.to syndication skipped: DEVTO_API_KEY secret not configured.")
+        return
+
+    devto_body = f"""> **Originally published on [ColdCase Tech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
+
+{article.markdown_body}
+
+---
+*Follow real-time breach telemetry and vulnerability advisories on the [ColdCase Tech Live CVE Radar]({BASE_URL}/radar/).*
+"""
+
+    payload = {
+        "article": {
+            "title": article.headline,
+            "published": True,
+            "body_markdown": devto_body,
+            "canonical_url": canonical_url,
+            "main_image": cover_image,
+            "tags": ["security", "tech", "cloud", "devops"]
+        }
+    }
+
+    try:
+        res = requests.post(
+            "https://dev.to/api/articles",
+            headers={"api-key": DEVTO_API_KEY, "Content-Type": "application/json"},
+            json=payload,
+            timeout=15
+        )
+        if res.status_code in [200, 201]:
+            print(f"SUCCESS: Cross-posted to Dev.to -> {res.json().get('url')}")
+        else:
+            print(f"Dev.to syndication warning: {res.status_code} - {res.text}")
+    except Exception as e:
+        print(f"Dev.to syndication error: {e}")
+
 def save_hugo_post(article: FollowUpArticle):
     os.makedirs("content/posts", exist_ok=True)
     os.makedirs("scripts", exist_ok=True)
@@ -158,6 +190,7 @@ def save_hugo_post(article: FollowUpArticle):
     safe_slug = re.sub(r"[^a-z0-9-]", "-", article.slug.lower()).strip("-")[:55]
     safe_slug = re.sub(r"-+", "-", safe_slug)
     filename = f"content/posts/{today_str}-{safe_slug}.md"
+    canonical_url = f"{BASE_URL}/posts/{today_str}-{safe_slug}/"
 
     safe_title = json.dumps(article.headline)
     safe_desc = json.dumps(article.summary_description)
@@ -170,11 +203,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Verified Security & Incident Toolkit
-- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID](https://coldcasetech.com/go/surfshark-id.html)
-- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN](https://coldcasetech.com/go/surfshark-vpn.html)
-- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series](https://coldcasetech.com/go/yubikey.html)
-- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs](https://coldcasetech.com/go/encrypted-ssd.html)
-- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
+- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
+- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN]({BASE_URL}/go/surfshark-vpn.html)
+- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series]({BASE_URL}/go/yubikey.html)
+- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs]({BASE_URL}/go/encrypted-ssd.html)
+- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({BASE_URL}/go/elevenlabs.html)
 
 {FTC_DISCLOSURE}
 """
@@ -182,11 +215,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Infrastructure & Network Resilience Toolkit
-- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite](https://coldcasetech.com/go/surfshark-suite.html)
-- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP](https://coldcasetech.com/go/gearup.html)
-- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](https://coldcasetech.com/go/firewall.html)
-- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
-- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](https://coldcasetech.com/go/ups-backup.html)
+- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite]({BASE_URL}/go/surfshark-suite.html)
+- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP]({BASE_URL}/go/gearup.html)
+- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls]({BASE_URL}/go/firewall.html)
+- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({BASE_URL}/go/elevenlabs.html)
+- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems]({BASE_URL}/go/ups-backup.html)
 
 {FTC_DISCLOSURE}
 """
@@ -194,11 +227,11 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Recommended Privacy & Research Tools
-- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN](https://coldcasetech.com/go/surfshark-download.html)
-- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID](https://coldcasetech.com/go/surfshark-id.html)
-- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP](https://coldcasetech.com/go/gearup.html)
-- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys](https://coldcasetech.com/go/yubikey.html)
-- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs](https://coldcasetech.com/go/elevenlabs.html)
+- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN]({BASE_URL}/go/surfshark-download.html)
+- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
+- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP]({BASE_URL}/go/gearup.html)
+- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys]({BASE_URL}/go/yubikey.html)
+- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({BASE_URL}/go/elevenlabs.html)
 
 {FTC_DISCLOSURE}
 """
@@ -228,6 +261,9 @@ draft: false
         f.write(f"HEADLINE: {article.headline}\n\n{article.reddit_teaser}\n")
 
     print(f"SUCCESS: Created clean article at {filename}")
+    
+    # Automatic syndication to Dev.to
+    cross_post_to_devto(article, canonical_url, cover_image)
 
 if __name__ == "__main__":
     os.makedirs("content/posts", exist_ok=True)
