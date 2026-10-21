@@ -12,8 +12,10 @@ from google.genai import types
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
+HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
+HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
+INDEXNOW_KEY = "cctindexnow2026key8941"
 
-# --- AFFILIATE & BRAND CONFIGURATION ---
 BASE_URL = "https://coldcasetech.com"
 
 FTC_DISCLOSURE = (
@@ -124,7 +126,7 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
     for attempt in range(1, 4):
         try:
             response = client.models.generate_content(
-                model="gemini-3.8-flash",
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
@@ -143,43 +145,89 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
                 time.sleep(wait_time)
     return None
 
-def cross_post_to_devto(article: FollowUpArticle, canonical_url: str, cover_image: str):
-    if not DEVTO_API_KEY:
-        print("Dev.to syndication skipped: DEVTO_API_KEY secret not configured.")
-        return
-
-    devto_body = f"""> **Originally published on [ColdCase Tech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
+def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image: str):
+    syndication_body = f"""> **Originally published on [ColdCase Tech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
 
 {article.markdown_body}
 
 ---
-*Follow real-time breach telemetry and vulnerability advisories on the [ColdCase Tech Live CVE Radar]({BASE_URL}/radar/).*
+*Track real-time breach telemetry and CISA KEV advisories on the [ColdCase Tech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
 """
 
-    payload = {
-        "article": {
-            "title": article.headline,
-            "published": True,
-            "body_markdown": devto_body,
-            "canonical_url": canonical_url,
-            "main_image": cover_image,
-            "tags": ["security", "tech", "cloud", "devops"]
-        }
-    }
+    # 1. Dev.to Syndication
+    if DEVTO_API_KEY:
+        try:
+            res = requests.post(
+                "https://dev.to/api/articles",
+                headers={"api-key": DEVTO_API_KEY, "Content-Type": "application/json"},
+                json={
+                    "article": {
+                        "title": article.headline,
+                        "published": True,
+                        "body_markdown": syndication_body,
+                        "canonical_url": canonical_url,
+                        "main_image": cover_image,
+                        "tags": ["security", "cybersecurity", "cloud", "devops"]
+                    }
+                },
+                timeout=15
+            )
+            if res.status_code in [200, 201]:
+                print(f"SUCCESS: Syndicated to Dev.to -> {res.json().get('url')}")
+            else:
+                print(f"Dev.to warning: {res.status_code} - {res.text[:200]}")
+        except Exception as e:
+            print(f"Dev.to error: {e}")
+    else:
+        print("Skipped Dev.to: DEVTO_API_KEY not set.")
 
+    # 2. Hashnode GraphQL Syndication
+    if HASHNODE_TOKEN and HASHNODE_PUB_ID:
+        query = """
+        mutation PublishPost($input: PublishPostInput!) {
+          publishPost(input: $input) {
+            post { url }
+          }
+        }
+        """
+        variables = {
+            "input": {
+                "title": article.headline,
+                "publicationId": HASHNODE_PUB_ID,
+                "contentMarkdown": syndication_body,
+                "originalArticleURL": canonical_url,
+                "coverImageOptions": {"coverImageURL": cover_image},
+                "tags": [
+                    {"slug": "cybersecurity", "name": "Cybersecurity"},
+                    {"slug": "security", "name": "Security"},
+                    {"slug": "cloud", "name": "Cloud"}
+                ]
+            }
+        }
+        try:
+            h_res = requests.post(
+                "https://gql.hashnode.com",
+                headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json"},
+                json={"query": query, "variables": variables},
+                timeout=15
+            )
+            if h_res.status_code == 200 and "errors" not in h_res.json():
+                post_url = h_res.json().get("data", {}).get("publishPost", {}).get("post", {}).get("url")
+                print(f"SUCCESS: Syndicated to Hashnode -> {post_url}")
+            else:
+                print(f"Hashnode warning: {h_res.text[:200]}")
+        except Exception as e:
+            print(f"Hashnode error: {e}")
+    else:
+        print("Skipped Hashnode: HASHNODE_TOKEN or HASHNODE_PUB_ID not set.")
+
+    # 3. Bing IndexNow Instant Ping
     try:
-        res = requests.post(
-            "https://dev.to/api/articles",
-            headers={"api-key": DEVTO_API_KEY, "Content-Type": "application/json"},
-            json=payload,
-            timeout=15
-        )
-        if res.status_code in [200, 201]:
-            print(f"SUCCESS: Cross-posted to Dev.to -> {res.json().get('url')}")
-        else:
-            print(f"Dev.to syndication warning: {res.status_code} - {res.text}")
+        ping_url = f"https://api.indexnow.org/indexnow?url={canonical_url}&key={INDEXNOW_KEY}"
+        requests.get(ping_url, timeout=10)
+        print(f"SUCCESS: Pinged Bing IndexNow for {canonical_url}")
     except Exception as e:
-        print(f"Dev.to syndication error: {e}")
+        print(f"IndexNow ping warning: {e}")
 
 def save_hugo_post(article: FollowUpArticle):
     os.makedirs("content/posts", exist_ok=True)
@@ -257,13 +305,71 @@ draft: false
     with open(filename, "w", encoding="utf-8") as f:
         f.write(markdown_content)
 
+    social_kit = f"""================================================================
+1. REDDIT / HACKER NEWS DROP (r/cybersecurity, r/sysadmin, r/devops)
+================================================================
+TITLE: {article.headline} [Forensic Post-Mortem]
+
+BODY:
+{article.reddit_teaser}
+
+- Early Claim: {article.original_claim}
+- Current Reality ({article.verdict_score}): {article.current_reality}
+
+Full timeline & source breakdown: {canonical_url}
+
+================================================================
+2. X / TWITTER POST (https://x.com/coldcasetech)
+================================================================
+🚨 ColdCase Post-Mortem: {article.headline}
+
+Then: {article.original_claim}
+Now ({article.verdict_score}): {article.current_reality}
+
+Full technical breakdown & hardening playbook 👇
+{canonical_url}
+
+#CyberSecurity #InfoSec #SecOps #CloudSecurity #DFIR
+
+================================================================
+3. INSTAGRAM CAPTION (https://www.instagram.com/coldcasetech/)
+================================================================
+🔍 CASE FILE UPDATE: {article.headline}
+
+Mainstream tech media moves on after 48 hours. Here is what the forensic post-mortem actually revealed:
+
+📌 Early Headline: {article.original_claim}
+⚡ Current Reality ({article.verdict_score}): {article.current_reality}
+
+{article.reddit_teaser}
+
+🔗 Read the full root-cause investigation and live CVE radar via the link in our bio (@coldcasetech) -> {BASE_URL}
+
+#cybersecurity #infosec #ethicalhacking #cloudsecurity #socanalyst #technews #dfir #devsecops
+
+================================================================
+4. LINKEDIN POST (https://www.linkedin.com/in/coldcase-tech-29102a446/)
+================================================================
+🔍 Forensic Post-Mortem: {article.headline}
+
+Initial incident disclosures rarely tell the full story. Here is how the technical reality shifted once the forensic dust settled:
+
+• Initial Claim: {article.original_claim}
+• Verified Reality ({article.verdict_score}): {article.current_reality}
+
+{article.reddit_teaser}
+
+Read the full timeline, source citations, and hardening playbook:
+👉 {canonical_url}
+
+#CyberSecurity #InfoSec #CloudSecurity #DFIR #IncidentResponse #SecOps
+"""
+
     with open("scripts/latest_social_teaser.txt", "w", encoding="utf-8") as f:
-        f.write(f"HEADLINE: {article.headline}\n\n{article.reddit_teaser}\n")
+        f.write(social_kit)
 
     print(f"SUCCESS: Created clean article at {filename}")
-    
-    # Automatic syndication to Dev.to
-    cross_post_to_devto(article, canonical_url, cover_image)
+    syndicate_article(article, canonical_url, cover_image)
 
 if __name__ == "__main__":
     os.makedirs("content/posts", exist_ok=True)
