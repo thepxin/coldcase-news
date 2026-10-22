@@ -1,5 +1,8 @@
 name: Daily Cold-Case News Generator
 
+# Writes one article a day and opens a pull request for you to review.
+# Nothing goes live until you tap "Merge" (works in the GitHub phone app).
+# Publishing and syndication then happen in publish.yml.
 on:
   schedule:
     - cron: '30 14 * * *'
@@ -7,9 +10,10 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
-  generate-and-publish:
+  generate-for-review:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,34 +32,35 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate follow-up article
+      - name: Generate follow-up article (Gemini first, free Groq fallback)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python scripts/generate_followup.py
 
-      - name: Save and push article to repository
-        id: push
+      - name: Open a pull request for review
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "FollowUp Editorial Bot"
           git config user.email "bot@coldcasetech.com"
-          git add content/posts/ scripts/latest_social_teaser.txt
+          # Only the post goes into the pull request; the social posts are shown in the PR text instead.
+          git add content/posts/
           if git diff --staged --quiet; then
-            echo "No new article generated today; skipping push."
-            echo "published=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "chore(content): publish new automated investigation"
-            git pull --rebase origin main
-            git push origin main
-            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "No new article generated today; nothing to review."
+            exit 0
           fi
-
-      - name: Syndicate to Dev.to / Hashnode and ping IndexNow
-        if: steps.push.outputs.published == 'true'
-        env:
-          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
-          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
-          HASHNODE_PUB_ID: ${{ secrets.HASHNODE_PUB_ID }}
-        run: |
-          NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- content/posts)
-          echo "New posts: $NEW_POSTS"
-          python scripts/syndicate.py $NEW_POSTS
+          BRANCH="review/$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
+          TITLE="$(python scripts/make_pr_body.py)"
+          git checkout -b "$BRANCH"
+          git commit -m "draft: ${TITLE}"
+          git push origin "$BRANCH"
+          if gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md \
+               --reviewer "${{ github.repository_owner }}"; then
+            echo "Pull request opened (review requested from ${{ github.repository_owner }})."
+          elif gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md; then
+            echo "Pull request opened (without a review request)."
+          else
+            echo "::error::Could not open the pull request. Turn on: Settings > Actions > General > Workflow permissions > 'Allow GitHub Actions to create and approve pull requests'. The draft is safe on branch $BRANCH; open it from the repo's Pull requests tab."
+            exit 1
+          fi
