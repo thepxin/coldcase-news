@@ -1,0 +1,57 @@
+name: Refresh Live Feeds
+
+# Every 3 hours (at minute 17, to avoid the busy top of the hour).
+# Commits only when the data changed, so Cloudflare rebuilds only when there is something new.
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-feeds
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch feeds (KEV, EPSS, HIBP, GitHub advisories)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/fetch_feeds.py
+
+      - name: Commit and push only if data changed
+        run: |
+          git config user.name "Live Feeds Bot"
+          git config user.email "bot@coldcasetech.com"
+          git add data/feeds
+          if git diff --staged --quiet; then
+            echo "No feed changes; nothing to commit."
+            exit 0
+          fi
+          git commit -m "chore(feeds): refresh live data"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              echo "Pushed."
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; retrying in 15s..."
+            sleep 15
+          done
+          echo "Could not push after 3 attempts."
+          exit 1
