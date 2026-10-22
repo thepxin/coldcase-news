@@ -11,12 +11,7 @@ from google.genai import types
 
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# Free fallback model, used only when Gemini fails (for example, daily quota exhausted).
-# Every article still waits for human approval in a pull request before it goes live.
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
-GROQ_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 GEMINI_EXHAUSTED = False
-LAST_MODEL = ""
 
 
 BASE_URL = "https://coldcasetech.com"
@@ -54,25 +49,6 @@ class FollowUpArticle(BaseModel):
     verdict_score: str
     markdown_body: str
     reddit_teaser: str
-
-ARTICLE_JSON_SCHEMA = {
-    "type": "object",
-    "additionalProperties": False,
-    "required": ["has_meaningful_update", "headline", "slug", "summary_description", "original_claim",
-                 "current_reality", "verdict_score", "markdown_body", "reddit_teaser"],
-    "properties": {
-        "has_meaningful_update": {"type": "boolean"},
-        "headline": {"type": "string"},
-        "slug": {"type": "string"},
-        "summary_description": {"type": "string"},
-        "original_claim": {"type": "string"},
-        "current_reality": {"type": "string"},
-        "verdict_score": {"type": "string", "enum": ["Verified", "Partially True", "Escalated", ""]},
-        "markdown_body": {"type": "string"},
-        "reddit_teaser": {"type": "string"},
-    },
-}
-
 
 VERDICT_LABELS = ("Verified", "Partially True", "Escalated")
 
@@ -251,16 +227,14 @@ Return one JSON object with exactly these keys: has_meaningful_update (boolean),
 """
 
     article = call_gemini(prompt)
-    if article is None:
-        article = call_groq(prompt)
     if article is not None:
         article.markdown_body = article.markdown_body.replace("{", "(").replace("}", ")")
     return article
 
 
 def call_gemini(prompt: str):
-    """Primary model. Returns an article, or None so the fallback can try."""
-    global GEMINI_EXHAUSTED, LAST_MODEL
+    """Returns an article, or None. Stops trying for the rest of the run once the daily quota is used up."""
+    global GEMINI_EXHAUSTED
     if GEMINI_EXHAUSTED:
         print("Gemini skipped (daily quota already exhausted in this run).")
         return None
@@ -276,57 +250,18 @@ def call_gemini(prompt: str):
                 ),
             )
             article = FollowUpArticle.model_validate_json(response.text)
-            LAST_MODEL = "gemini-3.8-flash"
             return article
         except Exception as e:
             msg = str(e)
             print(f"Gemini API (gemini-3.8-flash) attempt {attempt}/3 failed: {msg[:300]}")
             if any(k in msg for k in ("RESOURCE_EXHAUSTED", "429", "quota", "billing")):
                 GEMINI_EXHAUSTED = True
-                print("Gemini quota exhausted; switching to the fallback model for the rest of this run.")
+                print("Gemini daily quota exhausted; no article today. It resets at midnight Pacific time.")
                 return None
             if attempt < 3:
                 wait_time = attempt * 15
                 print(f"Waiting {wait_time}s before retrying...")
                 time.sleep(wait_time)
-    return None
-
-
-def call_groq(prompt: str):
-    """Free fallback (Groq). Uses strict JSON schema so output matches Gemini's format. Skipped if no key."""
-    global LAST_MODEL
-    if not GROQ_API_KEY:
-        print("Fallback skipped: GROQ_API_KEY is not set.")
-        return None
-    body = {
-        "model": GROQ_MODEL,
-        "temperature": 0.4,
-        "messages": [
-            {"role": "system", "content": "You are a careful investigative editor. Follow the user's rules exactly and reply only with JSON."},
-            {"role": "user", "content": prompt},
-        ],
-        "response_format": {"type": "json_schema", "json_schema": {
-            "name": "follow_up_article", "strict": True, "schema": ARTICLE_JSON_SCHEMA}},
-    }
-    for attempt in range(1, 3):
-        try:
-            r = requests.post("https://api.groq.com/openai/v1/chat/completions",
-                              headers={"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"},
-                              json=body, timeout=120)
-            if r.status_code == 429 and attempt == 1:
-                wait = min(int(float(r.headers.get("retry-after", "30") or 30)), 90)
-                print(f"Groq rate limit; waiting {wait}s and retrying once.")
-                time.sleep(wait)
-                continue
-            r.raise_for_status()
-            text = r.json()["choices"][0]["message"]["content"]
-            article = FollowUpArticle.model_validate_json(text)
-            LAST_MODEL = f"groq/{GROQ_MODEL}"
-            print(f"Fallback model used: {LAST_MODEL}")
-            return article
-        except Exception as e:
-            print(f"Groq ({GROQ_MODEL}) attempt {attempt}/2 failed: {str(e)[:300]}")
-            time.sleep(5)
     return None
 
 
@@ -368,7 +303,6 @@ then: {fm_then}
 now: {fm_now}
 verified: "{today_str}"
 toolkit: "{toolkit_key}"
-model: "{LAST_MODEL or "unknown"}"
 cover:
   image: "{cover_image}"
   alt: {safe_title}
@@ -454,6 +388,8 @@ if __name__ == "__main__":
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
 
     for offset in range(len(TOPICS)):
+        if GEMINI_EXHAUSTED:
+            break
         topic = TOPICS[(day_of_year + offset) % len(TOPICS)]
         print(f"Searching fresh sources for topic: {topic}...")
         sources = fetch_clean_sources(topic, used_urls)
@@ -461,13 +397,6 @@ if __name__ == "__main__":
         if len(sources) >= 2:
             article = generate_article(topic, sources)
             if article and article.has_meaningful_update:
-                filename = save_hugo_post(article)
-                # Summary for the review pull request (not committed to the site).
-                with open("post_meta.json", "w", encoding="utf-8") as f:
-                    json.dump({"file": filename, "headline": article.headline, "verdict": article.verdict_score,
-                               "then": article.original_claim, "now": article.current_reality,
-                               "model": LAST_MODEL, "topic": topic,
-                               "sources": [{"title": x["title"], "url": x["url"], "date": x["date"]} for x in sources],
-                               "words": len(article.markdown_body.split())}, f, ensure_ascii=False, indent=1)
+                save_hugo_post(article)
                 break
         time.sleep(2)
