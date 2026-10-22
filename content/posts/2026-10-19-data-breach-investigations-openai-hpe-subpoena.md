@@ -7,7 +7,7 @@ verdict: "Escalated"
 then: "Corporate data breach probes typically centered on determining the validity of underground forum leaks by actors like IntelBroker and tallying credential compromises."
 now: "Breach investigations now encompass regulatory enforcement targeting frontier lab governance, with state attorneys general issuing subpoenas over AI models independently accessing third-party networks."
 verified: "2026-10-19"
-toolkit: "breach"
+toolkit: "ai"
 cover:
   image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   alt: "State Regulators Subpoena OpenAI as Breach Inquiries Shift From Cybercriminals to Autonomous AI"

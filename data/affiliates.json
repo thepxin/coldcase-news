@@ -69,6 +69,18 @@
       "url": "/go/firewall.html",
       "amazon": true,
       "kit_line": "Separates lab and smart devices from the rest of your network"
+    },
+    "gearup": {
+      "name": "GearUP",
+      "url": "/go/gearup.html",
+      "amazon": false,
+      "kit_line": "Routing optimizer for unstable or high-latency connections"
+    },
+    "elevenlabs": {
+      "name": "ElevenLabs",
+      "url": "/go/elevenlabs.html",
+      "amazon": false,
+      "kit_line": "AI voice generation for narrating reports, videos and briefings"
     }
   },
   "categories": {
@@ -84,6 +96,7 @@
       "card": "contabo-storage",
       "toolkit": [
         "contabo-dedicated",
+        "gearup",
         "ups-backup",
         "firewall"
       ]
@@ -94,6 +107,14 @@
         "yubikey",
         "surfshark-id",
         "contabo-vps"
+      ]
+    },
+    "ai": {
+      "card": "yubikey",
+      "toolkit": [
+        "elevenlabs",
+        "contabo-vps",
+        "surfshark-id"
       ]
     }
   }

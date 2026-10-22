@@ -7,7 +7,7 @@ verdict: "Partially True"
 then: "AI startups claimed that proprietary models and automated agent pipelines would rapidly displace legacy workflows and capture enterprise markets."
 now: "Postmortems reveal that building AI software represents barely 20 percent of the battle, with founders succumbing to brittle distribution, entrenched legacy integrations, and rising buyer pushback."
 verified: "2026-10-21"
-toolkit: "infra"
+toolkit: "ai"
 cover:
   image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
   alt: "The AI Startup Graveyard: Why First-Wave AI Ventures Are Quietly Folding"

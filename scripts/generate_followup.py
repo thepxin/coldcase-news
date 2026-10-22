@@ -69,19 +69,22 @@ TOOLKIT_KEYWORDS = {
     "breach": ["breach", "leak", "leaked", "ransomware", "credential", "credentials", "password", "passwords",
                "phishing", "exfiltration", "stolen", "wallet", "account takeover"],
     "infra": ["cloud", "outage", "outages", "infrastructure", "server", "servers", "architecture",
-              "datacenter", "data center", "downtime", "failover", "region"],
+              "datacenter", "data center", "downtime", "failover", "region", "network", "latency"],
+    "ai": ["ai", "artificial intelligence", "llm", "llms", "openai", "chatgpt", "chatbot", "chatbots",
+           "generative", "machine learning", "ai startup", "ai startups", "ai model", "ai models"],
 }
 
 
 def pick_toolkit(text: str) -> str:
-    """breach / infra / privacy, using whole-word matches (so 'said' never counts as 'ai')."""
+    """breach / infra / ai / privacy, using whole-word matches (so 'said' never counts as 'ai').
+    Ties go to the more security-focused category: breach, then infra, then ai."""
     t = (text or "").lower()
+    t = re.sub(r"https?://\S+|\]\([^)]*\)", " ", t)  # ignore URLs, e.g. "andromeda.ai" must not count as AI
     def hits(words):
         return sum(len(re.findall(r"\b" + re.escape(w) + r"\b", t)) for w in words)
-    b, i = hits(TOOLKIT_KEYWORDS["breach"]), hits(TOOLKIT_KEYWORDS["infra"])
-    if b == 0 and i == 0:
-        return "privacy"
-    return "breach" if b >= i else "infra"
+    scores = [(hits(TOOLKIT_KEYWORDS[k]), -i, k) for i, k in enumerate(("breach", "infra", "ai"))]
+    best = max(scores)
+    return best[2] if best[0] > 0 else "privacy"
 
 
 CARD_SHORTCODE = "{{< recommend >}}"
@@ -261,7 +264,7 @@ def save_hugo_post(article: FollowUpArticle):
 
     # Affiliate placement is rendered by the site templates from data/affiliates.json:
     # one recommendation card after "Root Cause and Lessons" plus a 3-item toolkit at the end.
-    toolkit_key = pick_toolkit(article.headline + " " + article.markdown_body)
+    toolkit_key = pick_toolkit((article.headline + " ") * 3 + article.markdown_body)
     body_with_card = insert_card(article.markdown_body)
 
     article.verdict_score = normalize_verdict(article.verdict_score)
