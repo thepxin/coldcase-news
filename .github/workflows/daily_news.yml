@@ -49,13 +49,30 @@ jobs:
             echo "published=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Syndicate to Dev.to / Hashnode and ping IndexNow
-        if: steps.push.outputs.published == 'true'
+      - name: Share yesterday's posts to Dev.to / Hashnode (24-hour delay)
+        # Posts go out about a day after publishing, so any fix you make on the site is included.
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
           HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
           HASHNODE_PUB_ID: ${{ secrets.HASHNODE_PUB_ID }}
+        run: python scripts/syndicate.py --due
+
+      - name: Save the syndication log
         run: |
-          NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- content/posts)
+          git add scripts/syndicated.json
+          if git diff --staged --quiet; then
+            echo "Syndication log unchanged."
+          else
+            git commit -m "chore(syndication): update shared-posts log"
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin main; then break; fi
+              sleep 15
+            done
+          fi
+
+      - name: Ping IndexNow for today's new post
+        if: steps.push.outputs.published == 'true'
+        run: |
+          NEW_POSTS=$(git log -1 --format=%H --grep="publish new automated investigation" | xargs -I{} git diff --name-only --diff-filter=A {}~1 {} -- content/posts)
           echo "New posts: $NEW_POSTS"
-          python scripts/syndicate.py $NEW_POSTS
+          if [ -n "$NEW_POSTS" ]; then python scripts/syndicate.py --indexnow $NEW_POSTS; fi
