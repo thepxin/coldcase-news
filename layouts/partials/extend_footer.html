@@ -1,58 +1,38 @@
 <script>
+/* "3 h ago" for <time class="cct-ago">; the absolute UTC time stays as fallback and tooltip */
 (function(){var t=document.querySelectorAll('time.cct-ago');if(!t.length)return;var n=Date.now();
 t.forEach(function(e){var d=Date.parse(e.getAttribute('datetime'));if(isNaN(d))return;var m=Math.max(0,Math.round((n-d)/60000));
 e.title=e.textContent;e.textContent=m<60?(m<2?'just now':m+' min ago'):(m<2880?Math.round(m/60)+' h ago':Math.round(m/1440)+' days ago');});})();
 </script>
-<section class="cct-news" aria-labelledby="cct-news-title">
-  <p class="cct-news-kicker"><span class="cct-dot" aria-hidden="true"></span>ColdCase Weekly</p>
-  <h3 id="cct-news-title">One email a week: the cases that changed.</h3>
-  <p class="cct-news-text">Mainstream tech media moves on after 48 hours. Get our weekly follow-ups on breach investigations, root-cause disclosures and hardening lessons.</p>
-  <form id="cct-newsletter-form" action="https://app.kit.com/forms/10077030/subscriptions" method="post" onsubmit="return handleCCTSubscribe(event)">
-    <label class="cct-sr" for="cct-email-input">Email address</label>
-    <input type="email" id="cct-email-input" name="email_address" required autocomplete="email" placeholder="you@example.com">
-    <button type="submit" id="cct-sub-btn" class="cct-btn-money">Subscribe free ›</button>
-  </form>
-  <div id="cct-sub-msg" role="status" aria-live="polite" style="display: none;"></div>
-  <div class="cct-news-foot">
-    <span>Zero spam. Weekly digest only. See our <a href="/privacy/">Privacy Policy</a>.</span>
-    <span class="cct-news-social">Follow:
-      <a href="https://www.linkedin.com/in/coldcase-tech-29102a446/" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="https://x.com/coldcasetech" target="_blank" rel="noopener">X (@coldcasetech)</a> ·
-      <a href="https://www.instagram.com/coldcasetech/" target="_blank" rel="noopener">Instagram</a> ·
-      <a href="/index.xml">RSS</a>
-    </span>
-  </div>
-</section>
-
 <script>
-async function handleCCTSubscribe(e) {
+/* Newsletter (Kit form 10077030). Works for every .cct-news-form on the page.
+   mode:'no-cors' sends the signup once without needing Kit to allow cross-site reads;
+   if the network call fails completely, the normal form post opens in a new tab instead. */
+document.addEventListener('submit', async function (e) {
+  var form = e.target;
+  if (!form.classList || !form.classList.contains('cct-news-form')) return;
   e.preventDefault();
-  const form = document.getElementById('cct-newsletter-form');
-  const input = document.getElementById('cct-email-input');
-  const btn = document.getElementById('cct-sub-btn');
-  const msg = document.getElementById('cct-sub-msg');
-  const email = input.value.trim();
-  if (!email) return false;
-
+  var input = form.querySelector('input[type=email]');
+  var btn = form.querySelector('button');
+  var msg = form.parentNode.querySelector('.cct-news-msg');
+  var email = (input.value || '').trim();
+  if (!email) return;
   btn.disabled = true;
-  btn.textContent = 'Registering...';
-
+  btn.textContent = 'Sending...';
   try {
-    const formData = new FormData(form);
-    await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
+    await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
   } catch (err) {
     form.target = '_blank';
     form.submit();
   }
-
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'newsletter-signup-' + (form.dataset.place || 'page'), title: 'Newsletter signup', event: true });
+    }
+  } catch (err) {}
   input.value = '';
-  btn.textContent = '✓ Subscribed';
-  msg.style.display = 'block';
-  msg.textContent = '✓ Success! Check your inbox (' + email + ') to confirm your subscription to the ColdCase Weekly Intelligence Brief.';
-  return false;
-}
+  btn.textContent = 'Check your inbox';
+  msg.hidden = false;
+  msg.textContent = 'Almost done: open the email we just sent to ' + email + ' and click the confirm link. Your checklist link is in that email.';
+});
 </script>

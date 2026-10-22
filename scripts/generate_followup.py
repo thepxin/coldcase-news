@@ -14,12 +14,6 @@ client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 BASE_URL = "https://coldcasetech.com"
 
-FTC_DISCLOSURE = (
-    "*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate "
-    "commission when you purchase through our partner links (including Contabo, Surfshark, "
-    "GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*"
-)
-
 CYBER_COVER_IMAGES = [
     "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
@@ -69,6 +63,45 @@ def normalize_verdict(label: str) -> str:
             and not any(k in v for k in ("partial", "unresolved", "not ")):
         return "Verified"
     return "Partially True"
+
+
+TOOLKIT_KEYWORDS = {
+    "breach": ["breach", "leak", "leaked", "ransomware", "credential", "credentials", "password", "passwords",
+               "phishing", "exfiltration", "stolen", "wallet", "account takeover"],
+    "infra": ["cloud", "outage", "outages", "infrastructure", "server", "servers", "architecture",
+              "datacenter", "data center", "downtime", "failover", "region"],
+}
+
+
+def pick_toolkit(text: str) -> str:
+    """breach / infra / privacy, using whole-word matches (so 'said' never counts as 'ai')."""
+    t = (text or "").lower()
+    def hits(words):
+        return sum(len(re.findall(r"\b" + re.escape(w) + r"\b", t)) for w in words)
+    b, i = hits(TOOLKIT_KEYWORDS["breach"]), hits(TOOLKIT_KEYWORDS["infra"])
+    if b == 0 and i == 0:
+        return "privacy"
+    return "breach" if b >= i else "infra"
+
+
+CARD_SHORTCODE = "{{< recommend >}}"
+
+
+def insert_card(body: str) -> str:
+    """Put the recommendation card right after the Root Cause / Lessons section (next to the problem)."""
+    if CARD_SHORTCODE in body:
+        return body
+    lines = body.split("\n")
+    heading = re.compile(r"^#{2,3}\s")
+    start = next((i for i, l in enumerate(lines) if heading.match(l) and re.search(r"root cause|lesson", l, re.I)), None)
+    if start is not None:
+        end = next((i for i in range(start + 1, len(lines)) if heading.match(lines[i])), len(lines))
+    else:
+        end = next((i for i, l in enumerate(lines) if heading.match(l) and re.search(r"\bsources?\b", l, re.I)), len(lines))
+    while end > 0 and lines[end - 1].strip() == "":
+        end -= 1
+    lines[end:end] = ["", CARD_SHORTCODE, ""]
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def get_previously_used_urls(posts_dir: str = "content/posts") -> set[str]:
@@ -226,47 +259,10 @@ def save_hugo_post(article: FollowUpArticle):
     img_index = sum(ord(c) for c in safe_slug) % len(CYBER_COVER_IMAGES)
     cover_image = CYBER_COVER_IMAGES[img_index]
 
-    t_lower = (article.headline + " " + article.markdown_body).lower()
-
-    if any(k in t_lower for k in ["breach", "leak", "ransomware", "credential", "password"]):
-        affiliate_block = f"""
----
-### Verified Security & Incident Toolkit
-- **Air-Gapped Cloud Backups:** Prevent ransomware encryption from destroying local archives — [Deploy Contabo Storage VPS]({BASE_URL}/go/contabo-storage.html)
-- **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
-- **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN]({BASE_URL}/go/surfshark-vpn.html)
-- **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series]({BASE_URL}/go/yubikey.html)
-- **Air-Gapped Encrypted Storage:** Isolate critical backups offline on hardware-encrypted drives — [View Encrypted SSDs]({BASE_URL}/go/encrypted-ssd.html)
-- **AI Audio & Narration Stack:** Power your automated media pipeline with lifelike synthesis — [Try ElevenLabs]({BASE_URL}/go/elevenlabs.html)
-
-{FTC_DISCLOSURE}
-"""
-    elif any(k in t_lower for k in ["cloud", "outage", "infrastructure", "server", "architecture", "ai"]):
-        affiliate_block = f"""
----
-### Infrastructure & Network Resilience Toolkit
-- **High-Availability Failover:** Migrate mission-critical databases to isolated bare-metal hardware — [Deploy Contabo Dedicated Servers]({BASE_URL}/go/contabo-dedicated.html)
-- **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite]({BASE_URL}/go/surfshark-suite.html)
-- **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP]({BASE_URL}/go/gearup.html)
-- **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls]({BASE_URL}/go/firewall.html)
-- **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs]({BASE_URL}/go/elevenlabs.html)
-- **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems]({BASE_URL}/go/ups-backup.html)
-
-{FTC_DISCLOSURE}
-"""
-    else:
-        affiliate_block = f"""
----
-### Recommended Privacy & Research Tools
-- **Isolated Cloud Sandbox:** Spin up disposable Linux environments for malware analysis and secure routing — [Deploy Contabo Core VPS]({BASE_URL}/go/contabo-vps.html)
-- **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN]({BASE_URL}/go/surfshark-download.html)
-- **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
-- **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP]({BASE_URL}/go/gearup.html)
-- **Hardware Security Keys:** Lock down cloud and exchange accounts with physical FIDO2 authentication — [Explore YubiKey Security Keys]({BASE_URL}/go/yubikey.html)
-- **AI Voice Synthesis:** Create high-retention multimedia and audio content — [Try ElevenLabs]({BASE_URL}/go/elevenlabs.html)
-
-{FTC_DISCLOSURE}
-"""
+    # Affiliate placement is rendered by the site templates from data/affiliates.json:
+    # one recommendation card after "Root Cause and Lessons" plus a 3-item toolkit at the end.
+    toolkit_key = pick_toolkit(article.headline + " " + article.markdown_body)
+    body_with_card = insert_card(article.markdown_body)
 
     article.verdict_score = normalize_verdict(article.verdict_score)
     fm_verdict = json.dumps(article.verdict_score, ensure_ascii=False)
@@ -284,6 +280,7 @@ verdict: {fm_verdict}
 then: {fm_then}
 now: {fm_now}
 verified: "{today_str}"
+toolkit: "{toolkit_key}"
 cover:
   image: "{cover_image}"
   alt: {safe_title}
@@ -291,8 +288,7 @@ cover:
 draft: false
 ---
 
-{article.markdown_body}
-{affiliate_block}
+{body_with_card}
 """
 
     with open(filename, "w", encoding="utf-8") as f:

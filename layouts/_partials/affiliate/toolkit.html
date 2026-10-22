@@ -1,0 +1,17 @@
+{{- /* Short 3-item toolkit at the end of a case. Context: the page. */ -}}
+{{- $cat := partial "affiliate/category.html" . -}}
+{{- $p := hugo.Data.affiliates.products -}}
+{{- with $cat.toolkit }}
+{{- $amazon := false }}
+<section class="cct-toolkit" aria-labelledby="cct-toolkit-h">
+  <h2 id="cct-toolkit-h">Toolkit for this kind of incident</h2>
+  <ol>
+    {{- range . }}{{ $key := . }}{{ with index $p . }}
+    {{- if .amazon }}{{ $amazon = true }}{{ end }}
+    <li><span class="cct-tk-line">{{ .kit_line }}</span>
+      <a href="{{ .url }}" target="_blank" rel="sponsored noopener" data-goatcounter-click="aff-toolkit-{{ $key }}" data-goatcounter-title="Affiliate toolkit: {{ .name }}">{{ .name }} ›</a></li>
+    {{- end }}{{ end }}
+  </ol>
+  <p class="cct-tk-disc">These are affiliate links: we may earn a commission at no extra cost to you{{ if $amazon }}. As an Amazon Associate, ColdCaseTech earns from qualifying purchases{{ end }}.</p>
+</section>
+{{- end -}}

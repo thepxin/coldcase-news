@@ -1,0 +1,20 @@
+{{- /* Works out this page's affiliate picks from data/affiliates.json:
+       card    = first product (that has card copy) not already linked in the article
+       toolkit = up to 3 remaining products, also skipping anything linked inline.
+     Uses .RawContent so it is safe inside the {{< recommend >}} shortcode. */ -}}
+{{- $out := dict -}}
+{{- $all := hugo.Data.affiliates.products -}}
+{{- with .Params.toolkit -}}{{- with index hugo.Data.affiliates.categories . -}}
+  {{- $pool := slice .card | append .toolkit -}}
+  {{- $free := slice -}}
+  {{- range $pool -}}
+    {{- $p := index $all . -}}
+    {{- if and $p (not (in $.RawContent (printf "/go/%s.html" .))) -}}{{- $free = $free | append . -}}{{- end -}}
+  {{- end -}}
+  {{- $card := "" -}}
+  {{- range $free -}}{{- if and (not $card) (index (index $all .) "card_title") -}}{{- $card = . -}}{{- end -}}{{- end -}}
+  {{- $kit := slice -}}
+  {{- range $free -}}{{- if and (ne . $card) (lt (len $kit) 3) -}}{{- $kit = $kit | append . -}}{{- end -}}{{- end -}}
+  {{- $out = dict "card" $card "toolkit" $kit -}}
+{{- end -}}{{- end -}}
+{{- return $out -}}

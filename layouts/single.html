@@ -17,6 +17,7 @@
       {{- with .Params.verified }}<span>LAST VERIFIED <b><time datetime="{{ . }}">{{ . }}</time></b></span>{{ end }}
       <a href="{{ "about/" | relURL }}">How we verify</a>
     </p>
+    {{- partial "affiliate/disclosure_top.html" . }}
     {{- if and .Params.then .Params.now }}
     <div class="cct-tvbox">
       <div><h2>THEN · EARLY REPORTS</h2><p>{{ .Params.then }}</p></div>
@@ -73,6 +74,11 @@
   </div>
   {{- end }}
 
+  {{- if .Params.verdict }}
+  {{- if not (in .Content "cct-rec-card") }}{{ partial "affiliate/card.html" . }}{{ end }}
+  {{- partial "affiliate/toolkit.html" . }}
+  {{- partial "newsletter.html" (dict "place" "post-end") }}
+  {{- end }}
   {{- partial "extend_post_content.html" . }}
 
   <footer class="post-footer">

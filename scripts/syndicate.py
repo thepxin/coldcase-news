@@ -44,7 +44,8 @@ def read_post(path):
     img = re.search(r"^\s+image:\s*(.+)$", fm, re.M)
     cover = img.group(1).strip().strip("\"'") if img else ""
     return {"title": field("title"), "cover": cover, "body": body,
-            "verdict": field("verdict"), "then": field("then"), "now": field("now")}
+            "verdict": field("verdict"), "then": field("then"), "now": field("now"),
+            "toolkit": field("toolkit")}
 
 
 def canonical_for(path):
@@ -68,14 +69,49 @@ def wait_until_live(url):
         time.sleep(POLL_EVERY)
 
 
+AFFILIATES_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "affiliates.json")
+
+
+def affiliate_markdown(post):
+    """Same picks as the site templates: card + up to 3 toolkit items, skipping products already linked."""
+    try:
+        d = json.load(open(AFFILIATES_FILE, encoding="utf-8"))
+        cat = d["categories"][post.get("toolkit") or ""]
+    except Exception:
+        return "", ""
+    products = d["products"]
+    pool = [cat["card"]] + list(cat["toolkit"])
+    free = [k for k in pool if k in products and f"/go/{k}.html" not in post["body"]]
+    card = next((k for k in free if products[k].get("card_title")), "")
+    kit = [k for k in free if k != card][:3]
+    card_md = ""
+    if card:
+        c = products[card]
+        card_md = (f"> **{c['card_title']}.** {c['card_text']} "
+                   f"[{c['card_cta']}]({BASE_URL}{c['url']}) *(affiliate link)*")
+    kit_md = ""
+    if kit:
+        amazon = any(products[k].get("amazon") for k in kit)
+        lines = "\n".join(f"- {products[k]['kit_line']}: [{products[k]['name']}]({BASE_URL}{products[k]['url']})" for k in kit)
+        kit_md = ("\n\n### Toolkit for this kind of incident\n" + lines +
+                  "\n\n*These are affiliate links: we may earn a commission at no extra cost to you"
+                  + (". As an Amazon Associate, ColdCaseTech earns from qualifying purchases" if amazon else "") + ".*")
+    return card_md, kit_md
+
+
 def build_body(post, canonical):
     body = post["body"].replace("](/go/", f"]({BASE_URL}/go/")
+    card_md, kit_md = affiliate_markdown(post)
+    body = body.replace("{{< recommend >}}", card_md).rstrip() + kit_md
+    disclosure = ("*Disclosure: this post contains affiliate links. We may earn a commission at no extra cost to you.*\n\n"
+                  if "/go/" in body else "")
     case = ""
     if post.get("then") and post.get("now"):
         case = (f"> **Then vs. Now ({post.get('verdict') or 'Under review'}):** "
                 f"**Then:** {post['then']} **Now:** {post['now']}\n\n")
     return (
         f"> **Originally published on [ColdCaseTech]({canonical}).**\n\n"
+        f"{disclosure}"
         f"{case}"
         f"{body}\n\n---\n"
         f"*Live KEV + EPSS data is on the [ColdCaseTech Threat Radar]({BASE_URL}/radar/) "

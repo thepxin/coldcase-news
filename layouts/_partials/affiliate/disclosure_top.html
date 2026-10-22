@@ -1,0 +1,4 @@
+{{- /* Short FTC disclosure shown BEFORE the first affiliate link on the page. */ -}}
+{{- if or .Params.toolkit (in .RawContent "/go/") }}
+<p class="cct-disc-top">Disclosure: this page contains affiliate links. If you buy through them we may earn a commission, at no extra cost to you. Verdicts are never paid for. <a href="{{ "privacy/" | relURL }}">Details</a></p>
+{{- end -}}

@@ -1,1 +1,4 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if or (strings.HasPrefix .Destination "http") (strings.HasPrefix .Destination "/go/") }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- $d := .Destination -}}
+{{- $aff := or (strings.HasPrefix $d "/go/") (strings.HasPrefix $d "https://coldcasetech.com/go/") -}}
+<a href="{{ $d | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $aff }} target="_blank" rel="sponsored noopener" data-goatcounter-click="aff-inline-{{ strings.TrimSuffix ".html" (path.Base $d) }}" data-goatcounter-title="Affiliate inline link"{{ else if strings.HasPrefix $d "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- /* no trailing newline: keeps links inline */ -}}

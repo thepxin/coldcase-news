@@ -1,0 +1,100 @@
+{
+  "_readme": "One place for every affiliate placement. url must point to an existing /go/ page. Edit wording here; never edit the /go/ pages' affiliate URLs or tags.",
+  "products": {
+    "yubikey": {
+      "name": "YubiKey hardware security keys",
+      "url": "/go/yubikey.html",
+      "amazon": true,
+      "card_title": "Stop stolen passwords from being enough",
+      "card_text": "Hardware security keys (FIDO2) are tied to the real website, so a phishing page cannot use them even if someone hands over a password.",
+      "card_cta": "See YubiKey options",
+      "kit_line": "Phishing-resistant sign-in for email, cloud and exchange accounts"
+    },
+    "contabo-storage": {
+      "name": "Contabo Object Storage",
+      "url": "/go/contabo-storage.html",
+      "amazon": false,
+      "card_title": "Keep one backup somewhere else",
+      "card_text": "A copy of critical data with a second provider means one compromised account or one regional outage cannot take everything down with it.",
+      "card_cta": "See Contabo storage plans",
+      "kit_line": "Off-site backups at a second provider"
+    },
+    "contabo-dedicated": {
+      "name": "Contabo dedicated servers",
+      "url": "/go/contabo-dedicated.html",
+      "amazon": false,
+      "kit_line": "A standby server outside your main cloud for failover",
+      "card_title": "Have somewhere to fail over to",
+      "card_text": "A standby server outside your main cloud lets critical services keep running when one provider or region goes down.",
+      "card_cta": "See Contabo dedicated servers"
+    },
+    "contabo-vps": {
+      "name": "Contabo VPS",
+      "url": "/go/contabo-vps.html",
+      "amazon": false,
+      "kit_line": "A cheap, disposable Linux box for testing and research"
+    },
+    "surfshark-id": {
+      "name": "Surfshark Alternative ID",
+      "url": "/go/surfshark-id.html",
+      "amazon": false,
+      "kit_line": "Masked email addresses so one leak does not expose your real inbox"
+    },
+    "surfshark-vpn": {
+      "name": "Surfshark VPN",
+      "url": "/go/surfshark-vpn.html",
+      "amazon": false,
+      "card_title": "Protect traffic on networks you do not control",
+      "card_text": "A VPN encrypts your connection on public and shared Wi-Fi, so people on the same network cannot read or tamper with it.",
+      "card_cta": "See Surfshark VPN",
+      "kit_line": "Encrypted traffic on public and shared Wi-Fi"
+    },
+    "encrypted-ssd": {
+      "name": "Hardware-encrypted SSDs",
+      "url": "/go/encrypted-ssd.html",
+      "amazon": true,
+      "kit_line": "An offline, encrypted copy of your most important files",
+      "card_title": "Keep an offline copy",
+      "card_text": "An encrypted drive that stays unplugged cannot be reached by ransomware or a hijacked cloud account.",
+      "card_cta": "See encrypted SSDs"
+    },
+    "ups-backup": {
+      "name": "UPS battery backups",
+      "url": "/go/ups-backup.html",
+      "amazon": true,
+      "kit_line": "Keeps routers and home servers up through short power cuts"
+    },
+    "firewall": {
+      "name": "Network firewall appliances",
+      "url": "/go/firewall.html",
+      "amazon": true,
+      "kit_line": "Separates lab and smart devices from the rest of your network"
+    }
+  },
+  "categories": {
+    "breach": {
+      "card": "yubikey",
+      "toolkit": [
+        "contabo-storage",
+        "surfshark-id",
+        "encrypted-ssd"
+      ]
+    },
+    "infra": {
+      "card": "contabo-storage",
+      "toolkit": [
+        "contabo-dedicated",
+        "ups-backup",
+        "firewall"
+      ]
+    },
+    "privacy": {
+      "card": "surfshark-vpn",
+      "toolkit": [
+        "yubikey",
+        "surfshark-id",
+        "contabo-vps"
+      ]
+    }
+  }
+}

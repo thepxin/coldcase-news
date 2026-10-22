@@ -1,0 +1,22 @@
+{{- /* Newsletter + free checklist (lead magnet). Can appear several times per page. Pass (dict "place" "post-end"). */ -}}
+{{- $place := .place | default "page" -}}
+<section class="cct-news" aria-labelledby="cct-news-h-{{ $place }}">
+  <p class="cct-news-kicker"><span class="cct-dot" aria-hidden="true"></span>Free: Breach Response Checklist</p>
+  <h3 id="cct-news-h-{{ $place }}">The 1-page checklist for the day your data shows up in a breach.</h3>
+  <p class="cct-news-text">Get it free with ColdCase Weekly: one email a week on the cases that changed after the headlines faded. Unsubscribe in one click.</p>
+  <form class="cct-news-form" data-place="{{ $place }}" action="https://app.kit.com/forms/10077030/subscriptions" method="post">
+    <label class="cct-sr" for="cct-email-{{ $place }}">Email address</label>
+    <input type="email" id="cct-email-{{ $place }}" name="email_address" required autocomplete="email" placeholder="you@example.com">
+    <button type="submit" class="cct-btn-money">Send me the checklist ›</button>
+  </form>
+  <div class="cct-news-msg" role="status" aria-live="polite" hidden></div>
+  <div class="cct-news-foot">
+    <span>No spam. See our <a href="{{ "privacy/" | relURL }}">Privacy Policy</a>.</span>
+    <span class="cct-news-social">Follow:
+      <a href="https://www.linkedin.com/in/coldcase-tech-29102a446/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://x.com/coldcasetech" target="_blank" rel="noopener">X</a> ·
+      <a href="https://www.instagram.com/coldcasetech/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="{{ "index.xml" | relURL }}">RSS</a>
+    </span>
+  </div>
+</section>

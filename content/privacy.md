@@ -41,7 +41,8 @@ These third-party network cookies do **not** give ColdCaseTech access to your na
 * **Static Architecture:** ColdCaseTech is compiled as a static site via Hugo and hosted via GitHub Pages / Cloudflare. We do not run invasive behavioral ad trackers or sell user data to data brokers.
 * **Threat Radar and live panels:** The vulnerability, breach and advisory data on our `/radar/` page and in the side panels is fetched by our own build system every few hours from public sources (CISA, FIRST EPSS, Have I Been Pwned and the GitHub Advisory Database) and published as part of our static pages. Your browser does not contact these sources when you read our pages. Clicking a source link opens that site in a new tab, under its own privacy policy.
 * **Fonts:** Our fonts are hosted on our own domain. We do not load Google Fonts or other third-party font services.
-* **Email Subscriptions:** If you voluntarily subscribe to our post-mortem intelligence brief, your email address is stored strictly to deliver our newsletter updates and can be unsubscribed with one click at any time.
+* **Analytics (GoatCounter):** We count page views with GoatCounter, a privacy-friendly analytics service that does not use cookies. We also count a few anonymous events to learn what is useful: clicks on partner links (for example "toolkit link clicked") and newsletter sign-up submissions, grouped by where on the page they happened. These counts are not linked to your name or email address.
+* **Email Subscriptions (Kit):** Our newsletter and the free Breach Response Checklist are delivered by Kit (kit.com). If you subscribe, your email address is sent to Kit and stored there only to send you the newsletter and the checklist. Every email has a one-click unsubscribe link.
 
 ---
 

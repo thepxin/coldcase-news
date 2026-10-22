@@ -237,3 +237,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 .cct-strip{display:flex;flex-wrap:wrap}
 .cct-strip>div{flex:1 1 140px}
 .cct-strip dd{white-space:nowrap;font-size:17px}
+
+/* =========================================================
+   Phase 3: disclosure, recommendation card, toolkit, newsletter funnel
+   ========================================================= */
+.cct-disc-top{font:12.5px/1.55 var(--cct-mono);color:var(--cct-muted);margin:0 0 16px;padding:8px 12px;border-left:2px solid var(--cct-line)}
+.cct-disc-top a{color:var(--cct-violet)}
+.cct-rec-card{margin:26px 0;padding:18px 20px;background:var(--cct-surface);border:1px solid var(--cct-purple);border-radius:10px}
+.cct-rec-kicker{font:700 11px var(--cct-mono)!important;letter-spacing:.1em;text-transform:uppercase;color:var(--cct-violet)!important;margin:0 0 6px!important}
+.cct-rec-card h3{font:700 19px/1.35 var(--cct-serif)!important;color:var(--cct-text);margin:0 0 6px!important}
+.cct-rec-card p{font-size:16px;color:var(--cct-muted);margin:0 0 14px}
+.post-content .cct-rec-card a.cct-btn-money{color:#04130a;text-decoration:none}
+.cct-rec-note{font:11.5px var(--cct-mono)!important;margin:10px 0 0!important;color:var(--cct-muted)}
+.cct-toolkit{margin:30px 0 8px;padding:16px 20px;background:var(--cct-surface);border:1px solid var(--cct-line);border-radius:10px}
+.cct-toolkit h2{font:700 14px var(--cct-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cct-violet);margin:0 0 10px}
+.cct-toolkit ol{margin:0;padding-left:22px}
+.cct-toolkit li{margin:0 0 10px;font-size:16px;line-height:1.5}
+.cct-tk-line{display:block;color:var(--cct-text)}
+.cct-toolkit a{font:700 14px var(--cct-mono);color:var(--cct-signal);text-decoration:none}
+.cct-toolkit a:hover{text-decoration:underline}
+.cct-tk-disc{font:12px/1.5 var(--cct-mono);color:var(--cct-muted);margin:8px 0 0}
+/* newsletter box now sits inside pages, not below the footer */
+.main .cct-news,.cct-radar .cct-news{max-width:none;margin:30px 0}
+.post-entry+.cct-news{margin:6px 0 22px}
+.cct-news-form{display:flex;flex-wrap:wrap;gap:10px}
+.cct-news-form input{flex:1;min-width:220px;font:15px var(--cct-mono);padding:11px 14px;border-radius:6px;border:1px solid var(--cct-purple);background:var(--cct-base);color:var(--cct-text)}
+.cct-news-form input::placeholder{color:#8f88b3}
+.cct-news-msg{margin-top:12px;font:14px/1.5 var(--cct-mono);color:var(--cct-ok)}

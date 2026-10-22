@@ -112,6 +112,8 @@
   <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
+{{- /* Newsletter + free checklist after the 3rd case on the homepage */}}
+{{- if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 2) }}{{ partial "newsletter.html" (dict "place" "home") }}{{ end }}
 {{- end }}
 
 {{- if gt $paginator.TotalPages 1 }}
