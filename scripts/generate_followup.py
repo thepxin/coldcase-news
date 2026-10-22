@@ -117,7 +117,9 @@ def fetch_clean_sources(query: str, used_urls: set[str], max_items: int = 4) -> 
     return sources
 
 def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
-  prompt = f"""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    prompt = f"""
 You are the investigative follow-up editor at ColdCaseTech, a tech and security outlet that revisits past incidents once the facts have settled. Today's date is {today}.
 
 TOPIC: '{topic}'
@@ -132,9 +134,17 @@ GROUND RULES
 - Write plain, specific, declarative sentences. Never use: delve, landscape, tapestry, testament, navigate, robust, leverage, crucial, ever-evolving, game-changer, "it's worth noting", "in today's digital age", "in conclusion", or em dashes.
 
 STEP 1: has_meaningful_update
-Set it to true only if the sources go beyond the original incident coverage (new facts, corrections, root-cause findings, legal or regulatory action, remediation, long-term impact) and support a substantive follow-up. Otherwise set it to false and return empty strings for markdown_body and reddit_teaser.
+Set it to true only if the sources go beyond the original incident coverage (new facts, corrections, root-cause findings, legal or regulatory action, remediation, long-term impact) and support a substantive follow-up. Otherwise set it to false and return empty strings for every other field.
 
-STEP 2: markdown_body (only when true)
+STEP 2: metadata fields (only when true)
+- headline: a specific, factual headline under 90 characters. No clickbait.
+- slug: lowercase words separated by hyphens, 3 to 8 words, no dates.
+- summary_description: one sentence, under 160 characters, for search results.
+- original_claim: one sentence stating what early coverage said, taken from the sources.
+- current_reality: one sentence stating what the sources establish today.
+- verdict_score: a short label of one to three words that rates how early coverage held up (for example: Confirmed, Overstated, Understated, Disputed, Unresolved). Base it only on the sources.
+
+STEP 3: markdown_body (only when true)
 Use clean, standard Markdown with no raw HTML tags and no curly braces. Aim for 500 to 800 words.
 Open with one direct paragraph and no heading: the incident as first reported, then the reality today. Then use exactly these sections, in this order:
 
@@ -155,11 +165,11 @@ A bulleted list of every source you cited, as [Publication, date](URL).
 
 Throughout the body, cite sources inline as Markdown links, using the publication or domain name as the anchor text, never "click here".
 
-STEP 3: reddit_teaser (only when true)
+STEP 4: reddit_teaser (only when true)
 Exactly three sentences giving the main takeaway to a skeptical technical reader. Neutral tone. No links, emojis, hashtags, product mentions, or clickbait.
 
 OUTPUT
-Return one JSON object with exactly three keys: has_meaningful_update (boolean), markdown_body (string), reddit_teaser (string). Output nothing outside the JSON.
+Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, slug, summary_description, original_claim, current_reality, verdict_score, markdown_body, reddit_teaser (all strings). Output nothing outside the JSON.
 """
 
     for attempt in range(1, 4):
@@ -185,9 +195,12 @@ Return one JSON object with exactly three keys: has_meaningful_update (boolean),
     return None
 
 def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image: str):
+    # Relative /go/ links only work on our own domain, so make them absolute for Dev.to and Hashnode.
+    syndicated_markdown = article.markdown_body.replace("](/go/", f"]({BASE_URL}/go/")
+
     syndication_body = f"""> **Originally published on [ColdCaseTech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
 
-{article.markdown_body}
+{syndicated_markdown}
 
 ---
 *Track real-time breach telemetry and CISA KEV advisories on the [ColdCaseTech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
