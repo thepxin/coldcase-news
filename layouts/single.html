@@ -14,6 +14,7 @@
     <p class="cct-verify">
       {{- $n := partial "source_count.html" . }}
       {{- if gt $n 0 }}<span>SOURCES <b>{{ $n }}</b></span>{{ end }}
+      {{- with .Params.corrections }}{{ with index (last 1 .) 0 }}<span class="cct-corrected">CORRECTED <b><time datetime="{{ .date }}">{{ .date }}</time></b></span>{{ end }}{{ end }}
       {{- with .Params.verified }}<span>LAST VERIFIED <b><time datetime="{{ . }}">{{ . }}</time></b></span>{{ end }}
       <a href="{{ "about/" | relURL }}">How we verify</a>
     </p>
@@ -75,6 +76,7 @@
   {{- end }}
 
   {{- if .Params.verdict }}
+  {{- partial "case_note.html" . }}
   {{- if not (in .Content "cct-rec-card") }}{{ partial "affiliate/card.html" . }}{{ end }}
   {{- partial "affiliate/toolkit.html" . }}
   {{- partial "newsletter.html" (dict "place" "post-end") }}

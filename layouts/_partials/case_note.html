@@ -1,0 +1,16 @@
+{{- /* Transparency box at the end of every case: corrections (if any) + how the case was made. */ -}}
+<section class="cct-casenote" aria-labelledby="cct-casenote-h">
+  {{- with .Params.corrections }}
+  <h2 id="cct-casenote-h">Corrections</h2>
+  <ul class="cct-corrections">
+    {{- range . }}
+    <li><time datetime="{{ .date }}">{{ .date }}</time>: {{ .note }}</li>
+    {{- end }}
+  </ul>
+  <h2>How this case was made</h2>
+  {{- else }}
+  <h2 id="cct-casenote-h">How this case was made</h2>
+  {{- end }}
+  <p>This case was compiled with AI assistance from the sources linked above{{ with .Params.checked }}, then checked claim by claim against those sources on <time datetime="{{ . }}">{{ . }}</time>{{ end }}. We do not add facts the sources do not support.
+  Spotted an error? Tell us on <a href="https://x.com/coldcasetech" target="_blank" rel="noopener">X (@coldcasetech)</a> and we will correct it and note the change here. <a href="{{ "about/" | relURL }}">How we verify</a></p>
+</section>

@@ -264,3 +264,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 .cct-news-form input{flex:1;min-width:220px;font:15px var(--cct-mono);padding:11px 14px;border-radius:6px;border:1px solid var(--cct-purple);background:var(--cct-base);color:var(--cct-text)}
 .cct-news-form input::placeholder{color:#8f88b3}
 .cct-news-msg{margin-top:12px;font:14px/1.5 var(--cct-mono);color:var(--cct-ok)}
+
+/* Transparency: how the case was made + corrections */
+.cct-casenote{margin:30px 0 10px;padding:14px 18px;border:1px dashed var(--cct-line);border-radius:10px}
+.cct-casenote h2{font:700 12px var(--cct-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cct-violet);margin:0 0 6px}
+.cct-casenote p{font-size:15px;line-height:1.6;color:var(--cct-muted);margin:0}
+.cct-casenote a{color:var(--cct-violet)}
+.cct-corrections{margin:0 0 14px;padding-left:20px;font-size:15px;color:var(--cct-text)}
+.cct-corrections time,.cct-corrected b{color:var(--cct-warn)}

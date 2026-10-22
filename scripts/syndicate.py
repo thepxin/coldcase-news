@@ -1,9 +1,16 @@
-"""Publish the newest post to Dev.to and Hashnode, then ping IndexNow.
+"""Share posts to Dev.to and Hashnode, and ping IndexNow.
 
-Runs AFTER the post is committed and pushed. It waits until the live page
-returns HTTP 200 (your host builds on push), so canonical links are valid.
+Modes:
+  python scripts/syndicate.py --due
+      Shares every post that is at least SYNDICATE_DELAY_HOURS old (default 20) and not yet
+      shared, oldest first, at most SYNDICATE_MAX_PER_RUN per run (default 2). Run daily.
+      The delay gives you a day to fix a post on the site before copies go out.
+      Progress is kept in scripts/syndicated.json so nothing is ever posted twice.
+  python scripts/syndicate.py --indexnow content/posts/<file>.md
+      Waits until the new page is live, then pings IndexNow only (fast indexing on publish).
+  python scripts/syndicate.py content/posts/<file>.md
+      Manual: share these posts right now.
 
-Usage:  python scripts/syndicate.py content/posts/<file>.md [more files...]
 Every step is optional: a missing key just skips that service.
 Exit code is always 0 so a syndication hiccup never fails the workflow.
 """
@@ -12,6 +19,7 @@ import os
 import re
 import sys
 import time
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -22,6 +30,11 @@ HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
 HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
 WAIT_SECONDS = int(os.environ.get("SYNDICATE_WAIT_SECONDS", "900"))
 POLL_EVERY = int(os.environ.get("SYNDICATE_POLL_SECONDS", "30"))
+DELAY_HOURS = float(os.environ.get("SYNDICATE_DELAY_HOURS", "20"))
+MAX_PER_RUN = int(os.environ.get("SYNDICATE_MAX_PER_RUN", "2"))
+MAX_ATTEMPTS = 3
+LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "syndicated.json")
+POSTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "content", "posts")
 
 
 def read_post(path):
@@ -45,7 +58,7 @@ def read_post(path):
     cover = img.group(1).strip().strip("\"'") if img else ""
     return {"title": field("title"), "cover": cover, "body": body,
             "verdict": field("verdict"), "then": field("then"), "now": field("now"),
-            "toolkit": field("toolkit")}
+            "toolkit": field("toolkit"), "date": field("date")}
 
 
 def canonical_for(path):
@@ -122,7 +135,7 @@ def build_body(post, canonical):
 def post_devto(post, canonical, md):
     if not DEVTO_API_KEY:
         print("Dev.to: skipped (no DEVTO_API_KEY)")
-        return
+        return "skipped"
     try:
         article = {
             "title": post["title"], "published": True, "body_markdown": md,
@@ -135,17 +148,19 @@ def post_devto(post, canonical, md):
                           headers={"api-key": DEVTO_API_KEY, "Content-Type": "application/json"},
                           json={"article": article}, timeout=30)
         if r.status_code in (200, 201):
-            print(f"Dev.to OK -> {r.json().get('url')}")
-        else:
-            print(f"Dev.to WARNING {r.status_code}: {r.text[:200]}")
+            url = r.json().get("url") or "posted"
+            print(f"Dev.to OK -> {url}")
+            return url
+        print(f"Dev.to WARNING {r.status_code}: {r.text[:200]}")
     except Exception as e:
         print(f"Dev.to ERROR: {e}")
+    return None
 
 
 def post_hashnode(post, canonical, md):
     if not (HASHNODE_TOKEN and HASHNODE_PUB_ID):
         print("Hashnode: skipped (missing token or publication id)")
-        return
+        return "skipped"
     pub = HASHNODE_PUB_ID.replace("dashboards/", "").strip("/")
     query = "mutation P($input: PublishPostInput!){publishPost(input:$input){post{url}}}"
     inp = {
@@ -163,11 +178,13 @@ def post_hashnode(post, canonical, md):
                           json={"query": query, "variables": {"input": inp}}, timeout=30)
         data = r.json() if r.status_code == 200 else {}
         if r.status_code == 200 and "errors" not in data:
-            print(f"Hashnode OK -> {data['data']['publishPost']['post']['url']}")
-        else:
-            print(f"Hashnode WARNING {r.status_code}: {r.text[:300]}")
+            url = data["data"]["publishPost"]["post"]["url"] or "posted"
+            print(f"Hashnode OK -> {url}")
+            return url
+        print(f"Hashnode WARNING {r.status_code}: {r.text[:300]}")
     except Exception as e:
         print(f"Hashnode ERROR: {e}")
+    return None
 
 
 def ping_indexnow(urls):
@@ -180,27 +197,110 @@ def ping_indexnow(urls):
         print(f"IndexNow ERROR: {e}")
 
 
+def load_ledger():
+    try:
+        return json.load(open(LEDGER, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def save_ledger(ledger):
+    with open(LEDGER, "w", encoding="utf-8") as f:
+        json.dump(ledger, f, indent=1, sort_keys=True, ensure_ascii=False)
+        f.write("\n")
+
+
+def post_age_hours(post):
+    try:
+        d = datetime.strptime(str(post.get("date", ""))[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+        return (datetime.now(timezone.utc) - d).total_seconds() / 3600
+    except Exception:
+        return None
+
+
+def ledger_key(path):
+    return "content/posts/" + os.path.basename(path)
+
+
+def share(path, ledger):
+    """Post to every platform not yet done for this file; record results in the ledger."""
+    key = ledger_key(path)
+    entry = ledger.get(key, {"devto": None, "hashnode": None, "attempts": 0})
+    post = read_post(path)
+    canonical = canonical_for(path)
+    if not wait_until_live(canonical):
+        print(f"{key}: page not live yet; will try again next run.")
+        return
+    md = build_body(post, canonical)
+    entry["attempts"] = entry.get("attempts", 0) + 1
+    if not entry.get("devto"):
+        entry["devto"] = post_devto(post, canonical, md)
+    if not entry.get("hashnode"):
+        entry["hashnode"] = post_hashnode(post, canonical, md)
+    entry["done"] = bool(entry.get("devto") and entry.get("hashnode")) or entry["attempts"] >= MAX_ATTEMPTS
+    if entry["done"] and not (entry.get("devto") and entry.get("hashnode")):
+        print(f"{key}: giving up on the failed platform(s) after {MAX_ATTEMPTS} attempts.")
+    ledger[key] = entry
+    save_ledger(ledger)
+
+
+def run_due():
+    ledger = load_ledger()
+    due = []
+    for name in sorted(os.listdir(POSTS_DIR)):
+        if not name.endswith(".md"):
+            continue
+        path = os.path.join(POSTS_DIR, name)
+        if ledger.get(ledger_key(path), {}).get("done"):
+            continue
+        try:
+            age = post_age_hours(read_post(path))
+        except Exception as e:
+            print(f"{name}: unreadable ({e})")
+            continue
+        if age is None:
+            print(f"{name}: no valid date; skipping.")
+        elif age < DELAY_HOURS:
+            print(f"{name}: {age:.1f} h old; will share after {DELAY_HOURS:.0f} h (time to fix it on the site first).")
+        else:
+            due.append(path)
+    if not due:
+        print("Nothing due for syndication.")
+    for path in due[:MAX_PER_RUN]:
+        try:
+            share(path, ledger)
+        except Exception as e:
+            print(f"ERROR sharing {path}: {e}")
+    if len(due) > MAX_PER_RUN:
+        print(f"{len(due) - MAX_PER_RUN} more post(s) due; they will go out on the next runs.")
+
+
+def run_indexnow(paths):
+    urls = [canonical_for(p) for p in paths if wait_until_live(canonical_for(p))]
+    if urls:
+        ping_indexnow(urls)
+
+
 def main(paths):
-    live_urls = []
+    ledger = load_ledger()
     for path in paths:
         try:
-            post = read_post(path)
-            canonical = canonical_for(path)
-            live = wait_until_live(canonical)
-            md = build_body(post, canonical)
-            post_devto(post, canonical, md)
-            post_hashnode(post, canonical, md)
-            if live:
-                live_urls.append(canonical)
+            share(path, ledger)
         except Exception as e:
             print(f"ERROR on {path}: {e}")
-    if live_urls:
-        ping_indexnow(live_urls)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python scripts/syndicate.py <post.md> ...")
-    else:
-        main(sys.argv[1:])
+    args = sys.argv[1:]
+    try:
+        if args[:1] == ["--due"]:
+            run_due()
+        elif args[:1] == ["--indexnow"]:
+            run_indexnow(args[1:])
+        elif args:
+            main(args)
+        else:
+            print("Usage: syndicate.py --due | --indexnow <post.md>... | <post.md>...")
+    except Exception as e:
+        print(f"syndicate: unexpected error: {e}")
     sys.exit(0)
