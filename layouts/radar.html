@@ -1,0 +1,116 @@
+{{- define "main" }}
+{{- /* Threat Radar: rendered at build time from data/feeds/*.json. No browser requests to third parties. */}}
+{{- $kev := partial "feeds/get.html" "kev" }}
+{{- $epss := partial "feeds/get.html" "epss" }}
+{{- $br := partial "feeds/get.html" "breaches" }}
+{{- $adv := partial "feeds/get.html" "advisories" }}
+{{- $scores := $epss.scores | default dict }}
+<article class="post-single cct-radar">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> radar --exploited --verified</p>
+    <h1 class="post-title">Threat Radar</h1>
+    <div class="post-content">{{ .Content }}</div>
+    <nav class="cct-radar-nav" aria-label="Radar sections">
+      {{- with $kev.items }}<a href="#kev">Exploited now</a><a href="#vendors">Vendors</a>{{ end }}
+      {{- with $epss.items }}<a href="#epss">Exploit odds</a>{{ end }}
+      {{- with $br.items }}<a href="#breaches">Breaches</a>{{ end }}
+      {{- with $adv.items }}<a href="#advisories">Advisories</a>{{ end }}
+    </nav>
+  </header>
+
+  {{- if not (or $kev.items $br.items $adv.items) }}
+  <p class="cct-empty">The radar is collecting its first data. Please check back in a few hours.</p>
+  {{- end }}
+
+  {{- with $kev.items }}
+  <section id="kev" class="cct-radar-sec" aria-labelledby="kev-h">
+    <h2 id="kev-h">Exploited now: CISA KEV</h2>
+    <p class="cct-radar-meta">{{ lang.FormatNumber 0 $kev.count }} flaws in the catalog · {{ $kev.added_30d }} added in the last 30 days · catalog {{ $kev.catalog_version }} · updated {{ partial "feeds/ago.html" $kev.updated }}</p>
+    <div class="cct-table-wrap"><table>
+      <thead><tr><th scope="col">CVE</th><th scope="col">Vendor · product</th><th scope="col">Added</th><th scope="col">Fix due</th><th scope="col">EPSS</th></tr></thead>
+      <tbody>
+      {{- range . }}
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/{{ .cve }}" target="_blank" rel="noopener noreferrer">{{ .cve }}</a>{{ if .ransomware }} <span class="cct-flag">ransomware</span>{{ end }}</td>
+          <td>{{ .vendor }} · {{ .product }}<span class="cct-td-sub">{{ .name }}</span></td>
+          <td class="nw">{{ .added }}</td><td class="nw">{{ .due }}</td>
+          <td>{{ with index $scores .cve }}{{ math.Round (mul . 100) }}%{{ else }}–{{ end }}</td>
+        </tr>
+      {{- end }}
+      </tbody>
+    </table></div>
+    <p class="cct-credit">Source: <a href="{{ $kev.source_url }}" target="_blank" rel="noopener noreferrer">CISA Known Exploited Vulnerabilities Catalog</a>. "Fix due" is the deadline CISA sets for US federal agencies.</p>
+  </section>
+
+  <section id="vendors" class="cct-radar-sec" aria-labelledby="vendors-h">
+    <h2 id="vendors-h">Most-exploited vendors, last 30 days</h2>
+    <ul class="cct-vendors cct-vendors--wide">
+      {{- $max := (index $kev.vendors_30d 0).count }}
+      {{- range $kev.vendors_30d }}
+      <li><span class="cct-item-id">{{ .vendor }}</span><span class="cct-count">{{ .count }}</span>
+        <span class="cct-bar" aria-hidden="true"><span style="width:{{ math.Round (div (mul .count 100.0) $max) }}%"></span></span></li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- with $epss.items }}
+  <section id="epss" class="cct-radar-sec" aria-labelledby="epss-h">
+    <h2 id="epss-h">Exploit odds: EPSS</h2>
+    <p class="cct-radar-meta">Highest predicted chance of exploitation in the next 30 days, among recent KEV entries · scores of {{ $epss.score_date }}</p>
+    <div class="cct-table-wrap"><table>
+      <thead><tr><th scope="col">CVE</th><th scope="col">Chance (30 days)</th><th scope="col">Percentile</th></tr></thead>
+      <tbody>
+      {{- range . }}
+        <tr><td><a href="https://nvd.nist.gov/vuln/detail/{{ .cve }}" target="_blank" rel="noopener noreferrer">{{ .cve }}</a></td>
+          <td>{{ math.Round (mul .epss 100) }}%</td><td>{{ math.Round (mul .percentile 100) }}th</td></tr>
+      {{- end }}
+      </tbody>
+    </table></div>
+    <p class="cct-credit">See EPSS at <a href="https://www.first.org/epss" target="_blank" rel="noopener noreferrer">first.org/epss</a>. EPSS is a probability estimate, not a guarantee.</p>
+  </section>
+  {{- end }}
+
+  {{- with $br.items }}
+  <section id="breaches" class="cct-radar-sec" aria-labelledby="br-h">
+    <h2 id="br-h">Verified breaches</h2>
+    <p class="cct-radar-meta">Most recently added to Have I Been Pwned (verified only) · updated {{ partial "feeds/ago.html" $br.updated }}</p>
+    <div class="cct-table-wrap"><table>
+      <thead><tr><th scope="col">Breach</th><th scope="col">Accounts</th><th scope="col">Data exposed</th><th scope="col">Breached</th><th scope="col">Added</th></tr></thead>
+      <tbody>
+      {{- range . }}
+        <tr><td><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>{{ with .domain }}<span class="cct-td-sub">{{ . }}</span>{{ end }}</td>
+          <td>{{ lang.FormatNumber 0 .accounts }}</td><td>{{ delimit .data ", " }}</td><td class="nw">{{ .breach_date }}</td><td class="nw">{{ .added }}</td></tr>
+      {{- end }}
+      </tbody>
+    </table></div>
+    <p class="cct-credit">Data: <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a>, licensed CC BY 4.0. Check whether your email was affected on their site.</p>
+  </section>
+  {{- end }}
+
+  {{- with $adv.items }}
+  <section id="advisories" class="cct-radar-sec" aria-labelledby="adv-h">
+    <h2 id="adv-h">New critical and high advisories</h2>
+    <p class="cct-radar-meta">Reviewed advisories for open-source packages · updated {{ partial "feeds/ago.html" $adv.updated }}</p>
+    <div class="cct-table-wrap"><table>
+      <thead><tr><th scope="col">Package</th><th scope="col">Severity</th><th scope="col">Summary</th><th scope="col">Published</th></tr></thead>
+      <tbody>
+      {{- range . }}
+        <tr><td><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .package }}</a><span class="cct-td-sub">{{ .ecosystem }}{{ with .cve }} · {{ . }}{{ end }}</span></td>
+          <td><span class="cct-sev cct-sev--{{ .severity }}">{{ .severity }}</span></td><td>{{ .summary }}</td><td class="nw">{{ .published }}</td></tr>
+      {{- end }}
+      </tbody>
+    </table></div>
+    <p class="cct-credit">Data: <a href="https://github.com/advisories" target="_blank" rel="noopener noreferrer">GitHub Advisory Database</a>, licensed CC BY 4.0.</p>
+  </section>
+  {{- end }}
+
+  <aside class="cct-rec" aria-labelledby="rec-h">
+    <p class="cct-disc">Disclosure: the link below is an affiliate link. We may earn a commission at no extra cost to you.</p>
+    <h2 id="rec-h">Protect your own devices</h2>
+    <p>If your email shows up in a breach above, the next attack is usually phishing or password reuse. A security suite with breach alerts, antivirus and a VPN covers the basics for personal devices.</p>
+    <a class="cct-btn-money" href="/go/surfshark-suite.html" target="_blank" rel="noopener noreferrer">See the Surfshark security suite ›</a>
+  </aside>
+</article>
+{{- end }}

@@ -166,3 +166,74 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 
 /* Phones: let the menu wrap instead of hiding items off-screen */
 @media (max-width:600px){#menu{flex-wrap:wrap;white-space:normal;overflow:visible;row-gap:0;padding-bottom:8px}#menu li{line-height:40px}}
+
+/* =========================================================
+   Phase 2: live side columns + Threat Radar
+   ========================================================= */
+.cct-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0 28px;max-width:1440px;margin:0 auto}
+.cct-layout>.main{min-width:0;width:100%}
+.cct-rail{min-width:0;padding:0 var(--gap);max-width:calc(var(--main-width) + var(--gap)*2);width:100%;margin:0 auto}
+.cct-rail-in{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));padding:8px 0 20px}
+@media (min-width:1220px){
+  .cct-layout{grid-template-columns:260px minmax(0,calc(var(--main-width) + var(--gap)*2)) 260px;grid-template-areas:"left main right";justify-content:center;padding:0 16px}
+  .cct-layout>.main{grid-area:main}
+  .cct-rail{padding:0;max-width:none}
+  .cct-rail--left{grid-area:left}.cct-rail--right{grid-area:right}
+  .cct-rail-in{grid-template-columns:1fr;padding-top:var(--gap)}
+}
+@media (min-width:1220px) and (min-height:920px){.cct-rail-in{position:sticky;top:18px}}
+
+.cct-feed{background:var(--cct-surface);border:1px solid var(--cct-line);border-radius:10px;padding:14px 14px 12px;font-family:var(--cct-mono)}
+.cct-feed h2{font:700 11px/1.4 var(--cct-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--cct-violet);margin:0 0 4px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cct-feed-note{font-size:11.5px;line-height:1.45;color:var(--cct-muted);margin:0 0 10px}
+.cct-feed ul{list-style:none;margin:0;padding:0}
+.cct-feed li{border-top:1px solid #241f48;padding:8px 0;font-size:12.5px;line-height:1.45}
+.cct-feed li:first-child{border-top:0;padding-top:0}
+.cct-item{display:block;text-decoration:none;border-radius:6px;margin:-4px -6px;padding:4px 6px;color:inherit}
+.cct-item:hover{background:var(--cct-surface-2)}
+.cct-item:hover .cct-item-id{text-decoration:underline}
+.cct-item-id{display:block;color:var(--cct-text);font-weight:700;word-break:break-word}
+.cct-item-sub{display:block;color:var(--cct-muted)}
+.cct-ext{color:var(--cct-violet);vertical-align:baseline;margin-left:2px}
+.cct-flag{font-size:10px;font-weight:700;color:var(--cct-bad);border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:6px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.cct-sev{font-weight:700;text-transform:uppercase;font-size:10.5px;letter-spacing:.05em}
+.cct-sev--critical{color:var(--cct-bad)}.cct-sev--high{color:var(--cct-warn)}
+.cct-bar{display:block;height:5px;border-radius:3px;background:#241f48;margin-top:5px;overflow:hidden}
+.cct-bar>span{display:block;height:100%;background:var(--cct-purple)}
+.cct-vendors li{display:grid;grid-template-columns:1fr auto;gap:0 8px;align-items:baseline}
+.cct-vendors .cct-bar{grid-column:1 / -1}
+.cct-count{color:var(--cct-text);font-weight:700}
+.cct-feed-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--cct-muted);margin-top:10px}
+.cct-feed-foot a,.cct-feed-credit a{color:var(--cct-violet)}
+.cct-feed-credit{font-size:10.5px;color:var(--cct-muted);margin-top:4px}
+.cct-pulse{width:7px;height:7px;border-radius:50%;background:var(--cct-signal);display:inline-block;flex:none;animation:cct-pulse 2.4s ease-in-out infinite}
+@keyframes cct-pulse{50%{opacity:.25}}
+.cct-strip dd a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--cct-violet)}
+
+/* Threat Radar page */
+.cct-radar .cct-boot{margin-top:18px}
+.cct-radar-nav{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.cct-radar-nav a{font:13px var(--cct-mono);color:var(--cct-violet);border:1px solid var(--cct-line);border-radius:999px;padding:4px 12px;text-decoration:none;background:var(--cct-surface)}
+.cct-radar-nav a:hover{background:var(--cct-surface-2);color:var(--cct-text)}
+.cct-radar-sec{margin:34px 0 0;scroll-margin-top:16px}
+.cct-radar-sec h2{font:700 21px var(--cct-mono);color:var(--cct-text);margin:0 0 6px}
+.cct-radar-meta,.cct-credit{font:13px/1.55 var(--cct-mono);color:var(--cct-muted);margin:0 0 12px}
+.cct-credit{margin-top:10px}.cct-credit a{color:var(--cct-violet)}
+.cct-table-wrap{overflow-x:auto;border:1px solid var(--cct-line);border-radius:8px;background:var(--cct-surface)}
+.cct-table-wrap table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.cct-table-wrap th{background:var(--cct-surface-2);color:var(--cct-violet);font:700 11.5px var(--cct-mono);text-transform:uppercase;letter-spacing:.05em;padding:10px 12px;text-align:left;white-space:nowrap}
+.cct-table-wrap td{padding:10px 12px;border-top:1px solid var(--cct-line);vertical-align:top;color:var(--cct-text)}
+.cct-table-wrap td a{color:var(--cct-violet);font-family:var(--cct-mono);font-size:13.5px}
+.cct-td-sub{display:block;color:var(--cct-muted);font-size:13px}
+.cct-vendors--wide{list-style:none;margin:0;padding:14px 16px;background:var(--cct-surface);border:1px solid var(--cct-line);border-radius:8px;font-family:var(--cct-mono)}
+.cct-vendors--wide li{padding:6px 0;font-size:14px}
+.cct-empty{font-family:var(--cct-mono);color:var(--cct-muted);border:1px dashed var(--cct-line);border-radius:8px;padding:16px}
+.cct-rec{margin:40px 0 10px;padding:18px 20px;background:var(--cct-surface);border:1px solid var(--cct-purple);border-radius:10px}
+.cct-rec h2{font:700 18px var(--cct-serif);margin:0 0 6px;color:var(--cct-text)}
+.cct-rec p{color:var(--cct-muted);font-size:16px;margin:0 0 14px}
+.cct-disc{font:12px/1.5 var(--cct-mono)!important;color:var(--cct-muted)!important;margin:0 0 10px!important}
+.cct-table-wrap td:first-child a,.cct-table-wrap td.nw{white-space:nowrap}
+/* status strip: boxes share each row evenly, so a wrapped box never sits alone at half width */
+.cct-strip{display:flex;flex-wrap:wrap}
+.cct-strip>div{flex:1 1 140px}
+.cct-strip dd{white-space:nowrap;font-size:17px}

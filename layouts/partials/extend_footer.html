@@ -1,3 +1,8 @@
+<script>
+(function(){var t=document.querySelectorAll('time.cct-ago');if(!t.length)return;var n=Date.now();
+t.forEach(function(e){var d=Date.parse(e.getAttribute('datetime'));if(isNaN(d))return;var m=Math.max(0,Math.round((n-d)/60000));
+e.title=e.textContent;e.textContent=m<60?(m<2?'just now':m+' min ago'):(m<2880?Math.round(m/60)+' h ago':Math.round(m/1440)+' days ago');});})();
+</script>
 <section class="cct-news" aria-labelledby="cct-news-title">
   <p class="cct-news-kicker"><span class="cct-dot" aria-hidden="true"></span>ColdCase Weekly</p>
   <h3 id="cct-news-title">One email a week: the cases that changed.</h3>

@@ -1,0 +1,16 @@
+{{- $f := partial "feeds/get.html" "kev" -}}
+{{- with $f.items }}
+<section class="cct-feed" aria-labelledby="feed-kev">
+  <h2 id="feed-kev">KEV Watch · CISA <span class="cct-pulse" aria-hidden="true"></span></h2>
+  <p class="cct-feed-note">Newest flaws confirmed as exploited in the wild</p>
+  <ul>
+    {{- range first 3 . }}
+    <li><a class="cct-item" href="https://nvd.nist.gov/vuln/detail/{{ .cve }}" target="_blank" rel="noopener noreferrer">
+      <span class="cct-item-id">{{ .cve }} <svg class="cct-ext" viewBox="0 0 10 10" width="9" height="9" aria-hidden="true"><path d="M3 2h5v5M8 2 2 8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>{{ if .ransomware }}<span class="cct-flag">ransomware</span>{{ end }}</span>
+      <span class="cct-item-sub">{{ .vendor }} · {{ .product }}<br>added {{ .added }} · fix due {{ .due }}</span>
+      <span class="cct-sr">(opens in a new tab)</span></a></li>
+    {{- end }}
+  </ul>
+  <div class="cct-feed-foot"><span>updated {{ partial "feeds/ago.html" $f.updated }}</span><a href="{{ "radar/#kev" | relURL }}">all KEV ›</a></div>
+</section>
+{{- end }}

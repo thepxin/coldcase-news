@@ -1,0 +1,11 @@
+{{- /* Side columns. Each panel hides itself when its feed is missing or unavailable. Pass "left" or "right". */ -}}
+{{- $side := . -}}
+{{- $html := "" -}}
+{{- if eq $side "left" -}}
+  {{- $html = print (partial "feeds/panel_breaches.html" .) (partial "feeds/panel_kev.html" .) (partial "feeds/panel_epss.html" .) -}}
+{{- else -}}
+  {{- $html = print (partial "feeds/panel_vendors.html" .) (partial "feeds/panel_advisories.html" .) -}}
+{{- end -}}
+{{- if trim $html " \n" -}}
+<aside class="cct-rail cct-rail--{{ $side }}" aria-label="{{ if eq $side "left" }}Breach and vulnerability feeds{{ else }}Vendor and advisory feeds{{ end }}"><div class="cct-rail-in">{{ $html | safeHTML }}</div></aside>
+{{- end -}}

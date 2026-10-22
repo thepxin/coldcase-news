@@ -1,0 +1,15 @@
+{{- $f := partial "feeds/get.html" "kev" -}}
+{{- with $f.vendors_30d }}
+{{- $max := (index . 0).count }}
+<section class="cct-feed" aria-labelledby="feed-vendors">
+  <h2 id="feed-vendors">Exploited vendors · 30 days</h2>
+  <p class="cct-feed-note">{{ $f.added_30d }} flaws added to CISA KEV in the last 30 days</p>
+  <ul class="cct-vendors">
+    {{- range . }}
+    <li><span class="cct-item-id">{{ .vendor }}</span><span class="cct-count">{{ .count }}</span>
+      <span class="cct-bar" aria-hidden="true"><span style="width:{{ math.Round (div (mul .count 100.0) $max) }}%"></span></span></li>
+    {{- end }}
+  </ul>
+  <div class="cct-feed-foot"><span>updated {{ partial "feeds/ago.html" $f.updated }}</span><a href="{{ "radar/#vendors" | relURL }}">details ›</a></div>
+</section>
+{{- end }}

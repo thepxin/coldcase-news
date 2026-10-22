@@ -38,7 +38,7 @@ menu:
       url: /posts/
       weight: 10
     - identifier: radar
-      name: Live CVE Radar
+      name: Threat Radar
       url: /radar/
       weight: 15
     - identifier: tags

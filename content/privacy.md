@@ -39,7 +39,8 @@ These third-party network cookies do **not** give ColdCaseTech access to your na
 
 ### 4. Website Telemetry, APIs & Newsletter Data
 * **Static Architecture:** ColdCaseTech is compiled as a static site via Hugo and hosted via GitHub Pages / Cloudflare. We do not run invasive behavioral ad trackers or sell user data to data brokers.
-* **Live CVE Radar API:** When you visit our `/radar/` page, your browser makes a direct client-side request to public vulnerability feeds (such as CIRCL / NVD CVE APIs) to display real-time advisories.
+* **Threat Radar and live panels:** The vulnerability, breach and advisory data on our `/radar/` page and in the side panels is fetched by our own build system every few hours from public sources (CISA, FIRST EPSS, Have I Been Pwned and the GitHub Advisory Database) and published as part of our static pages. Your browser does not contact these sources when you read our pages. Clicking a source link opens that site in a new tab, under its own privacy policy.
+* **Fonts:** Our fonts are hosted on our own domain. We do not load Google Fonts or other third-party font services.
 * **Email Subscriptions:** If you voluntarily subscribe to our post-mortem intelligence brief, your email address is stored strictly to deliver our newsletter updates and can be unsubscribed with one click at any time.
 
 ---

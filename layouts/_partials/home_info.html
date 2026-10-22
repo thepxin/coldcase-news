@@ -18,6 +18,9 @@
     {{- with $latest }}
     <div><dt>Latest case</dt><dd><time datetime="{{ .Date.UTC.Format "2006-01-02T15:04:05Z" }}">{{ .Date.UTC.Format "2006-01-02" }}</time></dd></div>
     {{- end }}
-    <div><dt>Board updated (UTC)</dt><dd><time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "Jan 2, 15:04" }}</time></dd></div>
+    {{- with partial "feeds/get.html" "kev" }}{{ with .count }}
+    <div><dt>KEV entries</dt><dd><a href="{{ "radar/#kev" | relURL }}">{{ lang.FormatNumber 0 . }}</a></dd></div>
+    {{- end }}{{ end }}
+    <div><dt>Updated (UTC)</dt><dd><time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "01-02 15:04" }}</time></dd></div>
   </dl>
 </section>

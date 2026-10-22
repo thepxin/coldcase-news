@@ -1,0 +1,8 @@
+{{- /* Returns the named feed from data/feeds/<name>.json when its status is "ok", otherwise nothing (panel hides). */ -}}
+{{- $out := dict -}}
+{{- with index hugo.Data "feeds" -}}
+  {{- with index . $ -}}
+    {{- if eq .status "ok" }}{{ $out = . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

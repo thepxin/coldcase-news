@@ -1,0 +1,46 @@
+{{- /* Override of PaperMod baseof.html: only change is the optional side-column wrapper around <main>. */ -}}
+{{- if lt hugo.Version "0.158.0" }}
+{{- errorf "=> hugo v0.158.0 or greater is required for hugo-PaperMod to build " }}
+{{- end -}}
+
+<!DOCTYPE html>
+{{- $theme := site.Params.defaultTheme | default "auto" }}
+{{- if eq $theme "dark" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.Direction | default "auto" }}" data-theme="dark">
+{{- else if eq $theme "light" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.Direction | default "auto" }}" data-theme="light">
+{{- else }}
+<html lang="{{ site.Language }}" dir="{{ .Language.Direction | default "auto" }}" data-theme="auto">
+{{- end }}
+
+<head>
+    {{- partial "head.html" . }}
+</head>
+
+{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) }}
+<body class="list" id="top">
+{{- else }}
+<body id="top">
+{{- end }}
+    {{ partialCached "header.html" . .Page -}}
+    {{- /* ColdCaseTech: live side columns on the homepage and case pages (hidden when no feed data exists). */}}
+    {{- $rails := or .IsHome (eq .Section "posts") }}
+    {{- $left := "" }}{{ $right := "" }}
+    {{- if $rails }}{{ $left = partial "feeds/rails.html" "left" }}{{ $right = partial "feeds/rails.html" "right" }}{{ end }}
+    {{- if or (trim $left " \n") (trim $right " \n") }}
+    <div class="cct-layout">
+    <main class="main">
+        {{- block "main" . }}{{ end }}
+    </main>
+    {{ $left | safeHTML }}
+    {{ $right | safeHTML }}
+    </div>
+    {{- else }}
+    <main class="main">
+        {{- block "main" . }}{{ end }}
+    </main>
+    {{- end }}
+    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
+</body>
+
+</html>

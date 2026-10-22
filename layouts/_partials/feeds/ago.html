@@ -1,0 +1,4 @@
+{{- /* A <time> that shows an absolute UTC time; a tiny script turns it into "3 h ago". */ -}}
+{{- with . -}}{{- $t := time . -}}
+<time class="cct-ago" datetime="{{ $t.UTC.Format "2006-01-02T15:04:05Z" }}">{{ $t.UTC.Format "Jan 2, 15:04" }} UTC</time>
+{{- end -}}
