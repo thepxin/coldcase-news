@@ -129,6 +129,10 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
         - A Markdown comparison table comparing Early Headlines vs. Current Reality.
         - A chronological bulleted timeline with dates.
         - Outbound Markdown links citing the exact source URLs provided above.
+        - Exactly ONE natural, in-text contextual anchor link woven into the root-cause or infrastructure section choosing the most relevant:
+          * For breach/ransomware recovery: [immutable off-site storage](/go/contabo-storage.html) or [hardware security keys](/go/yubikey.html)
+          * For infrastructure/outage/architecture: [bare-metal dedicated servers](/go/contabo-dedicated.html) or [isolated compute nodes](/go/contabo-vps6.html)
+          * For surveillance/traffic monitoring: [encrypted tunnel routing](/go/surfshark-vpn.html)
         - Zero robotic AI filler words.
     3. Write a 3-sentence reddit_teaser summarizing the main takeaway.
     """
