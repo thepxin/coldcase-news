@@ -31,20 +31,31 @@ jobs:
       - name: Generate follow-up article
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
-          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
-          HASHNODE_PUB_ID: ${{ secrets.HASHNODE_PUB_ID }}
         run: python scripts/generate_followup.py
 
       - name: Save and push article to repository
+        id: push
         run: |
           git config user.name "FollowUp Editorial Bot"
           git config user.email "bot@coldcasetech.com"
           git add content/posts/ scripts/latest_social_teaser.txt
           if git diff --staged --quiet; then
             echo "No new article generated today; skipping push."
+            echo "published=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore(content): publish new automated investigation"
             git pull --rebase origin main
             git push origin main
+            echo "published=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Syndicate to Dev.to / Hashnode and ping IndexNow
+        if: steps.push.outputs.published == 'true'
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUB_ID: ${{ secrets.HASHNODE_PUB_ID }}
+        run: |
+          NEW_POSTS=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- content/posts)
+          echo "New posts: $NEW_POSTS"
+          python scripts/syndicate.py $NEW_POSTS
