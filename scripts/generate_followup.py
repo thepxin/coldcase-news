@@ -11,10 +11,6 @@ from google.genai import types
 
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
-HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
-HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
-INDEXNOW_KEY = "cctindexnow2026key8941"
 
 BASE_URL = "https://coldcasetech.com"
 
@@ -194,87 +190,6 @@ Return one JSON object with exactly these keys: has_meaningful_update (boolean),
                 time.sleep(wait_time)
     return None
 
-def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image: str):
-    # Relative /go/ links only work on our own domain, so make them absolute for Dev.to and Hashnode.
-    syndicated_markdown = article.markdown_body.replace("](/go/", f"]({BASE_URL}/go/")
-
-    syndication_body = f"""> **Originally published on [ColdCaseTech]({canonical_url}):** *Then vs. Now Verdict ({article.verdict_score}):* {article.original_claim} — **Reality:** {article.current_reality}
-
-{syndicated_markdown}
-
----
-*Track real-time breach telemetry and CISA KEV advisories on the [ColdCaseTech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
-"""
-
-    if DEVTO_API_KEY:
-        try:
-            res = requests.post(
-                "https://dev.to/api/articles",
-                headers={"api-key": DEVTO_API_KEY, "Content-Type": "application/json"},
-                json={
-                    "article": {
-                        "title": article.headline,
-                        "published": True,
-                        "body_markdown": syndication_body,
-                        "canonical_url": canonical_url,
-                        "main_image": cover_image,
-                        "tags": ["security", "cybersecurity", "cloud", "devops"]
-                    }
-                },
-                timeout=15
-            )
-            if res.status_code in [200, 201]:
-                print(f"SUCCESS: Syndicated to Dev.to -> {res.json().get('url')}")
-            else:
-                print(f"Dev.to warning: {res.status_code} - {res.text[:200]}")
-        except Exception as e:
-            print(f"Dev.to error: {e}")
-
-    if HASHNODE_TOKEN and HASHNODE_PUB_ID:
-        clean_pub_id = HASHNODE_PUB_ID.replace("dashboards/", "").strip("/")
-        query = """
-        mutation PublishPost($input: PublishPostInput!) {
-          publishPost(input: $input) {
-            post { url }
-          }
-        }
-        """
-        variables = {
-            "input": {
-                "title": article.headline,
-                "publicationId": clean_pub_id,
-                "contentMarkdown": syndication_body,
-                "originalArticleURL": canonical_url,
-                "coverImageOptions": {"coverImageURL": cover_image},
-                "tags": [
-                    {"slug": "cybersecurity", "name": "Cybersecurity"},
-                    {"slug": "security", "name": "Security"},
-                    {"slug": "cloud", "name": "Cloud"}
-                ]
-            }
-        }
-        try:
-            h_res = requests.post(
-                "https://gql.hashnode.com",
-                headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json"},
-                json={"query": query, "variables": variables},
-                timeout=15
-            )
-            if h_res.status_code == 200 and "errors" not in h_res.json():
-                post_url = h_res.json().get("data", {}).get("publishPost", {}).get("post", {}).get("url")
-                print(f"SUCCESS: Syndicated to Hashnode -> {post_url}")
-            else:
-                print(f"Hashnode warning: {h_res.text[:200]}")
-        except Exception as e:
-            print(f"Hashnode error: {e}")
-
-    try:
-        ping_url = f"https://api.indexnow.org/indexnow?url={canonical_url}&key={INDEXNOW_KEY}"
-        requests.get(ping_url, timeout=10)
-        print(f"SUCCESS: Pinged Bing IndexNow for {canonical_url}")
-    except Exception as e:
-        print(f"IndexNow ping warning: {e}")
-
 def save_hugo_post(article: FollowUpArticle):
     os.makedirs("content/posts", exist_ok=True)
     os.makedirs("scripts", exist_ok=True)
@@ -418,7 +333,6 @@ Read the full timeline, source citations, and hardening playbook:
         f.write(social_kit)
 
     print(f"SUCCESS: Created clean article at {filename}")
-    syndicate_article(article, canonical_url, cover_image)
 
 if __name__ == "__main__":
     os.makedirs("content/posts", exist_ok=True)
