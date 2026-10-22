@@ -1,0 +1,258 @@
+{
+ "added_30d": 37,
+ "catalog_version": "2026.10.21",
+ "count": 1754,
+ "items": [
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-96656",
+   "due": "2026-10-23",
+   "name": "Plex Media Server External Control of File Name or Path Vulnerability",
+   "product": "Media Server",
+   "ransomware": false,
+   "vendor": "Plex"
+  },
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-96655",
+   "due": "2026-11-03",
+   "name": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+   "product": "Media Server",
+   "ransomware": false,
+   "vendor": "Plex"
+  },
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-96654",
+   "due": "2026-10-23",
+   "name": "Plex Media Server Improper Neutralization of Encoded URI Schemes in a Web Page Vulnerability",
+   "product": "Media Server",
+   "ransomware": false,
+   "vendor": "Plex"
+  },
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-96652",
+   "due": "2026-11-03",
+   "name": "Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability",
+   "product": "Media Server",
+   "ransomware": false,
+   "vendor": "Plex"
+  },
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-110936",
+   "due": "2026-11-03",
+   "name": "Siemens Software Center Uncontrolled Search Path Element Vulnerability",
+   "product": "Software Center",
+   "ransomware": false,
+   "vendor": "Siemens"
+  },
+  {
+   "added": "2026-10-20",
+   "cve": "CVE-2026-106931",
+   "due": "2026-10-23",
+   "name": "EG Secure Solutions SiteGuard Server Edition OS Command Injection Vulnerability",
+   "product": "SiteGuard Server Edition",
+   "ransomware": false,
+   "vendor": "EG Secure Solutions"
+  },
+  {
+   "added": "2026-10-16",
+   "cve": "CVE-2026-102764",
+   "due": "2026-10-19",
+   "name": "BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability",
+   "product": "Remote Support",
+   "ransomware": false,
+   "vendor": "BeyondTrust"
+  },
+  {
+   "added": "2026-10-16",
+   "cve": "CVE-2025-61624",
+   "due": "2026-10-19",
+   "name": "Fortinet Multiple Products Path Traversal Vulnerability",
+   "product": "Multiple Products",
+   "ransomware": false,
+   "vendor": "Fortinet"
+  },
+  {
+   "added": "2026-10-15",
+   "cve": "CVE-2026-21589",
+   "due": "2026-10-18",
+   "name": "Atlassian Multiple Products Files or Directories Accessible to External Parties Vulnerability",
+   "product": "Multiple Products",
+   "ransomware": false,
+   "vendor": "Atlassian"
+  },
+  {
+   "added": "2026-10-14",
+   "cve": "CVE-2026-76519",
+   "due": "2026-10-17",
+   "name": "Cisco Secure Email Gateway Relative Path Traversal Vulnerability",
+   "product": "Secure Email Gateway",
+   "ransomware": false,
+   "vendor": "Cisco"
+  },
+  {
+   "added": "2026-10-14",
+   "cve": "CVE-2026-105134",
+   "due": "2026-10-17",
+   "name": "Ahsay AhsayCBS Command Injection Vulnerability",
+   "product": "AhsayCBS",
+   "ransomware": false,
+   "vendor": "Ahsay"
+  },
+  {
+   "added": "2026-10-14",
+   "cve": "CVE-2026-105133",
+   "due": "2026-10-17",
+   "name": "Ahsay AhsayCBS Improper Authentication Vulnerability",
+   "product": "AhsayCBS",
+   "ransomware": false,
+   "vendor": "Ahsay"
+  },
+  {
+   "added": "2026-10-14",
+   "cve": "CVE-2026-0322",
+   "due": "2026-10-17",
+   "name": "Palo Alto Networks PAN-OS Code Injection Vulnerability",
+   "product": "PAN-OS",
+   "ransomware": false,
+   "vendor": "Palo Alto Networks"
+  },
+  {
+   "added": "2026-10-13",
+   "cve": "CVE-2026-96951",
+   "due": "2026-10-16",
+   "name": "Microsoft Windows Command Injection Vulnerability",
+   "product": "Windows",
+   "ransomware": false,
+   "vendor": "Microsoft"
+  },
+  {
+   "added": "2026-10-13",
+   "cve": "CVE-2026-104935",
+   "due": "2026-10-16",
+   "name": "Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability",
+   "product": "Connect Secure",
+   "ransomware": false,
+   "vendor": "Ivanti"
+  },
+  {
+   "added": "2026-10-08",
+   "cve": "CVE-2023-22894",
+   "due": "2026-10-11",
+   "name": "Strapi Cleartext Storage of Sensitive Information Vulnerability",
+   "product": "Strapi",
+   "ransomware": false,
+   "vendor": "Strapi"
+  },
+  {
+   "added": "2026-10-08",
+   "cve": "CVE-2021-3199",
+   "due": "2026-10-11",
+   "name": "ONLYOFFICE Docs Server Path Traversal Vulnerability",
+   "product": "Docs",
+   "ransomware": false,
+   "vendor": "ONLYOFFICE"
+  },
+  {
+   "added": "2026-10-08",
+   "cve": "CVE-2016-3081",
+   "due": "2026-10-11",
+   "name": "Apache Struts Command Injection Vulnerability",
+   "product": "Struts",
+   "ransomware": false,
+   "vendor": "Apache"
+  },
+  {
+   "added": "2026-10-08",
+   "cve": "CVE-2015-5477",
+   "due": "2026-10-11",
+   "name": " ISC BIND Data Processing Errors Vulnerability",
+   "product": "BIND",
+   "ransomware": false,
+   "vendor": "ISC"
+  },
+  {
+   "added": "2026-10-08",
+   "cve": "CVE-2015-3306",
+   "due": "2026-10-11",
+   "name": "ProFTPD Improper Access Control Vulnerability",
+   "product": "ProFTPD",
+   "ransomware": false,
+   "vendor": "ProFTPD"
+  },
+  {
+   "added": "2026-10-04",
+   "cve": "CVE-2026-88779",
+   "due": "2026-10-07",
+   "name": "Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability",
+   "product": "NetScaler",
+   "ransomware": false,
+   "vendor": "Citrix"
+  },
+  {
+   "added": "2026-10-02",
+   "cve": "CVE-2026-102490",
+   "due": "2026-10-05",
+   "name": "Zammad GmbH Zammad Improper Privilege Management Vulnerability",
+   "product": "Zammad",
+   "ransomware": false,
+   "vendor": "Zammad GmbH"
+  },
+  {
+   "added": "2026-10-02",
+   "cve": "CVE-2026-102489",
+   "due": "2026-10-05",
+   "name": "Zammad GmbH Zammad Session Fixation Vulnerability",
+   "product": "Zammad",
+   "ransomware": false,
+   "vendor": "Zammad GmbH"
+  },
+  {
+   "added": "2026-10-01",
+   "cve": "CVE-2026-104286",
+   "due": "2026-10-04",
+   "name": "Fortinet FortiMail Path Traversal Vulnerability",
+   "product": "FortiMail",
+   "ransomware": false,
+   "vendor": "Fortinet"
+  },
+  {
+   "added": "2026-09-30",
+   "cve": "CVE-2026-76504",
+   "due": "2026-10-03",
+   "name": "Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability",
+   "product": "Catalyst SD-WAN Manager",
+   "ransomware": false,
+   "vendor": "Cisco"
+  }
+ ],
+ "source": "CISA Known Exploited Vulnerabilities Catalog",
+ "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+ "status": "ok",
+ "updated": "2026-10-22T18:27:57Z",
+ "vendors_30d": [
+  {
+   "count": 4,
+   "vendor": "Plex"
+  },
+  {
+   "count": 3,
+   "vendor": "Citrix"
+  },
+  {
+   "count": 2,
+   "vendor": "Fortinet"
+  },
+  {
+   "count": 2,
+   "vendor": "Cisco"
+  },
+  {
+   "count": 2,
+   "vendor": "Ahsay"
+  }
+ ]
+}
