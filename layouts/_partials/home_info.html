@@ -1,0 +1,23 @@
+{{- /* ColdCaseTech homepage intro: boot line, headline, and a status strip built only from real build-time data. */ -}}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $latest := index $posts.ByDate.Reverse 0 -}}
+{{- $ver := len (where $posts "Params.verdict" "Verified") -}}
+{{- $part := len (where $posts "Params.verdict" "Partially True") -}}
+{{- $esc := len (where $posts "Params.verdict" "Escalated") -}}
+<section class="cct-home" aria-labelledby="cct-home-title">
+  <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> open --cases --after-the-headlines</p>
+  <h1 id="cct-home-title">What they reported vs. what actually happened.</h1>
+  <p class="cct-lead">We revisit tech and security incidents after the headlines fade, and mark each case
+    <span class="cct-stamp cct-stamp--ok">Verified</span>
+    <span class="cct-stamp cct-stamp--warn">Partially True</span> or
+    <span class="cct-stamp cct-stamp--bad">Escalated</span>.
+    <a href="{{ "about/" | relURL }}">How we verify&nbsp;›</a></p>
+  <dl class="cct-strip" aria-label="Case board status">
+    <div><dt>Cases on file</dt><dd>{{ len $posts }}</dd></div>
+    <div><dt>Verdicts</dt><dd><span class="v-ok" title="Verified">{{ $ver }}</span> · <span class="v-warn" title="Partially True">{{ $part }}</span> · <span class="v-bad" title="Escalated">{{ $esc }}</span></dd></div>
+    {{- with $latest }}
+    <div><dt>Latest case</dt><dd><time datetime="{{ .Date.UTC.Format "2006-01-02T15:04:05Z" }}">{{ .Date.UTC.Format "2006-01-02" }}</time></dd></div>
+    {{- end }}
+    <div><dt>Board updated (UTC)</dt><dd><time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "Jan 2, 15:04" }}</time></dd></div>
+  </dl>
+</section>

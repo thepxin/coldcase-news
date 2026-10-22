@@ -1,0 +1,7 @@
+{{- /* Returns "CC-0001"-style case ID: position of this post among all posts, oldest first. Computed at build time. */ -}}
+{{- $id := "" -}}
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate -}}
+{{- range $i, $p := $posts -}}
+  {{- if eq $p.Permalink $.Permalink -}}{{- $id = printf "CC-%04d" (add $i 1) -}}{{- end -}}
+{{- end -}}
+{{- return $id -}}

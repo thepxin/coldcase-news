@@ -17,6 +17,7 @@ params:
   title: "ColdCaseTech"
   description: "Tracking tech and security stories long after the headlines fade."
   defaultTheme: dark
+  disableThemeToggle: true
   ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true

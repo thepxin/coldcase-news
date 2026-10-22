@@ -3,14 +3,16 @@ title: "The State of Tech Cold Cases: Why Initial Breach Reports Fail"
 date: "2026-10-19T11:30:00Z"
 description: "An investigation into how initial cybersecurity headlines compare to post-mortem disclosures months later."
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
+verdict: "Verified"
+then: "Early breach disclosures typically minimize scope to protect stock prices"
+now: "Post-mortem filings 90 days later routinely reveal 3x to 5x larger impact."
+verified: "2026-10-19"
 cover:
   image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
   alt: "The State of Tech Cold Cases"
   relative: false
 draft: false
 ---
-
-> **Then vs. Now Verdict (Verified):** **Originally:** Early breach disclosures typically minimize scope to protect stock prices — **Reality Now:** Post-mortem filings 90 days later routinely reveal 3x to 5x larger impact.
 
 Mainstream news cycles move fast, abandoning major technology and security incidents within 48 hours. This desk tracks the regulatory filings, post-mortems, and forensic updates that surface months after the headlines fade.
 

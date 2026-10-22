@@ -1,53 +1,168 @@
-:root {
-  --accent-cyber: #3fb950;
-  --accent-blue: #58a6ff;
+/* =========================================================
+   ColdCaseTech – "cold case evidence board" theme
+   Overrides PaperMod. Never edit themes/PaperMod.
+   Signal colour switch: change --cct-signal (acid green #39ff88, cyan #22d3ee)
+   ========================================================= */
+
+/* ---------- Self-hosted fonts (SIL Open Font License, see /fonts/) ---------- */
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:700;font-display:swap;src:url("/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/source-serif-4-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:italic;font-weight:400;font-display:swap;src:url("/fonts/source-serif-4-latin-400-italic.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/source-serif-4-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-weight:700;font-display:swap;src:url("/fonts/source-serif-4-latin-700-normal.woff2") format("woff2")}
+
+/* ---------- Palette (forced dark: same values for every theme state) ---------- */
+:root,
+:root[data-theme="dark"],
+:root[data-theme="light"]{
+  --cct-signal:#39ff88;          /* LIVE dots, cursor, prompt, money buttons ONLY */
+  --cct-base:#0b0a14;
+  --cct-surface:#14122a;
+  --cct-surface-2:#191540;
+  --cct-line:#2f2860;            /* quiet borders */
+  --cct-purple:#7c3aed;          /* borders, glows – never small text */
+  --cct-violet:#a78bfa;          /* links, small text */
+  --cct-text:#e8e6f6;
+  --cct-muted:#b4aed4;
+  --cct-ok:#34d399;              /* Verified stamp */
+  --cct-warn:#fbbf24;            /* Partially True stamp */
+  --cct-bad:#ff5d6c;             /* Escalated stamp */
+  --cct-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --cct-serif:"Source Serif 4",Georgia,"Iowan Old Style",Cambria,serif;
+
+  /* map onto PaperMod's own variables */
+  --theme:var(--cct-base);
+  --entry:var(--cct-surface);
+  --primary:var(--cct-text);
+  --secondary:var(--cct-muted);
+  --tertiary:var(--cct-line);
+  --content:var(--cct-text);
+  --code-bg:#1b1838;
+  --border:var(--cct-line);
+  --main-width:760px;
+  color-scheme:dark;
 }
 
-.post-content blockquote {
-  background: rgba(56, 139, 253, 0.08);
-  border-left: 4px solid var(--accent-blue);
-  padding: 16px 20px;
-  border-radius: 0 8px 8px 0;
-  font-size: 0.98rem;
-  margin-bottom: 28px;
+body{background:var(--cct-base);color:var(--cct-text);font-family:var(--cct-serif);font-size:18px;line-height:1.7}
+
+/* Keyboard focus: always visible */
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--cct-signal);outline-offset:3px;border-radius:3px}
+.cct-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- Header / navigation (monospace chrome) ---------- */
+.header{border-bottom:1px solid var(--cct-line)}
+.logo a,#menu a,.breadcrumbs,.post-meta,.entry-footer,.paginav,.post-tags a,.footer,.pagination a,.toc summary{font-family:var(--cct-mono)}
+.logo a{color:var(--cct-text);font-weight:700}
+.logo a::after{content:"_";color:var(--cct-signal);margin-left:2px;animation:cct-blink 1.1s steps(1) infinite}
+#menu a{color:var(--cct-violet);font-size:15px}
+#menu a:hover,#menu .active{color:var(--cct-text)}
+#menu .active{border-bottom-color:var(--cct-signal)}
+@keyframes cct-blink{50%{opacity:0}}
+.theme-toggle{display:none!important}
+
+/* ---------- Homepage intro + status strip ---------- */
+.cct-home{margin:28px 0 30px}
+.cct-boot{font:14px/1.5 var(--cct-mono);color:var(--cct-muted);margin:0 0 6px}
+.cct-prompt{color:var(--cct-signal)}
+.cct-home h1{font:700 clamp(28px,5vw,40px)/1.2 var(--cct-mono);color:var(--cct-text);margin:4px 0 12px}
+.cct-lead{color:var(--cct-muted);max-width:62ch;margin:0 0 22px}
+.cct-lead a{color:var(--cct-violet);white-space:nowrap}
+.cct-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0}
+.cct-strip>div{background:var(--cct-surface);border:1px solid var(--cct-line);border-radius:8px;padding:10px 12px}
+.cct-strip dt{font:12px var(--cct-mono);color:var(--cct-muted);text-transform:uppercase;letter-spacing:.06em}
+.cct-strip dd{margin:2px 0 0;font:700 18px var(--cct-mono);color:var(--cct-text)}
+.cct-strip .v-ok{color:var(--cct-ok)}.cct-strip .v-warn{color:var(--cct-warn)}.cct-strip .v-bad{color:var(--cct-bad)}
+
+/* ---------- Verdict stamps ---------- */
+.cct-stamp{display:inline-block;font:700 11px/1.5 var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;
+  border:2px solid currentColor;border-radius:4px;padding:1px 7px;transform:rotate(-2deg);white-space:nowrap;vertical-align:middle}
+.cct-stamp--ok{color:var(--cct-ok)}
+.cct-stamp--ok::before{content:"";display:inline-block;width:.34em;height:.66em;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);margin:0 .5em .14em .1em}
+.cct-stamp--warn{color:var(--cct-warn)}
+.cct-stamp--bad{color:var(--cct-bad)}
+
+/* ---------- Case cards (homepage, lists) ---------- */
+.post-entry{background:var(--cct-surface);border:1px solid var(--cct-purple);border-radius:10px;padding:18px 20px;
+  transition:box-shadow .2s ease}
+.post-entry:hover,.post-entry:focus-within{box-shadow:0 0 22px rgba(124,58,237,.45);transform:none}
+.post-entry:active{transform:none}
+.cct-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font:12px var(--cct-mono);color:var(--cct-violet)}
+.cct-caseid{letter-spacing:.06em}
+.post-entry .entry-header h2{font:600 20px/1.35 var(--cct-serif);color:var(--cct-text);margin:8px 0 0}
+.post-entry:hover .entry-header h2{text-decoration:underline;text-underline-offset:3px}
+.cct-tv{font-size:16px;color:var(--cct-muted);margin:8px 0 0;line-height:1.55}
+.cct-tv b{font:700 12px var(--cct-mono);color:var(--cct-violet);letter-spacing:.06em}
+.entry-content{color:var(--cct-muted)}
+.entry-link:focus-visible{outline:2px solid var(--cct-signal);outline-offset:2px;border-radius:10px}
+
+/* ---------- Case page header ---------- */
+.cct-caseline{font:700 13px var(--cct-mono);color:var(--cct-violet);letter-spacing:.1em;margin:18px 0 6px}
+.post-title{font-family:var(--cct-serif);color:var(--cct-text)}
+.cct-stamp-row{margin:10px 0 8px}
+.cct-verify{display:flex;flex-wrap:wrap;gap:6px 16px;font:13px var(--cct-mono);color:var(--cct-muted);margin:0 0 18px}
+.cct-verify b{color:var(--cct-text)}
+.cct-verify a{color:var(--cct-violet)}
+.cct-tvbox{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--cct-purple);border-radius:10px;overflow:hidden;margin:4px 0 18px}
+.cct-tvbox>div{padding:16px 18px;background:var(--cct-surface)}
+.cct-tvbox>div+div{border-left:1px solid var(--cct-purple);background:var(--cct-surface-2)}
+.cct-tvbox h2{font:700 12px var(--cct-mono);letter-spacing:.1em;color:var(--cct-violet);margin:0 0 6px}
+.cct-tvbox p{margin:0;font-size:16px;line-height:1.55;color:var(--cct-text)}
+@media (max-width:600px){.cct-tvbox{grid-template-columns:1fr}.cct-tvbox>div+div{border-left:0;border-top:1px solid var(--cct-purple)}}
+.post-meta{color:var(--cct-muted);font-size:13px}
+
+/* ---------- Article body ---------- */
+.post-content{color:var(--cct-text)}
+.post-content a{color:var(--cct-violet);text-underline-offset:3px}
+.post-content a:hover{color:var(--cct-text)}
+.post-content h2,.post-content h3{font-family:var(--cct-mono);color:var(--cct-text);letter-spacing:.01em}
+.post-content h2{font-size:22px}.post-content h3{font-size:19px}
+.post-content blockquote{background:var(--cct-surface);border-left:4px solid var(--cct-purple);padding:14px 18px;border-radius:0 8px 8px 0;margin:0 0 24px;color:var(--cct-text)}
+.post-content table{width:100%;border-collapse:collapse;background:var(--cct-surface);border-radius:8px;overflow:hidden;margin:24px 0;font-size:16px;display:block;overflow-x:auto}
+.post-content th{background:var(--cct-surface-2);color:var(--cct-violet);font:700 12px var(--cct-mono);text-transform:uppercase;letter-spacing:.05em;padding:12px 14px;text-align:left}
+.post-content td{padding:12px 14px;border-top:1px solid var(--cct-line);vertical-align:top}
+.post-content h3+ul,.post-content h2+ul{background:var(--cct-surface);border:1px solid var(--cct-line);border-radius:8px;padding:18px 18px 18px 36px}
+.post-content code{background:var(--code-bg);color:var(--cct-text)}
+.toc{background:var(--cct-surface);border:1px solid var(--cct-line)}
+.toc a{color:var(--cct-violet)}
+.post-tags a{background:var(--cct-surface);border:1px solid var(--cct-line);color:var(--cct-violet)}
+.post-tags a:hover{background:var(--cct-surface-2)}
+.paginav{border:1px solid var(--cct-line);background:var(--cct-surface)}
+.paginav a:hover{background:var(--cct-surface-2)}
+.breadcrumbs a{color:var(--cct-violet)}
+.share-buttons svg{fill:var(--cct-violet)}
+
+/* ---------- Money actions: the ONLY place the signal colour fills a button ---------- */
+.cct-btn-money{display:inline-block;background:var(--cct-signal);color:#04130a;border:0;border-radius:6px;
+  font:700 14px var(--cct-mono);padding:11px 18px;cursor:pointer;text-decoration:none}
+.cct-btn-money:hover{box-shadow:0 0 16px var(--cct-signal)}
+.cct-btn-money:disabled{opacity:.7;cursor:default}
+
+/* ---------- Newsletter footer ---------- */
+.cct-news{max-width:calc(var(--main-width) + var(--gap)*2);margin:36px auto 12px;padding:20px 22px;
+  background:var(--cct-surface);border:1px solid var(--cct-purple);border-left:4px solid var(--cct-signal);border-radius:10px}
+.cct-news-kicker{font:700 12px var(--cct-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cct-violet);margin:0 0 6px;display:flex;align-items:center}
+.cct-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cct-signal);margin-right:8px;box-shadow:0 0 8px var(--cct-signal)}
+.cct-news h3{font:700 20px/1.3 var(--cct-serif);color:var(--cct-text);margin:0 0 6px}
+.cct-news-text{color:var(--cct-muted);font-size:16px;margin:0 0 14px}
+#cct-newsletter-form{display:flex;flex-wrap:wrap;gap:10px}
+#cct-email-input{flex:1;min-width:220px;font:15px var(--cct-mono);padding:11px 14px;border-radius:6px;border:1px solid var(--cct-purple);background:var(--cct-base);color:var(--cct-text)}
+#cct-email-input::placeholder{color:#8f88b3}
+#cct-sub-msg{margin-top:12px;font:14px var(--cct-mono);color:var(--cct-ok)}
+.cct-news-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--cct-line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font:13px var(--cct-mono);color:var(--cct-muted)}
+.cct-news-foot a{color:var(--cct-violet)}
+@media (max-width:600px){.cct-news{margin-left:var(--gap);margin-right:var(--gap)}}
+
+.footer{color:var(--cct-muted)}
+.footer a{color:var(--cct-violet)}
+.top-link{background:var(--cct-surface);border:1px solid var(--cct-line)}
+.top-link svg{color:var(--cct-violet)}
+
+/* ---------- Motion: respect the visitor's setting ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
-.post-content table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #161b22;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 24px 0;
-}
-
-.post-content th {
-  background: #21262d;
-  color: #58a6ff;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  padding: 12px 16px;
-}
-
-.post-content td {
-  padding: 12px 16px;
-  border-top: 1px solid #30363d;
-}
-
-.post-content h3 + ul {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  padding: 20px 20px 20px 38px;
-}
-
-.post-content a {
-  color: var(--accent-blue);
-  font-weight: 500;
-  transition: opacity 0.15s ease;
-}
-
-.post-content a:hover {
-  opacity: 0.8;
-}
+/* Phones: let the menu wrap instead of hiding items off-screen */
+@media (max-width:600px){#menu{flex-wrap:wrap;white-space:normal;overflow:visible;row-gap:0;padding-bottom:8px}#menu li{line-height:40px}}

@@ -1,42 +1,23 @@
-<div style="max-width: var(--main-width); margin: 36px auto 12px auto; padding: 0 var(--gap);">
-  <div style="background: linear-gradient(145deg, #161b22 0%, #0d1117 100%); border: 1px solid #30363d; border-left: 4px solid #58a6ff; border-radius: 8px; padding: 24px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
-    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-      <span style="display: inline-block; width: 8px; height: 8px; background-color: #3fb950; border-radius: 50%;"></span>
-      <span style="font-size: 11px; font-family: monospace; text-transform: uppercase; letter-spacing: 1.2px; color: #8b949e;">ColdCase Weekly Intelligence Brief</span>
-    </div>
-    <h3 style="margin: 0 0 8px 0; font-size: 1.25rem; color: #f0f6fc;">Get Forensic Post-Mortems &amp; CVE Follow-Ups Delivered</h3>
-    <p style="margin: 0 0 18px 0; font-size: 0.92rem; color: #8b949e; line-height: 1.5;">
-      Mainstream tech media moves on after 48 hours. Join security engineers, SREs, and cloud architects receiving our weekly deconstruction of breach investigations, root-cause disclosures, and infrastructure hardening playbooks.
-    </p>
-    <form id="cct-newsletter-form" action="https://app.kit.com/forms/10077030/subscriptions" method="post" onsubmit="return handleCCTSubscribe(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input 
-        type="email" 
-        id="cct-email-input"
-        name="email_address" 
-        required 
-        placeholder="enter.work.email@domain.com" 
-        style="flex: 1; min-width: 220px; padding: 11px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: #f0f6fc; font-size: 0.92rem; outline: none;"
-      />
-      <button 
-        type="submit" 
-        id="cct-sub-btn"
-        style="padding: 11px 22px; border-radius: 6px; border: none; background: #238636; color: #ffffff; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: background 0.15s ease;"
-      >
-        Subscribe Free →
-      </button>
-    </form>
-    <div id="cct-sub-msg" style="display: none; margin-top: 12px; font-size: 0.88rem; color: #3fb950; font-family: monospace;"></div>
-        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #21262d; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.78rem; color: #8b949e;">
-      <span>Zero spam. Weekly forensic digest only. See our <a href="/privacy/" style="color: #58a6ff; text-decoration: underline;">Privacy Policy</a>.</span>
-      <span style="font-family: monospace;">
-        Follow Intel: 
-        <a href="https://www.linkedin.com/in/coldcase-tech-29102a446/" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none; margin-left: 6px;">LinkedIn</a> &middot; <a href="https://x.com/coldcasetech" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none; margin-left: 6px;">X (@coldcasetech)</a> &middot; 
-        <a href="https://www.instagram.com/coldcasetech/" target="_blank" rel="noopener" style="color: #58a6ff; text-decoration: none; margin-left: 6px;">Instagram</a> &middot; 
-        <a href="/index.xml" style="color: #3fb950; text-decoration: none; margin-left: 6px;">RSS</a>
-      </span>
-    </div>
+<section class="cct-news" aria-labelledby="cct-news-title">
+  <p class="cct-news-kicker"><span class="cct-dot" aria-hidden="true"></span>ColdCase Weekly</p>
+  <h3 id="cct-news-title">One email a week: the cases that changed.</h3>
+  <p class="cct-news-text">Mainstream tech media moves on after 48 hours. Get our weekly follow-ups on breach investigations, root-cause disclosures and hardening lessons.</p>
+  <form id="cct-newsletter-form" action="https://app.kit.com/forms/10077030/subscriptions" method="post" onsubmit="return handleCCTSubscribe(event)">
+    <label class="cct-sr" for="cct-email-input">Email address</label>
+    <input type="email" id="cct-email-input" name="email_address" required autocomplete="email" placeholder="you@example.com">
+    <button type="submit" id="cct-sub-btn" class="cct-btn-money">Subscribe free ›</button>
+  </form>
+  <div id="cct-sub-msg" role="status" aria-live="polite" style="display: none;"></div>
+  <div class="cct-news-foot">
+    <span>Zero spam. Weekly digest only. See our <a href="/privacy/">Privacy Policy</a>.</span>
+    <span class="cct-news-social">Follow:
+      <a href="https://www.linkedin.com/in/coldcase-tech-29102a446/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://x.com/coldcasetech" target="_blank" rel="noopener">X (@coldcasetech)</a> ·
+      <a href="https://www.instagram.com/coldcasetech/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="/index.xml">RSS</a>
+    </span>
   </div>
-</div>
+</section>
 
 <script>
 async function handleCCTSubscribe(e) {
@@ -64,7 +45,6 @@ async function handleCCTSubscribe(e) {
   }
 
   input.value = '';
-  btn.style.background = '#1f6feb';
   btn.textContent = '✓ Subscribed';
   msg.style.display = 'block';
   msg.textContent = '✓ Success! Check your inbox (' + email + ') to confirm your subscription to the ColdCase Weekly Intelligence Brief.';

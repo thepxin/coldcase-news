@@ -43,7 +43,8 @@ def read_post(path):
 
     img = re.search(r"^\s+image:\s*(.+)$", fm, re.M)
     cover = img.group(1).strip().strip("\"'") if img else ""
-    return {"title": field("title"), "cover": cover, "body": body}
+    return {"title": field("title"), "cover": cover, "body": body,
+            "verdict": field("verdict"), "then": field("then"), "now": field("now")}
 
 
 def canonical_for(path):
@@ -69,8 +70,13 @@ def wait_until_live(url):
 
 def build_body(post, canonical):
     body = post["body"].replace("](/go/", f"]({BASE_URL}/go/")
+    case = ""
+    if post.get("then") and post.get("now"):
+        case = (f"> **Then vs. Now ({post.get('verdict') or 'Under review'}):** "
+                f"**Then:** {post['then']} **Now:** {post['now']}\n\n")
     return (
         f"> **Originally published on [ColdCaseTech]({canonical}).**\n\n"
+        f"{case}"
         f"{body}\n\n---\n"
         f"*Live KEV + EPSS data is on the [ColdCaseTech Threat Radar]({BASE_URL}/radar/) "
         f"- follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*\n"

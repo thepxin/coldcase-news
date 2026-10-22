@@ -1,0 +1,10 @@
+{{- /* Counts unique external source links in the article (affiliate links and our own domain are excluded). */ -}}
+{{- $links := findRE `href="https?://[^"]+"` .Content -}}
+{{- $uniq := slice -}}
+{{- range $links -}}
+  {{- $u := strings.TrimSuffix `"` (strings.TrimPrefix `href="` .) -}}
+  {{- if and (not (in $u "coldcasetech.com")) (not (in $u "/go/")) (not (in $uniq $u)) -}}
+    {{- $uniq = $uniq | append $u -}}
+  {{- end -}}
+{{- end -}}
+{{- return len $uniq -}}

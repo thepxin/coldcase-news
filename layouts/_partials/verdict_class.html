@@ -1,0 +1,5 @@
+{{- /* Maps a verdict label to a stamp colour class. */ -}}
+{{- $v := lower (string .) -}}
+{{- $c := "warn" -}}
+{{- if eq $v "verified" }}{{ $c = "ok" }}{{ else if eq $v "escalated" }}{{ $c = "bad" }}{{ end -}}
+{{- return $c -}}

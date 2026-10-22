@@ -1,0 +1,3 @@
+{{- with .Params.verdict -}}
+<span class="cct-stamp cct-stamp--{{ partial "verdict_class.html" . }}" title="Verdict: how early reports held up">{{ . }}</span>
+{{- end -}}

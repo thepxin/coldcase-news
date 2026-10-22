@@ -54,6 +54,23 @@ class FollowUpArticle(BaseModel):
     markdown_body: str
     reddit_teaser: str
 
+VERDICT_LABELS = ("Verified", "Partially True", "Escalated")
+
+
+def normalize_verdict(label: str) -> str:
+    """Map any free-text verdict to one of the three site labels."""
+    v = (label or "").strip().lower()
+    for good in VERDICT_LABELS:
+        if v == good.lower():
+            return good
+    if any(k in v for k in ("escalat", "critical", "worse", "understat", "expand", "widen", "fallout")):
+        return "Escalated"
+    if any(k in v for k in ("verif", "confirm", "remediat", "accurate", "held up", "resolved", "true")) \
+            and not any(k in v for k in ("partial", "unresolved", "not ")):
+        return "Verified"
+    return "Partially True"
+
+
 def get_previously_used_urls(posts_dir: str = "content/posts") -> set[str]:
     used_urls = set()
     if not os.path.exists(posts_dir):
@@ -138,7 +155,10 @@ STEP 2: metadata fields (only when true)
 - summary_description: one sentence, under 160 characters, for search results.
 - original_claim: one sentence stating what early coverage said, taken from the sources.
 - current_reality: one sentence stating what the sources establish today.
-- verdict_score: a short label of one to three words that rates how early coverage held up (for example: Confirmed, Overstated, Understated, Disputed, Unresolved). Base it only on the sources.
+- verdict_score: exactly one of these three labels, written exactly as shown, based only on the sources:
+  - Verified: early coverage held up; the sources confirm what was first reported (including a fix that happened as described).
+  - Partially True: some early claims held up while others were overstated, understated, disputed or are still unresolved.
+  - Escalated: the reality turned out worse than early coverage (wider scope, more damage, new victims, or new legal or regulatory fallout).
 
 STEP 3: markdown_body (only when true)
 Use clean, standard Markdown with no raw HTML tags and no curly braces. Aim for 500 to 800 words.
@@ -153,7 +173,7 @@ A bulleted list, oldest first, formatted as: - **YYYY-MM-DD**: what happened ([P
 ## Root Cause and Lessons
 What the sources say about why it happened and what has changed since. Include exactly ONE natural in-text link in this section, choosing the closest fit below and weaving it into a sentence about the defensive lesson. Do not claim or imply the linked product would have prevented this incident. Use that link once and add no other /go/ links.
 - Breach or ransomware recovery: [immutable off-site storage](/go/contabo-storage.html) or [hardware security keys](/go/yubikey.html)
-- Infrastructure, outage, or architecture: [bare-metal dedicated servers](/go/contabo-dedicated.html) or [isolated compute nodes](/go/contabo-vps6.html)
+- Infrastructure, outage, or architecture: [bare-metal dedicated servers](/go/contabo-dedicated.html) or [isolated compute nodes](/go/contabo-vps.html)
 - Surveillance or traffic monitoring: [encrypted tunnel routing](/go/surfshark-vpn.html)
 
 ## Sources
@@ -248,19 +268,28 @@ def save_hugo_post(article: FollowUpArticle):
 {FTC_DISCLOSURE}
 """
 
+    article.verdict_score = normalize_verdict(article.verdict_score)
+    fm_verdict = json.dumps(article.verdict_score, ensure_ascii=False)
+    fm_then = json.dumps(article.original_claim.strip(), ensure_ascii=False)
+    fm_now = json.dumps(article.current_reality.strip(), ensure_ascii=False)
+
+    # verdict/then/now live in the front matter; the page template renders the
+    # case header, so the body no longer repeats them in a blockquote.
     markdown_content = f"""---
 title: {safe_title}
 date: "{now.strftime('%Y-%m-%dT%H:%M:%SZ')}"
 description: {safe_desc}
 tags: ["Follow-Up", "Investigation", "Security & Tech"]
+verdict: {fm_verdict}
+then: {fm_then}
+now: {fm_now}
+verified: "{today_str}"
 cover:
   image: "{cover_image}"
   alt: {safe_title}
   relative: false
 draft: false
 ---
-
-> **Then vs. Now Verdict ({article.verdict_score}):** **Originally:** {article.original_claim} — **Reality Now:** {article.current_reality}
 
 {article.markdown_body}
 {affiliate_block}
