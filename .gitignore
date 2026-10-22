@@ -1,6 +1,8 @@
-﻿public/
+public/
 resources/
 .hugo_build.lock
 __pycache__/
 *.pyc
 .env
+post_meta.json
+pr_body.md
