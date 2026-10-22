@@ -45,11 +45,13 @@ While first-wave startups shuttered, the surviving tooling landscape shifted tow
 
 ---
 ### Infrastructure & Network Resilience Toolkit
+- **Bare-Metal Failover & Dedicated Compute:** Eliminate multi-tenant cloud blast radiuses with dedicated Dual Xeon servers — [Explore Contabo Dedicated Servers](https://coldcasetech.com/go/contabo-dedicated.html)
+- **High-Compute SIEM & Lab Nodes:** Run Wazuh, ELK, or AI telemetry pipelines on high-RAM NVMe instances — [Configure Contabo Core VPS 6](https://coldcasetech.com/go/contabo-vps6.html)
 - **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite](https://www.anrdoezrs.net/click-101908427-15438547)
 - **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP](https://www.kqzyfj.com/click-101908427-17235979)
 - **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls](/go/firewall.html)
 - **AI Voice Generation:** Build lifelike virtual narrators and automated audio briefings — [Explore ElevenLabs](https://try.elevenlabs.io/cy22d10gen9g)
 - **Uninterruptible Power & Uptime:** Protect local servers and routers against sudden power drops — [Check UPS Backup Systems](/go/ups-backup.html)
 
-*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
+*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate commission when you purchase through our partner links (including Contabo, Surfshark, GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*
 

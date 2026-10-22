@@ -20,7 +20,7 @@ BASE_URL = "https://coldcasetech.com"
 
 FTC_DISCLOSURE = (
     "*Disclosure: ColdCaseTech is reader-supported. We may earn an affiliate "
-    "commission when you purchase through our partner links (including Surfshark, "
+    "commission when you purchase through our partner links (including Contabo, Surfshark, "
     "GearUP, ElevenLabs, and as an Amazon Associate) at no extra cost to you.*"
 )
 
@@ -255,6 +255,7 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Verified Security & Incident Toolkit
+- **Air-Gapped Cloud Backups:** Prevent ransomware encryption from destroying local archives — [Deploy Contabo Storage VPS]({BASE_URL}/go/contabo-storage.html)
 - **Identity & Metadata Masking:** Shield primary emails and personal PII from credential dumps and data brokers — [Activate Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
 - **Encrypted Network Tunneling:** Lock down exposed traffic and remote endpoints against session hijacking — [Get Surfshark VPN]({BASE_URL}/go/surfshark-vpn.html)
 - **Physical MFA Security:** Block phishing and credential stuffing with hardware FIDO2 keys — [Explore YubiKey 5 Series]({BASE_URL}/go/yubikey.html)
@@ -267,6 +268,7 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Infrastructure & Network Resilience Toolkit
+- **High-Availability Failover:** Migrate mission-critical databases to isolated bare-metal hardware — [Deploy Contabo Dedicated Servers]({BASE_URL}/go/contabo-dedicated.html)
 - **Full-Stack Endpoint & Perimeter Defense:** Deploy integrated antivirus, breach alerts, and zero-trust tunneling — [Explore Surfshark Security Suite]({BASE_URL}/go/surfshark-suite.html)
 - **Low-Latency Network & Packet Routing:** Mitigate ISP throttling, jitter, and unstable cross-region hops — [Optimize Routing with GearUP]({BASE_URL}/go/gearup.html)
 - **Hardware Firewall & Isolated Lab:** Secure internal lab networks with dedicated security appliances — [Explore Network Firewalls]({BASE_URL}/go/firewall.html)
@@ -279,6 +281,7 @@ def save_hugo_post(article: FollowUpArticle):
         affiliate_block = f"""
 ---
 ### Recommended Privacy & Research Tools
+- **Isolated Cloud Sandbox:** Spin up disposable Linux environments for malware analysis and secure routing — [Deploy Contabo Core VPS]({BASE_URL}/go/contabo-vps.html)
 - **Encrypted Client & Traffic Protection:** Secure workstation and mobile connections with a hardened VPN client — [Download Surfshark VPN]({BASE_URL}/go/surfshark-download.html)
 - **Identity & Email Aliasing:** Prevent targeted spear-phishing on exchange and financial accounts — [Explore Surfshark Alternative ID]({BASE_URL}/go/surfshark-id.html)
 - **Low-Jitter Connection Optimizer:** Stabilize high-traffic network routes and eliminate packet loss — [Try GearUP]({BASE_URL}/go/gearup.html)
