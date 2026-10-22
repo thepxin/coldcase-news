@@ -1,6 +1,6 @@
 baseURL: "https://coldcasetech.com/"
 languageCode: "en-us"
-title: "ColdCase Tech"
+title: "ColdCaseTech"
 theme: "PaperMod"
 enableRobotsTXT: true
 
@@ -14,7 +14,7 @@ markup:
 
 params:
   env: production
-  title: "ColdCase Tech"
+  title: "ColdCaseTech"
   description: "Tracking tech and security stories long after the headlines fade."
   defaultTheme: dark
   ShowReadingTime: true
@@ -27,7 +27,7 @@ params:
   TocOpen: true
 
   homeInfoParams:
-    Title: "ColdCase Tech & Security Desk"
+    Title: "ColdCaseTech & Security Desk"
     Content: "Mainstream tech media abandons major stories after 48 hours. We track the aftermath—breach investigations, post-mortems, and regulatory fallout—months later."
 
 menu:

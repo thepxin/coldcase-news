@@ -35,13 +35,16 @@ CYBER_COVER_IMAGES = [
 ]
 
 TOPICS = [
-    "data breach investigation",
-    "ransomware attack aftermath",
-    "cloud outage post-mortem",
-    "cybersecurity vulnerability patch",
-    "AI startup shutdown",
-    "fintech regulation enforcement",
-    "crypto exchange hack recovery"
+    "data breach",
+    "ransomware attack",
+    "cloud outage",
+    "zero day vulnerability",
+    "linux vulnerability",
+    "crypto hack",
+    "security incident",
+    "supply chain attack",
+    "authentication bypass",
+    "firewall vulnerability"
 ]
 
 class FollowUpArticle(BaseModel):
@@ -72,48 +75,55 @@ def get_previously_used_urls(posts_dir: str = "content/posts") -> set[str]:
     return used_urls
 
 def fetch_clean_sources(query: str, used_urls: set[str], max_items: int = 4) -> list[dict]:
-    url = "https://hn.algolia.com/api/v1/search_by_date"
-    params = {"query": query, "tags": "story", "hitsPerPage": 15}
-    try:
-        response = requests.get(url, params=params, timeout=15)
-        hits = response.json().get("hits", [])
-    except Exception as e:
-        print(f"Algolia fetch error: {e}")
-        return []
-
     sources = []
-    for hit in hits:
-        article_url = hit.get("url")
-        title = hit.get("title")
-        created_at = hit.get("created_at", "")
-        if not article_url or not title or article_url in used_urls:
+    endpoints = [
+        "https://hn.algolia.com/api/v1/search_by_date",
+        "https://hn.algolia.com/api/v1/search"
+    ]
+    for endpoint in endpoints:
+        params = {"query": query, "tags": "story", "hitsPerPage": 40}
+        try:
+            response = requests.get(endpoint, params=params, timeout=15)
+            hits = response.json().get("hits", [])
+        except Exception as e:
+            print(f"Algolia fetch error on {endpoint}: {e}")
             continue
 
-        try:
-            downloaded = trafilatura.fetch_url(article_url)
-            extracted_text = trafilatura.extract(downloaded) if downloaded else ""
-        except Exception:
-            extracted_text = ""
+        for hit in hits:
+            article_url = hit.get("url")
+            title = hit.get("title")
+            created_at = hit.get("created_at", "")
+            if not article_url or not title or article_url in used_urls:
+                continue
+            if any(s["url"] == article_url for s in sources):
+                continue
 
-        if extracted_text and len(extracted_text) > 300:
-            sources.append({
-                "title": title,
-                "date": created_at[:10],
-                "url": article_url,
-                "excerpt": extracted_text[:1800]
-            })
-        if len(sources) >= max_items:
-            break
+            try:
+                downloaded = trafilatura.fetch_url(article_url)
+                extracted_text = trafilatura.extract(downloaded) if downloaded else ""
+            except Exception:
+                extracted_text = ""
+
+            if extracted_text and len(extracted_text) > 300:
+                sources.append({
+                    "title": title,
+                    "date": created_at[:10],
+                    "url": article_url,
+                    "excerpt": extracted_text[:1800]
+                })
+                used_urls.add(article_url)
+            if len(sources) >= max_items:
+                return sources
     return sources
 
 def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
     prompt = f"""
-    You are an investigative tech and security follow-up editor analyzing: '{topic}'.
+    You are an investigative tech and security follow-up editor at ColdCaseTech analyzing: '{topic}'.
     Below are verified source extracts with their URLs and dates:
     {json.dumps(sources, indent=2)}
 
     INSTRUCTIONS:
-    1. Set has_meaningful_update to true if there is enough factual substance here to write a compelling follow-up report.
+    1. Set has_meaningful_update to true if there is factual substance here to write a compelling follow-up report.
     2. Write markdown_body using clean, standard Markdown. Do NOT use raw HTML tags or curly braces. Include:
         - A direct opening paragraph explaining the initial incident vs. reality today.
         - A Markdown comparison table comparing Early Headlines vs. Current Reality.
@@ -138,7 +148,7 @@ def generate_article(topic: str, sources: list[dict]) -> FollowUpArticle | None:
             article.markdown_body = article.markdown_body.replace("{", "(").replace("}", ")")
             return article
         except Exception as e:
-            print(f"Gemini API attempt {attempt}/3 failed: {e}")
+            print(f"Gemini API (gemini-3.8-flash) attempt {attempt}/3 failed: {e}")
             if attempt < 3:
                 wait_time = attempt * 15
                 print(f"Waiting {wait_time}s before retrying...")
@@ -154,7 +164,6 @@ def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image:
 *Track real-time breach telemetry and CISA KEV advisories on the [ColdCaseTech Live CVE Radar]({BASE_URL}/radar/) or follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*
 """
 
-    # 1. Dev.to Syndication
     if DEVTO_API_KEY:
         try:
             res = requests.post(
@@ -178,11 +187,9 @@ def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image:
                 print(f"Dev.to warning: {res.status_code} - {res.text[:200]}")
         except Exception as e:
             print(f"Dev.to error: {e}")
-    else:
-        print("Skipped Dev.to: DEVTO_API_KEY not set.")
 
-    # 2. Hashnode GraphQL Syndication
     if HASHNODE_TOKEN and HASHNODE_PUB_ID:
+        clean_pub_id = HASHNODE_PUB_ID.replace("dashboards/", "").strip("/")
         query = """
         mutation PublishPost($input: PublishPostInput!) {
           publishPost(input: $input) {
@@ -193,7 +200,7 @@ def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image:
         variables = {
             "input": {
                 "title": article.headline,
-                "publicationId": HASHNODE_PUB_ID,
+                "publicationId": clean_pub_id,
                 "contentMarkdown": syndication_body,
                 "originalArticleURL": canonical_url,
                 "coverImageOptions": {"coverImageURL": cover_image},
@@ -218,10 +225,7 @@ def syndicate_article(article: FollowUpArticle, canonical_url: str, cover_image:
                 print(f"Hashnode warning: {h_res.text[:200]}")
         except Exception as e:
             print(f"Hashnode error: {e}")
-    else:
-        print("Skipped Hashnode: HASHNODE_TOKEN or HASHNODE_PUB_ID not set.")
 
-    # 3. Bing IndexNow Instant Ping
     try:
         ping_url = f"https://api.indexnow.org/indexnow?url={canonical_url}&key={INDEXNOW_KEY}"
         requests.get(ping_url, timeout=10)
@@ -321,7 +325,7 @@ Full timeline & source breakdown: {canonical_url}
 ================================================================
 2. X / TWITTER POST (https://x.com/coldcasetech)
 ================================================================
-🚨 ColdCase Post-Mortem: {article.headline}
+🚨 ColdCaseTech Post-Mortem: {article.headline}
 
 Then: {article.original_claim}
 Now ({article.verdict_score}): {article.current_reality}
@@ -380,6 +384,7 @@ if __name__ == "__main__":
         topic = TOPICS[(day_of_year + offset) % len(TOPICS)]
         print(f"Searching fresh sources for topic: {topic}...")
         sources = fetch_clean_sources(topic, used_urls)
+        print(f"Found {len(sources)} clean sources for '{topic}'.")
         if len(sources) >= 2:
             article = generate_article(topic, sources)
             if article and article.has_meaningful_update:
