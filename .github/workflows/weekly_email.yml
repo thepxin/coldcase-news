@@ -1,0 +1,56 @@
+name: ColdCase Weekly email
+
+# Every Saturday morning (about 09:47 IST): builds ColdCase Weekly from the published cases
+# (new cases, verdicts that changed, open cases closed) and creates it in Kit.
+# Nothing new that week = no email.
+# KIT_SEND_MODE (Settings > Secrets and variables > Actions > Variables):
+#   draft (default) = a draft appears in Kit; you check it and press Send
+#   send            = Kit sends it by itself, 15 minutes after it is created
+on:
+  schedule:
+    - cron: '17 4 * * 6'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preview = show it here only, draft = create a draft in Kit, send = send it'
+        required: false
+        default: 'preview'
+        type: choice
+        options: [preview, draft, send]
+
+permissions:
+  contents: write
+
+jobs:
+  weekly-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install requests pyyaml
+
+      - name: Build and create ColdCase Weekly
+        env:
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+          KIT_TAG_ID: ${{ vars.KIT_TAG_ID }}
+          MODE: ${{ inputs.mode || vars.KIT_SEND_MODE || 'draft' }}
+        run: python scripts/weekly_email.py "$MODE"
+
+      - name: Remember what was included (so nothing is sent twice)
+        run: |
+          git config user.name "FollowUp Editorial Bot"
+          git config user.email "bot@coldcasetech.com"
+          git add data/weekly_email.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Nothing to save."
+            exit 0
+          fi
+          git commit -m "chore(newsletter): record ColdCase Weekly"
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash origin main && git push origin main; then break; fi
+            sleep 15
+          done
