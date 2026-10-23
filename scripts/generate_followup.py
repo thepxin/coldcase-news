@@ -15,6 +15,7 @@ from source_discovery import (discover, evaluate, load_config, find_update, case
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 GEMINI_EXHAUSTED = False   # True once the DAILY quota is used up: stop everything
+GEMINI_BUSY = False        # True once Gemini stays overloaded (503): stop this run; the catch-up run retries
 DESK_OUT = False           # True once this desk's share of the budget is used: move to the next desk
 DESK = "tech"              # which desk is writing right now: "tech" (daily) or "security" (weekly, reviewed)
 DESK_CALL_LIMIT = 10
@@ -332,14 +333,23 @@ original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, ca
     return article
 
 
+BUSY_WAITS = (30, 90)   # Gemini overloaded (503): wait, then retry the SAME request (3 tries in total)
+BUSY_SIGNS = ("503", "UNAVAILABLE", "overloaded", "high demand", "500 INTERNAL", "'INTERNAL'")
+
+
 def call_gemini(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
-    """One budgeted Gemini request. purpose="write" always leaves 1 request for the fact-check."""
-    global GEMINI_EXHAUSTED, GEMINI_CALLS, WRITE_CALLS, _LAST_CALL, DESK_OUT
-    for attempt in range(1, 3):
-        if GEMINI_EXHAUSTED or DESK_OUT:
+    """One budgeted Gemini request. purpose="write" always leaves 1 request for the fact-check.
+    Every try is counted against the budget (to stay safely under the daily limit). An overloaded Gemini (503) is
+    retried on the same request after 30 s and 90 s; if it is still overloaded, the run stops (GEMINI_BUSY) and the
+    catch-up run later the same day tries again. Overload never uses up a story's writing attempt."""
+    global GEMINI_EXHAUSTED, GEMINI_BUSY, GEMINI_CALLS, WRITE_CALLS, _LAST_CALL, DESK_OUT
+    per_minute_waited = False
+    busy_tries = 0
+    for attempt in range(1, 5):
+        if GEMINI_EXHAUSTED or GEMINI_BUSY or DESK_OUT:
             return None
         left = min(GEMINI_BUDGET, DESK_CALL_LIMIT) - GEMINI_CALLS
-        if purpose == "write" and (left < 3 or WRITE_CALLS >= MAX_WRITE_ATTEMPTS):
+        if purpose == "write" and attempt == 1 and (left < 3 or WRITE_CALLS >= MAX_WRITE_ATTEMPTS):
             print(f"[{DESK}] budget: no writing attempts left ({GEMINI_CALLS}/{GEMINI_BUDGET} used in this run).")
             DESK_OUT = True
             return None
@@ -352,7 +362,7 @@ def call_gemini(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
             time.sleep(MIN_SECONDS_BETWEEN_CALLS - gap)
         _LAST_CALL = time.time()
         GEMINI_CALLS += 1
-        if purpose == "write" and attempt == 1:  # a retry after a network error is the same attempt
+        if purpose == "write" and attempt == 1:  # retries of the same request are the same attempt
             WRITE_CALLS += 1
         try:
             response = client.models.generate_content(
@@ -364,19 +374,33 @@ def call_gemini(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
                     temperature=0.2 if purpose == "check" else 0.4,
                 ),
             )
-            print(f"Gemini {purpose} request OK ({GEMINI_CALLS}/{GEMINI_BUDGET} used today in this run).")
+            print(f"Gemini {purpose} request OK ({GEMINI_CALLS}/{GEMINI_BUDGET} used in this run).")
             return schema.model_validate_json(response.text)
         except Exception as e:
             msg = str(e)
             print(f"Gemini {purpose} request failed ({GEMINI_CALLS}/{GEMINI_BUDGET} used): {msg[:300]}")
             if any(k in msg for k in ("RESOURCE_EXHAUSTED", "429", "quota", "billing")):
                 per_minute = "PerMinute" in msg or "per minute" in msg.lower()
-                if per_minute and attempt == 1:
+                if per_minute and not per_minute_waited:
+                    per_minute_waited = True
                     print("Per-minute limit hit; waiting 65 s, then trying once more.")
                     time.sleep(65)
                     continue
                 GEMINI_EXHAUSTED = True
                 print("Gemini daily quota exhausted; no more requests today. It resets at midnight Pacific time.")
+                return None
+            if any(k in msg for k in BUSY_SIGNS):
+                if busy_tries < len(BUSY_WAITS):
+                    wait = BUSY_WAITS[busy_tries]
+                    busy_tries += 1
+                    print(f"Gemini is overloaded right now; waiting {wait} s, then retrying the same request.")
+                    time.sleep(wait)
+                    continue
+                GEMINI_BUSY = True
+                print("Gemini is still overloaded after 3 tries. Stopping here to save the daily budget; "
+                      "the catch-up run later today will try the unfinished jobs again.")
+                return None
+            if attempt >= 2:  # any other error: one retry only
                 return None
             time.sleep(15)
     return None
@@ -910,7 +934,7 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
     print(f"\n===== CASE UPDATES: checking {len(todo)} case(s) (open cases first) for new verified developments =====")
     checks, result = {}, None
     for case in todo:
-        if GEMINI_EXHAUSTED:
+        if GEMINI_EXHAUSTED or GEMINI_BUSY:
             break
         desk = case["desk"]
         last = cases.last_activity(case)
@@ -923,7 +947,7 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
             if case.get("status") == "open":
                 checks[case["_slug"]] = {"checked": today_str, "result": reason}
             continue
-        if result or DESK_OUT:
+        if result or DESK_OUT or GEMINI_BUSY or GEMINI_EXHAUSTED:
             print(f"  {label}: new verified coverage found; it will be written on the next run (one update per run).")
             continue
         print(f"  {label}: new verified coverage from {', '.join(sorted({s['outlet'] for s in found}))}")
@@ -981,10 +1005,15 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=()):
     topics = [names[(day_of_year + i) % len(names)] for i in range(len(names))]
     print(f"\n===== {desk.upper()} DESK: finding stories from approved sources only (data/sources.json) =====")
     for topic, sources, mode in discover(topics, used_urls, desk=desk, finder=finder_for(desk), known=known):
-        if GEMINI_EXHAUSTED or DESK_OUT:
+        if GEMINI_EXHAUSTED or GEMINI_BUSY or DESK_OUT:
             break
         article = generate_article(topic, sources, mode)
-        if not article or not article.has_meaningful_update:
+        if article is None:
+            if GEMINI_EXHAUSTED or GEMINI_BUSY or DESK_OUT:
+                break
+            print("No draft: Gemini did not answer for this story (see the message above); trying the next story.")
+            continue
+        if not article.has_meaningful_update:
             print("Writer found no meaningful then-vs-now change in these sources; trying the next story."
                   if mode == "case" else "Writer found no dated official promise to open a case on; trying the next story.")
             continue
@@ -999,7 +1028,10 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=()):
         filename = save_hugo_post(checked, topic, sources)
         used_urls.update(s["url"] for s in sources)
         return filename, sources, report, checked
-    print(f"[{desk}] No article today: no story passed every source rule and check. This is expected on some days.")
+    if GEMINI_BUSY or GEMINI_EXHAUSTED:
+        print(f"[{desk}] Stopped early because Gemini was {'overloaded' if GEMINI_BUSY else 'out of daily quota'}.")
+    else:
+        print(f"[{desk}] No article today: no story passed every source rule and check. This is expected on some days.")
     return None
 
 
@@ -1023,24 +1055,71 @@ def share_for(job: str, plan: list) -> int:
     return max(0, left - reserve)
 
 
+RUN_LOG = "data/daily_runs.json"
+# Gemini's free tier allows 20 requests per day, counted per Pacific-time day (it resets at midnight Pacific).
+# All of today's runs together (scheduled, catch-up and manual) stay under this cap.
+DAILY_CAP = int(os.environ.get("GEMINI_DAILY_CAP", "18"))
+
+
+def gemini_day() -> str:
+    from zoneinfo import ZoneInfo
+    return datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+
+
+def load_run_log() -> dict:
+    """Today's jobs and today's Gemini use, shared by every run of the day (committed to the repo)."""
+    try:
+        log = json.load(open(RUN_LOG, encoding="utf-8"))
+    except Exception:
+        log = {}
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if log.get("date") != today:
+        log = {"date": today, "jobs": {}, "gemini_day": log.get("gemini_day", ""), "gemini_calls": log.get("gemini_calls", 0)}
+    if log.get("gemini_day") != gemini_day():
+        log["gemini_day"], log["gemini_calls"] = gemini_day(), 0
+    return log
+
+
+def save_run_log(log: dict):
+    os.makedirs(os.path.dirname(RUN_LOG), exist_ok=True)
+    with open(RUN_LOG, "w", encoding="utf-8") as f:
+        json.dump(log, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
 if __name__ == "__main__":
     os.makedirs("content/posts", exist_ok=True)
     used_urls = get_previously_used_urls("content/posts")
     all_cases = cases.load_cases()
     known = [case_keys(str(c.get("title", ""))) for c in all_cases]
     today_name = datetime.now(timezone.utc).strftime("%A")
-    plan = plan_for_today(today_name, os.environ.get("DESK", "auto").strip().lower())
-    print(f"Today is {today_name} (UTC). Order: {' -> '.join(plan)}. Security day: {SECURITY_DAY}. "
-          f"Gemini budget for this run: {GEMINI_BUDGET} requests.")
+    forced = os.environ.get("DESK", "auto").strip().lower()
+    plan = plan_for_today(today_name, forced)
+    run_log = load_run_log()
+    used_before = int(run_log.get("gemini_calls", 0))
+    GEMINI_BUDGET = max(0, min(GEMINI_BUDGET, DAILY_CAP - used_before))
+    print(f"Today is {today_name} (UTC). Order: {' -> '.join(plan)}. Security day: {SECURITY_DAY}.")
+    print(f"Gemini: {used_before} request(s) already used today by earlier runs; this run may use {GEMINI_BUDGET} "
+          f"(daily cap {DAILY_CAP} of the free 20).")
+    if forced == "auto":
+        finished = [j for j in plan if run_log["jobs"].get(j) in ("done", "published")]
+        if finished:
+            print(f"Already finished earlier today, so skipped now: {', '.join(finished)}.")
+        plan = [j for j in plan if j not in finished]
+        if not plan:
+            print("All of today's jobs are finished. Nothing to do in this run.")
 
     result = {"tech": "", "security": "", "update": "", "update_desk": ""}
     for job in plan:
-        if GEMINI_EXHAUSTED:
-            print(f"Gemini daily quota is used up; '{job}' cannot run today.")
-            break
+        if GEMINI_EXHAUSTED or GEMINI_BUSY:
+            print(f"'{job}' did not run: Gemini is {'overloaded' if GEMINI_BUSY else 'out of daily quota'}. "
+                  "The catch-up run will try it again.")
+            run_log["jobs"][job] = "cut"
+            continue
         share = share_for(job, plan)
         if share < 3:
-            print(f"Not enough Gemini requests left for '{job}' ({share}); it needs at least 3.")
+            print(f"Not enough Gemini requests left today for '{job}' ({share}); it needs at least 3.")
+            run_log["jobs"][job] = "cut"
             continue
         if job == "updates":
             up = run_update_desk(all_cases, used_urls, share)
@@ -1048,12 +1127,15 @@ if __name__ == "__main__":
                 result["update"], result["update_desk"] = up["file"], up["desk"]
                 with open("post_meta_update.json", "w", encoding="utf-8") as f:
                     json.dump(up, f, ensure_ascii=False, indent=1)
+            run_log["jobs"][job] = "cut" if (GEMINI_BUSY or GEMINI_EXHAUSTED) and not up else "done"
             continue
         out = run_desk(job, used_urls, share, known)
         if not out:
+            run_log["jobs"][job] = "cut" if (GEMINI_BUSY or GEMINI_EXHAUSTED) else "done"
             continue
         filename, sources, report, art = out
         result[job] = filename
+        run_log["jobs"][job] = "published"
         if job == "security":
             # summary for the review pull request (not part of the site)
             with open("post_meta_security.json", "w", encoding="utf-8") as f:
@@ -1062,6 +1144,9 @@ if __name__ == "__main__":
                            "sources": [{"outlet": x["outlet"], "tier": x["tier"], "kind": x["kind"], "title": x["title"],
                                         "url": x["url"], "date": x["date"]} for x in sources],
                            "social": LAST_SOCIAL_KIT}, f, ensure_ascii=False, indent=1)
+    run_log["gemini_calls"] = used_before + GEMINI_CALLS
+    save_run_log(run_log)
     with open("run_result.json", "w", encoding="utf-8") as f:
         json.dump(result, f)
-    print(f"\nRun result: {result}  (Gemini requests used: {GEMINI_CALLS}/{GEMINI_BUDGET})")
+    print(f"\nRun result: {result}  (Gemini requests used: {GEMINI_CALLS} in this run, "
+          f"{run_log['gemini_calls']} today). Jobs today: {run_log['jobs']}")

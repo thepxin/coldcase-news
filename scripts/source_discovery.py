@@ -251,6 +251,24 @@ def subject_keys(title, df):
     return keys | {c.upper() for c in CVE_PATTERN.findall(title)}
 
 
+def key_hits(text, keys):
+    """How many of the story's keywords a page mentions. A matching CVE ID counts as 2 (it is unique)."""
+    low = (text or "").lower()
+    n = 0
+    for k in keys:
+        if k.startswith("CVE-"):
+            n += 2 if k.lower() in low else 0
+        elif re.search(r"\b" + re.escape(k) + r"\b", low):
+            n += 1
+    return n
+
+
+def mentions_story(text, keys):
+    """Strict check for OTHER pages (related coverage, linked pages): at least 2 of the story's keywords, so that
+    e.g. 'Gemini' the AI model and 'Gemini' the crypto exchange are never treated as the same story."""
+    return key_hits(text, keys) >= (1 if len(keys) <= 1 else 2)
+
+
 def mentions(text, keys):
     low = (text or "").lower()
     for k in keys:
@@ -301,7 +319,8 @@ class Finder:
                 self.df[t] = self.df.get(t, 0) + 1
         self.fetches, self.cache, self.why = 0, {}, {}
 
-    def get_source(self, url, tier_override=None, kind=None, outlet_name=None, feed_date=None, keys=frozenset()):
+    def get_source(self, url, tier_override=None, kind=None, outlet_name=None, feed_date=None, keys=frozenset(),
+                   strict=False):
         cfg, rules = self.cfg, self.rules
         if url in self.cache:  # each page is downloaded once per run; the checks below run for every story
             html, data = self.cache[url]
@@ -322,7 +341,7 @@ class Finder:
             self.why[url] = "the site did not return the page (blocked, timed out or not found)"
         elif len(text) < 400:
             self.why[url] = "too little readable text on the page"
-        elif not mentions(text, keys):
+        elif not (mentions_story if strict else mentions)(text, keys):
             self.why[url] = "the page does not mention this story"
         if kind == "own statement" and text:
             if EXTORTION_PAGE.search(text) or ".onion" in url:
@@ -334,7 +353,7 @@ class Finder:
                 if not (INCIDENT_WORDS.search(title + " " + urlparse(url).path) or hits >= 2):
                     text = ""
                     self.why[url] = "organisation page is not about this story"
-        if len(text) >= 400 and mentions(text, keys):
+        if len(text) >= 400 and (mentions_story if strict else mentions)(text, keys):
             o = outlet_for(url, cfg)
             result = {
                 "outlet": outlet_name or (o["name"] if o else host_of(url)),
@@ -361,7 +380,7 @@ class Finder:
         for r in sorted(related, key=lambda r: r["outlet"]["id"] == seed["outlet"]["id"])[:MAX_RELATED_FETCHES]:
             if r["url"] in skip_urls:
                 continue
-            src = self.get_source(r["url"], feed_date=r["date"], keys=keys)
+            src = self.get_source(r["url"], feed_date=r["date"], keys=keys, strict=True)
             if src and all(src["url"] != x["url"] for x in sources):
                 sources.append(src)
         candidates = []
@@ -380,7 +399,7 @@ class Finder:
                 break
             o = outlet_for(u, cfg)
             if o:
-                src = self.get_source(u, keys=keys)
+                src = self.get_source(u, keys=keys, strict=True)
             elif rules.get("own_statement_counts_as_tier_a", True):
                 src = self.get_source(u, tier_override="A", kind="own statement",
                                       outlet_name=f"{org_label(u).capitalize()} (official statement)", keys=keys)
