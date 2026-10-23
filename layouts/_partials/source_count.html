@@ -1,15 +1,17 @@
-{{- /* Number of sources: the stored list plus every update's sources; otherwise counted from external links in the text. */ -}}
+{{- /* Number of sources: the stored list plus every update's sources; otherwise counted from external links in the text.
+       One return at the very end, with its value in brackets: Cloudflare's Hugo (0.158) requires that. */ -}}
+{{- $n := 0 -}}
 {{- if .Params.sources -}}
-  {{- $n := len .Params.sources -}}
+  {{- $n = len .Params.sources -}}
   {{- range .Params.updates }}{{ $n = add $n (len (.sources | default slice)) }}{{ end -}}
-  {{- return $n -}}
-{{- end -}}
-{{- $links := findRE `href="https?://[^"]+"` .Content -}}
-{{- $uniq := slice -}}
-{{- range $links -}}
-  {{- $u := strings.TrimSuffix `"` (strings.TrimPrefix `href="` .) -}}
-  {{- if and (not (in $u "coldcasetech.com")) (not (in $u "/go/")) (not (in $uniq $u)) -}}
-    {{- $uniq = $uniq | append $u -}}
+{{- else -}}
+  {{- $uniq := slice -}}
+  {{- range findRE `href="https?://[^"]+"` .Content -}}
+    {{- $u := strings.TrimSuffix `"` (strings.TrimPrefix `href="` .) -}}
+    {{- if and (not (in $u "coldcasetech.com")) (not (in $u "/go/")) (not (in $uniq $u)) -}}
+      {{- $uniq = $uniq | append $u -}}
+    {{- end -}}
   {{- end -}}
+  {{- $n = len $uniq -}}
 {{- end -}}
-{{- return len $uniq -}}
+{{- return $n -}}

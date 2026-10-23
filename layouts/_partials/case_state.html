@@ -19,4 +19,4 @@
 {{- with .File }}{{ with index (hugo.Data.case_checks | default dict) .ContentBaseName }}{{ $checked = .checked }}{{ end }}{{ end -}}
 {{- $pastdue := false -}}
 {{- if $isOpen }}{{ with .Params.due_by }}{{ if (time.AsTime .).Before (now.AddDate 0 0 -1) }}{{ $pastdue = true }}{{ end }}{{ end }}{{ end -}}
-{{- return dict "open" $isOpen "n" (len $ups) "last" $last "recent" $recent "change" $change "closed" $closed "checked" $checked "pastdue" $pastdue -}}
+{{- return (dict "open" $isOpen "n" (len $ups) "last" $last "recent" $recent "change" $change "closed" $closed "checked" $checked "pastdue" $pastdue) -}}
