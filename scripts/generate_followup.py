@@ -283,7 +283,7 @@ def _status(e) -> int:
     return int(getattr(e, "status_code", 0) or 0)
 
 
-def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
+def _call_claude(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
     """One budgeted Claude request that returns a validated `schema` object (or None).
     purpose="write" always leaves 1 request for the fact-check. Every try is counted against the budget.
     Overloaded (529) / server errors are retried on the same request after 30 s and 90 s; if Claude is still
@@ -347,7 +347,7 @@ def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
                 continue
             if code == 429:
                 AI_BUSY = True
-                print("Still rate-limited; stopping here. The catch-up run later today will try again.")
+                print("Claude is still rate-limited.")
                 return None
             if code >= 500 or "overloaded" in low or isinstance(e, (anthropic.APIConnectionError, anthropic.APITimeoutError)):
                 if busy_tries < len(BUSY_WAITS):
@@ -357,10 +357,116 @@ def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
                     time.sleep(wait)
                     continue
                 AI_BUSY = True
-                print("Claude is still overloaded after 3 tries. Stopping here; "
-                      "the catch-up run later today will try the unfinished jobs again.")
+                print("Claude is still overloaded after 3 tries.")
                 return None
             return None  # any other error (e.g. a rejected request): no retry, try the next story
+    return None
+
+
+# ---------------------------------------------------------------- fallback model
+# If Claude cannot answer (overloaded after the retries, out of credit, key problem or rate limit), the rest of the run
+# uses Gemini (free tier, the existing GEMINI_API_KEY secret). Same prompts, same hard checks, same fact-check rules.
+GEMINI_MODEL = "gemini-3.8-flash"
+GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_DAILY_CAP = int(os.environ.get("GEMINI_DAILY_CAP", "18"))   # free tier: 20 requests per Pacific-time day
+GEMINI_RUN_LEFT = GEMINI_DAILY_CAP        # set in main from today's earlier runs
+GEMINI_CALLS = 0
+GEMINI_MIN_GAP = 13                       # free tier: 5 requests per minute
+_GEMINI_CLIENT = None
+_GEMINI_LAST = 0.0
+PROVIDER = "claude"
+ARTICLE_MODELS: list = []                 # which models wrote/checked the current article (saved on the post)
+
+
+def gemini_available() -> bool:
+    return bool(GEMINI_KEY) and GEMINI_RUN_LEFT - GEMINI_CALLS > 0
+
+
+def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
+    """Claude first; Gemini as the fallback for the rest of the run if Claude cannot answer."""
+    global PROVIDER, AI_BUSY, AI_EXHAUSTED, WRITE_CALLS
+    if PROVIDER == "claude":
+        writes_before = WRITE_CALLS
+        out = _call_claude(prompt, schema, purpose)
+        if out is not None:
+            ARTICLE_MODELS.append(MODEL)
+            return out
+        if not (AI_BUSY or AI_EXHAUSTED):
+            return None
+        if not gemini_available():
+            print("No fallback model available (no GEMINI_API_KEY, or its free requests are used up today). Stopping here; "
+                  "the catch-up run later today will try the unfinished jobs again.")
+            return None
+        print(f"Switching to the fallback model ({GEMINI_MODEL}) for the rest of this run.")
+        PROVIDER, AI_BUSY, AI_EXHAUSTED = "gemini", False, False
+        WRITE_CALLS = writes_before  # the failed Claude try does not use up this story's writing attempt
+    out = _call_gemini(prompt, schema, purpose)
+    if out is not None:
+        ARTICLE_MODELS.append(GEMINI_MODEL)
+    return out
+
+
+def _call_gemini(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
+    global AI_EXHAUSTED, AI_BUSY, AI_CALLS, GEMINI_CALLS, WRITE_CALLS, _GEMINI_CLIENT, _GEMINI_LAST, DESK_OUT
+    if _GEMINI_CLIENT is None:
+        from google import genai
+        _GEMINI_CLIENT = genai.Client(api_key=GEMINI_KEY)
+    from google.genai import types
+    per_minute_waited, busy_tries = False, 0
+    for attempt in range(1, 5):
+        if AI_EXHAUSTED or AI_BUSY or DESK_OUT:
+            return None
+        left = min(AI_BUDGET, DESK_CALL_LIMIT) - AI_CALLS
+        if purpose == "write" and attempt == 1 and (left < 3 or WRITE_CALLS >= MAX_WRITE_ATTEMPTS):
+            print(f"[{DESK}] budget: no writing attempts left ({AI_CALLS}/{AI_BUDGET} used in this run).")
+            DESK_OUT = True
+            return None
+        if left < 1:
+            DESK_OUT = True
+            return None
+        if GEMINI_RUN_LEFT - GEMINI_CALLS < 1:
+            print("Gemini: today's free requests are used up.")
+            AI_EXHAUSTED = True
+            return None
+        gap = time.time() - _GEMINI_LAST
+        if gap < GEMINI_MIN_GAP:
+            time.sleep(GEMINI_MIN_GAP - gap)
+        _GEMINI_LAST = time.time()
+        AI_CALLS += 1
+        GEMINI_CALLS += 1
+        if purpose == "write" and attempt == 1:
+            WRITE_CALLS += 1
+        try:
+            response = _GEMINI_CLIENT.models.generate_content(
+                model=GEMINI_MODEL, contents=prompt,
+                config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=schema,
+                                                   temperature=0.2 if purpose == "check" else 0.4))
+            print(f"Gemini (fallback) {purpose} request OK ({AI_CALLS}/{AI_BUDGET} used in this run, "
+                  f"{GEMINI_CALLS} Gemini).")
+            return schema.model_validate_json(response.text)
+        except Exception as e:
+            msg = str(e)
+            print(f"Gemini (fallback) {purpose} request failed: {msg[:300]}")
+            if any(k in msg for k in ("RESOURCE_EXHAUSTED", "429", "quota")):
+                if ("PerMinute" in msg or "per minute" in msg.lower()) and not per_minute_waited:
+                    per_minute_waited = True
+                    print("Gemini per-minute limit; waiting 65 s, then trying once more.")
+                    time.sleep(65)
+                    continue
+                AI_EXHAUSTED = True
+                print("Gemini's free daily quota is used up too; stopping. The catch-up run will try again.")
+                return None
+            if any(k in msg for k in ("503", "UNAVAILABLE", "overloaded", "high demand", "500", "INTERNAL")):
+                if busy_tries < len(BUSY_WAITS):
+                    wait = BUSY_WAITS[busy_tries]
+                    busy_tries += 1
+                    print(f"Gemini is overloaded too; waiting {wait} s, then retrying the same request.")
+                    time.sleep(wait)
+                    continue
+                AI_BUSY = True
+                print("Both models are unavailable right now; stopping. The catch-up run later today will try again.")
+                return None
+            return None
     return None
 
 
@@ -518,6 +624,13 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
 
 
 CHIP_FIELDS = ("chips and silicon", "gaming")
+# Tag names shown on the site (the tag page URL is the lower-case, hyphenated name, e.g. /tags/chips-and-silicon/)
+AREA_LABELS = {"ai": "AI", "evs": "EVs", "chips and silicon": "Chips and Silicon", "policy and privacy": "Policy and Privacy",
+               "cloud and infrastructure": "Cloud and Infrastructure"}
+
+
+def area_label(topic: str) -> str:
+    return AREA_LABELS.get(topic, (topic or "Tech").title())
 
 
 def verified_products(article: FollowUpArticle, sources: list | None) -> list[str]:
@@ -594,7 +707,7 @@ def save_hugo_post(article: FollowUpArticle, topic: str = "", sources: list | No
 title: {safe_title}
 date: "{now.strftime('%Y-%m-%dT%H:%M:%SZ')}"
 description: {safe_desc}
-tags: {json.dumps(["Tech", topic.title()])}
+tags: {json.dumps(["Tech", area_label(topic)])}
 desk: "{DESK}"
 verdict: {fm_verdict}
 {fm_status}then: {fm_then}
@@ -603,6 +716,7 @@ verified: "{today_str}"
 toolkit: "{toolkit_key}"
 checked: "{today_str}"
 sourcing: "approved"
+models: {json.dumps(sorted(set(ARTICLE_MODELS)))}
 {fm_products}
 sources:
 {fm_sources}cover:
@@ -619,7 +733,7 @@ draft: false
         f.write(markdown_content)
 
     shown_verdict = "Open case, no verdict yet" if is_open else ("News report" if kind == "report" else article.verdict_score)
-    hashtags = "#Tech #TechNews #" + re.sub(r"[^A-Za-z0-9]", "", (topic or "Tech").title())
+    hashtags = "#Tech #TechNews #" + re.sub(r"[^A-Za-z0-9]", "", area_label(topic))
     social_kit = f"""================================================================
 1. REDDIT / HACKER NEWS (pick the subreddit for the field, e.g. r/technology, r/hardware, r/space)
 ================================================================
@@ -1010,11 +1124,12 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
             continue  # one article per field per day
         if any(s["url"] in used_urls for s in sources):
             continue  # already used by an article earlier in this run
+        ARTICLE_MODELS.clear()
         article = generate_article(topic, sources, mode)
         if article is None:
             if AI_EXHAUSTED or AI_BUSY or DESK_OUT:
                 break
-            print("No draft: Claude did not answer for this story (see the message above); trying the next story.")
+            print("No draft: the AI did not answer for this story (see the message above); trying the next story.")
             continue
         if not article.has_meaningful_update:
             print("Writer found nothing specific and citable enough in these sources; trying the next story.")
@@ -1034,7 +1149,8 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
         published.append((filename, sources, report, checked))
         WRITE_CALLS = 0  # each article gets its own writing attempts
     if AI_BUSY or AI_EXHAUSTED:
-        print(f"[tech] Stopped early because Claude was {'overloaded' if AI_BUSY else 'unavailable (credit or key, see above)'}.")
+        who = "Claude and the fallback model were" if PROVIDER == "gemini" else "Claude was"
+        print(f"[tech] Stopped early because {who} {'overloaded' if AI_BUSY else 'unavailable (see above)'}.")
     elif len(published) < want:
         print(f"[tech] Published {len(published)} of {want}: no other story passed every source rule and check today.")
     return published
@@ -1073,9 +1189,14 @@ def load_run_log() -> dict:
         log = {}
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     if log.get("date") != today:
-        log = {"date": today, "jobs": {}, "ai_day": log.get("ai_day", ""), "ai_calls": log.get("ai_calls", 0)}
+        log = {"date": today, "jobs": {}, "ai_day": log.get("ai_day", ""), "ai_calls": log.get("ai_calls", 0),
+               "gemini_day": log.get("gemini_day", ""), "gemini_calls": log.get("gemini_calls", 0)}
     if log.get("ai_day") != ai_day():
         log["ai_day"], log["ai_calls"] = ai_day(), 0
+    from zoneinfo import ZoneInfo  # Gemini's free quota resets at midnight Pacific time
+    pacific = datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    if log.get("gemini_day") != pacific:
+        log["gemini_day"], log["gemini_calls"] = pacific, 0
     return log
 
 
@@ -1098,10 +1219,13 @@ if __name__ == "__main__":
     used_before = int(run_log.get("ai_calls", 0))
     done_today = int(run_log.get("tech_published", 0))
     AI_BUDGET = max(0, min(AI_BUDGET, DAILY_CAP - used_before))
+    gemini_before = int(run_log.get("gemini_calls", 0))
+    GEMINI_RUN_LEFT = max(0, GEMINI_DAILY_CAP - gemini_before)
     print(f"Today is {today_name} (UTC). Order: {' -> '.join(plan)}. "
           f"Tech articles today so far: {done_today} of {ARTICLES_PER_DAY}.")
     print(f"Claude ({MODEL}): {used_before} request(s) already used today by earlier runs; this run may use "
-          f"{AI_BUDGET} (daily cap {DAILY_CAP}).")
+          f"{AI_BUDGET} (daily cap {DAILY_CAP}). Fallback: "
+          + (f"{GEMINI_MODEL}, {GEMINI_RUN_LEFT} free request(s) left today." if GEMINI_KEY else "none (no GEMINI_API_KEY)."))
     if forced == "auto":
         finished = [j for j in plan if (j == "updates" and run_log["jobs"].get(j) == "done")
                     or (j == "tech" and done_today >= ARTICLES_PER_DAY)]
@@ -1136,6 +1260,7 @@ if __name__ == "__main__":
         run_log["tech_published"] = done_today
         run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) else ("published" if out else "done")
     run_log["ai_calls"] = used_before + AI_CALLS
+    run_log["gemini_calls"] = gemini_before + GEMINI_CALLS
     save_run_log(run_log)
     with open("run_result.json", "w", encoding="utf-8") as f:
         json.dump(result, f)

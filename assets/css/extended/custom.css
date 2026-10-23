@@ -497,3 +497,13 @@ body{font-size:17.5px}
 .cct-prices td:first-child{width:22%}
 .cct-feed h2{flex-wrap:wrap}
 .cct-feed-tag{white-space:nowrap;flex:none}
+
+/* the main column always starts at the top (PaperMod's margin:auto centred it next to a tall side column) */
+.cct-layout>.main{margin:0 auto;align-self:start}
+/* Browse by field */
+.cct-fields ul{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+.cct-fields li{border-top:0;padding:3px 0;font-size:12.5px;display:flex;justify-content:space-between;align-items:baseline;gap:6px;line-height:1.35}
+.cct-fields a{color:var(--cct-text);text-decoration:none}
+.cct-fields a:hover{color:var(--cct-violet)}
+.cct-fields-n{color:var(--cct-violet);font-weight:700}
+.cct-fields-off{color:var(--cct-muted)}

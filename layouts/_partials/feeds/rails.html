@@ -3,7 +3,7 @@
 {{- $side := . -}}
 {{- $html := "" -}}
 {{- if eq $side "left" -}}
-  {{- $html = print (partial "rail/due_soon.html" .) (partial "rail/price_check.html" "chips") (partial "rail/scoreboard.html" .) (partial "rail/latest_verdicts.html" .) -}}
+  {{- $html = print (partial "rail/fields.html" .) (partial "rail/due_soon.html" .) (partial "rail/price_check.html" "chips") (partial "rail/scoreboard.html" .) (partial "rail/latest_verdicts.html" .) -}}
 {{- else -}}
   {{- $html = print (partial "rail/price_check.html" "devices") (partial "rail/gear_today.html" .) (partial "rail/wire.html" .) (partial "rail/crypto.html" .) (partial "rail/email.html" .) -}}
 {{- end -}}

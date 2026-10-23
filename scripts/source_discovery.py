@@ -433,6 +433,11 @@ def clean(sources, limit):
     return [{k: v for k, v in s.items() if not k.startswith("_")} for s in sources[:limit]]
 
 
+# ColdCaseTech is tech-only: security bulletins and incidents (CVE IDs, patches, exploits, breaches) are skipped
+SECURITY_TITLE = re.compile(r"\bCVE-\d{4}-\d+|security (bulletin|advisory|update)|vulnerabilit|exploit|ransomware|"
+                            r"malware|zero-day|\bpatch(es|ed)?\b|\bbreach|hacker|hacked|cyberattack", re.I)
+
+
 def can_give_verdict(sources, rules):
     """A verdict (then vs now) needs at least 2 dated sources that are min_spread_days apart."""
     dated = sorted(d for d in (parse_date(s["date"]) for s in sources) if d)
@@ -453,7 +458,7 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", find
     tried = set()
     for topic in topics:
         seeds = [i for i in f.items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
-                 and i["url"] not in used_urls and i["url"] not in tried]
+                 and not SECURITY_TITLE.search(i["title"]) and i["url"] not in used_urls and i["url"] not in tried]
         scored = []
         for s in seeds:
             keys = subject_keys(s["title"], f.df)

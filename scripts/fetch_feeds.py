@@ -32,8 +32,6 @@ COINGECKO_URL = ("https://api.coingecko.com/api/v3/simple/price"
 COINS = [("bitcoin", "BTC"), ("ethereum", "ETH"), ("solana", "SOL")]
 WIRE_ITEMS = 8
 WIRE_PER_OUTLET = 2
-
-
 def now_utc():
     return datetime.now(timezone.utc)
 
@@ -56,7 +54,8 @@ def fetch_wire():
     """Newest headlines from approved tech outlets (no deal posts), at most 2 per outlet."""
     import source_discovery as D
     cfg = D.load_config()
-    items = [i for i in D.read_feeds(cfg, log=lambda *_: None, desk="tech") if not D.DEAL_TITLE.search(i["title"])]
+    items = [i for i in D.read_feeds(cfg, log=lambda *_: None, desk="tech")
+             if not D.DEAL_TITLE.search(i["title"]) and not D.SECURITY_TITLE.search(i["title"])]
     if not items:
         raise RuntimeError("no feed items")
     items.sort(key=lambda i: i["date"], reverse=True)

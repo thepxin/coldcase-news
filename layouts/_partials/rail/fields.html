@@ -1,0 +1,28 @@
+{{- /* Browse by field: every tech field we cover, with the number of articles in each (links appear once a field has
+       articles). Always shown, so the left column is never empty. */ -}}
+{{- $fields := slice
+    (dict "slug" "ai" "label" "AI")
+    (dict "slug" "chips-and-silicon" "label" "Chips & silicon")
+    (dict "slug" "devices" "label" "Devices")
+    (dict "slug" "software" "label" "Software")
+    (dict "slug" "platforms" "label" "Platforms")
+    (dict "slug" "policy-and-privacy" "label" "Policy & privacy")
+    (dict "slug" "crypto" "label" "Crypto")
+    (dict "slug" "evs" "label" "EVs")
+    (dict "slug" "space" "label" "Space")
+    (dict "slug" "quantum" "label" "Quantum")
+    (dict "slug" "robotics" "label" "Robotics")
+    (dict "slug" "energy" "label" "Energy")
+    (dict "slug" "telecom" "label" "Telecom")
+    (dict "slug" "gaming" "label" "Gaming")
+    (dict "slug" "cloud-and-infrastructure" "label" "Cloud & infrastructure") -}}
+{{- $tags := site.Taxonomies.tags -}}
+<section class="cct-feed cct-fields" aria-labelledby="rail-fields">
+  <h2 id="rail-fields">Browse by field</h2>
+  <ul>
+    {{- range $fields }}
+    {{- $n := 0 }}{{ with index $tags .slug }}{{ $n = len . }}{{ end }}
+    <li>{{ if gt $n 0 }}<a href="{{ printf "tags/%s/" .slug | relURL }}">{{ .label }}</a><span class="cct-fields-n">{{ $n }}</span>{{ else }}<span class="cct-fields-off">{{ .label }}</span>{{ end }}</li>
+    {{- end }}
+  </ul>
+</section>
