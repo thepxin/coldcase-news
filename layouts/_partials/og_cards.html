@@ -29,6 +29,11 @@
 {{- $out := dict -}}
 {{- $shapes := slice (dict "n" "16x9" "h" 340 "k" 1.0) -}}
 {{- if $own }}{{ $shapes = $shapes | append (dict "n" "4x3" "h" 560 "k" 1.3) (dict "n" "1x1" "h" 860 "k" 1.6) }}{{ end -}}
+{{- /* Safety: if any card part is missing from assets/og, make no card instead of stopping the whole build. */ -}}
+{{- $ok := and $cas $mb $mr -}}
+{{- range $shapes }}{{ if not (and (resources.Get (printf "og/card-%s.png" .n)) (resources.Get (printf "og/clear-860x%d.png" .h))) }}{{ $ok = false }}{{ end }}{{ end -}}
+{{- with $seal }}{{ if not (resources.Get (printf "og/seal-%s.png" .)) }}{{ $ok = false }}{{ end }}{{ end -}}
+{{- if not $ok }}{{ $shapes = slice }}{{ end -}}
 {{- range $shapes -}}
   {{- $img := resources.Get (printf "og/card-%s.png" .n) -}}
   {{- $s := int (mul $sz .k) -}}
