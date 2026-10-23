@@ -5,8 +5,8 @@ name: Daily Cold-Case News Generator
 #   2. One TECH case (promised vs delivered, or an OPEN case), published directly after passing every check
 #   3. On Security Friday: ONE SECURITY case, opened as a pull request for your manual review
 # Times are UTC (GitHub always uses UTC): 14:30 UTC = 20:00 IST, 17:47 UTC = 23:17 IST.
-# The second run is a catch-up: it only redoes jobs that did not finish (Gemini overloaded, or GitHub skipped
-# the first run). Finished jobs are skipped, and all runs of the day share Gemini's daily limit (data/daily_runs.json).
+# The second run is a catch-up: it only redoes jobs that did not finish (Claude overloaded, or GitHub skipped
+# the first run). Finished jobs are skipped, and all runs of the day share one daily request cap (data/daily_runs.json).
 on:
   schedule:
     - cron: '30 14 * * *'
@@ -51,7 +51,7 @@ jobs:
 
       - name: Find, write and verify today's case(s)
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SECURITY_DAY: Friday
           DESK: ${{ inputs.desk || 'auto' }}
         run: python scripts/generate_followup.py
