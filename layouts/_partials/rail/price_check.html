@@ -1,0 +1,28 @@
+{{- /* "Price check": products named in our recent articles (verified against the sources), with an affiliate
+       button. Pass "chips" or "devices". No prices are shown (Amazon only allows prices from its own API). */ -}}
+{{- $kind := . -}}
+{{- $seen := slice -}}{{- $rows := slice -}}
+{{- range (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+  {{- if and (eq .Params.product_kind $kind) (.Date.After (now.AddDate 0 0 -21)) -}}
+    {{- $p := . -}}
+    {{- range .Params.products -}}
+      {{- if not (in $seen (lower .)) -}}
+        {{- $seen = $seen | append (lower .) -}}
+        {{- $rows = $rows | append (dict "name" . "page" $p) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $rows }}
+<section class="cct-feed cct-pc" aria-labelledby="rail-pc-{{ $kind }}">
+  <h2 id="rail-pc-{{ $kind }}">Price check · {{ if eq $kind "chips" }}chips &amp; GPUs{{ else }}phones &amp; gadgets{{ end }} <span class="cct-feed-tag">affiliate</span></h2>
+  <ul>
+    {{- range first 4 . }}
+    <li><span class="cct-pc-name">{{ .name }}</span>
+      <a class="cct-pc-from" href="{{ .page.RelPermalink }}">in: {{ .page.Title | truncate 46 }}</a>
+      <a class="cct-btn-money cct-pc-btn" href="{{ "go/buy.html" | relURL }}?q={{ .name | urlquery }}" rel="nofollow sponsored noopener" target="_blank">Price ›</a></li>
+    {{- end }}
+  </ul>
+  <p class="cct-feed-credit">Opens Amazon.in in India, Amazon.com elsewhere. Affiliate links: we may earn a commission at no extra cost to you.</p>
+</section>
+{{- end -}}

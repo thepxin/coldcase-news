@@ -1,0 +1,13 @@
+{{- $f := partial "feeds/get.html" "wire" -}}
+{{- with $f.items }}
+<section class="cct-feed" aria-labelledby="rail-wire">
+  <h2 id="rail-wire">Tech wire <span class="cct-feed-tag">approved outlets</span></h2>
+  <ul>
+    {{- range first 6 . }}
+    <li><a class="cct-item" href="{{ .url }}" target="_blank" rel="noopener noreferrer"><span class="cct-item-id cct-serif">{{ .title | truncate 90 }}</span>
+      <span class="cct-item-sub">{{ .outlet }} · {{ partial "feeds/ago.html" .date }}</span><span class="cct-sr">(opens in a new tab)</span></a></li>
+    {{- end }}
+  </ul>
+  <div class="cct-feed-foot"><span>updated {{ partial "feeds/ago.html" $f.updated }}</span></div>
+</section>
+{{- end -}}

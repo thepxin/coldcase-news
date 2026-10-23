@@ -1,44 +1,37 @@
-"""Fetch public security feeds and write them to data/feeds/*.json for Hugo.
+"""Fetch the live side-panel data and write it to data/feeds/*.json for Hugo.
 
 Runs in GitHub Actions every 3 hours (see .github/workflows/feeds.yml).
-Hugo reads these files at build time, so no key ever reaches a browser.
+Hugo reads these files at build time, so visitors' browsers never contact these sources.
 
 Rules:
 - Each feed is independent. One failing source never stops the others.
-- A file is only rewritten when its data actually changed, so the workflow
-  commits (and Cloudflare rebuilds) only when there is something new.
+- A file is only rewritten when its data actually changed.
 - If a source fails, the last good data is kept for up to STALE_HOURS.
   After that the file says "unavailable" and the panel hides itself.
 - The script always exits 0, so a feed problem never fails the workflow.
 
 Sources (all free):
-  kev        CISA Known Exploited Vulnerabilities (no key; GitHub mirror as backup)
-  epss       FIRST EPSS exploit-probability scores (no key)
-  breaches   Have I Been Pwned breach list (no key, CC BY 4.0: credit required)
-  advisories GitHub Advisory Database (GITHUB_TOKEN optional, CC BY 4.0)
+  wire    newest headlines from the approved tech outlets in data/sources.json (their public RSS feeds)
+  crypto  Bitcoin, Ethereum and Solana prices in USD and INR from CoinGecko's free public API (credit shown)
 """
 import json
 import os
 import sys
-from collections import Counter
 from datetime import datetime, timedelta, timezone
 
 import requests
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 OUT_DIR = os.environ.get("FEEDS_OUT_DIR", "data/feeds")
 STALE_HOURS = int(os.environ.get("FEEDS_STALE_HOURS", "48"))
 TIMEOUT = 30
-UA = "ColdCaseTech-feeds/1.0 (+https://coldcasetech.com/radar/)"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-
-KEV_URLS = [
-    "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
-    "https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json",
-]
-EPSS_URL = "https://api.first.org/data/v1/epss"
-HIBP_URL = "https://haveibeenpwned.com/api/v3/breaches"
-HIBP_PAGE = "https://haveibeenpwned.com/PwnedWebsites#{name}"
-GITHUB_ADV_URL = "https://api.github.com/advisories"
+UA = "ColdCaseTech-feeds/1.0 (+https://coldcasetech.com/)"
+COINGECKO_URL = ("https://api.coingecko.com/api/v3/simple/price"
+                 "?ids=bitcoin,ethereum,solana&vs_currencies=usd,inr&include_24hr_change=true")
+COINS = [("bitcoin", "BTC"), ("ethereum", "ETH"), ("solana", "SOL")]
+WIRE_ITEMS = 8
+WIRE_PER_OUTLET = 2
 
 
 def now_utc():
@@ -59,124 +52,39 @@ def get_json(url, **kw):
 
 # ---------------------------------------------------------------- sources
 
-def fetch_kev():
-    last_err = None
-    for url in KEV_URLS:
-        try:
-            d = get_json(url)
-            vulns = d["vulnerabilities"]
+def fetch_wire():
+    """Newest headlines from approved tech outlets (no deal posts), at most 2 per outlet."""
+    import source_discovery as D
+    cfg = D.load_config()
+    items = [i for i in D.read_feeds(cfg, log=lambda *_: None, desk="tech") if not D.DEAL_TITLE.search(i["title"])]
+    if not items:
+        raise RuntimeError("no feed items")
+    items.sort(key=lambda i: i["date"], reverse=True)
+    out, per = [], {}
+    for i in items:
+        name = i["outlet"]["name"]
+        if per.get(name, 0) >= WIRE_PER_OUTLET:
+            continue
+        per[name] = per.get(name, 0) + 1
+        out.append({"title": i["title"][:140], "url": i["url"], "outlet": name, "date": iso(i["date"])})
+        if len(out) >= WIRE_ITEMS:
             break
-        except Exception as e:  # try the mirror next
-            last_err = e
-            print(f"KEV: {url} failed: {e}")
-    else:
-        raise RuntimeError(f"all KEV sources failed: {last_err}")
-
-    vulns = sorted(vulns, key=lambda v: (v.get("dateAdded", ""), v.get("cveID", "")), reverse=True)
-    cutoff = (now_utc() - timedelta(days=30)).strftime("%Y-%m-%d")
-    recent30 = [v for v in vulns if v.get("dateAdded", "") >= cutoff]
-    vendors = Counter(v.get("vendorProject", "Unknown") for v in recent30).most_common(5)
-    latest = [{
-        "cve": v.get("cveID", ""),
-        "vendor": v.get("vendorProject", ""),
-        "product": v.get("product", ""),
-        "name": v.get("vulnerabilityName", ""),
-        "added": v.get("dateAdded", ""),
-        "due": v.get("dueDate", ""),
-        "ransomware": v.get("knownRansomwareCampaignUse", "") == "Known",
-    } for v in vulns[:25]]
-    return {
-        "source": "CISA Known Exploited Vulnerabilities Catalog",
-        "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "catalog_version": d.get("catalogVersion", ""),
-        "count": len(vulns),
-        "added_30d": len(recent30),
-        "vendors_30d": [{"vendor": n, "count": c} for n, c in vendors],
-        "items": latest,
-        "_recent_cves": [v.get("cveID") for v in vulns[:100] if v.get("cveID")],
-    }
+    return {"items": out}
 
 
-def fetch_epss(cves):
-    """EPSS scores for recently added KEV entries: exploited now, and how likely next."""
-    if not cves:
-        raise RuntimeError("no CVEs to score (KEV unavailable)")
-    scores = {}
-    for i in range(0, len(cves), 50):
-        batch = cves[i:i + 50]
-        d = get_json(EPSS_URL, params={"cve": ",".join(batch), "limit": 100})
-        for row in d.get("data", []):
-            try:
-                scores[row["cve"]] = (float(row["epss"]), float(row.get("percentile", 0)), row.get("date", ""))
-            except (KeyError, ValueError):
-                continue
-    if not scores:
-        raise RuntimeError("EPSS returned no scores")
-    ranked = sorted(scores.items(), key=lambda kv: kv[1][0], reverse=True)
-    score_date = max(s[2] for _, s in ranked)
-    return {
-        "source": "FIRST Exploit Prediction Scoring System (EPSS)",
-        "source_url": "https://www.first.org/epss",
-        "score_date": score_date,
-        "items": [{"cve": c, "epss": round(s[0], 4), "percentile": round(s[1], 4)} for c, s in ranked[:10]],
-        "scores": {c: round(s[0], 4) for c, s in ranked},
-    }
-
-
-def fetch_breaches():
-    d = get_json(HIBP_URL)
-    good = [b for b in d if b.get("IsVerified") and not any(
-        b.get(k) for k in ("IsFabricated", "IsSensitive", "IsRetired", "IsSpamList", "IsMalware"))]
-    good.sort(key=lambda b: b.get("AddedDate", ""), reverse=True)
-    items = [{
-        "name": b.get("Name", ""),
-        "title": b.get("Title", ""),
-        "domain": b.get("Domain", ""),
-        "breach_date": b.get("BreachDate", ""),
-        "added": (b.get("AddedDate", "") or "")[:10],
-        "accounts": int(b.get("PwnCount", 0) or 0),
-        "data": (b.get("DataClasses") or [])[:4],
-        "url": HIBP_PAGE.format(name=b.get("Name", "")),
-    } for b in good[:20]]
-    if not items:
-        raise RuntimeError("HIBP returned no usable breaches")
-    return {
-        "source": "Have I Been Pwned",
-        "source_url": "https://haveibeenpwned.com/",
-        "license": "CC BY 4.0",
-        "items": items,
-    }
-
-
-def fetch_advisories():
-    headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
-    if GITHUB_TOKEN:
-        headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+def fetch_crypto():
+    key = os.environ.get("COINGECKO_API_KEY", "").strip()  # optional free "Demo" key from coingecko.com
+    d = get_json(COINGECKO_URL, headers={"x-cg-demo-api-key": key} if key else {})
     items = []
-    for sev in ("critical", "high"):
-        d = get_json(GITHUB_ADV_URL, headers=headers, params={
-            "type": "reviewed", "severity": sev, "sort": "published", "direction": "desc", "per_page": 20})
-        for a in d:
-            pkg = ((a.get("vulnerabilities") or [{}])[0] or {}).get("package") or {}
-            items.append({
-                "ghsa": a.get("ghsa_id", ""),
-                "cve": a.get("cve_id") or "",
-                "summary": (a.get("summary") or "").strip()[:140],
-                "severity": a.get("severity", sev),
-                "published": (a.get("published_at") or "")[:10],
-                "ecosystem": pkg.get("ecosystem", ""),
-                "package": pkg.get("name", ""),
-                "url": a.get("html_url", ""),
-            })
-    items.sort(key=lambda x: (x["published"], x["severity"] == "critical"), reverse=True)
+    for cid, sym in COINS:
+        c = d.get(cid) or {}
+        if "usd" not in c:
+            continue
+        items.append({"symbol": sym, "usd": c["usd"], "inr": c.get("inr"),
+                      "change_24h": round(float(c.get("usd_24h_change") or 0), 2)})
     if not items:
-        raise RuntimeError("GitHub returned no advisories")
-    return {
-        "source": "GitHub Advisory Database",
-        "source_url": "https://github.com/advisories",
-        "license": "CC BY 4.0",
-        "items": items[:15],
-    }
+        raise RuntimeError("no prices returned")
+    return {"items": items, "source": "CoinGecko", "source_url": "https://www.coingecko.com/"}
 
 
 # ---------------------------------------------------------------- writing
@@ -240,18 +148,10 @@ def run(name, fn, *args):
 
 
 def main():
-    kev = run("kev", fetch_kev)
-    if kev:
-        save("kev", kev)
-    epss = run("epss", fetch_epss, (kev or {}).get("_recent_cves", []))
-    if epss:
-        save("epss", epss)
-    breaches = run("breaches", fetch_breaches)
-    if breaches:
-        save("breaches", breaches)
-    adv = run("advisories", fetch_advisories)
-    if adv:
-        save("advisories", adv)
+    for name, fn in (("wire", fetch_wire), ("crypto", fetch_crypto)):
+        data = run(name, fn)
+        if data:
+            save(name, data)
 
 
 if __name__ == "__main__":

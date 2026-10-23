@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Opening the store...</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>body{background:#f6f7f9;color:#596170;font-family:ui-monospace,monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;padding:0 16px;text-align:center}@media (prefers-color-scheme:dark){body{background:#101216;color:#9aa2b0}}</style>
+  <script>
+    /* "Price" buttons: /go/buy.html?q=<product name>. Opens an Amazon search for that product with our
+       Associate tag (Amazon.in for visitors in India, Amazon.com everywhere else). No prices are shown on our site. */
+    (function () {
+      var q = "";
+      try { q = new URLSearchParams(window.location.search).get("q") || ""; } catch (e) {}
+      q = q.replace(/[^A-Za-z0-9 .+\-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 80);
+      if (!q) { window.location.replace("/"); return; }
+      var tz = "";
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+      var lang = (navigator.language || "").toLowerCase();
+      var domain = "www.amazon.com";
+      var tag = "coldcasetech-20"; // US/Global Associate tag
+      if (tz === "Asia/Kolkata" || tz === "Asia/Calcutta" || lang.indexOf("-in") !== -1) {
+        domain = "www.amazon.in";
+        tag = "coldcasetech-21"; // India Associate tag
+      }
+      /* Other countries go to Amazon.com, where our US tag earns. (A US tag earns nothing on Amazon.co.uk/.de/.ca.) */
+      var target = "https://" + domain + "/s?k=" + encodeURIComponent(q) + "&tag=" + tag;
+      try { navigator.sendBeacon("https://coldcasetech.goatcounter.com/count?p=/go/buy&t=" + encodeURIComponent("Price_Click " + q)); } catch (e) {}
+      window.location.replace(target);
+    })();
+  </script>
+</head>
+<body>Opening the store...</body>
+</html>

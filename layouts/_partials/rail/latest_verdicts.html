@@ -1,0 +1,11 @@
+{{- $cases := where (where site.RegularPages "Section" "posts") "Params.status" "closed" -}}
+{{- with first 3 $cases.ByDate.Reverse }}
+<section class="cct-feed" aria-labelledby="rail-verdicts">
+  <h2 id="rail-verdicts">Latest verdicts</h2>
+  <ul>
+    {{- range . }}
+    <li><a class="cct-item" href="{{ .RelPermalink }}">{{ partial "verdict_stamp.html" . }}<span class="cct-item-id cct-serif" style="margin-top:4px">{{ .Title | truncate 70 }}</span></a></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end -}}

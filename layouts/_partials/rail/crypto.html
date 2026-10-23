@@ -1,0 +1,16 @@
+{{- $f := partial "feeds/get.html" "crypto" -}}
+{{- with $f.items }}
+<section class="cct-feed" aria-labelledby="rail-crypto">
+  <h2 id="rail-crypto">Crypto prices <span class="cct-feed-tag">24 h</span></h2>
+  <table class="cct-score cct-prices">
+    <tbody>
+    {{- range . }}
+      <tr><td>{{ .symbol }}</td><td>${{ lang.FormatNumber (cond (lt .usd 100.0) 2 0) .usd }}</td>
+        <td class="{{ if ge .change_24h 0.0 }}cct-v--ok{{ else }}cct-v--bad{{ end }}">{{ if ge .change_24h 0.0 }}+{{ end }}{{ printf "%.1f" .change_24h }}%</td></tr>
+      {{- with .inr }}<tr class="cct-inr"><td></td><td colspan="2">₹{{ lang.FormatNumber 0 . }}</td></tr>{{ end }}
+    {{- end }}
+    </tbody>
+  </table>
+  <p class="cct-feed-credit">As of {{ partial "feeds/ago.html" $f.updated }}. Data: <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>. Not financial advice.</p>
+</section>
+{{- end -}}

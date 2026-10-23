@@ -1,0 +1,23 @@
+{{- /* Affiliate picks matched to the newest articles' fields (from data/affiliates.json). */ -}}
+{{- $d := hugo.Data.affiliates -}}
+{{- $keys := slice }}{{ $from := dict -}}
+{{- range first 3 (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+  {{- $p := . -}}
+  {{- with index $d.categories (.Params.toolkit | default "general") -}}
+    {{- $k := .card -}}
+    {{- if and $k (not (in $keys $k)) }}{{ $keys = $keys | append $k }}{{ $from = merge $from (dict $k $p) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $keys }}
+<section class="cct-feed" aria-labelledby="rail-gear">
+  <h2 id="rail-gear">Gear from today's articles <span class="cct-feed-tag">affiliate</span></h2>
+  <ul>
+    {{- range $k := . }}{{ with index $d.products $k }}{{ $p := index $from $k }}
+    <li><a class="cct-item" href="{{ .url | relURL }}" rel="nofollow sponsored noopener" target="_blank"><span class="cct-item-id">{{ .name }}</span>
+      <span class="cct-item-sub">{{ .kit_line }}</span></a>
+      {{- with $p }}<a class="cct-pc-from" href="{{ .RelPermalink }}">for: {{ .Title | truncate 46 }}</a>{{ end }}</li>
+    {{- end }}{{ end }}
+  </ul>
+  <p class="cct-feed-credit">Affiliate links: we may earn a commission at no extra cost to you.</p>
+</section>
+{{- end -}}

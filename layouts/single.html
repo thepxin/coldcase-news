@@ -82,6 +82,7 @@
   {{- end }}
 
   {{- if $isCase }}
+  {{- partial "where_to_buy.html" . }}
   {{- if or $s.open $s.n }}{{ partial "verdicts_cta.html" (dict "target" "post-end") }}{{ end }}
   {{- partial "sources_box.html" . }}
   {{- partial "case_note.html" . }}

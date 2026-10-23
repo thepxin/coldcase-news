@@ -1,0 +1,29 @@
+{{- /* Promise scoreboard: our own verdicts counted per company (the official source of each verdict case). */ -}}
+{{- $cases := where (where site.RegularPages "Section" "posts") "Params.status" "closed" -}}
+{{- $s := newScratch -}}
+{{- range $cases -}}
+  {{- $v := .Params.verdict -}}
+  {{- $co := "" -}}
+  {{- range .Params.sources }}{{ if and (not $co) (eq .tier "A") }}{{ $co = index (split .outlet " (") 0 }}{{ end }}{{ end -}}
+  {{- if $co -}}
+    {{- $k := "part" }}{{ if eq $v "Delivered" }}{{ $k = "ok" }}{{ else if eq $v "Not Delivered" }}{{ $k = "no" }}{{ end -}}
+    {{- $s.SetInMap "names" $co $co -}}
+    {{- $s.Add (printf "%s|%s" $co $k) 1 -}}
+    {{- $s.Add (printf "%s|all" $co) 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- with $s.Get "names" }}
+{{- $rows := slice }}{{ range $n, $_ := . }}{{ $rows = $rows | append (dict "n" $n "all" ($s.Get (printf "%s|all" $n))) }}{{ end }}
+<section class="cct-feed" aria-labelledby="rail-score">
+  <h2 id="rail-score">Promise scoreboard</h2>
+  <table class="cct-score">
+    <thead><tr><th scope="col">Company</th><th scope="col" class="cct-v--ok">Kept</th><th scope="col" class="cct-v--warn">Part</th><th scope="col" class="cct-v--bad">Not</th></tr></thead>
+    <tbody>
+    {{- range first 6 (sort $rows "all" "desc") }}
+      <tr><td>{{ .n }}</td><td>{{ $s.Get (printf "%s|ok" .n) | default 0 }}</td><td>{{ $s.Get (printf "%s|part" .n) | default 0 }}</td><td>{{ $s.Get (printf "%s|no" .n) | default 0 }}</td></tr>
+    {{- end }}
+    </tbody>
+  </table>
+  <p class="cct-feed-credit">Counted from our own verdicts.</p>
+</section>
+{{- end -}}

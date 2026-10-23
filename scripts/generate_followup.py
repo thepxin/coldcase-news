@@ -59,6 +59,7 @@ class FollowUpArticle(BaseModel):
     case_status: str   # "closed" = has a verdict; "open" = promise with a future date, no verdict yet
     due_text: str      # open cases: the promised date, in the source's words (e.g. "December 2026"); else ""
     due_date: str      # open cases: YYYY-MM-DD, the last day of that promised period; else ""
+    products: list[str]  # up to 3 buyable products the article is about, named exactly as in the sources
 
 class FactCheck(BaseModel):
     verdict_supported: bool
@@ -255,13 +256,18 @@ STEP 2: metadata (only when true)
 - case_status: "closed", "open" or "report".
 {TYPE_FIELDS}
 STEP 3: {TYPE_BODIES}
-STEP 4: reddit_teaser (only when true)
+STEP 4: products (only when true)
+Up to 3 consumer products a reader could buy that this article is about (phones, laptops, chips, graphics cards, consoles,
+headsets, gadgets), each named EXACTLY as written in the SOURCES (for example "GeForce RTX 5090"). Not companies, not
+services, not software, not unreleased products. Return [] if there are none.
+
+STEP 5: reddit_teaser (only when true)
 Three neutral sentences: what happened, the key stated detail, and (closed only) the verdict. No links, emojis, hashtags.
 
 OUTPUT
 Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, slug, summary_description,
 original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, case_status, due_text, due_date
-(all strings). Output nothing outside the JSON.
+(strings) and products (a list of strings). Output nothing outside the JSON.
 """
     article = call_ai(prompt)
     if article is not None:
@@ -511,6 +517,20 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     return fixed, f"{len(issues)} problem(s) fixed, then passed a clean re-check and all hard checks"
 
 
+CHIP_FIELDS = ("chips and silicon", "gaming")
+
+
+def verified_products(article: FollowUpArticle, sources: list | None) -> list[str]:
+    """Keep only product names that appear word for word in a source (no invented products, max 3)."""
+    text = " ".join(((x.get("title") or "") + " " + (x.get("excerpt") or "")) for x in (sources or [])).lower()
+    out = []
+    for name in getattr(article, "products", None) or []:
+        n = re.sub(r"\s+", " ", str(name)).strip()
+        if 3 <= len(n) <= 60 and n.lower() in text and n.lower() not in [o.lower() for o in out]:
+            out.append(n)
+    return out[:3]
+
+
 def save_hugo_post(article: FollowUpArticle, topic: str = "", sources: list | None = None):
     os.makedirs("content/posts", exist_ok=True)
     os.makedirs("scripts", exist_ok=True)
@@ -557,6 +577,9 @@ def save_hugo_post(article: FollowUpArticle, topic: str = "", sources: list | No
     fm_now = json.dumps(article.current_reality.strip(), ensure_ascii=False)
     # The full source list is stored as plain text in the front matter, so it survives any copy/paste or edit,
     # and the page template always shows it with working links.
+    products = verified_products(article, sources)
+    fm_products = ("products: " + json.dumps(products, ensure_ascii=False) + "\n"
+                   + f'product_kind: "{"chips" if topic in CHIP_FIELDS else "devices"}"\n') if products else ""
     fm_sources = "".join(
         f"  - outlet: {json.dumps(x.get('outlet', ''), ensure_ascii=False)}\n"
         f"    tier: {json.dumps(x.get('tier', ''))}\n"
@@ -580,6 +603,7 @@ verified: "{today_str}"
 toolkit: "{toolkit_key}"
 checked: "{today_str}"
 sourcing: "approved"
+{fm_products}
 sources:
 {fm_sources}cover:
   image: "{cover_image}"

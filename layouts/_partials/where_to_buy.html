@@ -1,0 +1,13 @@
+{{- /* "Where to buy": the products this article is about (names verified against its sources), as affiliate links.
+       Placed after the reporting, never inside it. */ -}}
+{{- with .Params.products }}
+<aside class="cct-buy" aria-labelledby="cct-buy-h">
+  <h2 id="cct-buy-h">Where to buy</h2>
+  <ul>
+    {{- range . }}
+    <li><span>{{ . }}</span><a class="cct-btn-money" href="{{ "go/buy.html" | relURL }}?q={{ . | urlquery }}" rel="nofollow sponsored noopener" target="_blank">See price ›</a></li>
+    {{- end }}
+  </ul>
+  <p class="cct-buy-note">Opens Amazon.in in India, Amazon.com elsewhere. Affiliate link: we may earn a commission at no extra cost to you. It never affects what we report.</p>
+</aside>
+{{- end -}}

@@ -16,7 +16,7 @@ params:
   env: production
   title: "ColdCaseTech"
   description: "Tech promises and security incidents, checked against trusted sources: what was promised, what actually happened, and one clear verdict."
-  defaultTheme: dark
+  defaultTheme: auto
   disableThemeToggle: true
   ShowReadingTime: true
   ShowShareButtons: true
@@ -32,22 +32,18 @@ params:
     Title: "ColdCaseTech"
     Content: "What they promised. What actually happened."
   footer:
-    text: "[How we verify](/about/) · [Privacy & Terms](/privacy/) · [Threat Radar](/radar/) · [RSS](/index.xml)"
+    text: "[How we verify](/about/) · [Privacy & Terms](/privacy/) · [RSS](/index.xml)"
 
 menu:
   main:
     - identifier: tech
-      name: Tech Cases
+      name: All articles
       url: /tags/tech/
       weight: 10
     - identifier: developing
       name: Developing
       url: /developing/
       weight: 17
-    - identifier: radar
-      name: Threat Radar
-      url: /radar/
-      weight: 20
     - identifier: about
       name: How we verify
       url: /about/
