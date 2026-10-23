@@ -28,11 +28,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests feedparser
 
-      - name: Fetch feeds (KEV, EPSS, HIBP, GitHub advisories)
+      - name: Fetch live panels (tech wire, crypto prices)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
         run: python scripts/fetch_feeds.py
 
       - name: Commit and push only if data changed
