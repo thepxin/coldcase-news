@@ -36,7 +36,10 @@ except ImportError:
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(HERE, "..", "data", "sources.json")
 UA = "Mozilla/5.0 (compatible; ColdCaseTech-research/1.0; +https://coldcasetech.com/about/)"
-MAX_ARTICLE_FETCHES = 70
+MAX_ARTICLE_FETCHES = 300      # per desk per run (was 70: too low, later topics were never tried)
+MAX_RELATED_FETCHES = 4        # per story: other approved outlets covering the same incident
+MAX_LINK_FETCHES = 6           # per story: linked official / own-statement pages
+FETCH_TIMEOUT = "15"
 
 SECURITY_TOPICS = {
     "data breach": ["breach", "data leak", "leaked", "exposed data", "stolen data", "exfiltration", "exfiltrated"],
@@ -91,6 +94,9 @@ apps app phone phones feature features model models chip chips plan plans deal d
 SECOND_LEVEL_SUFFIXES = {"co.uk", "co.jp", "com.au", "co.in", "com.br", "co.kr", "com.cn", "co.nz", "com.sg", "com.hk", "co.za", "com.tw", "gov.uk", "org.uk", "ac.uk"}
 CLAIM_PATTERN = re.compile(r"\b(claims?|claimed|allegedly|alleged|leak site|threatens to leak|says it (hacked|breached))\b", re.I)
 CVE_PATTERN = re.compile(r"\bCVE-\d{4}-\d{4,7}\b", re.I)
+DEAL_TITLE = re.compile(r"(\bsave (up to )?\$|\bdeals?\b|\d+% off|lowest price|all-time low|discount|coupon|best .* to buy|gift guide)", re.I)
+JUNK_PATH = re.compile(r"^/?$|/(docs?|guides?|help|support|pricing|plans|careers|jobs|legal|privacy|terms|cookies?|login|signin|signup|register|download|contact|about/?$|products?/?$|store|shop|cart|account)(/|$)", re.I)
+INCIDENT_WORDS = re.compile(r"(security|incident|breach|outage|advisory|bulletin|status|statement|update|notice|post-?mortem|postmortem|disclosure|announce|press|news|blog|investor|filing|release|launch|recall|vulnerab|cve)", re.I)
 EXTORTION_PAGE = re.compile(r"(\.onion\b|will be (published|leaked|released)|pay (the )?ransom|before the deadline|data leak site|tox id|our (blog|site) will publish)", re.I)
 SKIP_LINK = re.compile(r"(/tag/|/tags/|/author/|/category/|/topics?/|/search|/login|/subscribe|/newsletter|/feed|\.(jpg|jpeg|png|gif|svg|pdf|zip|mp4)$|#)", re.I)
 
@@ -157,10 +163,21 @@ def http_get(url):
     return r.content
 
 
+_TRAF_CONFIG = None
+
+
 def fetch_html(url):
+    global _TRAF_CONFIG
     if trafilatura is None:
         return None
-    return trafilatura.fetch_url(url)
+    if _TRAF_CONFIG is None:
+        try:
+            from trafilatura.settings import use_config
+            _TRAF_CONFIG = use_config()
+            _TRAF_CONFIG.set("DEFAULT", "DOWNLOAD_TIMEOUT", FETCH_TIMEOUT)
+        except Exception:
+            _TRAF_CONFIG = False
+    return trafilatura.fetch_url(url, config=_TRAF_CONFIG) if _TRAF_CONFIG else trafilatura.fetch_url(url)
 
 
 def extract(html, url):
@@ -284,11 +301,13 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
             df[t] = df.get(t, 0) + 1
     fetches = {"n": 0}
     cache = {}
+    why = {}  # url -> reason a page was not usable (shown in the log)
 
     def get_source(url, tier_override=None, kind=None, outlet_name=None, feed_date=None, keys=frozenset()):
         if url in cache:
             return cache[url]
         if fetches["n"] >= MAX_ARTICLE_FETCHES:
+            why[url] = f"page limit for this run reached ({MAX_ARTICLE_FETCHES})"
             return None
         fetches["n"] += 1
         html = None
@@ -299,8 +318,22 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
         data = extract(html, url) if html else None
         text = (data or {}).get("text") or ""
         result = None
-        if kind == "own statement" and (EXTORTION_PAGE.search(text) or ".onion" in url):
-            text = ""  # never treat an attacker's page as the organisation's statement
+        if not html:
+            why[url] = "the site did not return the page (blocked, timed out or not found)"
+        elif len(text) < 400:
+            why[url] = "too little readable text on the page"
+        elif not mentions(text, keys):
+            why[url] = "the page does not mention this story"
+        if kind == "own statement" and text:
+            if EXTORTION_PAGE.search(text) or ".onion" in url:
+                text = ""  # never treat an attacker's page as the organisation's statement
+            else:
+                title = (data or {}).get("title") or ""
+                plain_keys = {k for k in keys if not k.startswith("CVE-") and k != org_label(url)}
+                hits = sum(1 for k in plain_keys if mentions(text, {k}))
+                if not (INCIDENT_WORDS.search(title + " " + urlparse(url).path) or hits >= 2):
+                    text = ""
+                    why[url] = "organisation page is not about this story"
         if len(text) >= 400 and mentions(text, keys):
             o = outlet_for(url, cfg)
             result = {
@@ -318,7 +351,8 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
 
     tried = set()  # URLs of stories already offered, so the same incident is never written twice in one run
     for topic in topics:
-        seeds = [i for i in items if matches_topic(i, topic, desk) and i["url"] not in used_urls and i["url"] not in tried]
+        seeds = [i for i in items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
+                 and i["url"] not in used_urls and i["url"] not in tried]
         scored = []
         for s in seeds:
             keys = subject_keys(s["title"], df)
@@ -328,16 +362,16 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
             scored.append((len({r["outlet"]["id"] for r in related}), s["date"], s, keys, related))
         scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
         log(f"[{desk}] Topic '{topic}': {len(scored)} candidate stories from approved feeds.")
-        for _, _, seed, keys, related in scored[:5]:
+        for _, _, seed, keys, related in scored[:8]:
             if seed["url"] in tried:
                 continue
             label = seed["title"][:90]
             first = get_source(seed["url"], feed_date=seed["date"], keys=keys)
             if not first:
-                log(f"  skip '{label}': could not read the article")
+                log(f"  skip '{label}': could not use the article: {why.get(seed['url'], 'unknown reason')}")
                 continue
             sources = [first]
-            for r in related:
+            for r in sorted(related, key=lambda r: r["outlet"]["id"] == seed["outlet"]["id"])[:MAX_RELATED_FETCHES]:
                 src = get_source(r["url"], feed_date=r["date"], keys=keys)
                 if src and all(src["url"] != x["url"] for x in sources):
                     sources.append(src)
@@ -346,14 +380,14 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
             candidates = []
             for src in list(sources):
                 for u in links_in(src.get("_html"), src["url"]):
-                    if any(u == x["url"] for x in sources) or u in candidates:
+                    if any(u == x["url"] for x in sources) or u in candidates or JUNK_PATH.search(urlparse(u).path or "/"):
                         continue
                     o = outlet_for(u, cfg)
                     own = (not o) and not host_of(u).endswith(".onion") and org_label(u) in org_names
                     if o or own:
                         candidates.append(u)
             candidates.sort(key=lambda u: (0 if not outlet_for(u, cfg) else 1 if outlet_for(u, cfg)["tier"] == "A" else 2))
-            for u in candidates[:8]:
+            for u in candidates[:MAX_LINK_FETCHES]:
                 if len(sources) >= rules["max_sources"]:
                     break
                 o = outlet_for(u, cfg)

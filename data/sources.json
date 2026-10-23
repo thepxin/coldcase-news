@@ -335,10 +335,9 @@
     "arstechnica.com"
    ],
    "feeds": [
-    "https://feeds.arstechnica.com/arstechnica/security",
     "https://feeds.arstechnica.com/arstechnica/index"
    ],
-   "verified": false,
+   "verified": true,
    "desks": [
     "security",
     "tech"
@@ -827,6 +826,68 @@
    "desks": [
     "tech"
    ]
+  },
+  {
+   "id": "interpol",
+   "name": "INTERPOL",
+   "tier": "A",
+   "domains": [
+    "interpol.int"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "europol",
+   "name": "Europol",
+   "tier": "A",
+   "domains": [
+    "europol.europa.eu"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "nca",
+   "name": "UK National Crime Agency",
+   "tier": "A",
+   "domains": [
+    "nationalcrimeagency.gov.uk"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "treasury",
+   "name": "US Treasury",
+   "tier": "A",
+   "domains": [
+    "treasury.gov",
+    "home.treasury.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "usss",
+   "name": "US Secret Service",
+   "tier": "A",
+   "domains": [
+    "secretservice.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
   }
  ],
  "rules": {
@@ -842,7 +903,7 @@
   "tech": {
    "min_outlets": 2,
    "min_tier_a": 1,
-   "min_spread_days": 7,
+   "min_spread_days": 2,
    "max_age_days_newest": 14,
    "max_sources": 6,
    "excerpt_chars": 7000,

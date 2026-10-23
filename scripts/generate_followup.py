@@ -10,7 +10,7 @@ from google import genai
 from google.genai import types
 
 import guards
-from source_discovery import discover, SECURITY_TOPICS, TECH_AREAS
+from source_discovery import discover, evaluate, load_config, CLAIM_PATTERN, SECURITY_TOPICS, TECH_AREAS
 
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
@@ -319,7 +319,7 @@ def call_gemini(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
             time.sleep(MIN_SECONDS_BETWEEN_CALLS - gap)
         _LAST_CALL = time.time()
         GEMINI_CALLS += 1
-        if purpose == "write":
+        if purpose == "write" and attempt == 1:  # a retry after a network error is the same attempt
             WRITE_CALLS += 1
         try:
             response = client.models.generate_content(
@@ -408,6 +408,18 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     if not label:
         return None, f"verdict '{article.verdict_score}' is not one of the {DESK} desk's labels"
     article.verdict_score = label
+    # Sources the article does not cite were not used: drop them, then the source rules must still pass.
+    cited = {guards._norm_url(u) for u in guards.MD_LINK.findall(article.markdown_body)}
+    unused = [x for x in sources if guards._norm_url(x["url"]) not in cited]
+    if unused:
+        for x in unused:
+            print(f"  dropping uncited source: {x['outlet']} {x['url']}")
+        sources[:] = [x for x in sources if guards._norm_url(x["url"]) in cited]
+        rules = load_config()["rules"][DESK]
+        needs_own = DESK == "security" and bool(CLAIM_PATTERN.search(article.headline))
+        ok, reasons = evaluate(sources, rules, needs_own)
+        if not ok:
+            return None, "after dropping uncited sources the source rules fail: " + "; ".join(reasons)
     problems = _hard_checks(article, sources)
     if problems:
         return None, "hard checks failed on the draft: " + "; ".join(problems[:6])
