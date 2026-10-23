@@ -1,0 +1,38 @@
+name: IndexNow on Merge
+
+# When YOU merge a Security Friday case, ping search engines once the page is live.
+# (Posts pushed by the daily bot do not trigger this; that workflow pings for them itself.)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/posts/**'
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Find posts added by this push
+        id: find
+        run: |
+          BEFORE="${{ github.event.before }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then BEFORE="HEAD~1"; fi
+          NEW=$(git diff --name-only --diff-filter=A "$BEFORE" "${{ github.sha }}" -- content/posts | tr '\n' ' ')
+          echo "New posts: ${NEW:-none}"
+          echo "posts=$NEW" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        if: steps.find.outputs.posts != ''
+        with:
+          python-version: '3.11'
+      - name: Ping IndexNow
+        if: steps.find.outputs.posts != ''
+        run: |
+          pip install requests
+          python scripts/syndicate.py --indexnow ${{ steps.find.outputs.posts }}
