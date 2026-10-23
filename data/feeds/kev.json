@@ -1,5 +1,5 @@
 {
- "added_30d": 37,
+ "added_30d": 33,
  "catalog_version": "2026.10.21",
  "count": 1754,
  "items": [
@@ -232,7 +232,7 @@
  "source": "CISA Known Exploited Vulnerabilities Catalog",
  "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
  "status": "ok",
- "updated": "2026-10-22T18:27:57Z",
+ "updated": "2026-10-23T04:44:06Z",
  "vendors_30d": [
   {
    "count": 4,
