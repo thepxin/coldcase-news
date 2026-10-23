@@ -7,6 +7,17 @@ enableRobotsTXT: true
 minify:
   disableJSON: true
 
+# Google News sitemap (articles from the last 2 days): /news-sitemap.xml
+outputFormats:
+  newssitemap:
+    mediaType: application/xml
+    baseName: news-sitemap
+    isPlainText: false
+    rel: sitemap
+    noUgly: true
+outputs:
+  home: [HTML, RSS, newssitemap]
+
 markup:
   goldmark:
     renderer:
@@ -15,7 +26,7 @@ markup:
 params:
   env: production
   title: "ColdCaseTech"
-  description: "Tech promises and security incidents, checked against trusted sources: what was promised, what actually happened, and one clear verdict."
+  description: "The daily record of tech promises: what's new across AI, chips, devices, software, space, EVs and energy, checked line by line against trusted sources, with one clear verdict when a promise comes due."
   defaultTheme: auto
   disableThemeToggle: true
   ShowReadingTime: true
@@ -32,18 +43,26 @@ params:
     Title: "ColdCaseTech"
     Content: "What they promised. What actually happened."
   footer:
-    text: "[How we verify](/about/) · [Privacy & Terms](/privacy/) · [RSS](/index.xml)"
+    text: "An independent record of technology's promises · [Our standards](/about/) · [editor@coldcasetech.com](mailto:editor@coldcasetech.com) · [Privacy & Terms](/privacy/) · [RSS](/index.xml)"
 
 menu:
   main:
-    - identifier: tech
-      name: All articles
-      url: /tags/tech/
+    - identifier: latest
+      name: Latest
+      url: /
+      weight: 5
+    - identifier: verdicts
+      name: Verdicts
+      url: /verdicts/
       weight: 10
     - identifier: developing
       name: Developing
       url: /developing/
-      weight: 17
+      weight: 15
+    - identifier: tech
+      name: All articles
+      url: /tags/tech/
+      weight: 20
     - identifier: about
       name: How we verify
       url: /about/
