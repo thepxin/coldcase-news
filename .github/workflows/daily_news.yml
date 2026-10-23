@@ -1,9 +1,10 @@
 name: Daily Cold-Case News Generator
 
 # Every day, in this order (no job skips another):
-#   1. Case updates: new verified facts for open and recent cases (tech: published; security: pull request)
-#   2. One TECH case (promised vs delivered, or an OPEN case), published directly after passing every check
-#   3. On Security Friday: ONE SECURITY case, opened as a pull request for your manual review
+#   1. Case updates: new verified facts for open and recent cases
+#   2. Up to 3 TECH articles, each from a different field: news reports, open cases and verdict cases
+# Everything is published directly, but only after passing every automated check (approved sources, hard checks,
+# and a clean, separate AI fact-check). Nothing that fails a check is ever published.
 # Times are UTC (GitHub always uses UTC): 14:30 UTC = 20:00 IST, 17:47 UTC = 23:17 IST.
 # The second run is a catch-up: it only redoes jobs that did not finish (Claude overloaded, or GitHub skipped
 # the first run). Finished jobs are skipped, and all runs of the day share one daily request cap (data/daily_runs.json).
@@ -14,15 +15,14 @@ on:
   workflow_dispatch:
     inputs:
       desk:
-        description: 'What to run (auto = updates, then tech, plus security on Security Friday)'
+        description: 'What to run (auto = updates, then up to 3 tech articles)'
         required: false
         default: 'auto'
         type: choice
-        options: [auto, updates, tech, security]
+        options: [auto, updates, tech]
 
 permissions:
   contents: write
-  pull-requests: write
 
 # never run two of these at the same time (a late first run and the catch-up run wait for each other)
 concurrency:
@@ -52,22 +52,20 @@ jobs:
       - name: Find, write and verify today's case(s)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SECURITY_DAY: Friday
           DESK: ${{ inputs.desk || 'auto' }}
         run: python scripts/generate_followup.py
 
-      - name: Publish the tech case and tech case update
+      - name: Publish today's cases and case updates
         id: push
         run: |
           git config user.name "FollowUp Editorial Bot"
           git config user.email "bot@coldcasetech.com"
-          read_result() { python -c "import json;print(json.load(open('run_result.json')).get('$1',''))" 2>/dev/null || true; }
-          TECH_FILE=$(read_result tech)
-          UPDATE_FILE=$(read_result update)
-          UPDATE_DESK=$(read_result update_desk)
+          read_result() { python -c "import json;v=json.load(open('run_result.json')).get('$1','');print(' '.join(v) if isinstance(v,list) else v)" 2>/dev/null || true; }
           FILES=""
-          if [ -n "$TECH_FILE" ]; then git add "$TECH_FILE" scripts/latest_social_teaser.txt; FILES="$TECH_FILE"; fi
-          if [ -n "$UPDATE_FILE" ] && [ "$UPDATE_DESK" = "tech" ]; then git add "$UPDATE_FILE"; FILES="$FILES $UPDATE_FILE"; fi
+          for F in $(read_result tech) $(read_result update); do
+            git add "$F"; FILES="$FILES $F"
+          done
+          if [ -f scripts/latest_social_teaser.txt ]; then git add scripts/latest_social_teaser.txt; fi
           # "last checked" dates for open cases, and today's job log (used by the catch-up run)
           if [ -f data/case_checks.json ]; then git add data/case_checks.json; fi
           if [ -f data/daily_runs.json ]; then git add data/daily_runs.json; fi
@@ -78,64 +76,15 @@ jobs:
             exit 0
           fi
           MSG="chore(content): daily run"
-          [ -n "$TECH_FILE" ] && MSG="$MSG; new tech case"
-          [ -n "$UPDATE_FILE" ] && [ "$UPDATE_DESK" = "tech" ] && MSG="$MSG; tech case update"
+          N=$(echo $(read_result tech) | wc -w)
+          [ "$N" -gt 0 ] && MSG="$MSG; $N new tech article(s)"
+          [ -n "$(read_result update)" ] && MSG="$MSG; case update"
           git commit -m "$MSG"
           for attempt in 1 2 3; do
             if git pull --rebase --autostash origin main && git push origin main; then break; fi
             sleep 15
           done
           if [ -n "$FILES" ]; then echo "published=true" >> "$GITHUB_OUTPUT"; else echo "published=false" >> "$GITHUB_OUTPUT"; fi
-
-      - name: Open the Security Friday case for your review
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          SEC_FILE=$(python -c "import json;print(json.load(open('run_result.json')).get('security',''))" 2>/dev/null || true)
-          if [ -z "$SEC_FILE" ]; then
-            echo "No security case to review today."
-            exit 0
-          fi
-          BRANCH="review/security-$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
-          TITLE="$(python scripts/make_pr_body.py)"
-          git checkout -b "$BRANCH"
-          git add "$SEC_FILE"
-          git commit -m "draft: ${TITLE}"
-          git push origin "$BRANCH"
-          if gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md \
-               --reviewer "${{ github.repository_owner }}"; then
-            echo "Review pull request opened."
-          elif gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md; then
-            echo "Review pull request opened (without a review request)."
-          else
-            echo "::warning::Could not open the pull request. Turn on Settings > Actions > General > 'Allow GitHub Actions to create and approve pull requests'. The draft is safe on branch $BRANCH."
-          fi
-          git checkout main
-
-      - name: Open the security case update for your review
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          UPDATE_FILE=$(python -c "import json;r=json.load(open('run_result.json'));print(r.get('update','') if r.get('update_desk')=='security' else '')" 2>/dev/null || true)
-          if [ -z "$UPDATE_FILE" ]; then
-            echo "No security case update to review today."
-            exit 0
-          fi
-          BRANCH="review/security-update-$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
-          TITLE="$(python scripts/make_pr_body.py update)"
-          git checkout -b "$BRANCH"
-          git add "$UPDATE_FILE"
-          git commit -m "draft: ${TITLE}"
-          git push origin "$BRANCH"
-          if gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md \
-               --reviewer "${{ github.repository_owner }}"; then
-            echo "Review pull request opened."
-          elif gh pr create --base main --head "$BRANCH" --title "$TITLE" --body-file pr_body.md; then
-            echo "Review pull request opened (without a review request)."
-          else
-            echo "::warning::Could not open the pull request. The update is safe on branch $BRANCH."
-          fi
-          git checkout main
 
       - name: Share yesterday's posts to Dev.to / Hashnode (24-hour delay)
         # Posts go out about a day after publishing, so any fix you make on the site is included.
@@ -158,6 +107,6 @@ jobs:
             done
           fi
 
-      - name: Ping IndexNow for today's new and updated tech pages
+      - name: Ping IndexNow for today's new and updated pages
         if: steps.push.outputs.published == 'true'
         run: python scripts/syndicate.py --indexnow ${{ steps.push.outputs.files }}
