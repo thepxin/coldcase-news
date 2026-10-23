@@ -1,0 +1,9 @@
+{{- /* Lists the approved sources from data/sources.json, so the About page always matches what the generator uses. */ -}}
+{{- $o := hugo.Data.sources.outlets -}}
+<div class="cct-approved">
+  <h4>Tier A: the company or organisation itself, or an official body</h4>
+  <ul>{{ range where $o "tier" "A" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}
+    <li>The affected organisation's own official statement, when an approved outlet links to it</li></ul>
+  <h4>Tier B: established newsrooms</h4>
+  <ul>{{ range where $o "tier" "B" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
+</div>

@@ -1,0 +1,852 @@
+{
+ "_readme": "The ONLY sources ColdCaseTech cases may use. Tier A = the organisation itself or an official body. Tier B = established newsrooms. 'desks' says which daily search reads an outlet's feeds (tech, security); links from approved articles to ANY approved domain are accepted on both desks. 'verified' = feed confirmed working when this list was made. Edit on GitHub: add or remove an outlet, keep the JSON format.",
+ "outlets": [
+  {
+   "id": "cisa",
+   "name": "CISA",
+   "tier": "A",
+   "domains": [
+    "cisa.gov"
+   ],
+   "feeds": [
+    "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+    "https://www.cisa.gov/news.xml"
+   ],
+   "verified": false,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "nvd",
+   "name": "NIST NVD",
+   "tier": "A",
+   "domains": [
+    "nvd.nist.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "cve",
+   "name": "CVE Program",
+   "tier": "A",
+   "domains": [
+    "cve.org",
+    "cve.mitre.org"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "sec",
+   "name": "US SEC",
+   "tier": "A",
+   "domains": [
+    "sec.gov"
+   ],
+   "feeds": [
+    "https://www.sec.gov/news/pressreleases.rss"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "ftc",
+   "name": "US FTC",
+   "tier": "A",
+   "domains": [
+    "ftc.gov"
+   ],
+   "feeds": [
+    "https://www.ftc.gov/feeds/press-release.xml"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "doj",
+   "name": "US Department of Justice",
+   "tier": "A",
+   "domains": [
+    "justice.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "fbi",
+   "name": "FBI",
+   "tier": "A",
+   "domains": [
+    "fbi.gov",
+    "ic3.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "ncsc",
+   "name": "UK NCSC",
+   "tier": "A",
+   "domains": [
+    "ncsc.gov.uk"
+   ],
+   "feeds": [
+    "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "ico",
+   "name": "UK ICO",
+   "tier": "A",
+   "domains": [
+    "ico.org.uk"
+   ],
+   "feeds": [],
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "enisa",
+   "name": "ENISA",
+   "tier": "A",
+   "domains": [
+    "enisa.europa.eu"
+   ],
+   "feeds": [],
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "certin",
+   "name": "CERT-In",
+   "tier": "A",
+   "domains": [
+    "cert-in.org.in"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "gcp",
+   "name": "Google Cloud",
+   "tier": "A",
+   "domains": [
+    "status.cloud.google.com",
+    "cloud.google.com"
+   ],
+   "feeds": [
+    "https://status.cloud.google.com/en/feed.atom"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "aws",
+   "name": "AWS",
+   "tier": "A",
+   "domains": [
+    "aws.amazon.com",
+    "health.aws.amazon.com"
+   ],
+   "feeds": [
+    "https://aws.amazon.com/security/security-bulletins/rss/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "microsoft",
+   "name": "Microsoft",
+   "tier": "A",
+   "domains": [
+    "microsoft.com",
+    "msrc.microsoft.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "github",
+   "name": "GitHub",
+   "tier": "A",
+   "domains": [
+    "github.blog",
+    "githubstatus.com"
+   ],
+   "feeds": [
+    "https://github.blog/security/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "cloudflare",
+   "name": "Cloudflare",
+   "tier": "A",
+   "domains": [
+    "blog.cloudflare.com",
+    "cloudflarestatus.com"
+   ],
+   "feeds": [
+    "https://blog.cloudflare.com/rss/"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "bleepingcomputer",
+   "name": "BleepingComputer",
+   "tier": "B",
+   "domains": [
+    "bleepingcomputer.com"
+   ],
+   "feeds": [
+    "https://www.bleepingcomputer.com/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "therecord",
+   "name": "The Record",
+   "tier": "B",
+   "domains": [
+    "therecord.media"
+   ],
+   "feeds": [
+    "https://therecord.media/feed"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "securityweek",
+   "name": "SecurityWeek",
+   "tier": "B",
+   "domains": [
+    "securityweek.com"
+   ],
+   "feeds": [
+    "https://www.securityweek.com/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "krebs",
+   "name": "Krebs on Security",
+   "tier": "B",
+   "domains": [
+    "krebsonsecurity.com"
+   ],
+   "feeds": [
+    "https://krebsonsecurity.com/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "darkreading",
+   "name": "Dark Reading",
+   "tier": "B",
+   "domains": [
+    "darkreading.com"
+   ],
+   "feeds": [
+    "https://www.darkreading.com/rss.xml"
+   ],
+   "verified": true,
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "techcrunch",
+   "name": "TechCrunch",
+   "tier": "B",
+   "domains": [
+    "techcrunch.com"
+   ],
+   "feeds": [
+    "https://techcrunch.com/category/security/feed/",
+    "https://techcrunch.com/feed/"
+   ],
+   "verified": true,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "arstechnica",
+   "name": "Ars Technica",
+   "tier": "B",
+   "domains": [
+    "arstechnica.com"
+   ],
+   "feeds": [
+    "https://feeds.arstechnica.com/arstechnica/security",
+    "https://feeds.arstechnica.com/arstechnica/index"
+   ],
+   "verified": false,
+   "desks": [
+    "security",
+    "tech"
+   ]
+  },
+  {
+   "id": "hibp",
+   "name": "Have I Been Pwned",
+   "tier": "B",
+   "domains": [
+    "haveibeenpwned.com",
+    "troyhunt.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "security"
+   ]
+  },
+  {
+   "id": "fcc",
+   "name": "US FCC",
+   "tier": "A",
+   "domains": [
+    "fcc.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "eucomm",
+   "name": "European Commission",
+   "tier": "A",
+   "domains": [
+    "ec.europa.eu",
+    "commission.europa.eu"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "nhtsa",
+   "name": "US NHTSA",
+   "tier": "A",
+   "domains": [
+    "nhtsa.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "faa",
+   "name": "US FAA",
+   "tier": "A",
+   "domains": [
+    "faa.gov"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "nasa",
+   "name": "NASA",
+   "tier": "A",
+   "domains": [
+    "nasa.gov",
+    "science.nasa.gov"
+   ],
+   "feeds": [
+    "https://www.nasa.gov/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "esa",
+   "name": "ESA",
+   "tier": "A",
+   "domains": [
+    "esa.int"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "isro",
+   "name": "ISRO",
+   "tier": "A",
+   "domains": [
+    "isro.gov.in"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "meity",
+   "name": "India MeitY",
+   "tier": "A",
+   "domains": [
+    "meity.gov.in"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "trai",
+   "name": "TRAI",
+   "tier": "A",
+   "domains": [
+    "trai.gov.in"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "nvidia",
+   "name": "NVIDIA",
+   "tier": "A",
+   "domains": [
+    "nvidia.com",
+    "nvidianews.nvidia.com",
+    "blogs.nvidia.com"
+   ],
+   "feeds": [
+    "https://nvidianews.nvidia.com/releases.xml"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "google",
+   "name": "Google",
+   "tier": "A",
+   "domains": [
+    "blog.google",
+    "googleblog.com"
+   ],
+   "feeds": [
+    "https://blog.google/rss/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "apple",
+   "name": "Apple",
+   "tier": "A",
+   "domains": [
+    "apple.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "openai",
+   "name": "OpenAI",
+   "tier": "A",
+   "domains": [
+    "openai.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "anthropic",
+   "name": "Anthropic",
+   "tier": "A",
+   "domains": [
+    "anthropic.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "meta",
+   "name": "Meta",
+   "tier": "A",
+   "domains": [
+    "about.fb.com",
+    "about.meta.com",
+    "ai.meta.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "amd",
+   "name": "AMD",
+   "tier": "A",
+   "domains": [
+    "amd.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "intel",
+   "name": "Intel",
+   "tier": "A",
+   "domains": [
+    "intel.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "samsung",
+   "name": "Samsung",
+   "tier": "A",
+   "domains": [
+    "news.samsung.com",
+    "samsung.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "qualcomm",
+   "name": "Qualcomm",
+   "tier": "A",
+   "domains": [
+    "qualcomm.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "tesla",
+   "name": "Tesla",
+   "tier": "A",
+   "domains": [
+    "tesla.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "spacex",
+   "name": "SpaceX",
+   "tier": "A",
+   "domains": [
+    "spacex.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "amazon",
+   "name": "Amazon",
+   "tier": "A",
+   "domains": [
+    "aboutamazon.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "engadget",
+   "name": "Engadget",
+   "tier": "B",
+   "domains": [
+    "engadget.com"
+   ],
+   "feeds": [
+    "https://www.engadget.com/rss.xml"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "tomshardware",
+   "name": "Tom's Hardware",
+   "tier": "B",
+   "domains": [
+    "tomshardware.com"
+   ],
+   "feeds": [
+    "https://www.tomshardware.com/feeds/all"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "ieeespectrum",
+   "name": "IEEE Spectrum",
+   "tier": "B",
+   "domains": [
+    "spectrum.ieee.org"
+   ],
+   "feeds": [
+    "https://spectrum.ieee.org/feeds/feed.rss"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "mittr",
+   "name": "MIT Technology Review",
+   "tier": "B",
+   "domains": [
+    "technologyreview.com"
+   ],
+   "feeds": [
+    "https://www.technologyreview.com/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "theverge",
+   "name": "The Verge",
+   "tier": "B",
+   "domains": [
+    "theverge.com"
+   ],
+   "feeds": [
+    "https://www.theverge.com/rss/index.xml"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": false
+  },
+  {
+   "id": "wired",
+   "name": "Wired",
+   "tier": "B",
+   "domains": [
+    "wired.com"
+   ],
+   "feeds": [
+    "https://www.wired.com/feed/rss"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": false
+  },
+  {
+   "id": "theregister",
+   "name": "The Register",
+   "tier": "B",
+   "domains": [
+    "theregister.com"
+   ],
+   "feeds": [
+    "https://www.theregister.com/headlines.atom"
+   ],
+   "desks": [
+    "tech",
+    "security"
+   ],
+   "verified": false
+  },
+  {
+   "id": "coindesk",
+   "name": "CoinDesk",
+   "tier": "B",
+   "domains": [
+    "coindesk.com"
+   ],
+   "feeds": [
+    "https://www.coindesk.com/arc/outboundfeeds/rss/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "electrek",
+   "name": "Electrek",
+   "tier": "B",
+   "domains": [
+    "electrek.co"
+   ],
+   "feeds": [
+    "https://electrek.co/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "9to5mac",
+   "name": "9to5Mac",
+   "tier": "B",
+   "domains": [
+    "9to5mac.com"
+   ],
+   "feeds": [
+    "https://9to5mac.com/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "9to5google",
+   "name": "9to5Google",
+   "tier": "B",
+   "domains": [
+    "9to5google.com"
+   ],
+   "feeds": [
+    "https://9to5google.com/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "reuters",
+   "name": "Reuters",
+   "tier": "B",
+   "domains": [
+    "reuters.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "apnews",
+   "name": "AP News",
+   "tier": "B",
+   "domains": [
+    "apnews.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  }
+ ],
+ "rules": {
+  "security": {
+   "min_outlets": 2,
+   "min_tier_a": 1,
+   "min_spread_days": 7,
+   "max_age_days_newest": 14,
+   "max_sources": 6,
+   "excerpt_chars": 7000,
+   "own_statement_counts_as_tier_a": true
+  },
+  "tech": {
+   "min_outlets": 2,
+   "min_tier_a": 1,
+   "min_spread_days": 7,
+   "max_age_days_newest": 14,
+   "max_sources": 6,
+   "excerpt_chars": 7000,
+   "own_statement_counts_as_tier_a": true
+  }
+ }
+}

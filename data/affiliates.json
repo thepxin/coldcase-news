@@ -74,13 +74,19 @@
       "name": "GearUP",
       "url": "/go/gearup.html",
       "amazon": false,
-      "kit_line": "Routing optimizer for unstable or high-latency connections"
+      "kit_line": "Routing optimizer for unstable or high-latency connections",
+      "card_title": "Cut lag on unstable connections",
+      "card_text": "GearUP routes game and app traffic over alternative network paths, aiming to reduce latency and packet loss on unreliable connections.",
+      "card_cta": "Try GearUP"
     },
     "elevenlabs": {
       "name": "ElevenLabs",
       "url": "/go/elevenlabs.html",
       "amazon": false,
-      "kit_line": "AI voice generation for narrating reports, videos and briefings"
+      "kit_line": "AI voice generation for narrating reports, videos and briefings",
+      "card_title": "Turn text into natural-sounding speech",
+      "card_text": "ElevenLabs generates voiceovers and narration from text, in many voices and languages.",
+      "card_cta": "Try ElevenLabs"
     }
   },
   "categories": {
@@ -110,11 +116,43 @@
       ]
     },
     "ai": {
+      "card": "elevenlabs",
+      "toolkit": [
+        "contabo-vps",
+        "surfshark-id",
+        "yubikey"
+      ]
+    },
+    "gaming": {
+      "card": "gearup",
+      "toolkit": [
+        "ups-backup",
+        "encrypted-ssd",
+        "surfshark-vpn"
+      ]
+    },
+    "hardware": {
+      "card": "encrypted-ssd",
+      "toolkit": [
+        "ups-backup",
+        "gearup",
+        "firewall"
+      ]
+    },
+    "crypto": {
       "card": "yubikey",
       "toolkit": [
-        "elevenlabs",
-        "contabo-vps",
+        "encrypted-ssd",
+        "surfshark-vpn",
         "surfshark-id"
+      ]
+    },
+    "general": {
+      "card": "surfshark-vpn",
+      "toolkit": [
+        "gearup",
+        "elevenlabs",
+        "ups-backup"
       ]
     }
   }

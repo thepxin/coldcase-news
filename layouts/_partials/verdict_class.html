@@ -1,5 +1,5 @@
-{{- /* Maps a verdict label to a stamp colour class. */ -}}
+{{- /* Maps a verdict label (security or tech desk) to a stamp colour class. */ -}}
 {{- $v := lower (string .) -}}
 {{- $c := "warn" -}}
-{{- if eq $v "verified" }}{{ $c = "ok" }}{{ else if eq $v "escalated" }}{{ $c = "bad" }}{{ end -}}
+{{- if in (slice "verified" "delivered") $v }}{{ $c = "ok" }}{{ else if in (slice "escalated" "not delivered") $v }}{{ $c = "bad" }}{{ end -}}
 {{- return $c -}}

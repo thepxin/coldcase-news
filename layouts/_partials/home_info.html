@@ -1,9 +1,9 @@
 {{- /* ColdCaseTech homepage intro: boot line, headline, and a status strip built only from real build-time data. */ -}}
 {{- $posts := where site.RegularPages "Section" "posts" -}}
 {{- $latest := index $posts.ByDate.Reverse 0 -}}
-{{- $ver := len (where $posts "Params.verdict" "Verified") -}}
-{{- $part := len (where $posts "Params.verdict" "Partially True") -}}
-{{- $esc := len (where $posts "Params.verdict" "Escalated") -}}
+{{- $ver := len (where $posts "Params.verdict" "in" (slice "Verified" "Delivered")) -}}
+{{- $part := len (where $posts "Params.verdict" "in" (slice "Partially True" "Partially Delivered")) -}}
+{{- $esc := len (where $posts "Params.verdict" "in" (slice "Escalated" "Not Delivered")) -}}
 <section class="cct-home" aria-labelledby="cct-home-title">
   <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> open --cases --after-the-headlines</p>
   <h1 id="cct-home-title">What they reported vs. what actually happened.</h1>

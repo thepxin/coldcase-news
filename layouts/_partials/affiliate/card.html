@@ -2,7 +2,7 @@
 {{- $cat := partial "affiliate/category.html" . -}}
 {{- with $cat.card }}{{ $key := . }}{{ with index hugo.Data.affiliates.products . }}
 <aside class="cct-rec-card" aria-label="Recommendation">
-  <p class="cct-rec-kicker">Defensive lesson · partner pick</p>
+  <p class="cct-rec-kicker">Partner pick · separate from our reporting</p>
   <h3>{{ .card_title }}</h3>
   <p>{{ .card_text }}</p>
   <a class="cct-btn-money" href="{{ .url }}" target="_blank" rel="sponsored noopener" data-goatcounter-click="aff-card-{{ $key }}" data-goatcounter-title="Affiliate card: {{ .name }}">{{ .card_cta }} ›</a>
