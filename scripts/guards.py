@@ -157,6 +157,23 @@ FIXED_LINES = {"the sources do not state a cause.", "the sources do not list ope
 TABLE_SEPARATOR = re.compile(r"^\|?\s*:?-{3,}")
 
 
+LEADING_CITATION = re.compile(r"^\(?\s*(?:LINKREF\s*[,;]?\s*)+\)?[.!?]?\s*")
+
+
+def _sentences(masked):
+    """Split a line into sentences. A citation written just after the full stop ("... Virginia. ([NASA](url))")
+    belongs to the sentence before it, not to the next one."""
+    out = []
+    for part in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", masked):
+        m = LEADING_CITATION.match(part)
+        if m and "LINKREF" in m.group(0) and out:
+            out[-1] += " " + m.group(0)
+            part = part[m.end():]
+        if part.strip():
+            out.append(part)
+    return out
+
+
 def uncited_lines(body, header_rows=1):
     """Lines of the body that state something but carry no [text](url) link. Headings, table headers/separators,
     blank lines and the two fixed 'The sources do not...' sentences are exempt."""
@@ -179,11 +196,59 @@ def uncited_lines(body, header_rows=1):
             continue
         # every sentence (4+ words) must carry its own citation link
         masked = re.sub(r"\[[^\]]*\]\([^)\s]+\)", " LINKREF ", line)
-        for sentence in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", masked):
+        for sentence in _sentences(masked):
             words = re.sub(r"LINKREF|[*_`>-]", " ", sentence).split()
             if len(words) >= 4 and "LINKREF" not in sentence:
                 out.append((n, sentence.strip()[:120]))
     return out
+
+
+LINK_RE = re.compile(r"\[[^\]]*\]\([^)\s]+\)")
+LEADING_LINKS = re.compile(r"^\(?\s*(?:\[[^\]]*\]\([^)\s]+\)\s*[,;]?\s*)+\)?[.!?]?\s*")
+
+
+def strip_uncited(body, header_rows=1):
+    """Remove every sentence (and table row) that carries no source link. Removing text can never add an unsupported
+    claim, so this is a safe repair for drafts that only failed the citation rule. Returns (new_body, removed)."""
+    out_lines, removed, in_table, table_row = [], [], False, 0
+    for raw in (body or "").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or line.lower() in FIXED_LINES or line == "{{< recommend >}}":
+            in_table, table_row = False, 0
+            out_lines.append(raw)
+            continue
+        if line.startswith("|"):
+            table_row = table_row + 1 if in_table else 1
+            in_table = True
+            if table_row <= header_rows or TABLE_SEPARATOR.match(line) or MD_LINK.search(line):
+                out_lines.append(raw)
+            else:
+                removed.append(line[:120])
+            continue
+        in_table, table_row = False, 0
+        prefix = re.match(r"^\s*(?:[-*]\s+|\d+\.\s+|>\s*)?", raw).group(0)
+        text = raw[len(prefix):]
+        parts = []
+        for part in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", text):
+            m = LEADING_LINKS.match(part)
+            if m and LINK_RE.search(m.group(0)) and parts:
+                parts[-1] += " " + m.group(0).strip()
+                part = part[m.end():]
+            if part.strip():
+                parts.append(part)
+        keep = []
+        for part in parts:
+            words = re.sub(r"[*_`>-]", " ", LINK_RE.sub(" ", part)).split()
+            if len(words) >= 4 and not LINK_RE.search(part):
+                removed.append(part.strip()[:120])
+            else:
+                keep.append(part.strip())
+        kept = " ".join(keep).strip()
+        if kept and len(re.sub(r"[*_`>-]", " ", LINK_RE.sub(" ", kept)).split()) >= 2:
+            out_lines.append(prefix + kept)
+        elif not kept and not parts:
+            out_lines.append(raw)
+    return "\n".join(out_lines), removed
 
 
 def citation_problems(body, sources):
