@@ -4,9 +4,13 @@ name: Daily Cold-Case News Generator
 #   1. Case updates: new verified facts for open and recent cases (tech: published; security: pull request)
 #   2. One TECH case (promised vs delivered, or an OPEN case), published directly after passing every check
 #   3. On Security Friday: ONE SECURITY case, opened as a pull request for your manual review
+# Times are UTC (GitHub always uses UTC): 14:30 UTC = 20:00 IST, 17:47 UTC = 23:17 IST.
+# The second run is a catch-up: it only redoes jobs that did not finish (Gemini overloaded, or GitHub skipped
+# the first run). Finished jobs are skipped, and all runs of the day share Gemini's daily limit (data/daily_runs.json).
 on:
   schedule:
     - cron: '30 14 * * *'
+    - cron: '47 17 * * *'
   workflow_dispatch:
     inputs:
       desk:
@@ -19,6 +23,11 @@ on:
 permissions:
   contents: write
   pull-requests: write
+
+# never run two of these at the same time (a late first run and the catch-up run wait for each other)
+concurrency:
+  group: daily-news
+  cancel-in-progress: false
 
 jobs:
   generate-and-publish:
@@ -59,15 +68,16 @@ jobs:
           FILES=""
           if [ -n "$TECH_FILE" ]; then git add "$TECH_FILE" scripts/latest_social_teaser.txt; FILES="$TECH_FILE"; fi
           if [ -n "$UPDATE_FILE" ] && [ "$UPDATE_DESK" = "tech" ]; then git add "$UPDATE_FILE"; FILES="$FILES $UPDATE_FILE"; fi
-          # "last checked" dates for open cases
+          # "last checked" dates for open cases, and today's job log (used by the catch-up run)
           if [ -f data/case_checks.json ]; then git add data/case_checks.json; fi
+          if [ -f data/daily_runs.json ]; then git add data/daily_runs.json; fi
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
           if git diff --staged --quiet; then
             echo "Nothing to publish today."
             echo "published=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          MSG="chore(content): daily cases"
+          MSG="chore(content): daily run"
           [ -n "$TECH_FILE" ] && MSG="$MSG; new tech case"
           [ -n "$UPDATE_FILE" ] && [ "$UPDATE_DESK" = "tech" ] && MSG="$MSG; tech case update"
           git commit -m "$MSG"
