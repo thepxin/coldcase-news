@@ -1,0 +1,4 @@
+{{- /* "Verdict changed: Partially Delivered -> Delivered on Oct 30". Pass (dict "from" "to" "date"). Shown openly, never swapped silently. */ -}}
+{{- with . }}{{ if .to -}}
+<span class="cct-vchange">Verdict changed: <s>{{ .from }}</s> <svg class="cct-arr" viewBox="0 0 14 8" aria-label="to" role="img"><path d="M0 4h12M9 1l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> <b class="cct-v--{{ partial "verdict_class.html" .to }}">{{ .to }}</b>{{ with .date }} on <time datetime="{{ . }}">{{ (time.AsTime .).Format "Jan 2" }}</time>{{ end }}</span>
+{{- end }}{{ end -}}

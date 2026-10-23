@@ -1,0 +1,22 @@
+{{- /* Facts about a case's history, for cards, the Developing page and the case page.
+       Returns: open (bool), n (number of updates), last (date of newest update), recent (updated in the last 30 days),
+       change (newest verdict change: from, to, date), closed (date an open case was closed), checked (last checked),
+       pastdue (open case whose due date has passed). */ -}}
+{{- $ups := .Params.updates | default slice -}}
+{{- $last := "" -}}{{- $change := dict -}}{{- $closed := "" -}}
+{{- range $ups -}}
+  {{- $last = .date -}}
+  {{- if and .verdict_to (ne (string .verdict_from) (string .verdict_to)) -}}
+    {{- $from := .verdict_from | default "Open case" -}}
+    {{- $change = dict "from" $from "to" .verdict_to "date" .date -}}
+  {{- end -}}
+  {{- if and (eq .status_from "open") (eq .status_to "closed") }}{{ $closed = .date }}{{ end -}}
+{{- end -}}
+{{- $recent := false -}}
+{{- with $last }}{{ if (time.AsTime .).After (now.AddDate 0 0 -30) }}{{ $recent = true }}{{ end }}{{ end -}}
+{{- $isOpen := eq .Params.status "open" -}}
+{{- $checked := .Params.checked | default "" -}}
+{{- with .File }}{{ with index (hugo.Data.case_checks | default dict) .ContentBaseName }}{{ $checked = .checked }}{{ end }}{{ end -}}
+{{- $pastdue := false -}}
+{{- if $isOpen }}{{ with .Params.due_by }}{{ if (time.AsTime .).Before (now.AddDate 0 0 -1) }}{{ $pastdue = true }}{{ end }}{{ end }}{{ end -}}
+{{- return dict "open" $isOpen "n" (len $ups) "last" $last "recent" $recent "change" $change "closed" $closed "checked" $checked "pastdue" $pastdue -}}

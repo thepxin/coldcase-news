@@ -19,7 +19,7 @@ If no story passes, nothing is published that day.
 import json
 import os
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
 import requests
@@ -286,44 +286,44 @@ def evaluate(sources, rules, needs_own_statement=False, now=None):
     return (not reasons), reasons
 
 
-def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
-    """Yield (topic, sources) for every candidate story on this desk that passes ALL rules, best first."""
-    cfg = cfg or load_config()
-    rules = cfg["rules"][desk]
-    now = now or datetime.now(timezone.utc)
-    items = [i for i in read_feeds(cfg, log, desk) if (now - i["date"]).days <= rules["max_age_days_newest"]]
-    if not items:
-        log("No feed items available; nothing to write today.")
-        return
-    df = {}
-    for i in items:
-        for t in set(tokens(i["title"] + " " + i["summary"])):
-            df[t] = df.get(t, 0) + 1
-    fetches = {"n": 0}
-    cache = {}
-    why = {}  # url -> reason a page was not usable (shown in the log)
+class Finder:
+    """Reads one desk's approved feeds once, then gathers verified sources for stories or case updates."""
 
-    def get_source(url, tier_override=None, kind=None, outlet_name=None, feed_date=None, keys=frozenset()):
-        if url in cache:
-            return cache[url]
-        if fetches["n"] >= MAX_ARTICLE_FETCHES:
-            why[url] = f"page limit for this run reached ({MAX_ARTICLE_FETCHES})"
+    def __init__(self, cfg=None, desk="security", log=print, now=None):
+        self.cfg = cfg or load_config()
+        self.desk, self.log = desk, log
+        self.rules = self.cfg["rules"][desk]
+        self.now = now or datetime.now(timezone.utc)
+        self.items = [i for i in read_feeds(self.cfg, log, desk) if (self.now - i["date"]).days <= self.rules["max_age_days_newest"]]
+        self.df = {}
+        for i in self.items:
+            for t in set(tokens(i["title"] + " " + i["summary"])):
+                self.df[t] = self.df.get(t, 0) + 1
+        self.fetches, self.cache, self.why = 0, {}, {}
+
+    def get_source(self, url, tier_override=None, kind=None, outlet_name=None, feed_date=None, keys=frozenset()):
+        cfg, rules = self.cfg, self.rules
+        if url in self.cache:  # each page is downloaded once per run; the checks below run for every story
+            html, data = self.cache[url]
+        elif self.fetches >= MAX_ARTICLE_FETCHES:
+            self.why[url] = f"page limit for this run reached ({MAX_ARTICLE_FETCHES})"
             return None
-        fetches["n"] += 1
-        html = None
-        try:
-            html = fetch_html(url)
-        except Exception:
-            html = None
-        data = extract(html, url) if html else None
+        else:
+            self.fetches += 1
+            try:
+                html = fetch_html(url)
+            except Exception:
+                html = None
+            data = extract(html, url) if html else None
+            self.cache[url] = (html, data)
         text = (data or {}).get("text") or ""
         result = None
         if not html:
-            why[url] = "the site did not return the page (blocked, timed out or not found)"
+            self.why[url] = "the site did not return the page (blocked, timed out or not found)"
         elif len(text) < 400:
-            why[url] = "too little readable text on the page"
+            self.why[url] = "too little readable text on the page"
         elif not mentions(text, keys):
-            why[url] = "the page does not mention this story"
+            self.why[url] = "the page does not mention this story"
         if kind == "own statement" and text:
             if EXTORTION_PAGE.search(text) or ".onion" in url:
                 text = ""  # never treat an attacker's page as the organisation's statement
@@ -333,7 +333,7 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
                 hits = sum(1 for k in plain_keys if mentions(text, {k}))
                 if not (INCIDENT_WORDS.search(title + " " + urlparse(url).path) or hits >= 2):
                     text = ""
-                    why[url] = "organisation page is not about this story"
+                    self.why[url] = "organisation page is not about this story"
         if len(text) >= 400 and mentions(text, keys):
             o = outlet_for(url, cfg)
             result = {
@@ -346,19 +346,81 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
                 "excerpt": text[: rules["excerpt_chars"]],
                 "_html": html,
             }
-        cache[url] = result
         return result
 
-    tried = set()  # URLs of stories already offered, so the same incident is never written twice in one run
+    def related_items(self, seed, keys):
+        return [i for i in self.items if i is not seed and (keys & (set(tokens(i["title"])) | {c.upper() for c in CVE_PATTERN.findall(i["title"])}))]
+
+    def gather(self, seed, keys, related, org_names, skip_urls=frozenset()):
+        """Seed article + related approved coverage + linked approved/official pages."""
+        cfg, rules = self.cfg, self.rules
+        first = self.get_source(seed["url"], feed_date=seed["date"], keys=keys)
+        if not first:
+            return None, self.why.get(seed["url"], "unknown reason")
+        sources = [first]
+        for r in sorted(related, key=lambda r: r["outlet"]["id"] == seed["outlet"]["id"])[:MAX_RELATED_FETCHES]:
+            if r["url"] in skip_urls:
+                continue
+            src = self.get_source(r["url"], feed_date=r["date"], keys=keys)
+            if src and all(src["url"] != x["url"] for x in sources):
+                sources.append(src)
+        candidates = []
+        for src in list(sources):
+            for u in links_in(src.get("_html"), src["url"]):
+                if (any(u == x["url"] for x in sources) or u in candidates or u in skip_urls
+                        or JUNK_PATH.search(urlparse(u).path or "/")):
+                    continue
+                o = outlet_for(u, cfg)
+                own = (not o) and not host_of(u).endswith(".onion") and org_label(u) in org_names
+                if o or own:
+                    candidates.append(u)
+        candidates.sort(key=lambda u: (0 if not outlet_for(u, cfg) else 1 if outlet_for(u, cfg)["tier"] == "A" else 2))
+        for u in candidates[:MAX_LINK_FETCHES]:
+            if len(sources) >= rules["max_sources"]:
+                break
+            o = outlet_for(u, cfg)
+            if o:
+                src = self.get_source(u, keys=keys)
+            elif rules.get("own_statement_counts_as_tier_a", True):
+                src = self.get_source(u, tier_override="A", kind="own statement",
+                                      outlet_name=f"{org_label(u).capitalize()} (official statement)", keys=keys)
+            else:
+                src = None
+            if src and all(src["url"] != x["url"] for x in sources):
+                sources.append(src)
+        return sources, ""
+
+
+def clean(sources, limit):
+    """Tier A first, then oldest to newest; strip internal fields."""
+    sources = sorted(sources, key=lambda s: (s["tier"] != "A", s["date"] or "9999"))
+    return [{k: v for k, v in s.items() if not k.startswith("_")} for s in sources[:limit]]
+
+
+SPREAD_ONLY = ("sources span only", "fewer than 2 dated sources")
+
+
+def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security", allow_open=None, finder=None, known=()):
+    """Yield (topic, sources, mode) for every candidate story on this desk that passes the rules, best first.
+    known: keyword sets of existing cases (see case_keys); a story about one of them is left to the update desk.
+    mode "case": full then-vs-now case. mode "open": passes every verification rule but has no then-vs-now gap yet;
+    tech desk only, offered AFTER all full cases, and only usable as an open case (a dated or measurable promise)."""
+    f = finder or Finder(cfg, desk, log, now)
+    allow_open = (desk == "tech") if allow_open is None else allow_open
+    if not f.items:
+        log("No feed items available; nothing to write today.")
+        return
+    rules, now = f.rules, f.now
+    tried, open_later = set(), []
     for topic in topics:
-        seeds = [i for i in items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
+        seeds = [i for i in f.items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
                  and i["url"] not in used_urls and i["url"] not in tried]
         scored = []
         for s in seeds:
-            keys = subject_keys(s["title"], df)
+            keys = subject_keys(s["title"], f.df)
             if not keys:
                 continue
-            related = [i for i in items if i is not s and (keys & (set(tokens(i["title"])) | {c.upper() for c in CVE_PATTERN.findall(i["title"])}))]
+            related = f.related_items(s, keys)
             scored.append((len({r["outlet"]["id"] for r in related}), s["date"], s, keys, related))
         scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
         log(f"[{desk}] Topic '{topic}': {len(scored)} candidate stories from approved feeds.")
@@ -366,48 +428,98 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security"):
             if seed["url"] in tried:
                 continue
             label = seed["title"][:90]
-            first = get_source(seed["url"], feed_date=seed["date"], keys=keys)
-            if not first:
-                log(f"  skip '{label}': could not use the article: {why.get(seed['url'], 'unknown reason')}")
+            if any(same_case(case_keys(seed["title"]), k) for k in known):
+                log(f"  skip '{label}': already an existing case (the update desk follows it)")
+                tried.add(seed["url"])
                 continue
-            sources = [first]
-            for r in sorted(related, key=lambda r: r["outlet"]["id"] == seed["outlet"]["id"])[:MAX_RELATED_FETCHES]:
-                src = get_source(r["url"], feed_date=r["date"], keys=keys)
-                if src and all(src["url"] != x["url"] for x in sources):
-                    sources.append(src)
-            # follow links from approved articles: approved domains, or the organisation's own site
             org_names = {t for t in tokens(seed["title"]) if len(t) >= 3 and t not in GENERIC}
-            candidates = []
-            for src in list(sources):
-                for u in links_in(src.get("_html"), src["url"]):
-                    if any(u == x["url"] for x in sources) or u in candidates or JUNK_PATH.search(urlparse(u).path or "/"):
-                        continue
-                    o = outlet_for(u, cfg)
-                    own = (not o) and not host_of(u).endswith(".onion") and org_label(u) in org_names
-                    if o or own:
-                        candidates.append(u)
-            candidates.sort(key=lambda u: (0 if not outlet_for(u, cfg) else 1 if outlet_for(u, cfg)["tier"] == "A" else 2))
-            for u in candidates[:MAX_LINK_FETCHES]:
-                if len(sources) >= rules["max_sources"]:
-                    break
-                o = outlet_for(u, cfg)
-                if o:
-                    src = get_source(u, keys=keys)
-                elif rules.get("own_statement_counts_as_tier_a", True):
-                    src = get_source(u, tier_override="A", kind="own statement",
-                                     outlet_name=f"{org_label(u).capitalize()} (official statement)", keys=keys)
-                else:
-                    src = None
-                if src and all(src["url"] != x["url"] for x in sources):
-                    sources.append(src)
+            sources, reason = f.gather(seed, keys, related, org_names)
+            if not sources:
+                log(f"  skip '{label}': could not use the article: {reason}")
+                continue
             needs_own = desk == "security" and bool(CLAIM_PATTERN.search(seed["title"]))
             ok, reasons = evaluate(sources, rules, needs_own, now)
             outlets = sorted({f"{s['outlet']} ({s['tier']})" for s in sources})
             if not ok:
+                if allow_open and all(r.startswith(SPREAD_ONLY) for r in reasons):
+                    log(f"  open-case candidate '{label}': verified, but no then-vs-now gap yet [sources: {', '.join(outlets)}]")
+                    open_later.append((topic, sources, label))
+                    tried.update(x["url"] for x in sources)
+                    continue
                 log(f"  skip '{label}': " + "; ".join(reasons) + f" [sources: {', '.join(outlets)}]")
                 continue
             tried.update(x["url"] for x in sources)
             log(f"  PASS '{label}' with {len(sources)} sources: {', '.join(outlets)}")
-            # Tier A first, then oldest to newest, and strip internal fields
-            sources.sort(key=lambda s: (s["tier"] != "A", s["date"] or "9999"))
-            yield topic, [{k: v for k, v in s.items() if not k.startswith("_")} for s in sources[: rules["max_sources"]]]
+            yield topic, clean(sources, rules["max_sources"]), "case"
+    for topic, sources, label in open_later:
+        log(f"  trying as an OPEN case: '{label}'")
+        yield topic, clean(sources, rules["max_sources"]), "open"
+
+
+CASE_STOP = set("""
+about after again ahead also amid and announced announces are back before being both brings but can cheaper could
+date dates day days deliveries delivery did does double early faster fewer first for from gets had has have higher how
+into its just later less lower many measured month months more most much new news next not now off one only our out over
+percent plan plans promised promises really reported reports review said says schedule set sets shipped ships slower some
+still than that the their them then they this three time times twice two under unit units update updated updates was week
+weeks were what when which while who why will with within without year years you your
+january february march april may june july august september october november december
+""".split()) | {w for w in OUTCOME_WORDS if " " not in w}
+MODEL_NUMBER = re.compile(r"(?<![\d.,$A-Za-z])(\d{2,5})(?![\d.,%A-Za-z]|\s*(?:percent|per cent|x\b|times|gb|tb|mph|km|hours|days))", re.I)
+
+
+def case_keys(title):
+    """Name-like words (and model numbers such as 5090) of a case headline, to recognise later coverage of the SAME case."""
+    words = {t for t in tokens(title) if t not in GENERIC and t not in CASE_STOP}
+    nums = {n for n in MODEL_NUMBER.findall(title or "") if not re.fullmatch(r"(19|20)\d\d", n)}
+    return words | nums
+
+
+def _words(text):
+    return set(tokens(text)) | set(MODEL_NUMBER.findall(text or ""))
+
+
+def same_case(keys_a, keys_b):
+    shared = len(keys_a & keys_b)
+    return shared >= 2 and shared >= 0.6 * min(len(keys_a), len(keys_b))
+
+
+def find_update(case, finder, log=print):
+    """New, verified developments for an existing case, from approved feeds only.
+    case: dict with title, since (datetime of the last update or publication) and urls (every URL already used).
+    Returns (sources, reason). Every new source is dated AFTER 'since', is about the same case, and together they
+    include at least one Tier A source or two different outlets."""
+    f = finder
+    keys = case_keys(case["title"])
+    if not keys:
+        return None, "headline has no distinctive names to search for"
+    need = 3 if len(keys) >= 4 else min(2, len(keys))  # a one-name case must have that name in the headline
+    since = case["since"]
+    fresh = []
+    for i in f.items:
+        if i["date"] <= since or i["url"] in case["urls"] or DEAL_TITLE.search(i["title"]):
+            continue
+        hits = len(keys & _words(i["title"] + ("" if len(keys) == 1 else " " + i.get("summary", ""))))
+        if hits >= need:
+            fresh.append((hits, i))
+    if not fresh:
+        return None, "no new coverage in approved feeds"
+    fresh = [i for _, i in sorted(fresh, key=lambda x: (x[0], x[1]["date"]), reverse=True)]
+    org_names = {t for t in tokens(case["title"]) if len(t) >= 3 and t not in GENERIC}
+    reason = "new coverage could not be read"
+    for seed in fresh[:3]:
+        sources, why = f.gather(seed, keys, [i for i in fresh if i is not seed], org_names, skip_urls=set(case["urls"]))
+        if not sources:
+            reason = why
+            continue
+        new = [s for s in sources if s["url"] not in case["urls"]
+               and (parse_date(s["date"]) is not None and parse_date(s["date"]) > since)]
+        if not new:
+            reason = "no new source is dated after the last check"
+            continue
+        outlets = {s["outlet"] for s in new}
+        if not (any(s["tier"] == "A" for s in new) or len(outlets) >= 2):
+            reason = f"new coverage only from {', '.join(sorted(outlets))}: needs an official source or a second outlet"
+            continue
+        return clean(new, f.rules["max_sources"]), ""
+    return None, reason

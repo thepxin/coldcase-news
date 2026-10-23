@@ -27,6 +27,26 @@
       <span class="cct-desk-d">First case: Friday {{ $next.Format "Jan 2" }}, editor-reviewed</span>
       {{- end }}
     </a>
+    {{- /* Open cases: real numbers, computed when the site builds */}}
+    {{- $open := where $posts "Params.status" "open" }}
+    {{- $upcoming := slice }}{{ $recent := 0 }}
+    {{- range $posts }}{{ $s := partial "case_state.html" . }}{{ if $s.recent }}{{ $recent = add $recent 1 }}{{ end }}{{ end }}
+    {{- range $open }}{{ $p := . }}{{ with $p.Params.due_by }}{{ if (time.AsTime .).After (now.AddDate 0 0 -1) }}{{ $upcoming = $upcoming | append $p }}{{ end }}{{ end }}{{ end }}
+    <a class="cct-desk cct-desk--open" href="{{ "developing/" | relURL }}">
+      <span class="cct-chip cct-chip--open">{{ if $open }}<span class="cct-pulse" aria-hidden="true"></span>{{ end }}Open cases · {{ len $open }}</span>
+      <span class="cct-desk-t">Still being watched</span>
+      {{- if $open }}
+      {{- with $upcoming }}{{ with index (sort . "Params.due_by") 0 }}
+      <span class="cct-desk-d">No verdict yet. Next due: {{ .Params.due }}</span>
+      {{- end }}{{ else }}
+      <span class="cct-desk-d">No verdict yet. Due dates passed; still checking sources</span>
+      {{- end }}
+      {{- else if $recent }}
+      <span class="cct-desk-d">{{ $recent }} case{{ if ne $recent 1 }}s{{ end }} updated in the last 30 days</span>
+      {{- else }}
+      <span class="cct-desk-d">Promises with a future date are tracked here until they deliver</span>
+      {{- end }}
+    </a>
   </nav>
 
   <details class="cct-guide" id="cct-guide">
@@ -41,6 +61,7 @@
         <span class="cct-stamp cct-stamp--ok">Delivered</span> <span class="cct-stamp cct-stamp--warn">Partially Delivered</span> <span class="cct-stamp cct-stamp--bad">Not Delivered</span></p>
       <p><span class="cct-chip cct-chip--sec">Security</span>
         <span class="cct-stamp cct-stamp--ok">Verified</span> <span class="cct-stamp cct-stamp--warn">Partially True</span> <span class="cct-stamp cct-stamp--bad">Escalated</span></p>
+      <p><span class="cct-stamp cct-stamp--open">Open case</span> <span class="cct-legend-note">A promise with a future date. No verdict until a source confirms the outcome. Cases get dated updates; a changed verdict is always shown.</span></p>
     </div>
     <p class="cct-guide-more"><a href="{{ "about/" | relURL }}">How we verify ›</a></p>
   </details>

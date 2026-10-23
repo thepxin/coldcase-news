@@ -1,0 +1,2 @@
+{{- /* "UPDATED OCT 30" label for a case that got a dated update in the last 30 days. Pass the case_state dict. */ -}}
+{{- if .recent }}<span class="cct-upd" title="New verified facts were added to this case">Updated <time datetime="{{ .last }}">{{ (time.AsTime .last).Format "Jan 2" }}</time></span>{{ end -}}

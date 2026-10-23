@@ -3,6 +3,39 @@ Prints the pull request title. Used by .github/workflows/daily_news.yml."""
 import json
 import sys
 
+if sys.argv[1:] == ["update"]:
+    # A dated update to an existing Security Friday case: it also needs your review.
+    try:
+        u = json.load(open("post_meta_update.json", encoding="utf-8"))
+    except Exception:
+        print("Security case update for review")
+        open("pr_body.md", "w", encoding="utf-8").write("A security case got a dated update. Open **Files changed** to read it.\n")
+        sys.exit(0)
+    e = u.get("entry", {})
+    moved = ""
+    if e.get("verdict_from") != e.get("verdict_to"):
+        moved = f"**Verdict change:** {e.get('verdict_from') or 'none'} -> {e.get('verdict_to')}"
+    out = ["## Security Friday: update to an existing case", "",
+           "The original case text is unchanged. One dated update was added to its `updates:` list (top of the file), "
+           "and the case's status lines (`verdict`, `now`) were set to the newest state. It passed the source rules, "
+           "the hard checks and a clean AI fact-check. **Nothing is live until you merge.**", "",
+           f"**Case:** {u.get('title', '')}", f"**Update ({e.get('date', '')}):** {e.get('summary', '')}", "",
+           e.get("text", ""), ""]
+    if moved:
+        out += [moved, ""]
+    out += [f"**Automated result:** {u.get('report', '')}", "", "### New sources"]
+    for x in e.get("sources", []):
+        out.append(f"- **{x.get('outlet', '')}** (Tier {x.get('tier', '')}, {x.get('date', '') or 'undated'}): [{x.get('title', 'source')}]({x.get('url', '')})")
+    out += ["", "### Your check (about 5 minutes)",
+            "- [ ] The new sources are about the same incident",
+            "- [ ] Every number, name and date in the update matches its cited source",
+            "- [ ] A verdict change (if any) matches what the sources say", "",
+            "**Publish:** Merge pull request. **Reject:** Close pull request (the case stays as it was).", "",
+            f"File: `{u.get('file', '')}`"]
+    open("pr_body.md", "w", encoding="utf-8").write("\n".join(out) + "\n")
+    print(("Security case update: " + u.get("title", "case"))[:240])
+    sys.exit(0)
+
 try:
     m = json.load(open("post_meta_security.json", encoding="utf-8"))
 except Exception:

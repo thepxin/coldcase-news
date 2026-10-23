@@ -64,12 +64,14 @@
 {{- $class = "post-entry tag-entry" }}
 {{- end }}
 
-{{- if .Params.verdict }}
-{{- /* ColdCaseTech case card: desk, verdict, headline, then -> now, and the sources it was checked against */}}
-<article class="{{ $class }} cct-card{{ with .Params.desk }} cct-card--{{ . }}{{ end }}">
+{{- if partial "is_case.html" . }}
+{{- /* ColdCaseTech case card: desk, verdict (or OPEN), headline, then -> now, and the sources it was checked against */}}
+{{- $s := partial "case_state.html" . }}
+<article class="{{ $class }} cct-card{{ with .Params.desk }} cct-card--{{ . }}{{ end }}{{ if $s.open }} cct-card--open{{ end }}">
   <div class="cct-meta">
     {{ partial "desk_chip.html" . }}
     <time datetime="{{ .Date.UTC.Format "2006-01-02" }}">{{ .Date.UTC.Format "Jan 2, 2006" }}</time>
+    {{ partial "upd_label.html" $s }}
     {{ partial "verdict_stamp.html" . }}
   </div>
   <header class="entry-header">
@@ -79,8 +81,13 @@
   {{- $l := partial "tv_labels.html" . }}
   <dl class="cct-pv">
     <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then }}</dd></div>
+    {{- if $s.open }}
+    <div><dt>Outcome</dt><dd>{{ if $s.pastdue }}Was due {{ .Params.due }}. No verdict until a source confirms what happened.{{ else }}Due {{ .Params.due }}. We'll check and close this case.{{ end }}</dd></div>
+    {{- else }}
     <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now }}</dd></div>
+    {{- end }}
   </dl>
+  {{- with $s.change }}<p class="cct-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
   {{- else if (ne (.Param "hideSummary") true) }}
   <div class="entry-content"><p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p></div>
   {{- end }}

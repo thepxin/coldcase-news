@@ -60,12 +60,15 @@ def read_post(path):
     cover = img.group(1).strip().strip("\"'") if img else ""
     try:
         import yaml
-        stored_sources = (yaml.safe_load(fm) or {}).get("sources") or []
+        parsed = yaml.safe_load(fm) or {}
+        stored_sources = parsed.get("sources") or []
+        updates = parsed.get("updates") or []
     except Exception:
-        stored_sources = []
+        stored_sources, updates = [], []
     return {"title": field("title"), "cover": cover, "body": body, "sources": stored_sources,
             "verdict": field("verdict"), "then": field("then"), "now": field("now"),
-            "toolkit": field("toolkit"), "date": field("date"), "desk": field("desk")}
+            "toolkit": field("toolkit"), "date": field("date"), "desk": field("desk"),
+            "status": field("status"), "due": field("due"), "updates": updates}
 
 
 def canonical_for(path):
@@ -122,7 +125,13 @@ def affiliate_markdown(post):
 def build_body(post, canonical):
     body = post["body"].replace("](/go/", f"]({BASE_URL}/go/")
     card_md, kit_md = affiliate_markdown(post)
-    src = post.get("sources") or []
+    src = list(post.get("sources") or [])
+    ups = [u for u in post.get("updates") or [] if isinstance(u, dict)]
+    for u in ups:
+        src += [x for x in u.get("sources") or [] if isinstance(x, dict)]
+    if ups:  # dated updates go first, newest first, like on the site
+        lines = [f"- **{u.get('date', '')}**: {u.get('text', '')}" for u in sorted(ups, key=lambda u: str(u.get("date")), reverse=True)]
+        body = "## Case updates\n" + "\n".join(lines) + "\n\n## Original case\n\n" + body
     if src and "## Sources" not in body:
         body = body.rstrip() + "\n\n## Sources\n" + "\n".join(
             f"- [{x.get('outlet', '')}, {x.get('date', '')}]({x.get('url', '')})" for x in src if x.get("url"))
@@ -131,7 +140,9 @@ def build_body(post, canonical):
                   if "/go/" in body else "")
     case = ""
     if post.get("then") and post.get("now"):
-        case = (f"> **Then vs. Now ({post.get('verdict') or 'Under review'}):** "
+        label = ("Open case, no verdict yet" + (f", due {post['due']}" if post.get("due") else "")) \
+            if post.get("status") == "open" else (post.get("verdict") or "Under review")
+        case = (f"> **Then vs. Now ({label}):** "
                 f"**Then:** {post['then']} **Now:** {post['now']}\n\n")
     return (
         f"> **Originally published on [ColdCaseTech]({canonical}).**\n\n"

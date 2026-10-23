@@ -1,6 +1,8 @@
-{{- /* Number of sources: from the stored list when present, otherwise counted from external links in the text. */ -}}
+{{- /* Number of sources: the stored list plus every update's sources; otherwise counted from external links in the text. */ -}}
 {{- if .Params.sources -}}
-  {{- return len .Params.sources -}}
+  {{- $n := len .Params.sources -}}
+  {{- range .Params.updates }}{{ $n = add $n (len (.sources | default slice)) }}{{ end -}}
+  {{- return $n -}}
 {{- end -}}
 {{- $links := findRE `href="https?://[^"]+"` .Content -}}
 {{- $uniq := slice -}}

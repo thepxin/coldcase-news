@@ -44,6 +44,10 @@ menu:
       name: Security Friday
       url: /tags/security-friday/
       weight: 15
+    - identifier: developing
+      name: Developing
+      url: /developing/
+      weight: 17
     - identifier: radar
       name: Threat Radar
       url: /radar/

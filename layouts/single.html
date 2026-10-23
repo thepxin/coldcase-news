@@ -2,13 +2,18 @@
 {{- define "main" }}
 
 <article class="post-single">
-  {{- if .Params.verdict }}
+  {{- $isCase := partial "is_case.html" . }}
+  {{- $s := partial "case_state.html" . }}
+  {{- if $isCase }}
   {{- /* ColdCaseTech case header */}}
   <header class="post-header cct-case-header">
     {{ partial "breadcrumbs.html" . }}
-    <p class="cct-caseline">{{ partial "desk_chip.html" . }}{{ with partial "case_id.html" . }}<span>CASE {{ . }}</span>{{ end }}<time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "Jan 2, 2006" }}</time></p>
+    <p class="cct-caseline">{{ partial "desk_chip.html" . }}{{ with partial "case_id.html" . }}<span>CASE {{ . }}</span>{{ end }}<time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "Jan 2, 2006" }}</time>{{ partial "upd_label.html" $s }}</p>
     <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
     <p class="cct-stamp-row">{{ partial "verdict_stamp.html" . }}</p>
+    {{- if $s.open }}
+    <p class="cct-due">{{ if $s.pastdue }}Was due <b>{{ .Params.due }}</b>. No verdict until a source confirms what happened{{ else }}Due <b>{{ .Params.due }}</b>. We'll check and close this case{{ end }}{{ with $s.checked }} · last checked <time datetime="{{ . }}">{{ (time.AsTime .).Format "Jan 2" }}</time>{{ end }}</p>
+    {{- end }}
     <p class="cct-verify">
       {{- $n := partial "source_count.html" . }}
       {{- if gt $n 0 }}<span>SOURCES <b>{{ $n }}</b></span>{{ end }}
@@ -31,6 +36,7 @@
     </div>
     {{- end }}
   </header>
+  {{- partial "case_updates.html" . }}
   {{- else }}
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
@@ -74,7 +80,8 @@
   </div>
   {{- end }}
 
-  {{- if .Params.verdict }}
+  {{- if $isCase }}
+  {{- if or $s.open $s.n }}{{ partial "verdicts_cta.html" (dict "target" "post-end") }}{{ end }}
   {{- partial "sources_box.html" . }}
   {{- partial "case_note.html" . }}
   {{- if not (in .Content "cct-rec-card") }}{{ partial "affiliate/card.html" . }}{{ end }}

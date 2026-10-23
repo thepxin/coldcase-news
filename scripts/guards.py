@@ -93,8 +93,10 @@ def _dates(text):
     return full, partial, years
 
 
-def check_article(article_texts, sources):
-    """article_texts: list of strings (headline, then, now, body...). Returns a list of problems (empty = pass)."""
+def check_article(article_texts, sources, must_cite=None):
+    """article_texts: list of strings (headline, then, now, body...). Returns a list of problems (empty = pass).
+    must_cite: the sources that must each be cited at least once (default: all of them). A case update may also
+    cite the case's original sources, but must cite every NEW source."""
     problems = []
     text = "\n".join(article_texts)
     src_text = "\n".join((s.get("title") or "") + "\n" + (s.get("excerpt") or "") for s in sources)
@@ -143,7 +145,7 @@ def check_article(article_texts, sources):
     # 5. explicit citations (the body is the last text passed in that contains Markdown links)
     bodies = [t for t in article_texts if "\n" in (t or "")]
     if bodies:
-        problems += citation_problems(bodies[0], sources)
+        problems += citation_problems(bodies[0], sources if must_cite is None else must_cite)
 
     # 6. conclusions / opinion
     for m in sorted({m.group(0).lower() for m in OPINION.finditer(MD_LINK.sub("]()", text))}):

@@ -25,6 +25,10 @@ ColdCaseTech does not draw conclusions. Each case reports then, now, and one ver
 
 **Security verdicts:** `Verified` (the early reports held up), `Partially True` (some held up, others were corrected, disputed or remain unconfirmed), `Escalated` (later sources show a larger scope or impact than first reported).
 
+**Open cases:** when an official source promises something with a concrete future date (for example "ships in December 2026"), and no source states the outcome yet, the case is published as an `Open case` with no verdict. It gets a verdict only when an approved source confirms what happened. A due date passing is not, on its own, a verdict.
+
+**Updates, not rewrites:** when approved sources report something new about a case, we add a dated update at the top of the case, with its own citations, checked the same way as a new case. The original case is never rewritten. If a verdict changes, the page shows the old and the new verdict and the date of the change. Open cases and recently updated cases are listed on [Developing](/developing/).
+
 #### Approved sources
 {{< approved-sources >}}
 

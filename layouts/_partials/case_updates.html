@@ -1,0 +1,24 @@
+{{- /* "Case updates (N)": dated, cited updates, newest first. The original case below is never rewritten. */ -}}
+{{- with .Params.updates }}
+<section class="cct-updates" aria-labelledby="cct-updates-h">
+  <h2 id="cct-updates-h">Case updates ({{ len . }})</h2>
+  <ol>
+    {{- range sort . "date" "desc" }}
+    <li>
+      <time datetime="{{ .date }}">{{ (time.AsTime .date).Format "Jan 2, 2006" }}</time>
+      <p class="cct-upd-sum">{{ .summary }}</p>
+      <div class="cct-upd-text">{{ .text | markdownify }}</div>
+      {{- if and (eq .status_from "open") (eq .status_to "closed") }}
+      <p class="cct-upd-vc">Case closed. {{ partial "verdict_change.html" (dict "from" "Open case" "to" .verdict_to) }}</p>
+      {{- else if and .verdict_to (ne (string .verdict_from) (string .verdict_to)) }}
+      <p class="cct-upd-vc">{{ partial "verdict_change.html" (dict "from" .verdict_from "to" .verdict_to) }}</p>
+      {{- end }}
+    </li>
+    {{- end }}
+    <li class="cct-upd-first">
+      <time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "Jan 2, 2006" }}</time>
+      <p class="cct-upd-sum">Case opened{{ if eq (index (sort . "date") 0).status_from "open" }} as an open case{{ end }}. The original case is below, unchanged.</p>
+    </li>
+  </ol>
+</section>
+{{- end -}}

@@ -68,7 +68,62 @@ def check_file(path):
         for u in guards.MD_LINK.findall(line):
             if guards._norm_url(u) not in allowed:
                 problems.append((offset + i - 1, f"link is not one of this post's sources: {u}"))
+    problems += check_status(fm)
+    problems += check_updates(fm, allowed)
     return problems
+
+
+LABELS = {"tech": ("Delivered", "Partially Delivered", "Not Delivered"),
+          "security": ("Verified", "Partially True", "Escalated")}
+
+
+def check_status(fm):
+    """An open case has no verdict and a due date; a closed case has one of its desk's verdicts."""
+    status = str(fm.get("status") or "closed")
+    verdict = str(fm.get("verdict") or "")
+    desk = str(fm.get("desk") or "")
+    if status == "open":
+        out = []
+        if verdict:
+            out.append((1, f"an open case must have an empty verdict (found '{verdict}')"))
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(fm.get("due_by") or "")):
+            out.append((1, "an open case needs due_by: \"YYYY-MM-DD\""))
+        return out
+    if status != "closed":
+        return [(1, f"status must be \"open\" or \"closed\" (found '{status}')")]
+    if desk in LABELS and verdict not in LABELS[desk]:
+        return [(1, f"verdict '{verdict}' is not one of: {', '.join(LABELS[desk])}")]
+    return []
+
+
+def check_updates(fm, case_urls):
+    """Every dated update: each sentence cited, every link is a source of the case or of that update,
+    and every source of the update is cited in it."""
+    out = []
+    for n, u in enumerate(fm.get("updates") or [], 1):
+        if not isinstance(u, dict):
+            out.append((1, f"update {n} is not readable"))
+            continue
+        name = f"update {n} ({u.get('date', 'no date')})"
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(u.get("date") or "")):
+            out.append((1, f"{name}: date must be YYYY-MM-DD"))
+        text = str(u.get("text") or "")
+        srcs = [x for x in u.get("sources") or [] if isinstance(x, dict) and x.get("url")]
+        if not text or not srcs:
+            out.append((1, f"{name}: needs text and at least one source"))
+            continue
+        for _, t in guards.uncited_lines(text):
+            out.append((1, f"{name}: no source link on: '{t}'"))
+        ok = case_urls | {guards._norm_url(x["url"]) for x in srcs}
+        cited = {guards._norm_url(x) for x in guards.MD_LINK.findall(text)}
+        for x in srcs:
+            if guards._norm_url(x["url"]) not in cited:
+                out.append((1, f"{name}: source never cited: {x.get('outlet', '')} {x['url']}"))
+        for x in cited - ok:
+            out.append((1, f"{name}: link is not a source: {x}"))
+        for m in re.finditer(r"\[([^\]]+)\](?!\()", text):
+            out.append((1, f"{name}: '[{m.group(1)[:60]}]' has lost its (link)"))
+    return out
 
 
 def main(paths):

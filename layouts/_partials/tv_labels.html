@@ -1,4 +1,5 @@
-{{- /* Returns the Then/Now labels for the page's desk. */ -}}
+{{- /* Returns the Then/Now labels for the page's desk. Open cases: Promised / Status now. */ -}}
 {{- $l := slice "First reported" "Confirmed now" -}}
 {{- if eq .Params.desk "tech" }}{{ $l = slice "Promised" "Delivered" }}{{ end -}}
+{{- if eq .Params.status "open" }}{{ $l = slice "Promised" "Status now" }}{{ end -}}
 {{- return $l -}}

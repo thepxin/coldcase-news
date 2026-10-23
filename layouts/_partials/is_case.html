@@ -1,0 +1,2 @@
+{{- /* True for a ColdCaseTech case: it has a verdict, or it is an open case (no verdict yet). */ -}}
+{{- return (or .Params.verdict (eq .Params.status "open")) -}}

@@ -1,14 +1,17 @@
-{{- /* Every source the case was written from, with working links, rendered from the post's own 'sources:' list.
-       It stays correct even if the article text is edited. */ -}}
-{{- with .Params.sources }}
+{{- /* Every source the case was written from, plus the sources of each later update, with working links.
+       Rendered from the post's own 'sources:' and 'updates:' lists, so it stays correct even if the text is edited. */ -}}
+{{- if .Params.sources }}
+{{- $all := slice }}
+{{- range .Params.sources }}{{ $all = $all | append (merge . (dict "added" "")) }}{{ end }}
+{{- range .Params.updates }}{{ $d := .date }}{{ range .sources }}{{ $all = $all | append (merge . (dict "added" $d)) }}{{ end }}{{ end }}
 <section class="cct-sources" aria-labelledby="cct-sources-h">
-  <h2 id="cct-sources-h">Sources checked for this case ({{ len . }})</h2>
+  <h2 id="cct-sources-h">Sources checked for this case ({{ len $all }})</h2>
   <ol>
-    {{- range sort . "date" }}
+    {{- range sort $all "date" }}
     <li>
       <span class="cct-src-tier cct-src-tier--{{ lower .tier }}">{{ if eq .kind "own statement" }}Official statement{{ else if eq .tier "A" }}Official{{ else }}Newsroom{{ end }}</span>
       <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
-      <span class="cct-src-meta">{{ index (split .outlet " (") 0 }}{{ with .date }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }} · {{ replaceRE "^https?://(www\\.)?([^/]+).*$" "$2" .url }}</span>
+      <span class="cct-src-meta">{{ index (split .outlet " (") 0 }}{{ with .date }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }} · {{ replaceRE "^https?://(www\\.)?([^/]+).*$" "$2" .url }}{{ with .added }} · <b class="cct-src-added">added in the {{ (time.AsTime .).Format "Jan 2" }} update</b>{{ end }}</span>
     </li>
     {{- end }}
   </ol>
