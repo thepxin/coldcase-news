@@ -1,0 +1,9 @@
+{{- /* "Checked against: NVIDIA (official) · Tom's Hardware · Engadget" from the post's stored source list. */ -}}
+{{- with .Params.sources }}
+{{- $a := where . "tier" "A" }}{{ $b := where . "tier" "B" }}
+{{- $names := slice }}{{ $seen := slice }}
+{{- range (append $b $a) }}{{ $n := index (split .outlet " (") 0 }}{{ if not (in $seen $n) }}{{ $seen = $seen | append $n }}{{ $names = $names | append (dict "n" $n "a" (eq .tier "A")) }}{{ end }}{{ end }}
+<p class="cct-checked">Checked against:
+  {{- range $i, $x := first 3 $names }}{{ if $i }} ·{{ end }} <span>{{ $x.n }}</span>{{ if $x.a }}<em>official</em>{{ end }}{{ end }}
+  {{- if gt (len $names) 3 }} · +{{ sub (len $names) 3 }} more{{ end }}</p>
+{{- end -}}

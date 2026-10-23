@@ -1,26 +1,56 @@
-{{- /* ColdCaseTech homepage intro: boot line, headline, and a status strip built only from real build-time data. */ -}}
+{{- /* ColdCaseTech homepage intro. Built for a calm first impression: one headline, one line of context,
+       two desk choices, and a short optional guide. Every number shown is real build-time data. */ -}}
 {{- $posts := where site.RegularPages "Section" "posts" -}}
-{{- $latest := index $posts.ByDate.Reverse 0 -}}
-{{- $ver := len (where $posts "Params.verdict" "in" (slice "Verified" "Delivered")) -}}
-{{- $part := len (where $posts "Params.verdict" "in" (slice "Partially True" "Partially Delivered")) -}}
-{{- $esc := len (where $posts "Params.verdict" "in" (slice "Escalated" "Not Delivered")) -}}
+{{- $sec := where $posts "Params.desk" "security" -}}
+{{- $kev := partial "feeds/get.html" "kev" -}}
 <section class="cct-home" aria-labelledby="cct-home-title">
-  <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> open --cases --after-the-headlines</p>
-  <h1 id="cct-home-title">What they reported vs. what actually happened.</h1>
-  <p class="cct-lead">We revisit tech and security incidents after the headlines fade, and mark each case
-    <span class="cct-stamp cct-stamp--ok">Verified</span>
-    <span class="cct-stamp cct-stamp--warn">Partially True</span> or
-    <span class="cct-stamp cct-stamp--bad">Escalated</span>.
-    <a href="{{ "about/" | relURL }}">How we verify&nbsp;›</a></p>
-  <dl class="cct-strip" aria-label="Case board status">
-    <div><dt>Cases on file</dt><dd>{{ len $posts }}</dd></div>
-    <div><dt>Verdicts</dt><dd><span class="v-ok" title="Verified">{{ $ver }}</span> · <span class="v-warn" title="Partially True">{{ $part }}</span> · <span class="v-bad" title="Escalated">{{ $esc }}</span></dd></div>
-    {{- with $latest }}
-    <div><dt>Latest case</dt><dd><time datetime="{{ .Date.UTC.Format "2006-01-02T15:04:05Z" }}">{{ .Date.UTC.Format "2006-01-02" }}</time></dd></div>
-    {{- end }}
-    {{- with partial "feeds/get.html" "kev" }}{{ with .count }}
-    <div><dt>KEV entries</dt><dd><a href="{{ "radar/#kev" | relURL }}">{{ lang.FormatNumber 0 . }}</a></dd></div>
-    {{- end }}{{ end }}
-    <div><dt>Updated (UTC)</dt><dd><time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "01-02 15:04" }}</time></dd></div>
-  </dl>
+  <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> open --cases --promised-vs-delivered</p>
+  <h1 id="cct-home-title">What they promised. What actually happened.</h1>
+  <p class="cct-lead">We check tech promises and security incidents against sources you already trust, and turn each one into a short case with one clear verdict.</p>
+
+  <nav class="cct-desks" aria-label="Desks">
+    <a class="cct-desk cct-desk--tech" href="{{ "tags/tech/" | relURL }}">
+      <span class="cct-chip cct-chip--tech">Tech · daily</span>
+      <span class="cct-desk-t">Promised vs. delivered</span>
+      <span class="cct-desk-d">Launches, specs, AI, chips, EVs, space, crypto, policy</span>
+    </a>
+    <a class="cct-desk cct-desk--sec" href="{{ "tags/security-friday/" | relURL }}">
+      <span class="cct-chip cct-chip--sec">Security Friday · weekly</span>
+      <span class="cct-desk-t">Reported vs. confirmed</span>
+      {{- $days := dict "Friday" 0 "Saturday" 6 "Sunday" 5 "Monday" 4 "Tuesday" 3 "Wednesday" 2 "Thursday" 1 }}
+      {{- $d := index $days (now.UTC.Format "Monday") }}
+      {{- if and (eq $d 0) (ge (int (now.UTC.Format "15")) 15) }}{{ $d = 7 }}{{ end }}
+      {{- $next := now.UTC.AddDate 0 0 $d }}
+      {{- with first 1 $sec.ByDate.Reverse }}{{ range . }}
+      <span class="cct-desk-d">Latest: {{ .Title | truncate 60 }}</span>
+      {{- end }}{{ else }}
+      <span class="cct-desk-d">First case: Friday {{ $next.Format "Jan 2" }}, editor-reviewed</span>
+      {{- end }}
+    </a>
+  </nav>
+
+  <details class="cct-guide" id="cct-guide">
+    <summary>How to read a case <span>20 seconds</span></summary>
+    <ol class="cct-steps">
+      <li><b>Then</b> What was promised, claimed or first reported, and by whom.</li>
+      <li><b>Now</b> What trusted sources say actually happened. Every line links to its source.</li>
+      <li><b>Verdict</b> One stamp. We report; we do not add opinions.</li>
+    </ol>
+    <div class="cct-legend">
+      <p><span class="cct-chip cct-chip--tech">Tech</span>
+        <span class="cct-stamp cct-stamp--ok">Delivered</span> <span class="cct-stamp cct-stamp--warn">Partially Delivered</span> <span class="cct-stamp cct-stamp--bad">Not Delivered</span></p>
+      <p><span class="cct-chip cct-chip--sec">Security</span>
+        <span class="cct-stamp cct-stamp--ok">Verified</span> <span class="cct-stamp cct-stamp--warn">Partially True</span> <span class="cct-stamp cct-stamp--bad">Escalated</span></p>
+    </div>
+    <p class="cct-guide-more"><a href="{{ "about/" | relURL }}">How we verify ›</a></p>
+  </details>
+
+  <p class="cct-stats">
+    {{- if $posts }}<span>{{ len $posts }} case{{ if ne (len $posts) 1 }}s{{ end }} on file</span>{{ end }}
+    {{- with $kev.count }}<span><a href="{{ "radar/#kev" | relURL }}">{{ lang.FormatNumber 0 . }}</a> exploited flaws tracked</span>{{ end }}
+    <span>Updated <time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "Jan 2, 15:04" }} UTC</time></span>
+  </p>
+  {{- if not $posts }}
+  <p class="cct-empty-home">The first cases are being checked now. A new tech case is published every day at 20:00 IST, after it passes every check.</p>
+  {{- end }}
 </section>

@@ -18,16 +18,18 @@
 :root[data-theme="light"]{
   --cct-signal:#39ff88;          /* LIVE dots, cursor, prompt, money buttons ONLY */
   --cct-base:#0b0a14;
-  --cct-surface:#14122a;
-  --cct-surface-2:#191540;
-  --cct-line:#2f2860;            /* quiet borders */
-  --cct-purple:#7c3aed;          /* borders, glows – never small text */
-  --cct-violet:#a78bfa;          /* links, small text */
-  --cct-text:#e8e6f6;
-  --cct-muted:#b4aed4;
-  --cct-ok:#34d399;              /* Verified stamp */
-  --cct-warn:#fbbf24;            /* Partially True stamp */
-  --cct-bad:#ff5d6c;             /* Escalated stamp */
+  --cct-surface:#131126;
+  --cct-surface-2:#17152b;
+  --cct-line:#25213e;            /* quiet borders */
+  --cct-purple:#6d4fc2;          /* accents only – never small text */
+  --cct-tech:#b3a6ee;            /* Tech desk */
+  --cct-sec:#9fc0e6;             /* Security Friday desk */
+  --cct-violet:#b3a6ee;          /* links, small text */
+  --cct-text:#e4e1ef;
+  --cct-muted:#a8a3c2;
+  --cct-ok:#74cfa6;              /* Verified stamp */
+  --cct-warn:#e2b866;            /* Partially True stamp */
+  --cct-bad:#ec8b95;             /* Escalated stamp */
   --cct-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --cct-serif:"Source Serif 4",Georgia,"Iowan Old Style",Cambria,serif;
 
@@ -276,3 +278,100 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 .cct-approved h4{font:700 12px var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cct-violet);margin:14px 0 6px}
 .cct-approved ul{margin:0;padding-left:20px;font-size:15.5px}
 .cct-approved li span{color:var(--cct-muted);font:12.5px var(--cct-mono)}
+
+
+/* =========================================================
+   Design v2 – calmer, less crowded (evidence: simple + familiar layouts win first impressions;
+   readers scan, so the verdict and the then -> now gap come first)
+   ========================================================= */
+body{font-size:17.5px}
+.header{border-bottom-color:transparent}
+#menu a{font-size:14px}
+.logo a::after{opacity:.8}
+
+/* hero */
+.cct-home{margin:34px 0 26px}
+.cct-boot{opacity:.8}
+.cct-home h1{font-size:clamp(26px,4.4vw,38px);letter-spacing:-.01em;margin:6px 0 10px}
+.cct-lead{font-size:17px;max-width:58ch;margin-bottom:22px}
+
+/* desk choice */
+.cct-desks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 14px}
+.cct-desk{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border:1px solid var(--cct-line);border-radius:12px;background:var(--cct-surface);text-decoration:none;transition:border-color .2s}
+.cct-desk:hover{border-color:var(--cct-violet)}
+.cct-desk--sec:hover{border-color:var(--cct-sec)}
+.cct-desk-t{font:700 16px var(--cct-mono);color:var(--cct-text);margin-top:4px}
+.cct-desk-d{font-size:14px;line-height:1.45;color:var(--cct-muted)}
+@media (max-width:600px){.cct-desks{grid-template-columns:1fr}}
+
+/* desk chips */
+.cct-chip{display:inline-flex;align-items:center;gap:6px;width:fit-content;font:700 10.5px/1.6 var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:1px 9px;text-decoration:none!important;opacity:.95}
+.cct-chip svg{width:11px;height:11px}
+.cct-chip--tech{color:var(--cct-tech)}.cct-chip--sec{color:var(--cct-sec)}
+
+/* reader guide (closed by default; opens on a visitor's first visit) */
+.cct-guide{border:1px solid var(--cct-line);border-radius:12px;padding:10px 16px;margin:0 0 14px;background:transparent}
+.cct-guide summary{cursor:pointer;font:700 13px var(--cct-mono);color:var(--cct-violet);list-style:none}
+.cct-guide summary::-webkit-details-marker{display:none}
+.cct-guide summary::after{content:" +";color:var(--cct-muted)}
+.cct-guide[open] summary::after{content:" –"}
+.cct-guide summary span{font-weight:400;color:var(--cct-muted);margin-left:6px}
+.cct-steps{list-style:none;margin:12px 0 6px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cct-steps li{font-size:14.5px;line-height:1.5;color:var(--cct-muted)}
+.cct-steps b{display:block;font:700 12px var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cct-text)}
+.cct-legend p{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.cct-guide-more{margin:6px 0 2px;font:13px var(--cct-mono)}
+@media (max-width:600px){.cct-steps{grid-template-columns:1fr}}
+
+/* one quiet line instead of five boxes */
+.cct-strip{display:none}
+.cct-stats{display:flex;flex-wrap:wrap;gap:4px 18px;font:12.5px var(--cct-mono);color:var(--cct-muted);margin:6px 0 0}
+.cct-stats a{color:var(--cct-text);text-decoration:none;border-bottom:1px dotted var(--cct-muted)}
+.cct-empty-home{margin:22px 0 0;padding:14px 16px;border:1px dashed var(--cct-line);border-radius:12px;color:var(--cct-muted);font-size:16px}
+
+/* stamps: calmer */
+.cct-stamp{border-width:1.5px;transform:none;padding:0 7px;font-size:10.5px}
+.cct-stamp--ok::before{border-width:0 1.5px 1.5px 0}
+
+/* case cards: no heavy boxes; hairline separation, verdict + gap first */
+.post-entry{background:transparent;border:0;border-top:1px solid var(--cct-line);border-radius:0;padding:20px 2px 18px;margin:0;box-shadow:none}
+.post-entry:hover,.post-entry:focus-within{box-shadow:none;background:transparent}
+.post-entry:hover .entry-header h2{color:#fff}
+.cct-meta{gap:10px;color:var(--cct-muted)}
+.post-entry .entry-header h2{font-size:21px;line-height:1.3;margin:8px 0 10px}
+.cct-tv{display:none}
+.cct-pv{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin:0}
+.cct-pv div{border-left:2px solid var(--cct-line);padding:0 0 0 10px}
+.cct-pv dt{font:700 10.5px var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cct-muted)}
+.cct-pv dd{margin:2px 0 0;font-size:15.5px;line-height:1.45;color:var(--cct-text)}
+.cct-card--tech .cct-pv div:last-child{border-left-color:var(--cct-tech)}
+.cct-card--security .cct-pv div:last-child{border-left-color:var(--cct-sec)}
+.cct-checked{margin:10px 0 0;font:12px var(--cct-mono);color:var(--cct-muted)}
+.cct-checked span{color:var(--cct-text)}
+.cct-checked em{font-style:normal;font-size:10px;color:var(--cct-ok);border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:4px}
+@media (max-width:600px){.cct-pv{grid-template-columns:1fr}}
+
+/* case page */
+.cct-caseline{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-weight:400;letter-spacing:.04em;color:var(--cct-muted)}
+.cct-tvbox{border-color:var(--cct-line)}
+.cct-tvbox>div+div{border-left-color:var(--cct-line)}
+.cct-tvbox h2{text-transform:uppercase;letter-spacing:.08em}
+.cct-sources{margin:32px 0 10px;padding:16px 18px;border:1px solid var(--cct-line);border-radius:12px;background:var(--cct-surface)}
+.cct-sources h2{font:700 12px var(--cct-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cct-violet);margin:0 0 10px}
+.cct-sources ol{margin:0;padding-left:20px}
+.cct-sources li{margin:0 0 10px;font-size:15.5px;line-height:1.45}
+.cct-sources li a{color:var(--cct-text)}
+.cct-src-tier{display:inline-block;font:700 10px var(--cct-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor;border-radius:3px;padding:0 5px;margin-right:6px;vertical-align:1px}
+.cct-src-tier--a{color:var(--cct-ok)}.cct-src-tier--b{color:var(--cct-muted)}
+.cct-src-meta{display:block;font:12px var(--cct-mono);color:var(--cct-muted);margin-top:2px}
+
+/* side panels: quieter */
+.cct-feed{background:transparent;border-color:var(--cct-line)}
+.cct-feed h2{color:var(--cct-muted)}
+.cct-pulse{animation-duration:4s}
+
+/* money actions: acid green only here, no glow */
+.cct-btn-money:hover{box-shadow:none;filter:brightness(1.08)}
+.cct-news{border-color:var(--cct-line);border-left:3px solid var(--cct-signal)}
+.cct-dot{box-shadow:none}
+.cct-rec-card{border-color:var(--cct-line)}

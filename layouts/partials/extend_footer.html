@@ -36,3 +36,9 @@ document.addEventListener('submit', async function (e) {
   msg.textContent = 'Almost done: open the email we just sent to ' + email + ' and click the confirm link. Your checklist link is in that email.';
 });
 </script>
+<script>
+/* Reader guide: open on a visitor's first visit only (remembered in this browser; works without it too). */
+(function(){var g=document.getElementById('cct-guide');if(!g)return;var seen=false;
+try{seen=localStorage.getItem('cct-guide-seen')==='1';}catch(e){}
+if(!seen){g.open=true;try{localStorage.setItem('cct-guide-seen','1');}catch(e){}}})();
+</script>

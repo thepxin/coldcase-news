@@ -1,0 +1,4 @@
+{{- /* Returns the Then/Now labels for the page's desk. */ -}}
+{{- $l := slice "First reported" "Confirmed now" -}}
+{{- if eq .Params.desk "tech" }}{{ $l = slice "Promised" "Delivered" }}{{ end -}}
+{{- return $l -}}

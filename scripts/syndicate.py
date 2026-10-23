@@ -23,6 +23,8 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 BASE_URL = "https://coldcasetech.com"
 INDEXNOW_KEY = "cctindexnow2026key8941"
 DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
@@ -56,9 +58,14 @@ def read_post(path):
 
     img = re.search(r"^\s+image:\s*(.+)$", fm, re.M)
     cover = img.group(1).strip().strip("\"'") if img else ""
-    return {"title": field("title"), "cover": cover, "body": body,
+    try:
+        import yaml
+        stored_sources = (yaml.safe_load(fm) or {}).get("sources") or []
+    except Exception:
+        stored_sources = []
+    return {"title": field("title"), "cover": cover, "body": body, "sources": stored_sources,
             "verdict": field("verdict"), "then": field("then"), "now": field("now"),
-            "toolkit": field("toolkit"), "date": field("date")}
+            "toolkit": field("toolkit"), "date": field("date"), "desk": field("desk")}
 
 
 def canonical_for(path):
@@ -106,7 +113,7 @@ def affiliate_markdown(post):
     if kit:
         amazon = any(products[k].get("amazon") for k in kit)
         lines = "\n".join(f"- {products[k]['kit_line']}: [{products[k]['name']}]({BASE_URL}{products[k]['url']})" for k in kit)
-        kit_md = ("\n\n### Toolkit for this kind of incident\n" + lines +
+        kit_md = ("\n\n### " + ("Tools related to this case" if post.get("desk") == "tech" else "Toolkit for this kind of incident") + "\n" + lines +
                   "\n\n*These are affiliate links: we may earn a commission at no extra cost to you"
                   + (". As an Amazon Associate, ColdCaseTech earns from qualifying purchases" if amazon else "") + ".*")
     return card_md, kit_md
@@ -115,6 +122,10 @@ def affiliate_markdown(post):
 def build_body(post, canonical):
     body = post["body"].replace("](/go/", f"]({BASE_URL}/go/")
     card_md, kit_md = affiliate_markdown(post)
+    src = post.get("sources") or []
+    if src and "## Sources" not in body:
+        body = body.rstrip() + "\n\n## Sources\n" + "\n".join(
+            f"- [{x.get('outlet', '')}, {x.get('date', '')}]({x.get('url', '')})" for x in src if x.get("url"))
     body = body.replace("{{< recommend >}}", card_md).rstrip() + kit_md
     disclosure = ("*Disclosure: this post contains affiliate links. We may earn a commission at no extra cost to you.*\n\n"
                   if "/go/" in body else "")
@@ -252,6 +263,14 @@ def run_due():
             continue
         path = os.path.join(POSTS_DIR, name)
         if ledger.get(ledger_key(path), {}).get("done"):
+            continue
+        try:
+            import check_posts
+            broken = check_posts.check_file(path)
+        except Exception as e:
+            broken = [(0, f"citation check could not run: {e}")]
+        if broken:
+            print(f"{name}: NOT shared: {len(broken)} citation problem(s), e.g. {broken[0][1]}. Fix the post; it is shared on the next run after that.")
             continue
         try:
             age = post_age_hours(read_post(path))

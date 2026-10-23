@@ -15,7 +15,7 @@ markup:
 params:
   env: production
   title: "ColdCaseTech"
-  description: "Tracking tech and security stories long after the headlines fade."
+  description: "Tech promises and security incidents, checked against trusted sources: what was promised, what actually happened, and one clear verdict."
   defaultTheme: dark
   disableThemeToggle: true
   ShowReadingTime: true
@@ -27,29 +27,28 @@ params:
   UseHugoToc: true
   TocOpen: true
 
+  mainSections: ["posts"]
   homeInfoParams:
-    Title: "ColdCaseTech & Security Desk"
-    Content: "Mainstream tech media abandons major stories after 48 hours. We track the aftermath—breach investigations, post-mortems, and regulatory fallout—months later."
+    Title: "ColdCaseTech"
+    Content: "What they promised. What actually happened."
+  footer:
+    text: "[How we verify](/about/) · [Privacy & Terms](/privacy/) · [Threat Radar](/radar/) · [RSS](/index.xml)"
 
 menu:
   main:
-    - identifier: posts
-      name: Investigations
-      url: /posts/
+    - identifier: tech
+      name: Tech Cases
+      url: /tags/tech/
       weight: 10
+    - identifier: security
+      name: Security Friday
+      url: /tags/security-friday/
+      weight: 15
     - identifier: radar
       name: Threat Radar
       url: /radar/
-      weight: 15
-    - identifier: tags
-      name: Topics
-      url: /tags/
       weight: 20
     - identifier: about
-      name: Methodology
+      name: How we verify
       url: /about/
       weight: 30
-    - identifier: privacy
-      name: Privacy & Terms
-      url: /privacy/
-      weight: 40

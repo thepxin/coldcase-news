@@ -1,0 +1,16 @@
+{{- /* Every source the case was written from, with working links, rendered from the post's own 'sources:' list.
+       It stays correct even if the article text is edited. */ -}}
+{{- with .Params.sources }}
+<section class="cct-sources" aria-labelledby="cct-sources-h">
+  <h2 id="cct-sources-h">Sources checked for this case ({{ len . }})</h2>
+  <ol>
+    {{- range sort . "date" }}
+    <li>
+      <span class="cct-src-tier cct-src-tier--{{ lower .tier }}">{{ if eq .kind "own statement" }}Official statement{{ else if eq .tier "A" }}Official{{ else }}Newsroom{{ end }}</span>
+      <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
+      <span class="cct-src-meta">{{ index (split .outlet " (") 0 }}{{ with .date }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }} · {{ replaceRE "^https?://(www\\.)?([^/]+).*$" "$2" .url }}</span>
+    </li>
+    {{- end }}
+  </ol>
+</section>
+{{- end -}}

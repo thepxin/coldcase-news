@@ -3,3 +3,4 @@ pydantic
 requests
 trafilatura
 feedparser
+pyyaml

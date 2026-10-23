@@ -201,6 +201,7 @@ STEP 2: metadata (only when true)
 
 STEP 3: markdown_body (only when true), 300 to 650 words, exactly these parts in this order:
 Opening paragraph (no heading): what was promised, then what happened, with citations.
+(Do not add a Sources section: the site lists every source automatically.)
 
 ## Promised vs. Delivered
 A Markdown table with columns Item | Promised | Delivered | Source. Three to six rows. Short cells, no pipe characters
@@ -215,9 +216,6 @@ What the sources state about how it was delivered, tested, priced, changed or de
 ## What Is Not Yet Confirmed
 Bulleted list of open questions the sources themselves say are unresolved, attributed. If none, write exactly:
 "The sources do not list open questions."
-
-## Sources
-Bulleted list of every source used, as [Outlet, YYYY-MM-DD](URL).
 
 STEP 4: reddit_teaser (only when true)
 Three neutral sentences stating what was promised, what happened and the verdict. No links, emojis, hashtags or products.
@@ -270,6 +268,7 @@ original_claim, current_reality, verdict_score, markdown_body, reddit_teaser (al
 
     STEP 3: markdown_body (only when true), 350 to 700 words, exactly these parts in this order:
     Opening paragraph (no heading): the incident as first reported, then its status now, with citations.
+    (Do not add a Sources section: the site lists every source automatically.)
 
     ## Early Reports vs. Current Status
     A Markdown table with columns Topic | Early Reports | Current Status | Source. Three to six rows. Short cells, no pipe
@@ -285,9 +284,6 @@ original_claim, current_reality, verdict_score, markdown_body, reddit_teaser (al
     ## What Is Not Yet Confirmed
     Bulleted list of open questions the sources themselves say are unresolved, attributed. If none, write exactly:
     "The sources do not list open questions."
-
-    ## Sources
-    Bulleted list of every source used, as [Outlet, YYYY-MM-DD](URL).
 
     STEP 4: reddit_teaser (only when true)
     Three neutral sentences stating then, now and the verdict. No links, emojis, hashtags or products.
@@ -450,7 +446,7 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     return fixed, f"{len(issues)} problem(s) fixed, then passed a clean re-check and all hard checks"
 
 
-def save_hugo_post(article: FollowUpArticle, topic: str = ""):
+def save_hugo_post(article: FollowUpArticle, topic: str = "", sources: list | None = None):
     os.makedirs("content/posts", exist_ok=True)
     os.makedirs("scripts", exist_ok=True)
 
@@ -478,6 +474,15 @@ def save_hugo_post(article: FollowUpArticle, topic: str = ""):
     fm_verdict = json.dumps(article.verdict_score, ensure_ascii=False)
     fm_then = json.dumps(article.original_claim.strip(), ensure_ascii=False)
     fm_now = json.dumps(article.current_reality.strip(), ensure_ascii=False)
+    # The full source list is stored as plain text in the front matter, so it survives any copy/paste or edit,
+    # and the page template always shows it with working links.
+    fm_sources = "".join(
+        f"  - outlet: {json.dumps(x.get('outlet', ''), ensure_ascii=False)}\n"
+        f"    tier: {json.dumps(x.get('tier', ''))}\n"
+        f"    kind: {json.dumps(x.get('kind', ''))}\n"
+        f"    date: {json.dumps(x.get('date', ''))}\n"
+        f"    title: {json.dumps((x.get('title') or '')[:200], ensure_ascii=False)}\n"
+        f"    url: {json.dumps(x.get('url', ''))}\n" for x in (sources or []))
 
     # verdict/then/now live in the front matter; the page template renders the
     # case header, so the body no longer repeats them in a blockquote.
@@ -494,7 +499,8 @@ verified: "{today_str}"
 toolkit: "{toolkit_key}"
 checked: "{today_str}"
 sourcing: "approved"
-{'review: "editor"' + chr(10) if DESK == "security" else ""}cover:
+sources:
+{fm_sources}{'review: "editor"' + chr(10) if DESK == "security" else ""}cover:
   image: "{cover_image}"
   alt: {safe_title}
   relative: false
@@ -600,7 +606,7 @@ def run_desk(desk: str, used_urls: set, call_limit: int):
             print(f"NOT publishing this draft: {report}.")
             continue
         print(f"Verification result: {report}.")
-        filename = save_hugo_post(checked, topic)
+        filename = save_hugo_post(checked, topic, sources)
         used_urls.update(s["url"] for s in sources)
         return filename, sources, report, checked
     print(f"[{desk}] No article today: no story passed every source rule and check. This is expected on some days.")

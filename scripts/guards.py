@@ -6,6 +6,8 @@ An article is rejected (not fixed) if ANY of these fail:
   3. Dates and years: every date and year matches one in a source, or a source's publication date.
   4. CVE IDs: every CVE ID appears in a source.
   5. No conclusions: no lesson, opinion or prediction phrasing.
+  6. Explicit citations: every paragraph, bullet and table row carries a clickable source link,
+     and every source the article was written from is cited at least once.
 These rules are deliberately strict: when in doubt, the article is not published.
 """
 import re
@@ -138,7 +140,57 @@ def check_article(article_texts, sources):
             shown = f"{v:g}%" if kind == "pct" else (f"{v:,.0f}" if v == int(v) else f"{v:,}")
             problems.append(f"figure not found in any source: {shown}")
 
-    # 5. conclusions / opinion
+    # 5. explicit citations (the body is the last text passed in that contains Markdown links)
+    bodies = [t for t in article_texts if "\n" in (t or "")]
+    if bodies:
+        problems += citation_problems(bodies[0], sources)
+
+    # 6. conclusions / opinion
     for m in sorted({m.group(0).lower() for m in OPINION.finditer(MD_LINK.sub("]()", text))}):
         problems.append(f"conclusion or opinion wording: '{m}'")
     return problems
+
+
+FIXED_LINES = {"the sources do not state a cause.", "the sources do not list open questions."}
+TABLE_SEPARATOR = re.compile(r"^\|?\s*:?-{3,}")
+
+
+def uncited_lines(body, header_rows=1):
+    """Lines of the body that state something but carry no [text](url) link. Headings, table headers/separators,
+    blank lines and the two fixed 'The sources do not...' sentences are exempt."""
+    out, in_table, table_row = [], False, 0
+    for n, raw in enumerate((body or "").splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#") or line.lower() in FIXED_LINES or line == "{{< recommend >}}":
+            in_table = False
+            continue
+        if line.startswith("|"):
+            table_row = table_row + 1 if in_table else 1
+            in_table = True
+            if table_row <= header_rows or TABLE_SEPARATOR.match(line):
+                continue
+        else:
+            in_table, table_row = False, 0
+        if line.startswith("|"):
+            if not MD_LINK.search(line):
+                out.append((n, line[:120]))
+            continue
+        # every sentence (4+ words) must carry its own citation link
+        masked = re.sub(r"\[[^\]]*\]\([^)\s]+\)", " LINKREF ", line)
+        for sentence in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", masked):
+            words = re.sub(r"LINKREF|[*_`>-]", " ", sentence).split()
+            if len(words) >= 4 and "LINKREF" not in sentence:
+                out.append((n, sentence.strip()[:120]))
+    return out
+
+
+def citation_problems(body, sources):
+    problems = [f"line {n} has no source link: '{t}'" for n, t in uncited_lines(body)]
+    cited = {_norm_url(u) for u in MD_LINK.findall(body or "")}
+    for s in sources:
+        if _norm_url(s["url"]) not in cited:
+            problems.append(f"source never cited in the article: {s.get('outlet', '')} {s['url']}")
+    for m in re.finditer(r"\[([^\]]+)\](?!\()", body or ""):
+        problems.append(f"bracketed text without a link: '[{m.group(1)[:60]}]'")
+    return problems
+

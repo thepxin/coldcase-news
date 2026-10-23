@@ -1,4 +1,7 @@
-{{- /* Counts unique external source links in the article (affiliate links and our own domain are excluded). */ -}}
+{{- /* Number of sources: from the stored list when present, otherwise counted from external links in the text. */ -}}
+{{- if .Params.sources -}}
+  {{- return len .Params.sources -}}
+{{- end -}}
 {{- $links := findRE `href="https?://[^"]+"` .Content -}}
 {{- $uniq := slice -}}
 {{- range $links -}}

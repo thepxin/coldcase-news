@@ -4,7 +4,7 @@
 {{- with $cat.toolkit }}
 {{- $amazon := false }}
 <section class="cct-toolkit" aria-labelledby="cct-toolkit-h">
-  <h2 id="cct-toolkit-h">Toolkit for this kind of incident</h2>
+  <h2 id="cct-toolkit-h">{{ if eq $.Params.desk "tech" }}Tools related to this case{{ else }}Toolkit for this kind of incident{{ end }}</h2>
   <ol>
     {{- range . }}{{ $key := . }}{{ with index $p . }}
     {{- if .amazon }}{{ $amazon = true }}{{ end }}

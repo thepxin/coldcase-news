@@ -65,21 +65,26 @@
 {{- end }}
 
 {{- if .Params.verdict }}
-{{- /* ColdCaseTech case card */}}
-<article class="{{ $class }} cct-card">
+{{- /* ColdCaseTech case card: desk, verdict, headline, then -> now, and the sources it was checked against */}}
+<article class="{{ $class }} cct-card{{ with .Params.desk }} cct-card--{{ . }}{{ end }}">
   <div class="cct-meta">
-    {{- with partial "case_id.html" . }}<span class="cct-caseid">CASE {{ . }}</span>{{ end }}
-    <time datetime="{{ .Date.UTC.Format "2006-01-02" }}">{{ .Date.UTC.Format "2006-01-02" }}</time>
+    {{ partial "desk_chip.html" . }}
+    <time datetime="{{ .Date.UTC.Format "2006-01-02" }}">{{ .Date.UTC.Format "Jan 2, 2006" }}</time>
     {{ partial "verdict_stamp.html" . }}
   </div>
   <header class="entry-header">
     <h2 class="entry-hint-parent">{{ .Title }}</h2>
   </header>
   {{- if and .Params.then .Params.now }}
-  <p class="cct-tv"><b>THEN</b> {{ .Params.then }} <b>NOW</b> {{ .Params.now }}</p>
+  {{- $l := partial "tv_labels.html" . }}
+  <dl class="cct-pv">
+    <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then }}</dd></div>
+    <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now }}</dd></div>
+  </dl>
   {{- else if (ne (.Param "hideSummary") true) }}
   <div class="entry-content"><p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p></div>
   {{- end }}
+  {{ partial "checked_against.html" . }}
   <a class="entry-link" aria-label="Open case: {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- else }}

@@ -6,9 +6,7 @@
   {{- /* ColdCaseTech case header */}}
   <header class="post-header cct-case-header">
     {{ partial "breadcrumbs.html" . }}
-    {{- with partial "case_id.html" . }}
-    <p class="cct-caseline">CASE {{ . }} · <time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "2006-01-02" }}</time></p>
-    {{- end }}
+    <p class="cct-caseline">{{ partial "desk_chip.html" . }}{{ with partial "case_id.html" . }}<span>CASE {{ . }}</span>{{ end }}<time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "Jan 2, 2006" }}</time></p>
     <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
     <p class="cct-stamp-row">{{ partial "verdict_stamp.html" . }}</p>
     <p class="cct-verify">
@@ -20,9 +18,10 @@
     </p>
     {{- partial "affiliate/disclosure_top.html" . }}
     {{- if and .Params.then .Params.now }}
+    {{- $l := partial "tv_labels.html" . }}
     <div class="cct-tvbox">
-      <div><h2>THEN · EARLY REPORTS</h2><p>{{ .Params.then }}</p></div>
-      <div><h2>NOW · REALITY</h2><p>{{ .Params.now }}</p></div>
+      <div><h2>Then · {{ index $l 0 }}</h2><p>{{ .Params.then }}</p></div>
+      <div><h2>Now · {{ index $l 1 }}</h2><p>{{ .Params.now }}</p></div>
     </div>
     {{- end }}
     {{- if not (.Param "hideMeta") }}
@@ -76,6 +75,7 @@
   {{- end }}
 
   {{- if .Params.verdict }}
+  {{- partial "sources_box.html" . }}
   {{- partial "case_note.html" . }}
   {{- if not (in .Content "cct-rec-card") }}{{ partial "affiliate/card.html" . }}{{ end }}
   {{- partial "affiliate/toolkit.html" . }}
