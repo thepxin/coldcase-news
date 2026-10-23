@@ -507,3 +507,6 @@ body{font-size:17.5px}
 .cct-fields a:hover{color:var(--cct-violet)}
 .cct-fields-n{color:var(--cct-violet);font-weight:700}
 .cct-fields-off{color:var(--cct-muted)}
+/* crypto 24 h change: green for gain, red for loss (beats the table's default text colour) */
+.cct-score td.cct-v--ok{color:var(--cct-ok)}
+.cct-score td.cct-v--bad{color:var(--cct-bad)}

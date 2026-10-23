@@ -159,6 +159,68 @@ def get_previously_used_urls(posts_dir: str = "content/posts") -> set[str]:
                 continue
     return used_urls
 
+HOUSE_STYLE = """
+HOUSE STYLE (ColdCaseTech should read like the best wire service or financial newspaper: precise, calm, authoritative)
+- Lead with the news in one strong sentence: who did what, and when.
+- Attribute a claim to its source ONCE per paragraph, then let the citation carry it. Good: "In its announcement,
+  NASA set out three aims for the agreement (link). The first is ... (link). The partnership also ... (link)."
+  Bad: "NASA said ... NASA said ... NASA said ...".
+- Never use "said" more than once in a paragraph. Prefer the exact verb: announced, unveiled, confirmed, detailed,
+  listed, priced, scheduled, measured, approved, expects, plans.
+- Vary how sentences open; never start two sentences in a row with the same word. Name the organisation in full once,
+  then use "the agency", "the company", "the chipmaker", "the regulator" or "its announcement".
+- Combine closely related facts from the same source into one well-built sentence with one citation.
+- Vary sentence length. Use precise, educated vocabulary, never jargon for its own sake, never hype or filler
+  ("in a move", "it is worth noting", "game-changer").
+- The headline is specific and active, in sentence case, and names the key fact or number.
+"""
+
+POLISH_MAX_SAID_PER_100_WORDS = 0.9
+
+
+def needs_polish(body: str) -> str:
+    """Reason the draft reads repetitively ("" if it reads fine). Counted on the text without links."""
+    t = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body or "")
+    t = re.sub(r"(?m)^\s*(#|\|).*$", " ", t)
+    words = len(t.split()) or 1
+    said = len(re.findall(r"\bsaid\b", t, re.I))
+    sents = [x.strip() for x in re.split(r"(?<=[.!?])\s+", t) if x.strip()]
+    firsts = [x.split()[0].strip("*-").lower() for x in sents if x.split()]
+    repeats = sum(1 for a, b in zip(firsts, firsts[1:]) if a and a == b)
+    reasons = []
+    if said > max(3, POLISH_MAX_SAID_PER_100_WORDS * words / 100):
+        reasons.append(f'"said" {said} times')
+    if repeats >= 3:
+        reasons.append(f"{repeats} sentences start like the one before")
+    return "; ".join(reasons)
+
+
+class Polish(BaseModel):
+    markdown_body: str
+
+
+def polish_article(article, sources) -> str | None:
+    """One editing pass for style only: same facts, same numbers, same links, same headings and tables."""
+    prompt = f"""
+You are the chief copy editor of ColdCaseTech. Edit the ARTICLE BODY below for style ONLY.
+{HOUSE_STYLE}
+STRICT LIMITS (the edited text is checked by machine; any break throws it away)
+- Keep every fact, name, number, date and quote exactly. Add nothing, remove nothing factual.
+- Keep every Markdown link exactly as written, and keep every sentence's citation with that sentence. Every sentence,
+  bullet and table row must still end with its citation before the full stop.
+- Keep all headings, the table (rows and columns) and the timeline structure exactly. Change only the wording of
+  sentences: vary attribution and verbs, merge sentences from the same source, remove repetition.
+- No new words like likely, probably, highlights, underscores, lesson, game-changer. No em dashes, no curly braces.
+
+ARTICLE BODY:
+{article.markdown_body}
+
+Return JSON with one key: markdown_body (the edited body).
+"""
+    out = call_ai(prompt, schema=Polish, purpose="check")
+    return out.markdown_body.replace("{", "(").replace("}", ")").strip() if out else None
+
+
 ARTICLE_TYPES = """
 ARTICLE TYPES (choose exactly one; case_status says which)
 1. "closed" = VERDICT CASE. The sources contain a specific earlier promise or claim (THEN) AND a later statement of what
@@ -245,6 +307,7 @@ ABSOLUTE RULES (an article that breaks any of them is thrown away)
 - No conclusions, opinions, advice, hype, buying recommendations, predictions or speculation. Do not use the words:
   lesson, takeaway, highlights, underscores, likely, probably, worth it, game-changer, revolutionary.
 - Plain, specific, declarative sentences. No raw HTML, no curly braces, no em dashes. No links other than source citations.
+{HOUSE_STYLE}
 {ARTICLE_TYPES}
 ALLOWED TYPES FOR THESE SOURCES: {allowed}
 
@@ -596,6 +659,21 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     problems = _hard_checks(article, sources)
     if problems:
         return None, "hard checks failed on the draft: " + "; ".join(problems[:6])
+    why = needs_polish(article.markdown_body)
+    if why and min(AI_BUDGET, DESK_CALL_LIMIT) - AI_CALLS >= 3:
+        print(f"  style: the draft reads repetitively ({why}); one copy-editing pass.")
+        polished = polish_article(article, sources)
+        if polished:
+            trial = article.model_copy()
+            trial.markdown_body = polished
+            bad = _hard_checks(trial, sources) + [f"lost citation: {t}" for _, t in guards.uncited_lines(polished)]
+            if article.case_status == "open" and open_case_problem(trial):
+                bad.append(open_case_problem(trial))
+            if bad or len(polished.split()) < 0.85 * len(article.markdown_body.split()):
+                print("  style: the edited version failed a check, so the original draft is kept.")
+            else:
+                article.markdown_body = polished
+                print(f"  style: edited version kept ({needs_polish(polished) or 'reads cleanly now'}).")
     check = call_ai(_check_prompt(article, sources), schema=FactCheck, purpose="check")
     if check is None:
         return None, "fact-check could not run"
@@ -898,6 +976,8 @@ ABSOLUTE RULES (an update that breaks any of them is thrown away)
 - Every sentence ends with an inline Markdown citation ([Outlet name](URL)) to the source that states it, placed before
   the full stop. Use only URLs listed above, copied exactly. Cite every NEW source at least once.
 - Never write sentences about the sources or the update itself.
+- Write in ColdCaseTech's house style: attribute once per paragraph, vary verbs ("announced", "confirmed",
+  "detailed") and sentence openings, never repeat "said" within a paragraph.
 - A company's own words are its claim: attribute them. Never present a claim as proof of delivery.
 - No conclusions, opinions, advice, predictions or speculation. Do not use the words: lesson, takeaway, highlights,
   underscores, likely, probably. No raw HTML, no curly braces, no em dashes, no headings, no tables.
