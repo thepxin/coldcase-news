@@ -1,0 +1,23 @@
+name: Check Post Citations
+
+# Runs whenever a post changes (including your own edits) and shows a red X if any line lost its source link.
+on:
+  push:
+    paths:
+      - 'content/posts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyyaml
+      - name: Check every post's citations
+        run: python scripts/check_posts.py
