@@ -52,6 +52,7 @@ jobs:
       - name: Find, write and verify today's case(s)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DESK: ${{ inputs.desk || 'auto' }}
         run: python scripts/generate_followup.py
 
