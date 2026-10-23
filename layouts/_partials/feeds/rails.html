@@ -1,12 +1,13 @@
-{{- /* Side columns. Left: our own data (open cases, verdicts) and chip prices. Right: gadget prices, gear, live wire,
-       crypto and email. Each panel hides itself when it has nothing to show. Pass "left" or "right". */ -}}
+{{- /* Side columns ("The Record"). Left, the Ledger: our own numbers, scoreboard, due dates, latest verdicts, fields, email.
+       Right, Market & Wire: price check, the wire, markets, gear. Panels without data hide themselves; the always-on
+       panels (ledger, fields, email, wire, markets) keep both columns full. Pass "left" or "right". */ -}}
 {{- $side := . -}}
 {{- $html := "" -}}
 {{- if eq $side "left" -}}
-  {{- $html = print (partial "rail/fields.html" .) (partial "rail/due_soon.html" .) (partial "rail/price_check.html" "chips") (partial "rail/scoreboard.html" .) (partial "rail/latest_verdicts.html" .) -}}
+  {{- $html = print (partial "rail/ledger.html" .) (partial "rail/scoreboard.html" .) (partial "rail/due_soon.html" .) (partial "rail/latest_verdicts.html" .) (partial "rail/fields.html" .) (partial "rail/email.html" .) -}}
 {{- else -}}
-  {{- $html = print (partial "rail/price_check.html" "devices") (partial "rail/gear_today.html" .) (partial "rail/wire.html" .) (partial "rail/crypto.html" .) (partial "rail/email.html" .) -}}
+  {{- $html = print (partial "rail/price_check.html" "all") (partial "rail/wire.html" .) (partial "rail/crypto.html" .) (partial "rail/gear_today.html" .) -}}
 {{- end -}}
 {{- if trim $html " \n" -}}
-<aside class="cct-rail cct-rail--{{ $side }}" aria-label="{{ if eq $side "left" }}Open cases, prices and verdicts{{ else }}Prices, gear and live data{{ end }}"><div class="cct-rail-in">{{ $html | safeHTML }}</div></aside>
+<aside class="cct-rail cct-rail--{{ $side }}" aria-label="{{ if eq $side "left" }}The ledger: our numbers, verdicts and fields{{ else }}Price check, wire and markets{{ end }}"><div class="cct-rail-in">{{ $html | safeHTML }}</div></aside>
 {{- end -}}

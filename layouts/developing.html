@@ -1,12 +1,11 @@
 {{- define "main" }}
-{{- /* Developing: a compact watch list. Open cases (no verdict yet) and cases updated in the last 30 days,
-       most recent change first. Everything is computed when the site builds. */}}
-<header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
+{{- /* Developing: open cases (no verdict yet) and cases updated in the last 30 days, most recent change first.
+       Everything is computed when the site builds. */}}
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">Watch list</p>
   <h1>Developing</h1>
   <div class="post-description">{{ .Description }}</div>
 </header>
-<p class="cct-dev-legend"><span class="cct-stamp cct-stamp--open">Open</span> no verdict yet · <span class="cct-upd">Updated</span> new facts added · verdicts can change, and we show when they do</p>
 
 {{- $items := slice }}
 {{- range where site.RegularPages "Section" "posts" }}
@@ -14,40 +13,20 @@
   {{- $s := partial "case_state.html" . }}
   {{- if or $s.open $s.recent }}
     {{- $key := .Date.UTC.Format "2006-01-02" }}{{ with $s.last }}{{ $key = . }}{{ end }}
-    {{- $items = $items | append (dict "p" . "s" $s "key" $key) }}
+    {{- $items = $items | append (dict "p" . "key" $key) }}
   {{- end }}
   {{- end }}
 {{- end }}
 
-{{- range sort $items "key" "desc" }}
-{{- $p := .p }}{{ $s := .s }}
-<article class="post-entry cct-card cct-card--compact{{ with $p.Params.desk }} cct-card--{{ . }}{{ end }}{{ if $s.open }} cct-card--open{{ end }}">
-  <div class="cct-meta">
-    {{ partial "upd_label.html" $s }}
-    {{ partial "desk_chip.html" $p }}
-    {{- if $s.open }}
-    <span class="cct-stamp cct-stamp--open">{{ if $s.pastdue }}Open · was due {{ $p.Params.due }}{{ else }}Open · due {{ $p.Params.due }}{{ end }}</span>
-    {{- else }}
-    {{ partial "verdict_stamp.html" $p }}
-    {{- end }}
-  </div>
-  <header class="entry-header"><h2 class="entry-hint-parent">{{ $p.Title }}</h2></header>
-  {{- with $s.change }}<p class="cct-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
-  <p class="cct-checked">
-    {{- if $s.open -}}
-    Opened <span>{{ $p.Date.UTC.Format "Jan 2" }}</span>{{ with $s.checked }} · last checked <span>{{ (time.AsTime .).Format "Jan 2" }}</span>{{ end }} · {{ $s.n }} update{{ if ne $s.n 1 }}s{{ end }}
-    {{- else -}}
-    {{ $s.n }} update{{ if ne $s.n 1 }}s{{ end }} · case opened <span>{{ $p.Date.UTC.Format "Jan 2" }}</span>{{ with $s.closed }} · <span>closed {{ (time.AsTime .).Format "Jan 2" }}</span>{{ end }}{{ if eq $p.Params.review "editor" }} · editor-reviewed{{ end }}
-    {{- end -}}
-  </p>
-  <a class="entry-link" aria-label="Open case: {{ $p.Title | plainify }}" href="{{ $p.Permalink }}"></a>
-</article>
+{{- with $items }}
+<div class="rec-entries">
+{{- range sort . "key" "desc" }}
+{{ partial "rec_entry.html" (dict "p" .p "lead" false) }}
+{{- end }}
+</div>
+{{- else }}
+<p class="rec-empty">Nothing is developing right now. When a company promises something with a future date, the case appears here as an open case until the outcome is confirmed. Cases that get new verified facts appear here for 30 days.</p>
 {{- end }}
 
-{{- if not $items }}
-<p class="cct-empty-home">Nothing is developing right now. When a company promises something with a future date, the case appears here as an open case until the outcome is confirmed, and cases that get new verified facts appear here for 30 days.</p>
-{{- end }}
-
-{{ partial "verdicts_cta.html" (dict "target" "developing") }}
 {{ partial "newsletter.html" (dict "place" "developing") }}
 {{- end }}

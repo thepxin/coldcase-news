@@ -1,0 +1,6 @@
+{{- /* All case IDs at once (oldest post = CC-0001), worked out once per build. Use partialCached "case_ids.html" "all" "all". */ -}}
+{{- $m := dict -}}
+{{- range $i, $p := (where site.RegularPages "Section" "posts").ByDate -}}
+  {{- $m = merge $m (dict $p.RelPermalink (printf "CC-%04d" (add $i 1))) -}}
+{{- end -}}
+{{- return $m -}}

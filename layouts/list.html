@@ -1,32 +1,14 @@
-{{- /* Override of PaperMod list.html: posts with a verdict render as case cards (no cover image). Everything else is unchanged. */ -}}
+{{- /* Override of PaperMod list.html, "The Record" layout.
+       Homepage page 1: the newest article set large (the lead), then "Also on the record" in two columns, then the email band.
+       Other list pages (fields, all articles): a page heading and the same two-column entries. */ -}}
 {{- define "main" }}
 
-{{- if (and site.Params.profileMode.enabled .IsHome) }}
-{{- partial "index_profile.html" . }}
-{{- else }} {{/* if not profileMode */}}
-
 {{- if not .IsHome | and .Title }}
-<header class="page-header">
-  {{- partial "breadcrumbs.html" . }}
-  <h1>
-    {{ .Title }}
-    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
-    {{- with .OutputFormats.Get "rss" }}
-    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" height="23">
-        <path d="M4 11a9 9 0 0 1 9 9" />
-        <path d="M4 4a16 16 0 0 1 16 16" />
-        <circle cx="5" cy="19" r="1" />
-      </svg>
-    </a>
-    {{- end }}
-    {{- end }}
-  </h1>
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">{{ if eq .Kind "term" }}Field{{ else if eq .Kind "taxonomy" }}Browse{{ else }}Section{{ end }}</p>
+  <h1>{{ .Title }}</h1>
   {{- if .Description }}
-  <div class="post-description">
-    {{ .Description | markdownify }}
-  </div>
+  <div class="post-description">{{ .Description | markdownify }}</div>
   {{- end }}
 </header>
 {{- end }}
@@ -40,117 +22,42 @@
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
-
 {{- if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
 {{- end }}
-
 {{- $paginator := .Paginate $pages }}
+{{- $first := and .IsHome (eq $paginator.PageNumber 1) }}
 
-{{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
+{{- if and .IsHome (not $pages) }}
+<p class="rec-empty">The first articles are being checked now. New articles are published every day at 20:00 IST, after they pass every check.</p>
 {{- end }}
 
-{{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}
-
-{{- $class := "post-entry" }}
-
-{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
-{{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
-{{- $class = "first-entry" }}
-{{- else if $term }}
-{{- $class = "post-entry tag-entry" }}
-{{- end }}
-
-{{- if partial "is_case.html" . }}
-{{- /* ColdCaseTech case card: desk, verdict (or OPEN), headline, then -> now, and the sources it was checked against */}}
-{{- $s := partial "case_state.html" . }}
-<article class="{{ $class }} cct-card{{ with .Params.desk }} cct-card--{{ . }}{{ end }}{{ if $s.open }} cct-card--open{{ end }}">
-  <div class="cct-meta">
-    {{ partial "desk_chip.html" . }}
-    <time datetime="{{ .Date.UTC.Format "2006-01-02" }}">{{ .Date.UTC.Format "Jan 2, 2006" }}</time>
-    {{ partial "upd_label.html" $s }}
-    {{ partial "verdict_stamp.html" . }}
-  </div>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">{{ .Title }}</h2>
-  </header>
-  {{- if and .Params.then .Params.now }}
-  {{- $l := partial "tv_labels.html" . }}
-  <dl class="cct-pv">
-    <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then }}</dd></div>
-    {{- if $s.open }}
-    <div><dt>Outcome</dt><dd>{{ if $s.pastdue }}Was due {{ .Params.due }}. No verdict until a source confirms what happened.{{ else }}Due {{ .Params.due }}. We'll check and close this case.{{ end }}</dd></div>
-    {{- else }}
-    <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now }}</dd></div>
-    {{- end }}
-  </dl>
-  {{- with $s.change }}<p class="cct-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
-  {{- else if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content"><p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p></div>
-  {{- end }}
-  {{ partial "checked_against.html" . }}
-  <a class="entry-link" aria-label="Open case: {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
+{{- if and $first (eq $index 0) }}
+{{ partial "rec_entry.html" (dict "p" $page "lead" true) }}
+{{- if gt (len $paginator.Pages) 1 }}<h2 class="rec-sec">Also on the record</h2>{{ end }}
+<div class="rec-entries">
 {{- else }}
-<article class="{{ $class }}">
-  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">
-      {{- .Title }}
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h2>
-  </header>
-  {{- if (ne (.Param "hideSummary") true) }}
-  <div class="entry-content">
-    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-  </div>
-  {{- end }}
-  {{- if not (.Param "hideMeta") }}
-  <footer class="entry-footer">
-    {{- partial "post_meta.html" . -}}
-  </footer>
-  {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
-</article>
+{{- if eq $index 0 }}<div class="rec-entries">{{ end }}
+{{ partial "rec_entry.html" (dict "p" $page "lead" false) }}
 {{- end }}
-{{- /* Newsletter + free checklist after the 3rd case on the homepage */}}
-{{- if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 2) }}{{ partial "newsletter.html" (dict "place" "home") }}{{ end }}
 {{- end }}
+{{- if $paginator.Pages }}</div>{{ end }}
+
+{{- if $first }}{{ partial "newsletter.html" (dict "place" "home" "band" true) }}{{ end }}
 
 {{- if gt $paginator.TotalPages 1 }}
 <footer class="page-footer">
   <nav class="pagination">
     {{- if $paginator.HasPrev }}
-    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
-      «&nbsp;{{ i18n "prev_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
-      {{- end }}
-    </a>
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« Newer</a>
     {{- end }}
     {{- if $paginator.HasNext }}
-    <a class="next" href="{{ $paginator.Next.URL | absURL }}">
-      {{- i18n "next_page" }}&nbsp;
-      {{- if (.Param "ShowPageNums") }}
-      {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
-      {{- end }}&nbsp;»
-    </a>
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">Older »</a>
     {{- end }}
   </nav>
 </footer>
 {{- end }}
-
-{{- end }}{{/* end profileMode */}}
 
 {{- end }}{{- /* end main */ -}}

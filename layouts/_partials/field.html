@@ -1,0 +1,4 @@
+{{- /* The article's field (its tag other than "Tech"), e.g. "Energy". Empty if none. */ -}}
+{{- $f := "" -}}
+{{- range .Params.tags }}{{ if and (not $f) (ne (lower .) "tech") }}{{ $f = . }}{{ end }}{{ end -}}
+{{- return $f -}}

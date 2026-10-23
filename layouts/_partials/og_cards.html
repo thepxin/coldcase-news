@@ -1,0 +1,42 @@
+{{- /* Share images, made when the site builds: the headline written onto a ColdCaseTech card in three shapes
+       (16x9 for social posts, plus 4x3 and 1x1 for Google). Parts live in assets/og/.
+       Articles changed in the last 45 days get their own card; older ones share the site card, which keeps builds fast.
+       Returns a dict: "16x9" (every page), plus "4x3" and "1x1" for recent articles (image resources). Call with partialCached "og_cards.html" . .RelPermalink */ -}}
+{{- $p := . -}}
+{{- $cas := resources.Get "og/LibreCaslonDisplay-Regular.ttf" -}}
+{{- $mb := resources.Get "og/JetBrainsMono-Bold.ttf" -}}
+{{- $mr := resources.Get "og/JetBrainsMono-Regular.ttf" -}}
+{{- $title := "What they promised. What actually happened." -}}
+{{- $kicker := "THE DAILY RECORD OF TECH PROMISES" -}}
+{{- $foot := "AI · CHIPS · DEVICES · SOFTWARE · SPACE · EVS · ENERGY · AND MORE" -}}
+{{- $seal := "" -}}
+{{- $own := and (eq $p.Section "posts") $p.IsPage (partial "is_case.html" $p) ($p.Lastmod.After (now.AddDate 0 0 -45)) -}}
+{{- if $own -}}
+  {{- $title = $p.Title | plainify | htmlUnescape -}}
+  {{- $sk := partial "seal_kind.html" $p -}}
+  {{- $seal = $sk.k -}}
+  {{- $field := partial "field.html" $p -}}
+  {{- $kicker = upper (print (cond (ne $field "") (print $field " · ") "") $sk.label) -}}
+  {{- $n := partial "source_count.html" $p -}}
+  {{- $a := len (where ($p.Params.sources | default slice) "tier" "A") -}}
+  {{- $foot = upper (print "Case " (partial "case_id.html" $p) " · Filed " ($p.Date.UTC.Format "2 Jan 2006") " · " $n " source" (cond (eq $n 1) "" "s") (cond (gt $a 0) (print ", " $a " official") "")) -}}
+{{- else if and (not $p.IsHome) $p.Title (ne $p.Section "posts") -}}
+  {{- $title = $p.Title | plainify | htmlUnescape -}}
+  {{- $kicker = "COLDCASETECH" -}}
+{{- end -}}
+{{- $sz := 64.0 -}}
+{{- if gt (len $title) 90 }}{{ $sz = 48.0 }}{{ else if gt (len $title) 60 }}{{ $sz = 56.0 }}{{ end -}}
+{{- $out := dict -}}
+{{- $shapes := slice (dict "n" "16x9" "h" 340 "k" 1.0) -}}
+{{- if $own }}{{ $shapes = $shapes | append (dict "n" "4x3" "h" 560 "k" 1.3) (dict "n" "1x1" "h" 860 "k" 1.6) }}{{ end -}}
+{{- range $shapes -}}
+  {{- $img := resources.Get (printf "og/card-%s.png" .n) -}}
+  {{- $s := int (mul $sz .k) -}}
+  {{- $hl := (resources.Get (printf "og/clear-860x%d.png" .h)).Filter (images.Text $title (dict "color" "#ece8df" "size" $s "linespacing" (int (div $s 6)) "x" 0 "y" 0 "font" $cas)) -}}
+  {{- $img = $img.Filter (images.Text $kicker (dict "color" "#c9a862" "size" 19 "x" 80 "y" 168 "font" $mb)) -}}
+  {{- $img = $img.Filter (images.Overlay $hl 80 206) -}}
+  {{- with $seal }}{{ $img = $img.Filter (images.Overlay (resources.Get (printf "og/seal-%s.png" .)) 970 160) }}{{ end -}}
+  {{- $img = $img.Filter (images.Text $foot (dict "color" "#9a9fab" "size" 15 "x" 80 "y" (sub $img.Height 60) "font" $mr)) -}}
+  {{- $out = merge $out (dict .n $img) -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,26 @@
+{{- define "main" }}
+{{- /* Verdicts: every closed case (Delivered / Partially Delivered / Not Delivered), newest first, with the totals. */}}
+{{- $cases := where (where site.RegularPages "Section" "posts") "Params.status" "closed" }}
+{{- $ok := 0 }}{{ $part := 0 }}{{ $no := 0 }}
+{{- range $cases }}{{ $k := partial "verdict_class.html" .Params.verdict }}{{ if eq $k "ok" }}{{ $ok = add $ok 1 }}{{ else if eq $k "bad" }}{{ $no = add $no 1 }}{{ else }}{{ $part = add $part 1 }}{{ end }}{{ end }}
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">The verdicts</p>
+  <h1>Promised vs. delivered</h1>
+  <div class="post-description">{{ .Description }}</div>
+</header>
+<dl class="rec-tally">
+  <div class="rec-tally--ok"><dt>Delivered</dt><dd>{{ $ok }}</dd></div>
+  <div class="rec-tally--warn"><dt>Partly delivered</dt><dd>{{ $part }}</dd></div>
+  <div class="rec-tally--bad"><dt>Not delivered</dt><dd>{{ $no }}</dd></div>
+</dl>
+{{- with $cases }}
+<div class="rec-entries">
+{{- range .ByDate.Reverse }}
+{{ partial "rec_entry.html" (dict "p" . "lead" false) }}
+{{- end }}
+</div>
+{{- else }}
+<p class="rec-empty">No verdicts yet. A verdict is given only when a promised date has passed and the sources confirm what happened. Promises we are watching are on the <a href="{{ "developing/" | relURL }}">Developing</a> page.</p>
+{{- end }}
+{{ partial "newsletter.html" (dict "place" "verdicts") }}
+{{- end }}

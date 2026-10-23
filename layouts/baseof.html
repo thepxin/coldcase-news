@@ -26,7 +26,7 @@
     {{- /* ColdCaseTech: live side columns on the homepage and case pages (hidden when no feed data exists). */}}
     {{- $rails := or .IsHome (eq .Section "posts") }}
     {{- $left := "" }}{{ $right := "" }}
-    {{- if $rails }}{{ $left = partial "feeds/rails.html" "left" }}{{ $right = partial "feeds/rails.html" "right" }}{{ end }}
+    {{- if $rails }}{{ $left = partialCached "feeds/rails.html" "left" "left" }}{{ $right = partialCached "feeds/rails.html" "right" "right" }}{{ end }}
     {{- if or (trim $left " \n") (trim $right " \n") }}
     <div class="cct-layout">
     <main class="main">

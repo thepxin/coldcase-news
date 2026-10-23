@@ -1,0 +1,11 @@
+{{- /* What the seal says. Returns k (report/open/ok/warn/bad), top and bottom (the two lines), label (for kickers). */ -}}
+{{- $k := "report" }}{{ $top := "News" }}{{ $bot := "report" }}{{ $label := "News report" -}}
+{{- if eq .Params.status "open" -}}
+  {{- $k = "open" }}{{ $top = "Open" }}{{ $bot = "case" }}{{ $label = "Open case" -}}
+{{- else if ne .Params.status "report" -}}
+  {{- with .Params.verdict -}}
+    {{- $k = partial "verdict_class.html" . }}{{ $label = "Verdict" -}}
+    {{- if eq $k "ok" }}{{ $top = "" }}{{ $bot = "Delivered" }}{{ else if eq $k "bad" }}{{ $top = "Not" }}{{ $bot = "delivered" }}{{ else }}{{ $top = "Partly" }}{{ $bot = "delivered" }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return (dict "k" $k "top" $top "bot" $bot "label" $label) -}}

@@ -1,13 +1,14 @@
-{{- /* Newsletter + free checklist (lead magnet). Can appear several times per page. Pass (dict "place" "post-end"). */ -}}
+{{- /* ColdCase Weekly sign-up + free field guide "The Fine Print" (lead magnet, delivered by Kit's confirmation email).
+       Can appear several times per page. Pass (dict "place" "post-end") and optionally "band" true for the homepage band. */ -}}
 {{- $place := .place | default "page" -}}
-<section class="cct-news" aria-labelledby="cct-news-h-{{ $place }}">
-  <p class="cct-news-kicker"><span class="cct-dot" aria-hidden="true"></span>Free: Breach Response Checklist</p>
-  <h3 id="cct-news-h-{{ $place }}">The 1-page checklist for the day your data shows up in a breach.</h3>
-  <p class="cct-news-text">Get it free with ColdCase Weekly: one email a week on the cases that changed after the headlines faded. Unsubscribe in one click.</p>
+<section class="cct-news{{ if .band }} cct-news--band{{ end }}" aria-labelledby="cct-news-h-{{ $place }}">
+  <p class="cct-news-kicker">Free with ColdCase Weekly · The Fine Print</p>
+  <h3 id="cct-news-h-{{ $place }}">12 phrases from tech launches, and what they actually commit to.</h3>
+  <p class="cct-news-text">"Up to", "as early as", "rolling out": our one-page field guide for reading any announcement. Free when you join ColdCase Weekly, one email with every verdict and every case that changed. Unsubscribe in one click.</p>
   <form class="cct-news-form" data-place="{{ $place }}" action="https://app.kit.com/forms/10077030/subscriptions" method="post">
     <label class="cct-sr" for="cct-email-{{ $place }}">Email address</label>
     <input type="email" id="cct-email-{{ $place }}" name="email_address" required autocomplete="email" placeholder="you@example.com">
-    <button type="submit" class="cct-btn-money">Send me the checklist ›</button>
+    <button type="submit" class="cct-btn-money">Send me the guide</button>
   </form>
   <div class="cct-news-msg" role="status" aria-live="polite" hidden></div>
   <div class="cct-news-foot">

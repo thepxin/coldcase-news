@@ -1,7 +1,11 @@
 <!-- Cookie-Free Privacy Analytics (GoatCounter) -->
 <script data-goatcounter="https://coldcasetech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- Self-hosted fonts (no Google Fonts): preload the two used above the fold -->
-<link rel="preload" href="{{ "fonts/jetbrains-mono-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<!-- Self-hosted fonts (no Google Fonts): preload the two used above the fold (wordmark + body) -->
+<link rel="preload" href="{{ "fonts/libre-caslon-display-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ "fonts/source-serif-4-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
-<meta name="theme-color" content="#0b0a14">
-<meta name="color-scheme" content="dark">
+<!-- Let Google show large previews and full snippets (Search, News, Discover) -->
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="color-scheme" content="light dark">
+{{- if and .IsPage (eq .Section "posts") }}
+<meta name="author" content="ColdCaseTech">
+{{- end }}

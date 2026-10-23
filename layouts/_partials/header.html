@@ -1,0 +1,30 @@
+{{- /* Override of PaperMod header.html: the ColdCaseTech masthead ("The Record").
+       Homepage: dateline, large wordmark, motto, double rule, menu. Other pages: a compact version of the same.
+       The date and counts are worked out when the site builds (it rebuilds several times a day). */ -}}
+{{- $c := partialCached "mast_counts.html" "all" "all" -}}
+{{- $cur := . -}}
+<header class="header rec-mast{{ if not .IsHome }} rec-mast--compact{{ end }}">
+  <div class="rec-mast-in">
+    {{- if .IsHome }}
+    <div class="rec-dateline">
+      <span><b>{{ now.UTC.Format "Monday, 2 January 2006" }}</b> · The daily record of tech promises</span>
+      <span class="rec-mono">{{ $c.total }} on the record{{ if $c.today }} · {{ $c.today }} new today{{ end }}</span>
+    </div>
+    {{- end }}
+    <a class="rec-word" href="{{ "" | absLangURL }}" accesskey="h" title="ColdCaseTech home (Alt + H)">ColdCase<span>Tech</span></a>
+    {{- if .IsHome }}
+    <p class="rec-motto">What they promised. What actually happened.</p>
+    {{- end }}
+    <div class="rec-double" aria-hidden="true"></div>
+    <nav class="rec-menu" aria-label="Main">
+      <ul id="menu">
+        {{- range site.Menus.main }}
+        {{- $active := or ($cur.IsMenuCurrent "main" .) ($cur.HasMenuCurrent "main" .) }}
+        {{- $active = or $active (eq (strings.TrimSuffix "/" .URL) (strings.TrimSuffix "/" $cur.RelPermalink)) }}
+        {{- if and (eq .URL "/") (not $cur.IsHome) }}{{ $active = false }}{{ end }}
+        <li><a href="{{ .URL | absLangURL }}"{{ if $active }} class="active" aria-current="page"{{ end }}{{ with .Identifier }} data-id="{{ . }}"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+  </div>
+</header>

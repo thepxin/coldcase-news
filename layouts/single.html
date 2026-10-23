@@ -1,40 +1,47 @@
-{{- /* Override of PaperMod single.html: posts with a verdict get the case header (case ID, stamp, sources, Then vs. Now). Other pages are unchanged. */ -}}
+{{- /* Override of PaperMod single.html: articles get "The Record" header (file line, headline, seal, dek, Then/Now ledger),
+       a drop cap, Where to buy, Exhibits (sources) and How this case was made. Other pages are unchanged. */ -}}
 {{- define "main" }}
 
-<article class="post-single">
+<article class="post-single{{ if partial "is_case.html" . }} rec-art{{ end }}">
   {{- $isCase := partial "is_case.html" . }}
   {{- $s := partial "case_state.html" . }}
   {{- if $isCase }}
-  {{- /* ColdCaseTech case header */}}
-  <header class="post-header cct-case-header">
-    {{ partial "breadcrumbs.html" . }}
-    <p class="cct-caseline">{{ partial "desk_chip.html" . }}{{ with partial "case_id.html" . }}<span>CASE {{ . }}</span>{{ end }}<time datetime="{{ $.Date.UTC.Format "2006-01-02" }}">{{ $.Date.UTC.Format "Jan 2, 2006" }}</time>{{ partial "upd_label.html" $s }}</p>
-    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
-    <p class="cct-stamp-row">{{ partial "verdict_stamp.html" . }}</p>
+  {{- /* ColdCaseTech case header, "The Record": file header, headline + seal, dek, Then/Now ledger */}}
+  {{- $field := partial "field.html" . }}
+  {{- $n := partial "source_count.html" . }}
+  {{- $a := len (where (.Params.sources | default slice) "tier" "A") }}
+  <header class="post-header rec-art-h">
+    <dl class="rec-file">
+      {{- with partial "case_id.html" . }}<div><dt>Case</dt><dd>{{ . }}</dd></div>{{ end }}
+      <div><dt>Filed</dt><dd><time datetime="{{ .Date.UTC.Format "2006-01-02" }}">{{ .Date.UTC.Format "2 Jan 2006" }}</time></dd></div>
+      {{- with $field }}<div><dt>Field</dt><dd><a href="{{ printf "tags/%s/" (lower (urlize .)) | relURL }}">{{ . }}</a></dd></div>{{ end }}
+      <div><dt>Exhibits</dt><dd>{{ if gt $n 0 }}{{ $n }} source{{ if ne $n 1 }}s{{ end }}{{ if gt $a 0 }}, {{ if eq $a $n }}{{ if eq $n 1 }}official{{ else }}all official{{ end }}{{ else }}{{ $a }} official{{ end }}{{ end }}{{ else }}—{{ end }}</dd></div>
+      {{- if $s.open }}
+      <div><dt>Due</dt><dd>{{ .Params.due }}</dd></div>
+      {{- else }}
+      <div><dt>Checked</dt><dd>{{ with .Params.checked | default .Params.verified }}<time datetime="{{ . }}">{{ (time.AsTime .).Format "2 Jan 2006" }}</time>{{ else }}—{{ end }}</dd></div>
+      {{- end }}
+    </dl>
+    <div class="rec-art-title">
+      <div>
+        <p class="rec-kicker">{{ with $field }}<span>{{ . }}</span> · {{ end }}{{ (partial "seal_kind.html" .).label }}{{ with partial "upd_label.html" $s }} {{ . }}{{ end }}</p>
+        <h1 class="post-title">{{ .Title }}</h1>
+      </div>
+      {{ partial "seal.html" (dict "page" . "small" false) }}
+    </div>
+    {{- with .Description }}<p class="rec-dek">{{ . }}</p>{{ end }}
     {{- if $s.open }}
-    <p class="cct-due">{{ if $s.pastdue }}Was due <b>{{ .Params.due }}</b>. No verdict until a source confirms what happened{{ else }}Due <b>{{ .Params.due }}</b>. We'll check and close this case{{ end }}{{ with $s.checked }} · last checked <time datetime="{{ . }}">{{ (time.AsTime .).Format "Jan 2" }}</time>{{ end }}</p>
+    <p class="rec-due">{{ if $s.pastdue }}Was due <b>{{ .Params.due }}</b>. No verdict until a source confirms what happened{{ else }}Due <b>{{ .Params.due }}</b>. We check every day and will close this case{{ end }}{{ with $s.checked }} · last checked <time datetime="{{ . }}">{{ (time.AsTime .).Format "2 Jan" }}</time>{{ end }}.</p>
     {{- end }}
-    <p class="cct-verify">
-      {{- $n := partial "source_count.html" . }}
-      {{- if gt $n 0 }}<span>SOURCES <b>{{ $n }}</b></span>{{ end }}
-      {{- with .Params.corrections }}{{ with index (last 1 .) 0 }}<span class="cct-corrected">CORRECTED <b><time datetime="{{ .date }}">{{ .date }}</time></b></span>{{ end }}{{ end }}
-      {{- with .Params.verified }}<span>LAST VERIFIED <b><time datetime="{{ . }}">{{ . }}</time></b></span>{{ end }}
-      <a href="{{ "about/" | relURL }}">How we verify</a>
-    </p>
+    {{- with $s.change }}<p class="rec-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
+    <p class="rec-byline">By the ColdCaseTech desk · {{ .ReadingTime }} min read · <a href="{{ "about/" | relURL }}">How we verify</a>{{ with .Params.corrections }}{{ with index (last 1 .) 0 }} · <span class="cct-corrected">Corrected <time datetime="{{ .date }}">{{ .date }}</time></span>{{ end }}{{ end }}</p>
     {{- partial "affiliate/disclosure_top.html" . }}
     {{- if and .Params.then .Params.now }}
     {{- $l := partial "tv_labels.html" . }}
-    <div class="cct-tvbox">
-      {{- $report := eq .Params.status "report" }}
-      <div><h2>{{ if not $report }}Then · {{ end }}{{ index $l 0 }}</h2><p>{{ .Params.then }}</p></div>
-      <div><h2>{{ if not $report }}Now · {{ end }}{{ index $l 1 }}</h2><p>{{ .Params.now }}</p></div>
-    </div>
-    {{- end }}
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
-      {{- partial "post_canonical.html" . -}}
-    </div>
+    <dl class="rec-ledger">
+      <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then }}</dd></div>
+      <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now }}</dd></div>
+    </dl>
     {{- end }}
   </header>
   {{- partial "case_updates.html" . }}
@@ -83,7 +90,6 @@
 
   {{- if $isCase }}
   {{- partial "where_to_buy.html" . }}
-  {{- if or $s.open $s.n }}{{ partial "verdicts_cta.html" (dict "target" "post-end") }}{{ end }}
   {{- partial "sources_box.html" . }}
   {{- partial "case_note.html" . }}
   {{- if not (in .Content "cct-rec-card") }}{{ partial "affiliate/card.html" . }}{{ end }}

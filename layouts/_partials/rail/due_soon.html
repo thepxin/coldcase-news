@@ -1,17 +1,17 @@
-{{- /* Open cases with the nearest due dates (own data). */ -}}
+{{- /* Open cases with the nearest due dates (own data), with a day countdown. */ -}}
 {{- $open := where (where site.RegularPages "Section" "posts") "Params.status" "open" -}}
 {{- $up := slice -}}
 {{- range $open }}{{ $p := . }}{{ with $p.Params.due_by }}{{ $up = $up | append $p }}{{ end }}{{ end -}}
 {{- with $up }}
-<section class="cct-feed" aria-labelledby="rail-due">
+<section class="cct-feed rec-due-box" aria-labelledby="rail-due">
   <h2 id="rail-due">Due soon <span class="cct-feed-tag">open cases</span></h2>
   <ul>
     {{- range first 4 (sort . "Params.due_by") }}
     {{- $days := int (div ((time.AsTime .Params.due_by).Sub now).Hours 24) }}
-    <li><a class="cct-item" href="{{ .RelPermalink }}"><span class="cct-item-id cct-serif">{{ .Title | truncate 70 }}</span>
-      <span class="cct-due-left">{{ if lt $days 0 }}was due {{ .Params.due }} · checking{{ else }}due {{ .Params.due }} · {{ $days }} day{{ if ne $days 1 }}s{{ end }}{{ end }}</span></a></li>
+    <li><a href="{{ .RelPermalink }}"><span class="rec-count">{{ if lt $days 0 }}—{{ else }}{{ $days }}{{ end }}<small>{{ if lt $days 0 }}checking{{ else }}day{{ if ne $days 1 }}s{{ end }}{{ end }}</small></span>
+      <span class="rec-due-t">{{ .Title | truncate 70 }}<small>due {{ .Params.due }}</small></span></a></li>
     {{- end }}
   </ul>
-  <div class="cct-feed-foot"><a href="{{ "developing/" | relURL }}">all open cases ›</a></div>
+  <div class="cct-feed-foot"><a href="{{ "developing/" | relURL }}">All open cases ›</a></div>
 </section>
 {{- end -}}

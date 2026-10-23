@@ -1,0 +1,15 @@
+{{- /* The Ledger: what is on the record, counted when the site builds. Always shown. */ -}}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $src := 0 }}{{ range $posts }}{{ $src = add $src (partial "source_count.html" .) }}{{ end -}}
+{{- $open := len (where $posts "Params.status" "open") -}}
+{{- $closed := len (where $posts "Params.status" "closed") -}}
+<section class="cct-feed rec-ledger-box" aria-labelledby="rail-ledger">
+  <h2 id="rail-ledger">On the record</h2>
+  <dl>
+    <div><dt>Articles</dt><dd>{{ len $posts }}</dd></div>
+    <div><dt>Sources checked</dt><dd>{{ $src }}</dd></div>
+    <div><dt>Open cases</dt><dd class="rec-n-open">{{ $open }}</dd></div>
+    <div><dt>Verdicts</dt><dd>{{ $closed }}</dd></div>
+  </dl>
+  <p class="cct-feed-credit">Every line links to its source. <a href="{{ "about/" | relURL }}">How we verify</a></p>
+</section>

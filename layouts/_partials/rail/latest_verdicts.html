@@ -3,9 +3,10 @@
 <section class="cct-feed" aria-labelledby="rail-verdicts">
   <h2 id="rail-verdicts">Latest verdicts</h2>
   <ul>
-    {{- range . }}
-    <li><a class="cct-item" href="{{ .RelPermalink }}">{{ partial "verdict_stamp.html" . }}<span class="cct-item-id cct-serif" style="margin-top:4px">{{ .Title | truncate 70 }}</span></a></li>
+    {{- range . }}{{ $sk := partial "seal_kind.html" . }}
+    <li><a class="cct-item" href="{{ .RelPermalink }}"><span class="rec-vk rec-vk--{{ $sk.k }}">{{ .Params.verdict }}</span><span class="cct-item-id">{{ .Title | truncate 70 }}</span></a></li>
     {{- end }}
   </ul>
+  <div class="cct-feed-foot"><a href="{{ "verdicts/" | relURL }}">All verdicts ›</a></div>
 </section>
 {{- end -}}

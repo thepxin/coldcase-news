@@ -10,7 +10,7 @@
 {{- end -}}
 {{- with $keys }}
 <section class="cct-feed" aria-labelledby="rail-gear">
-  <h2 id="rail-gear">Gear from today's articles <span class="cct-feed-tag">affiliate</span></h2>
+  <h2 id="rail-gear">Gear from today's file <span class="cct-feed-tag">affiliate</span></h2>
   <ul>
     {{- range $k := . }}{{ with index $d.products $k }}{{ $p := index $from $k }}
     <li><a class="cct-item" href="{{ .url | relURL }}" rel="nofollow sponsored noopener" target="_blank"><span class="cct-item-id">{{ .name }}</span>

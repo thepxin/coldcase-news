@@ -1,17 +1,18 @@
-{{- /* Every source the case was written from, plus the sources of each later update, with working links.
+{{- /* Exhibits: every source the article was written from, plus the sources of each later update, with working links.
        Rendered from the post's own 'sources:' and 'updates:' lists, so it stays correct even if the text is edited. */ -}}
 {{- if .Params.sources }}
 {{- $all := slice }}
 {{- range .Params.sources }}{{ $all = $all | append (merge . (dict "added" "")) }}{{ end }}
 {{- range .Params.updates }}{{ $d := .date }}{{ range .sources }}{{ $all = $all | append (merge . (dict "added" $d)) }}{{ end }}{{ end }}
-<section class="cct-sources" aria-labelledby="cct-sources-h">
-  <h2 id="cct-sources-h">Sources checked for this case ({{ len $all }})</h2>
+{{- $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" }}
+<section class="cct-sources rec-exhibits" aria-labelledby="cct-sources-h">
+  <h2 id="cct-sources-h">Exhibits <span>{{ len $all }} source{{ if ne (len $all) 1 }}s{{ end }} checked</span></h2>
   <ol>
-    {{- range sort $all "date" }}
+    {{- range $i, $x := sort $all "date" }}
     <li>
-      <span class="cct-src-tier cct-src-tier--{{ lower .tier }}">{{ if eq .kind "own statement" }}Official statement{{ else if eq .tier "A" }}Official{{ else }}Newsroom{{ end }}</span>
-      <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
-      <span class="cct-src-meta">{{ index (split .outlet " (") 0 }}{{ with .date }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }} · {{ replaceRE "^https?://(www\\.)?([^/]+).*$" "$2" .url }}{{ with .added }} · <b class="cct-src-added">added in the {{ (time.AsTime .).Format "Jan 2" }} update</b>{{ end }}</span>
+      <span class="rec-ex-id">Exhibit {{ if lt $i 26 }}{{ index $letters $i }}{{ else }}{{ add $i 1 }}{{ end }}<br><b class="rec-ex-t rec-ex-t--{{ lower .tier }}">{{ if eq .kind "own statement" }}Official statement{{ else if eq .tier "A" }}Official{{ else }}Newsroom{{ end }}</b></span>
+      <div><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a>
+      <span class="cct-src-meta">{{ index (split .outlet " (") 0 }}{{ with .date }} · <time datetime="{{ . }}">{{ . }}</time>{{ end }} · {{ replaceRE "^https?://(www\\.)?([^/]+).*$" "$2" .url }}{{ with .added }} · <b class="cct-src-added">added in the {{ (time.AsTime .).Format "2 Jan" }} update</b>{{ end }}</span></div>
     </li>
     {{- end }}
   </ol>

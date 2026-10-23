@@ -1,0 +1,43 @@
+{{- /* One article on a list page, in "The Record" style. Pass (dict "p" page "lead" true|false).
+       The lead (newest story on the homepage) is set large, with the Then/Now ledger. */ -}}
+{{- $p := .p }}{{ $lead := .lead -}}
+{{- $isCase := partial "is_case.html" $p -}}
+{{- $s := partial "case_state.html" $p -}}
+{{- $sk := partial "seal_kind.html" $p -}}
+{{- $field := partial "field.html" $p -}}
+<article class="rec-entry{{ if $lead }} rec-lead{{ end }}">
+  <div class="rec-entry-h">
+    <p class="rec-kicker">{{ with $field }}<span>{{ . }}</span> · {{ end }}{{ if $isCase }}{{ $sk.label }}{{ else }}Page{{ end }}{{ with partial "upd_label.html" $s }} {{ . }}{{ end }}</p>
+    {{- if $lead }}
+    <h2><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>
+    {{- else }}
+    <h3><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    {{- end }}
+  </div>
+  {{- if $isCase }}{{ partial "seal.html" (dict "page" $p "small" (not $lead)) }}{{ end }}
+  {{- $dek := $p.Description | default ($p.Summary | plainify | htmlUnescape | truncate 220) }}
+  {{- with $dek }}<p class="rec-dek">{{ . }}</p>{{ end }}
+  {{- if and $lead $p.Params.then $p.Params.now }}
+  {{- $l := partial "tv_labels.html" $p }}
+  <dl class="rec-ledger">
+    <div><dt>{{ index $l 0 }}</dt><dd>{{ $p.Params.then }}</dd></div>
+    {{- if $s.open }}
+    <div><dt>Outcome</dt><dd>{{ if $s.pastdue }}Was due {{ $p.Params.due }}. No verdict until a source confirms what happened.{{ else }}Due {{ $p.Params.due }}. We check every day and will close the case.{{ end }}</dd></div>
+    {{- else }}
+    <div><dt>{{ index $l 1 }}</dt><dd>{{ $p.Params.now }}</dd></div>
+    {{- end }}
+  </dl>
+  {{- end }}
+  {{- with $s.change }}<p class="rec-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
+  {{- if $isCase }}
+  <p class="rec-meta">
+    {{- with partial "case_id.html" $p }}Case <b>{{ . }}</b> · {{ end -}}
+    {{- if $s.open -}}
+    Due <b>{{ $p.Params.due }}</b>{{ with $s.checked }} · last checked <b><time datetime="{{ . }}">{{ (time.AsTime .).Format "2 Jan" }}</time></b>{{ end }}
+    {{- else -}}
+    Filed <b><time datetime="{{ $p.Date.UTC.Format "2006-01-02" }}">{{ $p.Date.UTC.Format "2 Jan 2006" }}</time></b>
+    {{- end -}}
+    {{- with partial "exhibits_line.html" $p }} · Exhibits: <b>{{ . }}</b>{{ end -}}
+  </p>
+  {{- end }}
+</article>

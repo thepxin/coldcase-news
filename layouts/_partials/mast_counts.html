@@ -1,0 +1,5 @@
+{{- /* Masthead numbers, worked out once per build: articles on the record, and how many were filed today (UTC). */ -}}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $today := now.UTC.Format "2006-01-02" -}}
+{{- $new := 0 }}{{ range $posts }}{{ if eq (.Date.UTC.Format "2006-01-02") $today }}{{ $new = add $new 1 }}{{ end }}{{ end -}}
+{{- return (dict "total" (len $posts) "today" $new) -}}

@@ -1,7 +1,7 @@
 {{- $f := partial "feeds/get.html" "crypto" -}}
 {{- with $f.items }}
 <section class="cct-feed" aria-labelledby="rail-crypto">
-  <h2 id="rail-crypto">Crypto prices <span class="cct-feed-tag">24 h</span></h2>
+  <h2 id="rail-crypto">Markets <span class="cct-feed-tag">crypto · 24 h</span></h2>
   <table class="cct-score cct-prices">
     <tbody>
     {{- range . }}

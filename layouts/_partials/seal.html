@@ -1,0 +1,4 @@
+{{- /* The round seal on articles: News report, Open case, or the verdict. Pass (dict "page" . "small" true). */ -}}
+{{- $s := partial "seal_kind.html" .page -}}
+<div class="rec-seal rec-seal--{{ $s.k }}{{ if .small }} rec-seal--sm{{ end }}" role="img" aria-label="{{ trim (print $s.top " " $s.bot) " " }}"><span>{{ with $s.top }}{{ . }}<br>{{ end }}{{ $s.bot }}</span></div>
+{{- /**/ -}}

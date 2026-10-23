@@ -1,45 +1,49 @@
-{{- if .IsPage }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": {{ .Title | plainify }},
-  "name": {{ .Title | plainify }},
-  "description": {{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }},
-  "url": {{ .Permalink }},
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ .Permalink }}
-  },
-  {{- with .Params.cover.image }}
-  "image": {
-    "@type": "ImageObject",
-    "url": {{ . | absURL }}
-  },
-  {{- end }}
-  "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }},
-  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }},
-  "author": {
-    "@type": "Organization",
-    "name": "ColdCaseTech Intelligence Desk",
-    "url": "https://coldcasetech.com"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "ColdCaseTech",
-    "url": "https://coldcasetech.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://coldcasetech.com/images/cct_logo_final.png"
-    }
-  },
-  "keywords": [
-    {{- range $i, $tag := .Params.tags }}
-      {{- if $i }}, {{ end }}{{ $tag | jsonify }}
-    {{- end }}
-  ],
-  "articleSection": "Cybersecurity & Incident Post-Mortems",
-  "inLanguage": "en-US"
-}
-</script>
+{{- /* Structured data for Google (schema.org JSON-LD).
+       Homepage: who publishes the site (a news organisation) and the site itself.
+       Articles: NewsArticle with headline, dates, three share images (16x9, 4x3, 1x1), field, and every source as a citation.
+       Built as data and written with jsonify, so quotes in titles can never break it. */ -}}
+{{- $home := site.Home.Permalink -}}
+{{- $about := "about/" | absURL -}}
+{{- $logo := dict "@type" "ImageObject" "url" ("images/cct_logo_final.png" | absURL) "width" 2048 "height" 2048 -}}
+{{- $org := dict
+    "@type" "NewsMediaOrganization"
+    "@id" (print $home "#org")
+    "name" "ColdCaseTech"
+    "url" $home
+    "logo" $logo
+    "description" site.Params.description
+    "publishingPrinciples" $about
+    "verificationFactCheckingPolicy" $about
+    "correctionsPolicy" $about
+    "email" "editor@coldcasetech.com"
+    "contactPoint" (dict "@type" "ContactPoint" "contactType" "editorial" "email" "editor@coldcasetech.com" "url" $about)
+    "sameAs" (slice "https://x.com/coldcasetech" "https://www.linkedin.com/in/coldcase-tech-29102a446/" "https://www.instagram.com/coldcasetech/") -}}
+{{- if .IsHome }}
+{{- $site := dict "@type" "WebSite" "@id" (print $home "#website") "url" $home "name" "ColdCaseTech" "inLanguage" "en" "publisher" (dict "@id" (print $home "#org")) }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $org $site) | jsonify | safeJS }}</script>
+{{- else if and .IsPage (eq .Section "posts") }}
+{{- $cards := partialCached "og_cards.html" . .RelPermalink }}
+{{- $imgs := slice }}{{ range slice "16x9" "4x3" "1x1" }}{{ with index $cards . }}{{ $imgs = $imgs | append .Permalink }}{{ end }}{{ end }}
+{{- $cites := slice }}
+{{- range .Params.sources }}{{ $cites = $cites | append (dict "@type" "CreativeWork" "name" .title "url" .url "publisher" (dict "@type" "Organization" "name" (index (split .outlet " (") 0))) }}{{ end }}
+{{- range .Params.updates }}{{ range .sources }}{{ $cites = $cites | append (dict "@type" "CreativeWork" "name" .title "url" .url "publisher" (dict "@type" "Organization" "name" (index (split .outlet " (") 0))) }}{{ end }}{{ end }}
+{{- $kw := slice }}{{ range .Params.tags }}{{ $kw = $kw | append . }}{{ end }}
+{{- $art := dict
+    "@context" "https://schema.org"
+    "@type" "NewsArticle"
+    "headline" (.Title | plainify | htmlUnescape | truncate 110 "")
+    "description" (.Description | default (.Summary | plainify | htmlUnescape) | truncate 300)
+    "url" .Permalink
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "datePublished" (.PublishDate.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "author" (slice (dict "@type" "Organization" "name" "ColdCaseTech" "url" $about))
+    "publisher" $org
+    "inLanguage" "en"
+    "isAccessibleForFree" true
+    "keywords" $kw }}
+{{- with $imgs }}{{ $art = merge $art (dict "image" .) }}{{ end }}
+{{- with partial "field.html" . }}{{ $art = merge $art (dict "articleSection" .) }}{{ end }}
+{{- with $cites }}{{ $art = merge $art (dict "citation" .) }}{{ end }}
+<script type="application/ld+json">{{ $art | jsonify | safeJS }}</script>
 {{- end }}

@@ -1,0 +1,11 @@
+{{- /* "Apple (official), 9to5Mac" from the article's stored sources: official first, each outlet once, max 3. */ -}}
+{{- $names := slice }}{{ $seen := slice -}}
+{{- with .Params.sources -}}
+  {{- range (append (where . "tier" "B") (where . "tier" "A")) -}}
+    {{- $n := index (split .outlet " (") 0 -}}
+    {{- if not (in $seen $n) }}{{ $seen = $seen | append $n }}{{ $names = $names | append (print $n (cond (eq .tier "A") " (official)" "")) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := delimit (first 3 $names) ", " -}}
+{{- if gt (len $names) 3 }}{{ $out = print $out " +" (sub (len $names) 3) " more" }}{{ end -}}
+{{- return $out -}}
