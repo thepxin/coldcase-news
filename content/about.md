@@ -1,11 +1,23 @@
 ---
-title: "About ColdCaseTech & Editorial Methodology"
+title: "About ColdCaseTech & Our Standards"
+description: "An independent record of technology's promises: who publishes ColdCaseTech, how every article is verified, and how to reach the editor."
 url: "/about/"
 layout: "single"
 ShowToc: false
+hideMeta: true
+ShowBreadCrumbs: false
 ---
 
-**ColdCaseTech** is an independent tech site. Every day we report what's new across tech (AI, chips, devices, software, platforms, policy, crypto, EVs, space, quantum, robotics, energy, telecom, gaming and cloud) using only sources you already trust. When a company makes a promise, we keep the case open, and when the promise comes due, we give one clear verdict: what they promised, and what actually happened.
+**ColdCaseTech** is an independent record of technology's promises. Every day we report what's new across tech (AI, chips, devices, software, platforms, policy, crypto, EVs, space, quantum, robotics, energy, telecom, gaming and cloud) using only sources you already trust. When a company makes a promise, we keep the case open, and when the promise comes due, we give one clear verdict: what they promised, and what actually happened.
+
+### The masthead
+<dl class="rec-masthead">
+  <div><dt>Publication</dt><dd>ColdCaseTech, an independent record of technology's promises</dd></div>
+  <div><dt>Ownership</dt><dd>Independently owned. No company we report on owns ColdCaseTech or has any say in what we publish.</dd></div>
+  <div><dt>Editor</dt><dd><a href="mailto:editor@coldcasetech.com">editor@coldcasetech.com</a></dd></div>
+  <div><dt>Corrections</dt><dd>Write to the editor with the article link. Every correction is noted on the article, with its date.</dd></div>
+  <div><dt>Tips &amp; press</dt><dd><a href="mailto:editor@coldcasetech.com">editor@coldcasetech.com</a> · <a href="https://x.com/coldcasetech">X (@coldcasetech)</a></dd></div>
+</dl>
 
 ### Three kinds of articles
 - **News reports (daily).** What was announced, launched, achieved or decided, and by whom, as the sources state it. No verdict.
@@ -20,7 +32,7 @@ ColdCaseTech does not draw conclusions or add opinions. Every article reports on
 3. **Then vs. now.** A verdict needs sources from at least two different days, so the change is documented, not assumed. Without that, it is published as a news report or an open case instead.
 4. **Claims are not facts.** A company's own words are reported as its claim, never as proof that something was delivered or works as claimed.
 5. **Checked before publishing.** Every article is written with AI assistance from those sources. Before publishing it must pass a separate claim-by-claim AI check against the sources (a fresh request that did not write the article), and automatic checks that every link, figure and date appears in a source and that every sentence cites its source. If anything fails, the article is not published.
-6. **Corrections.** If we get something wrong, we fix it and note the correction on the article.
+6. **Corrections.** If we get something wrong, we fix it and note the correction on the article. Write to [editor@coldcasetech.com](mailto:editor@coldcasetech.com).
 
 **Verdicts:** `Delivered` (it arrived or performed as promised), `Partially Delivered` (late, less than promised, in fewer places, or measured below the claim), `Not Delivered` (cancelled, missed the promised date, or does not do what was promised).
 

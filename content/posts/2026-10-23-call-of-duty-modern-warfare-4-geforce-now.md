@@ -1,7 +1,7 @@
 ---
 title: "Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier"
 date: "2026-10-23T20:06:48Z"
-description: "NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW, with RTX 5080-class performance for Ultimate members and Fire TV Stick purchases."
+description: "Call of Duty: Modern Warfare 4 launches on GeForce NOW, with RTX 5080-class performance for Ultimate members and membership purchases on Fire TV Stick."
 tags: ["Tech", "Cloud and Infrastructure"]
 desk: "tech"
 verdict: ""
@@ -30,7 +30,7 @@ cover:
 draft: false
 ---
 
-NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW, bringing a new campaign, multiplayer action and the DMZ extraction mode to supported devices ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). NVIDIA said Ultimate members get GeForce RTX 5080-class performance, which brings support for ray-tracing features in the cloud ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). NVIDIA also said existing supported Fire TV Stick users can now purchase one-month Performance or Ultimate memberships directly through Amazon ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). NVIDIA said six games are joining the GeForce NOW library this week ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+Call of Duty: Modern Warfare 4 launches on GeForce NOW, NVIDIA says, bringing a new campaign, multiplayer action and the DMZ extraction mode to supported devices ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). Ultimate members get GeForce RTX 5080-class performance, with support for ray-tracing features in the cloud ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). Existing supported Fire TV Stick users can now buy one-month Performance or Ultimate memberships directly through Amazon ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)). Six games join the GeForce NOW library this week ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
 
 ## Key Facts
 
@@ -52,22 +52,21 @@ NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW, bringing a n
 
 ## Details (as Reported)
 
-- NVIDIA said the campaign settings include Korea, New York, Paris and Mumbai ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said multiplayer offers a dozen core 6v6 maps ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said the newly added GeForce RTX 5080-class performance is available across PCs, Macs, handhelds, mobile devices, browsers and supported TVs ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said GeForce NOW handles game downloads and installs ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said Fire TV Stick transactions are processed through Amazon's billing system using an existing Amazon account ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said the library includes thousands of ready-to-play games, including more than 100 free-to-play games ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said Square Enix's FINAL FANTASY RESONANCE brings cinematic pixel art and strategic battles to the cloud ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said the Echoes of Skyrim season gives all ESO Standard Edition owners access to its Skyrim content and the Antiquities treasure-hunting system ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said a day pass is available, and its cost can be applied toward a first monthly membership ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- The campaign settings include Korea, New York, Paris and Mumbai ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- Multiplayer offers a dozen core 6v6 maps ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- The newly added RTX 5080-class performance is available across PCs, Macs, handhelds, mobile devices, browsers and supported TVs ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- GeForce NOW handles game downloads and installs ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- Fire TV Stick transactions go through Amazon's billing system, using an existing Amazon account ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- The library holds thousands of ready-to-play games, including more than 100 free-to-play titles ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- Square Enix's FINAL FANTASY RESONANCE brings cinematic pixel art and strategic battles to the cloud ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- The Echoes of Skyrim season gives all ESO Standard Edition owners access to its Skyrim content and the Antiquities treasure-hunting system ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- A day pass is available, and its cost can be applied toward a first monthly membership ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
 
 {{< recommend >}}
 
 
 ## What Is Not Yet Confirmed
 
-- NVIDIA said GeForce NOW availability may vary, as games are onboarded after release and added throughout the week ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said the dates listed for games reflect release on their respective stores, not on GeForce NOW ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-- NVIDIA said Fire TV Stick in-app purchase is rolling out to existing supported users ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
-
+- Availability on GeForce NOW may vary, as games are onboarded after release and added throughout the week ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- The dates listed for games reflect their release on their own stores, not on GeForce NOW ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).
+- Fire TV Stick in-app purchases are still rolling out to existing supported users ([NVIDIA](https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/)).

@@ -28,7 +28,7 @@ cover:
 draft: false
 ---
 
-NASA's Langley Research Center in Hampton, Virginia, is partnering with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). NASA said the new Space Act Agreement was announced during a ceremony Friday ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). According to NASA, the partnership will use NASA expertise in atmospheric sciences to assist Virginia Energy with resiliency studies, resource analysis and long-term energy planning ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+NASA's Langley Research Center in Hampton, Virginia, is partnering with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). The new Space Act Agreement was announced at a ceremony on Friday ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). Under it, the agency will lend its expertise in atmospheric sciences to Virginia Energy's resiliency studies, resource analysis and long-term energy planning ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
 ## Key Facts
 
@@ -46,20 +46,19 @@ NASA's Langley Research Center in Hampton, Virginia, is partnering with the Virg
 
 ## Details (as Reported)
 
-NASA said the agreement will help state officials plan for current and potential extreme weather conditions in Virginia and assess implications for electricity demand, energy generation and system stress ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). NASA said the information can be directly incorporated into energy policy, planning and operational decisions ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+The agreement is meant to help state officials plan for current and potential extreme weather in Virginia and assess what it means for electricity demand, energy generation and system stress ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). The information can be incorporated directly into energy policy, planning and operational decisions ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
-NASA said the partnership will infuse relevant POWER data products into Virginia Energy's modeling and analysis system ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). According to NASA, the POWER information supports energy generation system designs and prediction of energy production using validated data products from NASA's Earth Science to Action program ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). NASA said those products represent research and development across Langley, Goddard Space Flight Center in Greenbelt, Maryland, and Ames Research Center in California's Silicon Valley ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+Relevant data products from POWER, NASA's Prediction of Worldwide Energy Resources, will be infused into Virginia Energy's modeling and analysis system ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). POWER supports the design of energy generation systems and the prediction of energy production, using validated data products from NASA's Earth Science to Action program ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). Those products represent research and development across Langley, Goddard Space Flight Center in Greenbelt, Maryland, and Ames Research Center in California's Silicon Valley ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
-NASA said that through a digital pipeline, Virginia Energy can connect to Langley's POWER web platform to download specific datasets and put them directly into its modeling tools ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+Through a digital pipeline, Virginia Energy can connect to Langley's POWER web platform, download specific datasets and put them directly into its modeling tools ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
-NASA Langley Deputy Director Allen Kilgore said, "This collaboration with Virginia Energy will benefit the citizens of Virginia and provide stronger energy security for the Commonwealth" ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). Virginia Energy Director Vince Maiden said, "This collaboration will help us better understand how weather affects electricity supply and demand, identify vulnerabilities, and weigh resource tradeoffs with greater confidence" ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+"This collaboration with Virginia Energy will benefit the citizens of Virginia and provide stronger energy security for the Commonwealth," said Allen Kilgore, deputy director of NASA Langley ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)). Vince Maiden, director of Virginia Energy, expects it to "help us better understand how weather affects electricity supply and demand, identify vulnerabilities, and weigh resource tradeoffs with greater confidence" ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
-NASA said the partnership was fostered through NASA Langley's Strategic Partnerships Office, which connects industry, academia and other government agencies with center facilities, capabilities, specialized test environments and technical expertise ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
+The partnership was fostered through NASA Langley's Strategic Partnerships Office, which connects industry, academia and other government agencies with the center's facilities, capabilities, specialized test environments and technical expertise ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
 
 {{< recommend >}}
 
 
 ## What Is Not Yet Confirmed
 
-- NASA said its POWER team members will work with Virginia Energy researchers to streamline the exchange, adjust formats and evaluate the need for additional data ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
-
+- NASA's POWER team members will work with Virginia Energy researchers to streamline the exchange, adjust formats and evaluate the need for additional data ([NASA](https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/)).
