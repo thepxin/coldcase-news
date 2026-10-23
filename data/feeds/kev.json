@@ -1,8 +1,17 @@
 {
- "added_30d": 33,
- "catalog_version": "2026.10.21",
- "count": 1754,
+ "added_30d": 34,
+ "catalog_version": "2026.10.23",
+ "count": 1755,
  "items": [
+  {
+   "added": "2026-10-23",
+   "cve": "CVE-2026-114625",
+   "due": "2026-10-26",
+   "name": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
+   "product": "VeloCloud Orchestrator",
+   "ransomware": false,
+   "vendor": "Arista"
+  },
   {
    "added": "2026-10-20",
    "cve": "CVE-2026-96656",
@@ -218,21 +227,12 @@
    "product": "FortiMail",
    "ransomware": false,
    "vendor": "Fortinet"
-  },
-  {
-   "added": "2026-09-30",
-   "cve": "CVE-2026-76504",
-   "due": "2026-10-03",
-   "name": "Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability",
-   "product": "Catalyst SD-WAN Manager",
-   "ransomware": false,
-   "vendor": "Cisco"
   }
  ],
  "source": "CISA Known Exploited Vulnerabilities Catalog",
  "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
  "status": "ok",
- "updated": "2026-10-23T04:44:06Z",
+ "updated": "2026-10-23T17:03:07Z",
  "vendors_30d": [
   {
    "count": 4,
