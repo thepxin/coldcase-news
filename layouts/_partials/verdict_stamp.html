@@ -1,5 +1,7 @@
 {{- if eq .Params.status "open" -}}
 <span class="cct-stamp cct-stamp--open" title="Open case: the promised date is still ahead, so there is no verdict yet">Open case · no verdict yet</span>
+{{- else if eq .Params.status "report" -}}
+<span class="cct-stamp cct-stamp--report" title="News report: what the sources state happened. No verdict needed.">News report</span>
 {{- else -}}{{- with .Params.verdict -}}
 <span class="cct-stamp cct-stamp--{{ partial "verdict_class.html" . }}" title="Verdict">{{ . }}</span>
 {{- end -}}{{- end -}}

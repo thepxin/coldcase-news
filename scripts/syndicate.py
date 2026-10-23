@@ -141,7 +141,8 @@ def build_body(post, canonical):
     case = ""
     if post.get("then") and post.get("now"):
         label = ("Open case, no verdict yet" + (f", due {post['due']}" if post.get("due") else "")) \
-            if post.get("status") == "open" else (post.get("verdict") or "Under review")
+            if post.get("status") == "open" else ("News report" if post.get("status") == "report"
+                                                  else (post.get("verdict") or "Under review"))
         case = (f"> **Then vs. Now ({label}):** "
                 f"**Then:** {post['then']} **Now:** {post['now']}\n\n")
     return (
@@ -162,7 +163,7 @@ def post_devto(post, canonical, md):
         article = {
             "title": post["title"], "published": True, "body_markdown": md,
             "canonical_url": canonical,
-            "tags": ["security", "cybersecurity", "cloud", "devops"],
+            "tags": ["technology", "news", "tech", "ai"],
         }
         if post["cover"]:
             article["main_image"] = post["cover"]
@@ -188,9 +189,9 @@ def post_hashnode(post, canonical, md):
     inp = {
         "title": post["title"], "publicationId": pub, "contentMarkdown": md,
         "originalArticleURL": canonical,
-        "tags": [{"slug": "cybersecurity", "name": "Cybersecurity"},
-                 {"slug": "security", "name": "Security"},
-                 {"slug": "cloud", "name": "Cloud"}],
+        "tags": [{"slug": "technology", "name": "Technology"},
+                 {"slug": "news", "name": "News"},
+                 {"slug": "tech", "name": "Tech"}],
     }
     if post["cover"]:
         inp["coverImageOptions"] = {"coverImageURL": post["cover"]}

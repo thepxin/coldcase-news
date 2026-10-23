@@ -891,15 +891,6 @@
   }
  ],
  "rules": {
-  "security": {
-   "min_outlets": 2,
-   "min_tier_a": 1,
-   "min_spread_days": 7,
-   "max_age_days_newest": 14,
-   "max_sources": 6,
-   "excerpt_chars": 7000,
-   "own_statement_counts_as_tier_a": true
-  },
   "tech": {
    "min_outlets": 2,
    "min_tier_a": 1,
@@ -907,7 +898,9 @@
    "max_age_days_newest": 14,
    "max_sources": 6,
    "excerpt_chars": 7000,
-   "own_statement_counts_as_tier_a": true
+   "own_statement_counts_as_tier_a": true,
+   "relaxed": true,
+   "report_max_age_days": 3
   }
  }
 }

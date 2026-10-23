@@ -63,6 +63,12 @@ TECH_AREAS = {
     "crypto": ["bitcoin", "ethereum", "crypto", "etf", "etfs", "stablecoin", "stablecoins", "token", "blockchain", "solana"],
     "evs": ["ev", "evs", "electric vehicle", "electric vehicles", "tesla", "rivian", "battery", "batteries", "charging", "robotaxi", "self-driving", "autonomous"],
     "space": ["space", "nasa", "spacex", "starship", "rocket", "satellite", "satellites", "starlink", "moon", "lunar", "mars", "orbit", "esa", "isro"],
+    "quantum": ["quantum", "qubit", "qubits", "quantum computer", "quantum computing"],
+    "robotics": ["robot", "robots", "robotics", "humanoid", "drone", "drones", "automation"],
+    "energy": ["solar", "fusion", "nuclear", "reactor", "grid", "wind power", "hydrogen", "energy storage", "power plant"],
+    "telecom": ["5g", "6g", "broadband", "fiber", "wi-fi", "wifi", "telecom", "spectrum", "jio", "airtel", "verizon", "t-mobile"],
+    "gaming": ["game", "games", "gaming", "console", "playstation", "xbox", "nintendo", "steam", "gpu"],
+    "cloud and infrastructure": ["cloud", "data center", "datacenter", "aws", "azure", "google cloud", "server", "servers", "supercomputer"],
 }
 # A tech story must be about a promise/claim or its outcome, not just any news.
 OUTCOME_WORDS = ["promised", "promise", "promises", "pledged", "pledge", "announced", "unveiled", "unveils", "launch", "launches", "launched",
@@ -70,7 +76,9 @@ OUTCOME_WORDS = ["promised", "promise", "promises", "pledged", "pledge", "announ
                  "delayed", "delay", "delays", "postponed", "pushed back", "cancel", "canceled", "cancelled", "scrapped", "roadmap",
                  "benchmark", "benchmarks", "performance", "tested", "review", "specs", "price", "pricing", "price cut", "target",
                  "deadline", "goal", "finally", "arrives", "missed", "falls short", "exceeds", "claims", "claimed", "update", "updates",
-                 "approved", "approval", "rejected", "fined", "ruling", "deployed", "milestone"]
+                 "approved", "approval", "rejected", "fined", "ruling", "deployed", "milestone",
+                 "breakthrough", "record", "world's first", "first-ever", "achieves", "achieved", "introduces", "debuts",
+                 "reveals", "demonstrates", "beats", "surpasses", "opens", "expands", "partners", "acquires", "raises"]
 
 # Words that never identify a specific incident (so two unrelated stories are never merged).
 GENERIC = set("""
@@ -287,6 +295,15 @@ def evaluate(sources, rules, needs_own_statement=False, now=None):
     outlets = {s["outlet"] for s in sources}
     tier_a = [s for s in sources if s["tier"] == "A"]
     dated = sorted(d for d in (parse_date(s["date"]) for s in sources) if d)
+    if rules.get("relaxed"):
+        # tech: one official source, OR two different outlets, is enough; a time gap is only needed for a verdict
+        if not (tier_a or len(outlets) >= 2):
+            reasons.append("needs one official source or two different outlets")
+        if not dated:
+            reasons.append("no dated source")
+        elif (now - dated[-1]).days > rules["max_age_days_newest"]:
+            reasons.append("newest source is too old")
+        return (not reasons), reasons
     if len(outlets) < rules["min_outlets"]:
         reasons.append(f"only {len(outlets)} outlet(s), need {rules['min_outlets']}")
     if len(tier_a) < rules["min_tier_a"]:
@@ -416,21 +433,24 @@ def clean(sources, limit):
     return [{k: v for k, v in s.items() if not k.startswith("_")} for s in sources[:limit]]
 
 
-SPREAD_ONLY = ("sources span only", "fewer than 2 dated sources")
+def can_give_verdict(sources, rules):
+    """A verdict (then vs now) needs at least 2 dated sources that are min_spread_days apart."""
+    dated = sorted(d for d in (parse_date(s["date"]) for s in sources) if d)
+    return len(dated) >= 2 and (dated[-1] - dated[0]).days >= rules["min_spread_days"]
 
 
-def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security", allow_open=None, finder=None, known=()):
-    """Yield (topic, sources, mode) for every candidate story on this desk that passes the rules, best first.
+def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", finder=None, known=()):
+    """Yield (topic, sources, mode) for every candidate story that passes the source rules, best first.
     known: keyword sets of existing cases (see case_keys); a story about one of them is left to the update desk.
-    mode "case": full then-vs-now case. mode "open": passes every verification rule but has no then-vs-now gap yet;
-    tech desk only, offered AFTER all full cases, and only usable as an open case (a dated or measurable promise)."""
+    mode "case":   the sources span enough time for a then-vs-now verdict (the writer may still choose a report or
+                   an open case if that fits the sources better).
+    mode "report": fresh news without a time gap: only a report (no verdict) or an open case (dated promise)."""
     f = finder or Finder(cfg, desk, log, now)
-    allow_open = (desk == "tech") if allow_open is None else allow_open
     if not f.items:
         log("No feed items available; nothing to write today.")
         return
     rules, now = f.rules, f.now
-    tried, open_later = set(), []
+    tried = set()
     for topic in topics:
         seeds = [i for i in f.items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
                  and i["url"] not in used_urls and i["url"] not in tried]
@@ -456,23 +476,22 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="security", 
             if not sources:
                 log(f"  skip '{label}': could not use the article: {reason}")
                 continue
-            needs_own = desk == "security" and bool(CLAIM_PATTERN.search(seed["title"]))
-            ok, reasons = evaluate(sources, rules, needs_own, now)
+            ok, reasons = evaluate(sources, rules, False, now)
             outlets = sorted({f"{s['outlet']} ({s['tier']})" for s in sources})
             if not ok:
-                if allow_open and all(r.startswith(SPREAD_ONLY) for r in reasons):
-                    log(f"  open-case candidate '{label}': verified, but no then-vs-now gap yet [sources: {', '.join(outlets)}]")
-                    open_later.append((topic, sources, label))
-                    tried.update(x["url"] for x in sources)
-                    continue
                 log(f"  skip '{label}': " + "; ".join(reasons) + f" [sources: {', '.join(outlets)}]")
                 continue
+            if can_give_verdict(sources, rules):
+                mode = "case"
+            else:
+                newest = max(d for d in (parse_date(s["date"]) for s in sources) if d)
+                if (now - newest).days > rules.get("report_max_age_days", 3):
+                    log(f"  skip '{label}': no time gap for a verdict, and too old for a news report [sources: {', '.join(outlets)}]")
+                    continue
+                mode = "report"
             tried.update(x["url"] for x in sources)
-            log(f"  PASS '{label}' with {len(sources)} sources: {', '.join(outlets)}")
-            yield topic, clean(sources, rules["max_sources"]), "case"
-    for topic, sources, label in open_later:
-        log(f"  trying as an OPEN case: '{label}'")
-        yield topic, clean(sources, rules["max_sources"]), "open"
+            log(f"  PASS ({mode}) '{label}' with {len(sources)} sources: {', '.join(outlets)}")
+            yield topic, clean(sources, rules["max_sources"]), mode
 
 
 CASE_STOP = set("""

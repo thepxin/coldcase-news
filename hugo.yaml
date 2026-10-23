@@ -40,10 +40,6 @@ menu:
       name: Tech Cases
       url: /tags/tech/
       weight: 10
-    - identifier: security
-      name: Security Friday
-      url: /tags/security-friday/
-      weight: 15
     - identifier: developing
       name: Developing
       url: /developing/

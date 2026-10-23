@@ -1,2 +1,2 @@
-{{- /* True for a ColdCaseTech case: it has a verdict, or it is an open case (no verdict yet). */ -}}
-{{- return (or .Params.verdict (eq .Params.status "open")) -}}
+{{- /* True for a ColdCaseTech article: a verdict case, an open case (no verdict yet) or a news report. */ -}}
+{{- return (or .Params.verdict (eq .Params.status "open") (eq .Params.status "report")) -}}

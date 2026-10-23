@@ -1,30 +1,31 @@
 {{- /* ColdCaseTech homepage intro. Built for a calm first impression: one headline, one line of context,
        two desk choices, and a short optional guide. Every number shown is real build-time data. */ -}}
 {{- $posts := where site.RegularPages "Section" "posts" -}}
-{{- $sec := where $posts "Params.desk" "security" -}}
-{{- $kev := partial "feeds/get.html" "kev" -}}
+{{- $reports := where $posts "Params.status" "report" -}}
+{{- $verdicts := where $posts "Params.status" "closed" -}}
 <section class="cct-home" aria-labelledby="cct-home-title">
   <p class="cct-boot" aria-hidden="true"><span class="cct-prompt">$</span> open --cases --promised-vs-delivered</p>
   <h1 id="cct-home-title">What they promised. What actually happened.</h1>
-  <p class="cct-lead">We check tech promises and security incidents against sources you already trust, and turn each one into a short case with one clear verdict.</p>
+  <p class="cct-lead">Every day: what's new across tech, checked against sources you already trust. When a company makes a promise, we keep the case open and give one clear verdict when it comes due.</p>
 
-  <nav class="cct-desks" aria-label="Desks">
+  <nav class="cct-desks" aria-label="Sections">
     <a class="cct-desk cct-desk--tech" href="{{ "tags/tech/" | relURL }}">
-      <span class="cct-chip cct-chip--tech">Tech · daily</span>
-      <span class="cct-desk-t">Promised vs. delivered</span>
-      <span class="cct-desk-d">Launches, specs, AI, chips, EVs, space, crypto, policy</span>
-    </a>
-    <a class="cct-desk cct-desk--sec" href="{{ "tags/security-friday/" | relURL }}">
-      <span class="cct-chip cct-chip--sec">Security Friday · weekly</span>
-      <span class="cct-desk-t">Reported vs. confirmed</span>
-      {{- $days := dict "Friday" 0 "Saturday" 6 "Sunday" 5 "Monday" 4 "Tuesday" 3 "Wednesday" 2 "Thursday" 1 }}
-      {{- $d := index $days (now.UTC.Format "Monday") }}
-      {{- if and (eq $d 0) (ge (int (now.UTC.Format "15")) 15) }}{{ $d = 7 }}{{ end }}
-      {{- $next := now.UTC.AddDate 0 0 $d }}
-      {{- with first 1 $sec.ByDate.Reverse }}{{ range . }}
+      <span class="cct-chip cct-chip--tech">Today in tech · daily</span>
+      <span class="cct-desk-t">What's new, sourced</span>
+      {{- with first 1 $reports.ByDate.Reverse }}{{ range . }}
       <span class="cct-desk-d">Latest: {{ .Title | truncate 60 }}</span>
       {{- end }}{{ else }}
-      <span class="cct-desk-d">First case: Friday {{ $next.Format "Jan 2" }}, editor-reviewed</span>
+      <span class="cct-desk-d">AI, chips, devices, software, EVs, space, crypto, energy and more</span>
+      {{- end }}
+    </a>
+    <a class="cct-desk cct-desk--verdict" href="{{ "tags/tech/" | relURL }}">
+      <span class="cct-chip cct-chip--tech">Verdicts</span>
+      <span class="cct-desk-t">Promised vs. delivered</span>
+      {{- if $verdicts }}
+      {{- $ok := len (where $verdicts "Params.verdict" "Delivered") }}{{ $part := len (where $verdicts "Params.verdict" "Partially Delivered") }}{{ $no := len (where $verdicts "Params.verdict" "Not Delivered") }}
+      <span class="cct-desk-d">{{ $ok }} delivered · {{ $part }} partly · {{ $no }} not delivered</span>
+      {{- else }}
+      <span class="cct-desk-d">One clear verdict when a promise comes due</span>
       {{- end }}
     </a>
     {{- /* Open cases: real numbers, computed when the site builds */}}
@@ -59,19 +60,19 @@
     <div class="cct-legend">
       <p><span class="cct-chip cct-chip--tech">Tech</span>
         <span class="cct-stamp cct-stamp--ok">Delivered</span> <span class="cct-stamp cct-stamp--warn">Partially Delivered</span> <span class="cct-stamp cct-stamp--bad">Not Delivered</span></p>
-      <p><span class="cct-chip cct-chip--sec">Security</span>
-        <span class="cct-stamp cct-stamp--ok">Verified</span> <span class="cct-stamp cct-stamp--warn">Partially True</span> <span class="cct-stamp cct-stamp--bad">Escalated</span></p>
+      <p><span class="cct-stamp cct-stamp--report">News report</span> <span class="cct-legend-note">What happened, every line sourced. No verdict needed.</span></p>
       <p><span class="cct-stamp cct-stamp--open">Open case</span> <span class="cct-legend-note">A promise with a future date. No verdict until a source confirms the outcome. Cases get dated updates; a changed verdict is always shown.</span></p>
     </div>
     <p class="cct-guide-more"><a href="{{ "about/" | relURL }}">How we verify ›</a></p>
   </details>
 
   <p class="cct-stats">
-    {{- if $posts }}<span>{{ len $posts }} case{{ if ne (len $posts) 1 }}s{{ end }} on file</span>{{ end }}
-    {{- with $kev.count }}<span><a href="{{ "radar/#kev" | relURL }}">{{ lang.FormatNumber 0 . }}</a> exploited flaws tracked</span>{{ end }}
+    {{- if $posts }}<span>{{ len $posts }} article{{ if ne (len $posts) 1 }}s{{ end }} on file</span>{{ end }}
+    {{- with $reports }}<span>{{ len . }} news report{{ if ne (len .) 1 }}s{{ end }}</span>{{ end }}
+    {{- with $verdicts }}<span>{{ len . }} verdict{{ if ne (len .) 1 }}s{{ end }}</span>{{ end }}
     <span>Updated <time datetime="{{ now.UTC.Format "2006-01-02T15:04:05Z" }}">{{ now.UTC.Format "Jan 2, 15:04" }} UTC</time></span>
   </p>
   {{- if not $posts }}
-  <p class="cct-empty-home">The first cases are being checked now. A new tech case is published every day at 20:00 IST, after it passes every check.</p>
+  <p class="cct-empty-home">The first articles are being checked now. New articles are published every day at 20:00 IST, after they pass every check.</p>
   {{- end }}
 </section>

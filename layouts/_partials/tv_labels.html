@@ -2,4 +2,5 @@
 {{- $l := slice "First reported" "Confirmed now" -}}
 {{- if eq .Params.desk "tech" }}{{ $l = slice "Promised" "Delivered" }}{{ end -}}
 {{- if eq .Params.status "open" }}{{ $l = slice "Promised" "Status now" }}{{ end -}}
+{{- if eq .Params.status "report" }}{{ $l = slice "What happened" "Key detail" }}{{ end -}}
 {{- return $l -}}

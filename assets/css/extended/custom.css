@@ -419,3 +419,6 @@ body{font-size:17.5px}
 .cct-card--compact .entry-header h2{font-size:19px}
 #menu a[href$="/developing/"] span,#menu a[href$="/developing/"]{color:var(--cct-open)}
 @media (prefers-reduced-motion:reduce){.cct-chip--open .cct-pulse{animation:none}}
+
+/* news reports (no verdict) */
+.cct-stamp--report{color:var(--cct-violet);border-style:solid;opacity:.9}

@@ -9,7 +9,7 @@ TocOpen: true
 
 *Last Updated: October 2026*
 
-**ColdCaseTech** (`https://coldcasetech.com`) operates as an independent cybersecurity and cloud infrastructure intelligence publication. We respect the operational security and privacy of our readers. This document outlines what minimal telemetry we process, how our third-party affiliate attribution links function, and your data privacy rights.
+**ColdCaseTech** (`https://coldcasetech.com`) operates as an independent tech publication. We respect the privacy of our readers. This document outlines what minimal telemetry we process, how our third-party affiliate attribution links function, and your data privacy rights.
 
 ---
 

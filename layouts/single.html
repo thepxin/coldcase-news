@@ -25,8 +25,9 @@
     {{- if and .Params.then .Params.now }}
     {{- $l := partial "tv_labels.html" . }}
     <div class="cct-tvbox">
-      <div><h2>Then · {{ index $l 0 }}</h2><p>{{ .Params.then }}</p></div>
-      <div><h2>Now · {{ index $l 1 }}</h2><p>{{ .Params.now }}</p></div>
+      {{- $report := eq .Params.status "report" }}
+      <div><h2>{{ if not $report }}Then · {{ end }}{{ index $l 0 }}</h2><p>{{ .Params.then }}</p></div>
+      <div><h2>{{ if not $report }}Now · {{ end }}{{ index $l 1 }}</h2><p>{{ .Params.now }}</p></div>
     </div>
     {{- end }}
     {{- if not (.Param "hideMeta") }}

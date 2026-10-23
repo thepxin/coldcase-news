@@ -89,8 +89,10 @@ def check_status(fm):
         if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(fm.get("due_by") or "")):
             out.append((1, "an open case needs due_by: \"YYYY-MM-DD\""))
         return out
+    if status == "report":
+        return [(1, f"a news report must have an empty verdict (found '{verdict}')")] if verdict else []
     if status != "closed":
-        return [(1, f"status must be \"open\" or \"closed\" (found '{status}')")]
+        return [(1, f"status must be \"open\", \"closed\" or \"report\" (found '{status}')")]
     if desk in LABELS and verdict not in LABELS[desk]:
         return [(1, f"verdict '{verdict}' is not one of: {', '.join(LABELS[desk])}")]
     return []

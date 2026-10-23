@@ -99,6 +99,8 @@ def esc(t):
 def label(c):
     if c.get("status") == "open":
         return f"Open case, due {c.get('due', '')}".strip(", ")
+    if c.get("status") == "report":
+        return "News report"
     return c.get("verdict") or ""
 
 
