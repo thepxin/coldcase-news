@@ -1,0 +1,41 @@
+{{- /* Instagram image for one article (1080x1350, 4:5 portrait, the shape Instagram shows largest in the feed):
+       field and type, the headline, the fact-checked hook and the seal, on the ColdCaseTech card.
+       Returns the image resource, or nil if a part is missing from assets/og. Call with partialCached "ig_card.html" . .RelPermalink */ -}}
+{{- $p := . -}}
+{{- $out := false -}}
+{{- $base := resources.Get "og/insta-4x5.png" -}}
+{{- $cas := resources.Get "og/LibreCaslonDisplay-Regular.ttf" -}}
+{{- $mb := resources.Get "og/JetBrainsMono-Bold.ttf" -}}
+{{- $c1 := resources.Get "og/clear-936x470.png" -}}
+{{- $c2 := resources.Get "og/clear-936x280.png" -}}
+{{- $sk := partial "seal_kind.html" $p -}}
+{{- $seal := resources.Get (printf "og/seal-%s.png" $sk.k) -}}
+{{- if and $base $cas $mb $c1 $c2 $seal -}}
+  {{- $title := $p.Title | plainify | htmlUnescape -}}
+  {{- $hook := "" }}{{ with $p.Params.social }}{{ $hook = .hook | default "" }}{{ end -}}
+  {{- $hook = $hook | default $p.Description | plainify | htmlUnescape -}}
+  {{- if eq $hook $title }}{{ $hook = "" }}{{ end -}}
+  {{- $field := partial "field.html" $p -}}
+  {{- $kicker := upper (print (cond (ne $field "") (print $field " · ") "") $sk.label) -}}
+  {{- $sz := 84 }}{{ if gt (len $title) 90 }}{{ $sz = 62 }}{{ else if gt (len $title) 60 }}{{ $sz = 72 }}{{ end -}}
+  {{- $hs := 46 }}{{ if gt (len $hook) 120 }}{{ $hs = 42 }}{{ end -}}
+  {{- $hl := $c1.Filter (images.Text $title (dict "color" "#ece8df" "size" $sz "linespacing" (int (div $sz 6)) "x" 0 "y" 0 "font" $cas)) -}}
+  {{- $img := $base.Filter (images.Text $kicker (dict "color" "#c9a862" "size" 22 "x" 72 "y" 206 "font" $mb)) -}}
+  {{- $img = $img.Filter (images.Overlay $seal 858 170) -}}
+  {{- $img = $img.Filter (images.Overlay $hl 72 340) -}}
+  {{- /* The hook sits just under the headline: estimate the headline's lines (generous, so they never overlap). */ -}}
+  {{- $cpl := div 936.0 (mul (float $sz) 0.47) -}}
+  {{- $lines := math.Ceil (div (float (len $title)) $cpl) -}}
+  {{- $y := add 340 (int (mul $lines (mul (float $sz) 1.18))) 36 -}}
+  {{- if gt $y 860 }}{{ $y = 860 }}{{ end -}}
+  {{- with $hook }}
+    {{- with resources.Get "og/rule-brass.png" }}{{ $img = $img.Filter (images.Overlay . 72 $y) }}{{ end -}}
+    {{- $hk := $c2.Filter (images.Text . (dict "color" "#c9c5bc" "size" $hs "linespacing" 14 "x" 0 "y" 0 "font" $cas)) -}}
+    {{- $img = $img.Filter (images.Overlay $hk 72 (add $y 30)) -}}
+  {{- end -}}
+  {{- $ex := partial "exhibits_line.html" $p -}}
+  {{- $mr := resources.Get "og/JetBrainsMono-Regular.ttf" -}}
+  {{- if and $ex $mr }}{{ $img = $img.Filter (images.Text (upper (print "Checked against: " $ex)) (dict "color" "#9a9fab" "size" 19 "x" 72 "y" 1130 "font" $mr)) }}{{ end -}}
+  {{- $out = $img -}}
+{{- end -}}
+{{- return $out -}}
