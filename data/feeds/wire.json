@@ -1,10 +1,40 @@
 {
  "items": [
   {
-   "date": "2026-10-24T20:15:33Z",
+   "date": "2026-10-24T23:00:00Z",
+   "outlet": "Engadget",
+   "title": "Why your EV battery still loses charge while it's parked",
+   "url": "https://www.engadget.com/2292646/ev-battery-why-it-loses-charge-when-parked/"
+  },
+  {
+   "date": "2026-10-24T22:45:00Z",
+   "outlet": "Engadget",
+   "title": "What kind of cooling system do EV batteries use and how does it work?",
+   "url": "https://www.engadget.com/2292606/ev-battery-cooling-system-how-works/"
+  },
+  {
+   "date": "2026-10-24T22:32:02Z",
+   "outlet": "Electrek",
+   "title": "Volkswagen’s new electric Jetta offers 285 miles of range for under $12K",
+   "url": "https://electrek.co/2026/10/24/volkswagens-new-electric-jetta-offers-285-miles-of-range-for-under-12k/"
+  },
+  {
+   "date": "2026-10-24T21:46:33Z",
+   "outlet": "9to5Mac",
+   "title": "Hands-on: Belkin’s new semi solid state batteries make for a much lighter carry",
+   "url": "https://9to5mac.com/2026/10/24/belkin-new-semi-solid-state-battery-options-for-iphone/"
+  },
+  {
+   "date": "2026-10-24T21:29:12Z",
+   "outlet": "The Verge",
+   "title": "Blue Planet III is keeping the rough edges in the age of AI",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1018205/blue-planet-iii-authentic-organic-ai"
+  },
+  {
+   "date": "2026-10-24T20:46:34Z",
    "outlet": "TechCrunch",
-   "title": "Will AI expose the rickety infrastructure of the internet?",
-   "url": "https://techcrunch.com/2026/10/24/will-ai-expose-the-rickety-infrastructure-of-the-internet/"
+   "title": "Starlink seems to be working normally again in Ukraine",
+   "url": "https://techcrunch.com/2026/10/24/starlink-seems-to-be-working-normally-again-in-ukraine/"
   },
   {
    "date": "2026-10-24T20:15:33Z",
@@ -17,38 +47,8 @@
    "outlet": "9to5Mac",
    "title": "Indie App Spotlight: ‘Flipcorder’ lets you shoot retro footage on your iPhone Duo",
    "url": "https://9to5mac.com/2026/10/24/indie-app-spotlight-flipcorder-lets-you-shoot-retro-footage-on-your-iphone-duo/"
-  },
-  {
-   "date": "2026-10-24T18:45:00Z",
-   "outlet": "Engadget",
-   "title": "Google is quietly linking your phone number to other Android accounts",
-   "url": "https://www.engadget.com/2292018/google-quietly-linking-phone-number-to-android-accounts/"
-  },
-  {
-   "date": "2026-10-24T18:32:21Z",
-   "outlet": "The Verge",
-   "title": "Pennsylvania will require labels on AI-generated ads",
-   "url": "https://www.theverge.com/ai-artificial-intelligence/1018187/pennsylvania-ai-deceptive-advertising-act"
-  },
-  {
-   "date": "2026-10-24T18:30:00Z",
-   "outlet": "Engadget",
-   "title": "Why the wires in your ethernet cables are twisted",
-   "url": "https://www.engadget.com/2294278/why-wires-in-ethernet-cable-twisted-explained/"
-  },
-  {
-   "date": "2026-10-24T17:47:49Z",
-   "outlet": "9to5Mac",
-   "title": "iPhone Duo one day later: Here’s why its quirks don’t make it any less incredible",
-   "url": "https://9to5mac.com/2026/10/24/thoughts-on-iphone-duo-24-hours-later/"
-  },
-  {
-   "date": "2026-10-24T16:00:00Z",
-   "outlet": "CoinDesk",
-   "title": "Strategy, Strive face balancing act between bitcoin buying and preferred stock dividends",
-   "url": "https://www.coindesk.com/business/2026/10/24/strategy-strive-face-balancing-act-between-bitcoin-buying-and-preferred-stock-dividends"
   }
  ],
  "status": "ok",
- "updated": "2026-10-24T20:44:07Z"
+ "updated": "2026-10-24T23:09:53Z"
 }
