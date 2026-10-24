@@ -58,5 +58,17 @@
   "devto": "before-ledger",
   "done": true,
   "hashnode": "before-ledger"
+ },
+ "content/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/call-of-duty-modern-warfare-4-launches-on-geforce-now-with-rtx-5080-class-tier-58j8",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/delta-emulator-20-launches-with-liquid-glass-design-and-iphone-duo-support-1k9e",
+  "done": false,
+  "hashnode": null
  }
 }
