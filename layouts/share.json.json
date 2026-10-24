@@ -1,0 +1,15 @@
+{{- /* /share/index.json: what the Instagram workflow posts (scripts/instagram.py). Articles from the last 3 days with a
+       share kit, oldest first, each with its public JPEG image (1080x1350) and caption. */ -}}
+{{- $cut := now.AddDate 0 0 -3 -}}
+{{- $items := slice -}}
+{{- range (where site.RegularPages "Section" "posts").ByDate -}}
+  {{- $p := . -}}
+  {{- if and $p.Params.social ($p.Date.After $cut) -}}
+    {{- with partialCached "ig_card.html" $p $p.RelPermalink -}}
+      {{- $jpg := .Process "jpg q90" -}}
+      {{- $items = $items | append (dict "slug" $p.File.ContentBaseName "url" $p.Permalink "date" ($p.Date.UTC.Format "2006-01-02T15:04:05Z")
+            "title" $p.Title "image" $jpg.Permalink "width" $jpg.Width "height" $jpg.Height "caption" $p.Params.social.instagram) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- dict "generated" (now.UTC.Format "2006-01-02T15:04:05Z") "items" $items | jsonify (dict "indent" " ") -}}
