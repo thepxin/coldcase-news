@@ -384,3 +384,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 
 /* ---------- Motion: respect the visitor's setting ---------- */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Share kit (/share/, not listed) ---------- */
+.rec-share{border-top:2px solid var(--brass);padding:12px 0 28px;margin-top:22px}
+.rec-share h2{font:400 26px/1.25 var(--display);margin:0 0 14px}
+.rec-share h2 a{color:var(--ink);text-decoration:none}
+.rec-share-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:760px){.rec-share-grid{grid-template-columns:1fr}}
+.rec-share-img{margin:0}
+.rec-share-img img{width:100%;height:auto;border-radius:3px;display:block}
+.rec-share-img figcaption{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font:11.5px var(--mono);color:var(--muted)}
+.rec-share-posts section{margin:0 0 16px}
+.rec-share-posts h3{font:600 15px var(--serif);font-variant:all-small-caps;letter-spacing:.09em;color:var(--brass);margin:0 0 6px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.rec-of{font:11.5px var(--mono);font-variant:normal;letter-spacing:0;color:var(--muted)}
+.rec-share textarea{width:100%;font:14.5px/1.5 var(--serif);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:8px 10px;resize:vertical}
+.rec-share p{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
+.rec-btn{display:inline-block;font:600 14px var(--serif);background:none;border:1px solid var(--brass);color:var(--brass);border-radius:3px;padding:7px 12px;cursor:pointer;text-decoration:none}
+.rec-btn:hover{background:var(--brass-soft)}
+.rec-share-rules{border-top:1px solid var(--rule);margin-top:10px;padding-top:12px;font-size:15.5px;color:var(--ink-2)}
+.rec-share-rules h2{font:600 15px var(--serif);font-variant:all-small-caps;letter-spacing:.09em;color:var(--brass);margin:0 0 6px}
+.rec-share-rules ul{padding-left:20px;margin:0}
