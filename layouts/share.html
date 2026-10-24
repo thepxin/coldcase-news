@@ -1,0 +1,91 @@
+{{- define "main" }}
+{{- /* Share kit (private, not indexed): for each article from the last 14 days, the ready-to-post text for X, LinkedIn,
+       Instagram and Reddit (written and fact-checked by the daily run, cut to each platform's limits), the Instagram
+       image, and one-tap buttons. Nothing is posted automatically: every button opens the app with the text ready. */}}
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">Editor's desk · not listed</p>
+  <h1>Share kit</h1>
+  <div class="post-description">Every new article, ready for X, LinkedIn, Instagram and Reddit. Tap a button, check the text, post.</div>
+</header>
+{{- $cut := now.AddDate 0 0 -14 }}
+{{- $items := slice }}
+{{- range (where site.RegularPages "Section" "posts").ByDate.Reverse }}{{ if and .Params.social (.Date.After $cut) }}{{ $items = $items | append . }}{{ end }}{{ end }}
+{{- range $items }}
+{{- $p := . }}{{ $s := .Params.social }}
+{{- $url := .Permalink }}
+{{- $ig := partialCached "ig_card.html" . .RelPermalink }}
+<article class="rec-share" id="{{ .File.ContentBaseName }}">
+  <p class="rec-kicker">{{ .Date.UTC.Format "2 Jan 2006" }} · {{ (partial "seal_kind.html" .).label }}</p>
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <div class="rec-share-grid">
+    {{- with $ig }}
+    <figure class="rec-share-img">
+      <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Instagram image: {{ $p.Title }}" loading="lazy">
+      <figcaption>
+        <a class="cct-btn-money" href="{{ .RelPermalink }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.png">Download image</a>
+        <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-{{ $p.File.ContentBaseName }}.png" data-copy-from="ig-{{ $p.File.ContentBaseName }}" hidden>Copy caption &amp; share image</button>
+        <span>1080 × 1350 · Instagram portrait</span>
+      </figcaption>
+    </figure>
+    {{- end }}
+    <div class="rec-share-posts">
+      <section>
+        <h3>X <span class="rec-of">fits in 280 · each link counts as 23</span></h3>
+        <textarea id="x-{{ .File.ContentBaseName }}" readonly rows="6">{{ $s.x }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="x-{{ .File.ContentBaseName }}">Copy</button>
+          <a class="cct-btn-money" href="https://x.com/intent/post?text={{ replace ($s.x | urlquery) "+" "%20" }}" target="_blank" rel="noopener">Post on X</a></p>
+      </section>
+      <section>
+        <h3>LinkedIn <span class="rec-of">up to 3,000 · first line shows before "see more"</span></h3>
+        <textarea id="li-{{ .File.ContentBaseName }}" readonly rows="8">{{ $s.linkedin }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="li-{{ .File.ContentBaseName }}">Copy</button>
+          <a class="cct-btn-money" href="https://www.linkedin.com/feed/?shareActive=true&amp;text={{ replace ($s.linkedin | urlquery) "+" "%20" }}" target="_blank" rel="noopener" data-copy-first="li-{{ .File.ContentBaseName }}">Copy &amp; open LinkedIn</a></p>
+      </section>
+      <section>
+        <h3>Instagram caption <span class="rec-of">post it with the image</span></h3>
+        <textarea id="ig-{{ .File.ContentBaseName }}" readonly rows="7">{{ $s.instagram }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="ig-{{ .File.ContentBaseName }}">Copy caption</button></p>
+      </section>
+      <section>
+        <h3>Reddit <span class="rec-of">link post · keep the title as it is</span></h3>
+        <textarea id="rt-{{ .File.ContentBaseName }}" readonly rows="2">{{ $s.reddit_title }}</textarea>
+        <p class="rec-subs">{{ range $s.subreddits }}<a class="rec-btn" href="https://www.reddit.com/r/{{ . }}/submit?url={{ $url | urlquery }}&amp;title={{ replace ($s.reddit_title | urlquery) "+" "%20" }}" target="_blank" rel="noopener">r/{{ . }}</a>{{ end }}</p>
+        <textarea id="rc-{{ .File.ContentBaseName }}" readonly rows="4">{{ $s.reddit_comment }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="rc-{{ .File.ContentBaseName }}">Copy first comment</button></p>
+      </section>
+    </div>
+  </div>
+</article>
+{{- else }}
+<p class="rec-empty">No new articles in the last 14 days with a share kit. Each daily run adds them here.</p>
+{{- end }}
+<aside class="rec-share-rules">
+  <h2>Before you post</h2>
+  <ul>
+    <li><b>Reddit:</b> read each subreddit's rules once. Many tech subreddits remove links that are not the original source, and Reddit flags accounts that mostly post their own site. Comment and help in those communities between posts.</li>
+    <li><b>Instagram:</b> on your phone, "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste the caption.</li>
+    <li><b>X:</b> the post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
+  </ul>
+</aside>
+<script>
+(function(){
+  function copy(id){var t=document.getElementById(id);if(!t)return Promise.resolve();
+    if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(t.value).catch(function(){t.select();document.execCommand('copy');});
+    t.select();try{document.execCommand('copy');}catch(e){}return Promise.resolve();}
+  function done(b,label){var o=b.textContent;b.textContent=label||'Copied';setTimeout(function(){b.textContent=o;},1600);}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-copy]');if(b){copy(b.getAttribute('data-copy')).then(function(){done(b);});return;}
+    var a=e.target.closest('[data-copy-first]');if(a){copy(a.getAttribute('data-copy-first'));}
+    var s=e.target.closest('[data-share-img]');if(s){
+      copy(s.getAttribute('data-copy-from'));
+      fetch(s.getAttribute('data-share-img')).then(function(r){return r.blob();}).then(function(bl){
+        var f=new File([bl],s.getAttribute('data-name'),{type:bl.type||'image/png'});
+        return navigator.share({files:[f]});}).then(function(){done(s,'Caption copied');}).catch(function(){});
+    }
+  });
+  /* phones that can share files get the one-tap button */
+  try{var probe=new File([new Blob(['x'],{type:'image/png'})],'x.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[probe]}))document.querySelectorAll('[data-share-img]').forEach(function(b){b.hidden=false;});}catch(e){}
+})();
+</script>
+{{- end }}
