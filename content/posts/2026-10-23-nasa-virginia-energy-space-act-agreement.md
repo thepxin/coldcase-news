@@ -21,6 +21,14 @@ sources:
     date: "2026-10-23"
     title: "NASA, Virginia Launch Power Partnership for Energy Security - NASA"
     url: "https://www.nasa.gov/centers-and-facilities/langley/nasa-power-energy-partnership/"
+social:
+  hook: "NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models."
+  x: "NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.\n\nEvery line sourced: https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/\n\n#Energy #TechNews"
+  linkedin: "NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.\n\nNASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.\n\nWhat happened: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.\nKey detail: NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.\n\nChecked against the official source (NASA). Every line links to its source:\nhttps://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/\n\n#Tech #TechNews #Energy"
+  instagram: "NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.\n\nNASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.\n\nFull story and every source: link in bio.\n\nColdCaseTech · An independent record of technology's promises\n\n#coldcasetech #technews #tech #energy"
+  reddit_title: "NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data"
+  reddit_comment: "Summary: NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.\n\nChecked against the official source (NASA). The article links each line to its source, so you can read the originals."
+  subreddits: ["nasa", "energy", "RenewableEnergy"]
 cover:
   image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80"
   alt: "NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data"

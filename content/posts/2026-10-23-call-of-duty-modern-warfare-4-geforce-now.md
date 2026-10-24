@@ -23,6 +23,14 @@ sources:
     date: "2026-10-22"
     title: "Cloud Deployment Incoming: ‘Call of Duty: Modern Warfare 4’ Arrives on GeForce NOW"
     url: "https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/"
+social:
+  hook: "Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members."
+  x: "Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.\n\nEvery line sourced: https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/\n\n#Cloud #TechNews"
+  linkedin: "Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.\n\nWhat happened: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.\nKey detail: NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.\n\nChecked against the official source (NVIDIA). Every line links to its source:\nhttps://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/\n\n#Tech #TechNews #Cloud"
+  instagram: "Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.\n\nFull story and every source: link in bio.\n\nColdCaseTech · An independent record of technology's promises\n\n#coldcasetech #technews #tech #cloud"
+  reddit_title: "Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier"
+  reddit_comment: "Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals."
+  subreddits: ["GeForceNOW", "nvidia", "cloudcomputing"]
 cover:
   image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   alt: "Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier"
