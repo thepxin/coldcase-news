@@ -1,166 +1,133 @@
 ================================================================
-1. REDDIT / HACKER NEWS (pick the subreddit for the field, e.g. r/technology, r/hardware, r/space)
-================================================================
-TITLE: NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
-
-BODY:
-NASA's Langley Research Center and the Virginia Department of Energy announced a new Space Act Agreement. NASA said it will feed solar, meteorological and future weather risk datasets from its POWER products into Virginia Energy's modeling tools. NASA said the data is meant to support resiliency studies, resource analysis and long-term energy planning.
-
-- Then: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
-- Now (News report): NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
-
-Full case with every source linked: https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-
-================================================================
-2. X / TWITTER POST (https://x.com/coldcasetech)
-================================================================
 NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
 
-Then: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
-Now (News report): NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
+X (194/280):
+NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
 
-Every line sourced 👇
+Every line sourced: https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
+
+#Energy #TechNews
+
+LINKEDIN:
+NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
+
+NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
+
+What happened: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
+Key detail: NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
+
+Checked against the official source (NASA). Every line links to its source:
 https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
 
 #Tech #TechNews #Energy
 
-================================================================
-3. INSTAGRAM CAPTION (https://www.instagram.com/coldcasetech/)
-================================================================
-NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
+INSTAGRAM CAPTION (post with the image from the share kit):
+NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
 
-📌 Then: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
-⚡ Now (News report): NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
+NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
 
-NASA's Langley Research Center and the Virginia Department of Energy announced a new Space Act Agreement. NASA said it will feed solar, meteorological and future weather risk datasets from its POWER products into Virginia Energy's modeling tools. NASA said the data is meant to support resiliency studies, resource analysis and long-term energy planning.
+Full story and every source: link in bio.
 
-🔗 Full case with sources: link in bio (@coldcasetech) -> https://coldcasetech.com
+ColdCaseTech · An independent record of technology's promises
 
-#tech #technews #energy #coldcasetech
+#coldcasetech #technews #tech #energy
 
-================================================================
-4. LINKEDIN POST (https://www.linkedin.com/in/coldcase-tech-29102a446/)
-================================================================
-NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
+REDDIT (link post, title exactly as below, then add the comment):
+Title: NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
+Comment: Summary: NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
 
-• Then: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
-• Now (News report): NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
-
-NASA's Langley Research Center and the Virginia Department of Energy announced a new Space Act Agreement. NASA said it will feed solar, meteorological and future weather risk datasets from its POWER products into Virginia Energy's modeling tools. NASA said the data is meant to support resiliency studies, resource analysis and long-term energy planning.
-
-Every claim is linked to its source:
-👉 https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-
-#Tech #TechNews #Energy
+Checked against the official source (NASA). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/nasa: https://www.reddit.com/r/nasa/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
+  r/energy: https://www.reddit.com/r/energy/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
+  r/RenewableEnergy: https://www.reddit.com/r/RenewableEnergy/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
 
 
-================================================================
-1. REDDIT / HACKER NEWS (pick the subreddit for the field, e.g. r/technology, r/hardware, r/space)
-================================================================
-TITLE: Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
-
-BODY:
-Delta, the retro game emulator, launched version 2.0 on 2026-10-22, according to 9to5Mac. The update adds a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings. 9to5Mac says the premium version is unlocked through an App Store subscription available worldwide.
-
-- Then: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
-- Now (News report): The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
-
-Full case with every source linked: https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-
-================================================================
-2. X / TWITTER POST (https://x.com/coldcasetech)
 ================================================================
 Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
 
-Then: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
-Now (News report): The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
+X (201/280):
+Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
 
-Every line sourced 👇
+Every line sourced: https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
+
+#Gaming #TechNews
+
+LINKEDIN:
+Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
+
+9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
+
+What happened: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
+Key detail: The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
+
+Checked against 2 sources, including Apple (official). Every line links to its source:
 https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
 
 #Tech #TechNews #Gaming
 
-================================================================
-3. INSTAGRAM CAPTION (https://www.instagram.com/coldcasetech/)
-================================================================
-Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
+INSTAGRAM CAPTION (post with the image from the share kit):
+Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
 
-📌 Then: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
-⚡ Now (News report): The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
+9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
 
-Delta, the retro game emulator, launched version 2.0 on 2026-10-22, according to 9to5Mac. The update adds a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings. 9to5Mac says the premium version is unlocked through an App Store subscription available worldwide.
+Full story and every source: link in bio.
 
-🔗 Full case with sources: link in bio (@coldcasetech) -> https://coldcasetech.com
+ColdCaseTech · An independent record of technology's promises
 
-#tech #technews #gaming #coldcasetech
+#coldcasetech #technews #tech #gaming
 
-================================================================
-4. LINKEDIN POST (https://www.linkedin.com/in/coldcase-tech-29102a446/)
-================================================================
-Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
+REDDIT (link post, title exactly as below, then add the comment):
+Title: Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
+Comment: Summary: 9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
 
-• Then: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
-• Now (News report): The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
-
-Delta, the retro game emulator, launched version 2.0 on 2026-10-22, according to 9to5Mac. The update adds a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings. 9to5Mac says the premium version is unlocked through an App Store subscription available worldwide.
-
-Every claim is linked to its source:
-👉 https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-
-#Tech #TechNews #Gaming
+Checked against 2 sources, including Apple (official). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/emulation: https://www.reddit.com/r/emulation/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
+  r/iphone: https://www.reddit.com/r/iphone/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
+  r/apple: https://www.reddit.com/r/apple/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
 
 
-================================================================
-1. REDDIT / HACKER NEWS (pick the subreddit for the field, e.g. r/technology, r/hardware, r/space)
-================================================================
-TITLE: Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
-
-BODY:
-NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW. The company said Ultimate members get GeForce RTX 5080-class performance with ray tracing in the cloud. NVIDIA also said existing supported Fire TV Stick users can now buy one-month memberships through Amazon.
-
-- Then: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
-- Now (News report): NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
-
-Full case with every source linked: https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
-
-================================================================
-2. X / TWITTER POST (https://x.com/coldcasetech)
 ================================================================
 Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
 
-Then: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
-Now (News report): NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
+X (188/280):
+Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
 
-Every line sourced 👇
+Every line sourced: https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
+
+#Cloud #TechNews
+
+LINKEDIN:
+Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
+
+What happened: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
+Key detail: NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
+
+Checked against the official source (NVIDIA). Every line links to its source:
 https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
 
-#Tech #TechNews #CloudandInfrastructure
+#Tech #TechNews #Cloud
 
-================================================================
-3. INSTAGRAM CAPTION (https://www.instagram.com/coldcasetech/)
-================================================================
-Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
+INSTAGRAM CAPTION (post with the image from the share kit):
+Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
 
-📌 Then: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
-⚡ Now (News report): NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
+Full story and every source: link in bio.
 
-NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW. The company said Ultimate members get GeForce RTX 5080-class performance with ray tracing in the cloud. NVIDIA also said existing supported Fire TV Stick users can now buy one-month memberships through Amazon.
+ColdCaseTech · An independent record of technology's promises
 
-🔗 Full case with sources: link in bio (@coldcasetech) -> https://coldcasetech.com
+#coldcasetech #technews #tech #cloud
 
-#tech #technews #cloudandinfrastructure #coldcasetech
-
-================================================================
-4. LINKEDIN POST (https://www.linkedin.com/in/coldcase-tech-29102a446/)
-================================================================
-Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
-
-• Then: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
-• Now (News report): NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
-
-NVIDIA said Call of Duty: Modern Warfare 4 launches on GeForce NOW. The company said Ultimate members get GeForce RTX 5080-class performance with ray tracing in the cloud. NVIDIA also said existing supported Fire TV Stick users can now buy one-month memberships through Amazon.
-
-Every claim is linked to its source:
-👉 https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
-
-#Tech #TechNews #CloudandInfrastructure
+REDDIT (link post, title exactly as below, then add the comment):
+Title: Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
+Comment: Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/GeForceNOW: https://www.reddit.com/r/GeForceNOW/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
+  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
+  r/cloudcomputing: https://www.reddit.com/r/cloudcomputing/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/

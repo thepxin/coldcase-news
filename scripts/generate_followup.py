@@ -8,6 +8,7 @@ import anthropic
 
 import cases
 import guards
+import social
 from source_discovery import (discover, evaluate, load_config, find_update, case_keys, Finder, can_give_verdict,
                               TECH_AREAS)
 
@@ -56,6 +57,7 @@ class FollowUpArticle(BaseModel):
     verdict_score: str
     markdown_body: str
     reddit_teaser: str
+    social_hook: str   # one-sentence teaser for social posts; checked like the article, replaced by the summary if not supported
     case_status: str   # "closed" = has a verdict; "open" = promise with a future date, no verdict yet
     due_text: str      # open cases: the promised date, in the source's words (e.g. "December 2026"); else ""
     due_date: str      # open cases: YYYY-MM-DD, the last day of that promised period; else ""
@@ -71,6 +73,7 @@ class FactCheck(BaseModel):
     corrected_original_claim: str
     corrected_current_reality: str
     corrected_markdown_body: str
+    social_supported: bool   # SOCIAL lines state only what the sources state (if false, they are not used)
 
 
 VERDICTS = {
@@ -328,12 +331,17 @@ Up to 3 consumer products a reader could buy that this article is about (phones,
 headsets, gadgets), each named EXACTLY as written in the SOURCES (for example "GeForce RTX 5090"). Not companies, not
 services, not software, not unreleased products. Return [] if there are none.
 
-STEP 5: reddit_teaser (only when true)
-Three neutral sentences: what happened, the key stated detail, and (closed only) the verdict. No links, emojis, hashtags.
+STEP 5: social text (only when true)
+- reddit_teaser: three neutral sentences: what happened, the key stated detail, and (closed only) the verdict.
+  No links, emojis or hashtags.
+- social_hook: ONE sentence under 140 characters that makes a reader want the full article. Lead with the single most
+  concrete stated fact (a number, a name, a date or a change), true exactly as written and attributed if it is a
+  company's claim. Not the headline reworded. No question marks, no emojis, no hashtags, no links, no hype words,
+  no "you won't believe", no "here's why".
 
 OUTPUT
 Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, slug, summary_description,
-original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, case_status, due_text, due_date
+original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, social_hook, case_status, due_text, due_date
 (strings) and products (a list of strings). Output nothing outside the JSON.
 """
     article = call_ai(prompt)
@@ -565,12 +573,16 @@ current_reality: {article.current_reality}
 markdown_body:
 {article.markdown_body}
 
+SOCIAL (short teasers posted with a link to the article; judge them only in check 8):
+social_hook: {article.social_hook}
+reddit_teaser: {article.reddit_teaser}
+
 CHECKS
-1. unsupported_claims: every statement (names, numbers, dates, quotes, causes, outcomes, who said what, and every
+1. unsupported_claims (ARTICLE only, not SOCIAL): every statement (names, numbers, dates, quotes, causes, outcomes, who said what, and every
    citation) that the cited source does not clearly state. A claim cited to the wrong source counts. A company's own
    promise or claim presented as proof that it was delivered or works as claimed counts. Any figure or comparison the
    sources do not state counts. Hype words the sources do not use count. One short line each.
-2. conclusion_or_opinion_sentences: every sentence that draws a conclusion, gives advice, a lesson, a prediction,
+2. conclusion_or_opinion_sentences (ARTICLE only): every sentence that draws a conclusion, gives advice, a lesson, a prediction,
    an opinion or speculation instead of reporting what a source states.
 3. verdict_supported: true only if the sources support "{article.verdict_score}":
    {VERDICT_DEFINITIONS[DESK]}
@@ -585,13 +597,27 @@ CHECKS
    checks 1 and 2 fixed ONLY by deleting it or by replacing it with the source's own wording. Never add facts, links
    or sections. Keep all headings, the table and the timeline. No HTML, no curly braces, no em dashes.
    If there were no problems, return the text unchanged.
+8. social_supported: true only if every statement in SOCIAL (social_hook and reddit_teaser) is clearly stated by the
+   SOURCES, attributed where it is a company's claim, with no hype, opinion, prediction or added figure. Empty lines
+   count as supported. Problems here never go into checks 1 or 2.
 """
 
 
 def _hard_checks(article: FollowUpArticle, sources: list[dict]) -> list[str]:
     return guards.check_article([article.headline, article.summary_description, article.original_claim,
-                                 article.current_reality, article.due_text, article.markdown_body,
-                                 article.reddit_teaser], sources)
+                                 article.current_reality, article.due_text, article.markdown_body], sources)
+
+
+def _keep_social(article: FollowUpArticle, sources: list[dict], ai_ok: bool = True) -> None:
+    """Social teasers are optional: if one fails a check it is dropped (posts then use the checked summary);
+    it never stops a good article from publishing."""
+    for field in ("social_hook", "reddit_teaser"):
+        text = (getattr(article, field, "") or "").strip()
+        problems = guards.check_article([text], sources) if text else []
+        if text and (problems or not ai_ok or len(text) > (160 if field == "social_hook" else 700)):
+            why = "; ".join(problems[:2]) or ("the fact-check did not support it" if not ai_ok else "too long")
+            print(f"  social: {field} not used ({why}); posts will use the checked summary instead.")
+            setattr(article, field, "")
 
 
 def open_case_problem(article: FollowUpArticle, today: datetime | None = None) -> str:
@@ -687,6 +713,7 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
         return None, "open case not supported (no official dated promise, or the outcome is already reported)"
     issues = list(check.unsupported_claims) + list(check.conclusion_or_opinion_sentences)
     if not issues:
+        _keep_social(article, sources, check.social_supported)
         return article, "passed the fact-check and all hard checks"
 
     print(f"Fact-check found {len(issues)} problem(s); fixing once, then re-checking:")
@@ -711,6 +738,7 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     if not (recheck.verdict_supported and recheck.main_claim_supported and recheck.own_statements_genuine
             and recheck.open_case_supported) or left:
         return None, f"re-check still found {len(left) or 'verdict/claim'} problem(s)"
+    _keep_social(fixed, sources, recheck.social_supported)
     return fixed, f"{len(issues)} problem(s) fixed, then passed a clean re-check and all hard checks"
 
 
@@ -823,67 +851,27 @@ draft: false
     with open(filename, "w", encoding="utf-8") as f:
         f.write(markdown_content)
 
-    shown_verdict = "Open case, no verdict yet" if is_open else ("News report" if kind == "report" else article.verdict_score)
-    hashtags = "#Tech #TechNews #" + re.sub(r"[^A-Za-z0-9]", "", area_label(topic))
-    social_kit = f"""================================================================
-1. REDDIT / HACKER NEWS (pick the subreddit for the field, e.g. r/technology, r/hardware, r/space)
-================================================================
-TITLE: {article.headline}
-
-BODY:
-{article.reddit_teaser}
-
-- Then: {article.original_claim}
-- Now ({shown_verdict}): {article.current_reality}
-
-Full case with every source linked: {canonical_url}
-
-================================================================
-2. X / TWITTER POST (https://x.com/coldcasetech)
-================================================================
-{article.headline}
-
-Then: {article.original_claim}
-Now ({shown_verdict}): {article.current_reality}
-
-Every line sourced 👇
-{canonical_url}
-
-{hashtags}
-
-================================================================
-3. INSTAGRAM CAPTION (https://www.instagram.com/coldcasetech/)
-================================================================
-{article.headline}
-
-📌 Then: {article.original_claim}
-⚡ Now ({shown_verdict}): {article.current_reality}
-
-{article.reddit_teaser}
-
-🔗 Full case with sources: link in bio (@coldcasetech) -> {BASE_URL}
-
-{hashtags.lower()} #coldcasetech
-
-================================================================
-4. LINKEDIN POST (https://www.linkedin.com/in/coldcase-tech-29102a446/)
-================================================================
-{article.headline}
-
-• Then: {article.original_claim}
-• Now ({shown_verdict}): {article.current_reality}
-
-{article.reddit_teaser}
-
-Every claim is linked to its source:
-👉 {canonical_url}
-
-{hashtags}
-"""
+    # Ready-to-post social text, cut to each platform's limits (scripts/social.py). It is stored in the article's
+    # front matter (the /share/ page shows it with buttons and the Instagram image) and in latest_social_teaser.txt.
+    labels = ("Promised", "Status now") if is_open else (("What happened", "Key detail") if kind == "report"
+                                                         else ("Promised", "Delivered"))
+    kit = social.compose(headline=article.headline, hook=article.social_hook, summary=article.summary_description,
+                         then=article.original_claim, now=article.current_reality, labels=labels,
+                         status="report" if kind == "report" else ("open" if is_open else "closed"),
+                         verdict=article.verdict_score, due=article.due_text.strip() if is_open else "",
+                         url=canonical_url, field_key=topic, field_label=area_label(topic), sources=sources or [])
+    fm_social = "social:\n" + "".join(
+        f"  {k}: {json.dumps(kit[k], ensure_ascii=False)}\n"
+        for k in ("hook", "x", "linkedin", "instagram", "reddit_title", "reddit_comment", "subreddits"))
+    with open(filename, "r", encoding="utf-8") as f:
+        text = f.read()
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(text.replace("\ncover:\n", "\n" + fm_social + "cover:\n", 1))
+    social_kit = social.as_text(article.headline, kit, canonical_url, f"{BASE_URL}/share/")
 
     global LAST_SOCIAL_KIT
     LAST_SOCIAL_KIT = social_kit
-    # ready-to-copy social posts for every case published in this run (tech and security)
+    # ready-to-copy social posts for every article published in this run
     global SOCIAL_FILE_STARTED
     with open("scripts/latest_social_teaser.txt", "a" if SOCIAL_FILE_STARTED else "w", encoding="utf-8") as f:
         f.write(social_kit if not SOCIAL_FILE_STARTED else "\n\n" + social_kit)
