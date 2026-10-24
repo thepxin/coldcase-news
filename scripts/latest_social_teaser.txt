@@ -1,122 +1,17 @@
 ================================================================
-NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
+Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 ================================================================
 
-X (194/280):
-NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
+X (227/280):
+Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-
-#Energy #TechNews
-
-LINKEDIN:
-NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
-
-NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
-
-What happened: NASA's Langley Research Center announced a new Space Act Agreement with the Virginia Department of Energy to provide solar, meteorological and future weather risk datasets for energy system modeling and planning.
-Key detail: NASA said the partnership will bring its POWER data products into Virginia Energy's modeling and analysis system through a digital pipeline to Langley's POWER web platform.
-
-Checked against the official source (NASA). Every line links to its source:
-https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-
-#Tech #TechNews #Energy
-
-INSTAGRAM CAPTION (post with the image from the share kit):
-NASA Langley will pipe solar, weather and future weather risk data from its POWER platform straight into Virginia's energy models.
-
-NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #technews #tech #energy
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: NASA Langley and Virginia Energy sign Space Act Agreement on energy planning data
-Comment: Summary: NASA Langley and the Virginia Department of Energy announced a Space Act Agreement to supply solar, meteorological and future weather risk datasets for energy planning.
-
-Checked against the official source (NASA). The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/nasa: https://www.reddit.com/r/nasa/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-  r/energy: https://www.reddit.com/r/energy/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-  r/RenewableEnergy: https://www.reddit.com/r/RenewableEnergy/submit?url=https://coldcasetech.com/posts/2026-10-23-nasa-virginia-energy-space-act-agreement/
-
-
-================================================================
-Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-================================================================
-
-X (201/280):
-Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-
-#Gaming #TechNews
-
-LINKEDIN:
-Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
-
-9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
-
-What happened: Delta, the retro game emulator, launched version 2.0 with a refreshed Liquid Glass interface and support for the iPhone Duo, according to 9to5Mac.
-Key detail: The premium version of Delta can be unlocked through an In-App Purchase subscription on the App Store, now available worldwide, according to 9to5Mac.
-
-Checked against 2 sources, including Apple (official). Every line links to its source:
-https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-
-#Tech #TechNews #Gaming
-
-INSTAGRAM CAPTION (post with the image from the share kit):
-Delta 2.0 brings Nintendo DS layouts to the iPhone Duo's inner display, and folding the phone shut puts the DS to sleep, 9to5Mac reports.
-
-9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #technews #tech #gaming
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: Delta emulator 2.0 launches with Liquid Glass design and iPhone Duo support
-Comment: Summary: 9to5Mac reports Delta 2.0 launched with a Liquid Glass interface, iPhone Duo controller skins, Sega Genesis ROM compatibility and new audio settings.
-
-Checked against 2 sources, including Apple (official). The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/emulation: https://www.reddit.com/r/emulation/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-  r/iphone: https://www.reddit.com/r/iphone/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-  r/apple: https://www.reddit.com/r/apple/submit?url=https://coldcasetech.com/posts/2026-10-23-delta-emulator-2-launches-iphone-duo-support/
-
-
-================================================================
-Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-================================================================
-
-X (188/280):
-Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
+Every line sourced: https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
 
 #Cloud #TechNews
 
-LINKEDIN:
-Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
-
-What happened: NVIDIA announced that Call of Duty: Modern Warfare 4 arrives on GeForce NOW at launch, with GeForce RTX 5080-class performance for Ultimate members.
-Key detail: NVIDIA said the game launches today on GeForce NOW and that Fire TV Stick in-app membership purchases are rolling out to existing supported users, with availability of some titles varying.
-
-Checked against the official source (NVIDIA). Every line links to its source:
-https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
-
-#Tech #TechNews #Cloud
-
-INSTAGRAM CAPTION (post with the image from the share kit):
-Call of Duty: Modern Warfare 4 is streaming on GeForce NOW from launch, with RTX 5080-class performance for Ultimate members.
+INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
+Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.
 
 Full story and every source: link in bio.
 
@@ -125,9 +20,72 @@ ColdCaseTech · An independent record of technology's promises
 #coldcasetech #technews #tech #cloud
 
 REDDIT (link post, title exactly as below, then add the comment):
-Title: Call of Duty: Modern Warfare 4 launches on GeForce NOW with RTX 5080-class tier
+Title: Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues
+Comment: Checked against 2 sources, including Wikipedia (official). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/cloudcomputing: https://www.reddit.com/r/cloudcomputing/submit?url=https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
+  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
+
+
+================================================================
+Google adds co-creation review flow and three study tools to Gemini Notebook
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
+
+X (170/280):
+Google says Gemini Notebook's new Review toggle lets users edit a slide or video plan before anything renders.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+
+#AI #TechNews
+
+INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
+Google says Gemini Notebook's new Review toggle lets users edit a slide or video plan before anything renders.
+
+Google announced a Review toggle for slides and video overviews and three study features in Gemini Notebook in October 2026.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #ai
+
+REDDIT (link post, title exactly as below, then add the comment):
+Title: Google adds co-creation review flow and three study tools to Gemini Notebook
+Comment: Summary: Google announced a Review toggle for slides and video overviews and three study features in Gemini Notebook in October 2026.
+
+Checked against 2 sources, including Google (official). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/artificial: https://www.reddit.com/r/artificial/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+  r/singularity: https://www.reddit.com/r/singularity/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+
+
+================================================================
+NVIDIA releases cuDSS GPU solver library, citing up to 10x sparse solve speedups
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
+
+X (200/280):
+NVIDIA announced general availability of cuDSS, a CUDA-X library that moves sparse solving in engineering simulations onto GPUs.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
+
+#Semiconductors #TechNews
+
+INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
+NVIDIA announced general availability of cuDSS, a CUDA-X library that moves sparse solving in engineering simulations onto GPUs.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #semiconductors
+
+REDDIT (link post, title exactly as below, then add the comment):
+Title: NVIDIA releases cuDSS GPU solver library, citing up to 10x sparse solve speedups
 Comment: Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals.
 Best-fit subreddits (read each one's rules first):
-  r/GeForceNOW: https://www.reddit.com/r/GeForceNOW/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
-  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
-  r/cloudcomputing: https://www.reddit.com/r/cloudcomputing/submit?url=https://coldcasetech.com/posts/2026-10-23-call-of-duty-modern-warfare-4-geforce-now/
+  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
+  r/hardware: https://www.reddit.com/r/hardware/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
+  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
