@@ -1,4 +1,4 @@
-"""Static pieces of the share images: 3 backgrounds (16x9, 4x3, 1x1), 5 seals and 3 clear canvases.
+"""Static pieces of the share images: 3 backgrounds (16x9, 4x3, 1x1), the Instagram card (4x5), 5 seals and clear canvases.
 Hugo writes each article's headline on top when the site builds (layouts/_partials/og_cards.html).
 You only need this to change the look:  pip install pillow && python scripts/og/make_card_parts.py assets/og assets/og"""
 import sys, os, math
@@ -50,6 +50,27 @@ for k,(a,b,c,dash) in seals.items():
         for ch in l:
             d.text((xx,y0+i*lh),ch,font=f,fill=c); xx+=d.textlength(ch,font=f)+sp
     im.resize((150,150),Image.LANCZOS).save(f"{OUT}/seal-{k}.png",optimize=True)
+# Instagram portrait card (1080x1350, 4:5): frame, masthead, footer. Hugo adds kicker, headline, hook and seal.
+W, H = 1080, 1350
+im = Image.new("RGB", (W*S, H*S), INK); d = ImageDraw.Draw(im)
+m = 26*S
+d.rectangle([m, m, W*S-m, H*S-m], outline=BRASS, width=2*S)
+d.rectangle([m+8*S, m+8*S, W*S-m-8*S, H*S-m-8*S], outline=RULE, width=1*S)
+x = 72*S; top = 62*S
+f = cas(46*S); d.text((x, top), "ColdCase", font=f, fill=IVORY); w = d.textlength("ColdCase", font=f)
+d.text((x+w, top), "Tech", font=f, fill=BRASS)
+t = "THE RECORD OF TECH PROMISES"; fm = mono(15*S)
+d.text((W*S-x-d.textlength(t, font=fm), top+22*S), t, font=fm, fill=MUTED)
+y = top+72*S
+d.line([x, y, W*S-x, y], fill=IVORY, width=S); d.line([x, y+5*S, W*S-x, y+5*S], fill=IVORY, width=S)
+yb = H*S-170*S
+d.line([x, yb, W*S-x, yb], fill=RULE, width=S)
+d.text((x, yb+28*S), "Full story and every source: link in bio", font=mono(21*S), fill=MUTED)
+d.text((x, yb+70*S), "coldcasetech.com", font=mono(24*S, True), fill=BRASS)
+im.resize((W, H), Image.LANCZOS).save(f"{OUT}/insta-4x5.png", optimize=True)
+Image.new("RGBA", (90, 3), BRASS + (255,)).save(f"{OUT}/rule-brass.png", optimize=True)
+for w, h in [(936, 470), (936, 280)]:
+    Image.new("RGBA", (w, h), (0, 0, 0, 0)).save(f"{OUT}/clear-{w}x{h}.png", optimize=True)
 # transparent canvases for wrapped text (Hugo wraps at the canvas edge)
 for w,h in [(860,340),(860,560),(860,860)]:
     Image.new("RGBA",(w,h),(0,0,0,0)).save(f"{OUT}/clear-{w}x{h}.png",optimize=True)
