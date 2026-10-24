@@ -1,6 +1,42 @@
 {
  "items": [
   {
+   "date": "2026-10-24T10:45:00Z",
+   "outlet": "Wired",
+   "title": "9 Unique Apps to Try on the iPhone Duo",
+   "url": "https://www.wired.com/story/unique-apps-to-try-on-the-iphone-duo/"
+  },
+  {
+   "date": "2026-10-24T10:25:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Russia deploys 3D-printed cruise missiles with US electronics in Ukraine, can hit 500mph with a 745-mile range",
+   "url": "https://www.tomshardware.com/3d-printing/russia-deploys-3d-printed-cruise-missiles-in-ukraine-can-hit-500mph-with-a-745-mile-range-fears-high-that-cheap-filin-missile-will-be-used-for-missile-spam-tactics"
+  },
+  {
+   "date": "2026-10-24T10:18:15Z",
+   "outlet": "Engadget",
+   "title": "Meta is delaying its controversial new business terms amid scraping concerns",
+   "url": "https://www.engadget.com/2296124/meta-delaying-controversial-business-terms-scraping-concerns/"
+  },
+  {
+   "date": "2026-10-24T10:15:00Z",
+   "outlet": "Wired",
+   "title": "12 Absolutely Banging Proper Watches Under $400",
+   "url": "https://www.wired.com/story/best-watches-under-400-chosen-by-experts/"
+  },
+  {
+   "date": "2026-10-24T10:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "YouTuber escapes the modern AI tech market by recreating his 1996 PC",
+   "url": "https://www.tomshardware.com/video-games/retro-gaming/exhaustion-with-tech-market-prompts-youtuber-to-remake-their-first-pc-1996-build-fueled-by-nostalgia-and-ai-weariness"
+  },
+  {
+   "date": "2026-10-24T04:45:43Z",
+   "outlet": "CoinDesk",
+   "title": "Franklin Templeton adds $150 million in fund shares to XRP Ledger, all in one wallet",
+   "url": "https://www.coindesk.com/markets/2026/10/24/franklin-templeton-adds-usd150-million-in-fund-shares-to-xrp-ledger-all-in-one-wallet"
+  },
+  {
    "date": "2026-10-23T23:50:49Z",
    "outlet": "9to5Mac",
    "title": "Apple exploring fix for Safari’s cramped layout on the iPhone Duo’s outer display",
@@ -11,44 +47,8 @@
    "outlet": "9to5Mac",
    "title": "Apple’s official DIY repair guides for the iPhone Duo now available",
    "url": "https://9to5mac.com/2026/10/23/apples-official-diy-repair-guides-for-the-iphone-duo-now-available/"
-  },
-  {
-   "date": "2026-10-23T23:07:45Z",
-   "outlet": "TechCrunch",
-   "title": "Startups don’t need to go viral to win customers",
-   "url": "https://techcrunch.com/2026/10/23/startups-dont-need-to-go-viral-to-win-customers/"
-  },
-  {
-   "date": "2026-10-23T23:05:49Z",
-   "outlet": "TechCrunch",
-   "title": "OpenAI says it will no longer train its AI models on the live internet, citing “significant risks”",
-   "url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/"
-  },
-  {
-   "date": "2026-10-23T22:59:39Z",
-   "outlet": "Electrek",
-   "title": "GM is betting on battery cells that don’t use lithium [updated]",
-   "url": "https://electrek.co/2026/10/23/gm-sodium-ion-battery-peak-energy/"
-  },
-  {
-   "date": "2026-10-23T22:48:25Z",
-   "outlet": "Ars Technica",
-   "title": "NASA updates lander plans for Moon landings, finally solves long-festering Orion issue",
-   "url": "https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/"
-  },
-  {
-   "date": "2026-10-23T22:39:39Z",
-   "outlet": "NASA",
-   "title": "NASA, Partners Accelerate Lander Development for 2028 Moon Missions",
-   "url": "https://www.nasa.gov/missions/artemis/nasa-partners-accelerate-lander-development-for-2028-moon-missions/"
-  },
-  {
-   "date": "2026-10-23T22:37:53Z",
-   "outlet": "NASA",
-   "title": "NASA’s Artemis III Mission to Test Future Moon Lander Operations",
-   "url": "https://www.nasa.gov/missions/artemis/nasas-artemis-iii-mission-to-test-future-moon-lander-operations/"
   }
  ],
  "status": "ok",
- "updated": "2026-10-24T04:31:16Z"
+ "updated": "2026-10-24T10:52:54Z"
 }
