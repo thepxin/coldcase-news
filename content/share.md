@@ -2,6 +2,7 @@
 title: "Share kit"
 description: "Ready-to-post text and images for every new article."
 layout: "share"
+outputs: ["html", "json"]
 url: "/share/"
 robotsNoIndex: true
 hiddenInRss: true
