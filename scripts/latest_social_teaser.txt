@@ -1,48 +1,26 @@
 ================================================================
-Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues
+NVIDIA adds StormScope EU to Earth-2 for 10-minute European cloud forecasts
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 ================================================================
 
-X (227/280):
-Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.
+X (169/280):
+NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
-
-#Cloud #TechNews
-
-INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
-Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #technews #tech #cloud
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues
-Comment: Checked against 2 sources, including Wikipedia (official). The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/cloudcomputing: https://www.reddit.com/r/cloudcomputing/submit?url=https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
-  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/
-
-
-================================================================
-Google adds co-creation review flow and three study tools to Gemini Notebook
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-================================================================
-
-X (170/280):
-Google says Gemini Notebook's new Review toggle lets users edit a slide or video plan before anything renders.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
 
 #AI #TechNews
 
-INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
-Google says Gemini Notebook's new Review toggle lets users edit a slide or video plan before anything renders.
+THREADS:
+NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
 
-Google announced a Review toggle for slides and video overviews and three study features in Gemini Notebook in October 2026.
+NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
+
+INSTAGRAM (post this caption with the image from the share kit):
+NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
+
+NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
 
 Full story and every source: link in bio.
 
@@ -51,41 +29,84 @@ ColdCaseTech · An independent record of technology's promises
 #coldcasetech #technews #tech #ai
 
 REDDIT (link post, title exactly as below, then add the comment):
-Title: Google adds co-creation review flow and three study tools to Gemini Notebook
-Comment: Summary: Google announced a Review toggle for slides and video overviews and three study features in Gemini Notebook in October 2026.
+Title: NVIDIA adds StormScope EU to Earth-2 for 10-minute European cloud forecasts
+Comment: Summary: NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
 
-Checked against 2 sources, including Google (official). The article links each line to its source, so you can read the originals.
+Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals.
 Best-fit subreddits (read each one's rules first):
-  r/artificial: https://www.reddit.com/r/artificial/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
-  r/singularity: https://www.reddit.com/r/singularity/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
-  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-google-gemini-notebook-co-creation-study-features/
+  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
+  r/artificial: https://www.reddit.com/r/artificial/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
+  r/singularity: https://www.reddit.com/r/singularity/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
 
 
 ================================================================
-NVIDIA releases cuDSS GPU solver library, citing up to 10x sparse solve speedups
+Wired reviews Meta's camera-free Ray-Ban Meta Audio glasses announced in September
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 ================================================================
 
-X (200/280):
-NVIDIA announced general availability of cuDSS, a CUDA-X library that moves sparse solving in engineering simulations onto GPUs.
+X (168/280):
+Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
 
-#Semiconductors #TechNews
+#Gadgets #TechNews
 
-INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
-NVIDIA announced general availability of cuDSS, a CUDA-X library that moves sparse solving in engineering simulations onto GPUs.
+THREADS:
+Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
+
+Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
+
+INSTAGRAM (post this caption with the image from the share kit):
+Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
+
+Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #semiconductors
+#coldcasetech #technews #tech #gadgets
 
 REDDIT (link post, title exactly as below, then add the comment):
-Title: NVIDIA releases cuDSS GPU solver library, citing up to 10x sparse solve speedups
-Comment: Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals.
+Title: Wired reviews Meta's camera-free Ray-Ban Meta Audio glasses announced in September
+Comment: Summary: Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
+
+Checked against 2 sources. The article links each line to its source, so you can read the originals.
 Best-fit subreddits (read each one's rules first):
-  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
-  r/hardware: https://www.reddit.com/r/hardware/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
-  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-24-nvidia-cudss-generally-available-simulation-library/
+  r/gadgets: https://www.reddit.com/r/gadgets/submit?url=https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
+  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
+
+
+================================================================
+Amazon renames Kindle Unlimited as Kindle+ at $11.99 a month
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+================================================================
+
+X (189/280):
+Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
+
+#BigTech #TechNews
+
+THREADS:
+Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
+
+Every line sourced: https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
+
+INSTAGRAM (post this caption with the image from the share kit):
+Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #bigtech
+
+REDDIT (link post, title exactly as below, then add the comment):
+Title: Amazon renames Kindle Unlimited as Kindle+ at $11.99 a month
+Comment: Checked against 2 sources, including Amazon (official). The article links each line to its source, so you can read the originals.
+Best-fit subreddits (read each one's rules first):
+  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
