@@ -71,6 +71,21 @@ def read_post(path):
             "status": field("status"), "due": field("due"), "updates": updates}
 
 
+_COVERS = None
+
+
+def site_cover(path):
+    """The article's own ColdCaseTech cover (1200x504, made by the site; listed in /share/index.json), or ""."""
+    global _COVERS
+    if _COVERS is None:
+        try:
+            r = requests.get(f"{BASE_URL}/share/index.json", params={"t": int(time.time())}, timeout=20)
+            _COVERS = {i["slug"]: i.get("cover", "") for i in r.json().get("items", [])} if r.ok else {}
+        except Exception:
+            _COVERS = {}
+    return _COVERS.get(os.path.splitext(os.path.basename(path))[0], "")
+
+
 def canonical_for(path):
     slug = os.path.splitext(os.path.basename(path))[0]
     return f"{BASE_URL}/posts/{slug}/"
@@ -255,6 +270,7 @@ def share(path, ledger):
         print(f"{key}: page not live yet; will try again next run.")
         return
     md = build_body(post, canonical)
+    post["cover"] = site_cover(path) or post["cover"]   # our own cover, not the old stock photo
     entry["attempts"] = entry.get("attempts", 0) + 1
     if not entry.get("devto"):
         entry["devto"] = post_devto(post, canonical, md)

@@ -3,6 +3,7 @@
 Every post is built from parts that already passed the fact-check (headline, the hook, the summary, Then/Now),
 so nothing here can add a new claim. Limits (October 2026):
   X          280 characters for standard accounts; every link counts as 23; emoji and CJK count as 2.
+  Threads    500 characters (we count bytes, the strictest reading); the first link becomes a preview card.
   Instagram  2,200-character caption, at most 30 hashtags; links in captions are not clickable ("link in bio").
   Reddit     300-character title; most tech subreddits want the article's own headline and no editorialising.
 """
@@ -10,7 +11,7 @@ import re
 import unicodedata
 
 X_LIMIT, X_URL = 280, 23
-INSTAGRAM_LIMIT, REDDIT_TITLE_LIMIT = 2200, 300
+THREADS_LIMIT, INSTAGRAM_LIMIT, REDDIT_TITLE_LIMIT = 500, 2200, 300
 URL_RE = re.compile(r"https?://\S+")
 
 # Subreddits that fit each field. Big general subs come last: they are strict about blogspam and original sources.
@@ -121,6 +122,16 @@ def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labe
     if summary and (summary.strip() == (then or "").strip() or
                     len(words(summary) & words(hook)) > 0.6 * max(1, len(words(summary)))):
         summary = ""   # never say (nearly) the same sentence twice
+    # Threads: hook, (summary), status, link. Drop the summary, then trim the hook, until it fits.
+    blen = lambda t: len(t.encode("utf-8"))
+    def th(h, summ):
+        return "\n\n".join(p for p in [h, summ, status_line, f"Every line sourced: {url}"] if p)
+    threads = th(hook, summary if summary and summary != hook else "")
+    if blen(threads) > THREADS_LIMIT:
+        threads = th(hook, "")
+    if blen(threads) > THREADS_LIMIT:
+        threads = th(_trim(hook, THREADS_LIMIT - blen(th("", "")) - 2, blen), "")
+
     tags = ["#coldcasetech", "#technews", "#tech", field_tag.lower()]
     instagram = "\n\n".join(p for p in [
         hook, summary if summary and summary != hook else "", status_line,
@@ -137,7 +148,7 @@ def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labe
     return {
         "hook": hook,
         "x": x, "x_chars": x_length(x),
-        "instagram": instagram,
+        "threads": threads, "instagram": instagram,
         "reddit_title": _trim(headline, REDDIT_TITLE_LIMIT), "reddit_comment": reddit_comment,
         "subreddits": subs,
     }
@@ -155,7 +166,10 @@ Share kit with buttons and the Instagram image: {share_url}
 X ({kit['x_chars']}/280):
 {kit['x']}
 
-INSTAGRAM (posted automatically when set up; otherwise post this caption with the image from the share kit):
+THREADS:
+{kit.get('threads', '')}
+
+INSTAGRAM (post this caption with the image from the share kit):
 {kit['instagram']}
 
 REDDIT (link post, title exactly as below, then add the comment):

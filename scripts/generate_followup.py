@@ -862,7 +862,7 @@ draft: false
                          url=canonical_url, field_key=topic, field_label=area_label(topic), sources=sources or [])
     fm_social = "social:\n" + "".join(
         f"  {k}: {json.dumps(kit[k], ensure_ascii=False)}\n"
-        for k in ("hook", "x", "instagram", "reddit_title", "reddit_comment", "subreddits"))
+        for k in ("hook", "x", "threads", "instagram", "reddit_title", "reddit_comment", "subreddits"))
     with open(filename, "r", encoding="utf-8") as f:
         text = f.read()
     with open(filename, "w", encoding="utf-8") as f:
