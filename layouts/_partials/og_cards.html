@@ -1,5 +1,5 @@
 {{- /* Share images, made when the site builds: the headline written onto a ColdCaseTech card in three shapes
-       (16x9 for social posts, plus 4x3 and 1x1 for Google). Parts live in assets/og/.
+       (16x9 for social posts, 4x3 and 1x1 for Google, and "wide" 2.38:1 for Dev.to and Hashnode covers). Parts live in assets/og/.
        Articles changed in the last 45 days get their own card; older ones share the site card, which keeps builds fast.
        Returns a dict: "16x9" (every page), plus "4x3" and "1x1" for recent articles (image resources). Call with partialCached "og_cards.html" . .RelPermalink */ -}}
 {{- $p := . -}}
@@ -28,7 +28,7 @@
 {{- if gt (len $title) 90 }}{{ $sz = 48.0 }}{{ else if gt (len $title) 60 }}{{ $sz = 56.0 }}{{ end -}}
 {{- $out := dict -}}
 {{- $shapes := slice (dict "n" "16x9" "h" 340 "k" 1.0) -}}
-{{- if $own }}{{ $shapes = $shapes | append (dict "n" "4x3" "h" 560 "k" 1.3) (dict "n" "1x1" "h" 860 "k" 1.6) }}{{ end -}}
+{{- if $own }}{{ $shapes = $shapes | append (dict "n" "4x3" "h" 560 "k" 1.3) (dict "n" "1x1" "h" 860 "k" 1.6) (dict "n" "wide" "h" 210 "k" 0.85 "ky" 146 "hy" 180 "sy" 140 "fy" 72) }}{{ end -}}
 {{- /* Safety: if any card part is missing from assets/og, make no card instead of stopping the whole build. */ -}}
 {{- $ok := and $cas $mb $mr -}}
 {{- range $shapes }}{{ if not (and (resources.Get (printf "og/card-%s.png" .n)) (resources.Get (printf "og/clear-860x%d.png" .h))) }}{{ $ok = false }}{{ end }}{{ end -}}
@@ -38,10 +38,11 @@
   {{- $img := resources.Get (printf "og/card-%s.png" .n) -}}
   {{- $s := int (mul $sz .k) -}}
   {{- $hl := (resources.Get (printf "og/clear-860x%d.png" .h)).Filter (images.Text $title (dict "color" "#ece8df" "size" $s "linespacing" (int (div $s 6)) "x" 0 "y" 0 "font" $cas)) -}}
-  {{- $img = $img.Filter (images.Text $kicker (dict "color" "#c9a862" "size" 19 "x" 80 "y" 168 "font" $mb)) -}}
-  {{- $img = $img.Filter (images.Overlay $hl 80 206) -}}
-  {{- with $seal }}{{ $img = $img.Filter (images.Overlay (resources.Get (printf "og/seal-%s.png" .)) 970 160) }}{{ end -}}
-  {{- $img = $img.Filter (images.Text $foot (dict "color" "#9a9fab" "size" 15 "x" 80 "y" (sub $img.Height 60) "font" $mr)) -}}
+  {{- $sy := .sy | default 160 -}}
+  {{- $img = $img.Filter (images.Text $kicker (dict "color" "#c9a862" "size" 19 "x" 80 "y" (.ky | default 168) "font" $mb)) -}}
+  {{- $img = $img.Filter (images.Overlay $hl 80 (.hy | default 206)) -}}
+  {{- with $seal }}{{ $img = $img.Filter (images.Overlay (resources.Get (printf "og/seal-%s.png" .)) 970 $sy) }}{{ end -}}
+  {{- $img = $img.Filter (images.Text $foot (dict "color" "#9a9fab" "size" 15 "x" 80 "y" (sub $img.Height (.fy | default 60)) "font" $mr)) -}}
   {{- $out = merge $out (dict .n $img) -}}
 {{- end -}}
 {{- return $out -}}
