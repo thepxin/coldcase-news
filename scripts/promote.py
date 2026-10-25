@@ -115,7 +115,8 @@ def pieces(a):
 
 # ---------------- Bluesky ----------------
 def bluesky_text(p):
-    tags = ["TechNews"] + ([re.sub(r"[^A-Za-z0-9]", "", p["field"])] if p["field"] else [])
+    short = social.FIELD_TAGS.get(p["field"].lower(), re.sub(r"[^A-Za-z0-9]", "", p["field"])) if p["field"] else ""
+    tags = ["TechNews"] + ([short] if short else [])   # e.g. "Cloud and Infrastructure" -> #Cloud
     tag_line = " ".join("#" + t for t in tags if t)
     for parts in ([p["hook"], p["status"], tag_line], [p["hook"], p["status"]], [p["hook"]]):
         text = "\n\n".join(x for x in parts if x)
