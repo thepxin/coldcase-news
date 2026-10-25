@@ -1,4 +1,5 @@
-"""Static pieces of the share images: 3 backgrounds (16x9, 4x3, 1x1), the Instagram card (4x5), 5 seals and clear canvases.
+"""Static pieces of the share images: 4 backgrounds (16x9, 4x3, 1x1, and "wide" 2.38:1 for Dev.to/Hashnode covers),
+the Instagram card (4x5), 5 seals and clear canvases.
 Hugo writes each article's headline on top when the site builds (layouts/_partials/og_cards.html).
 You only need this to change the look:  pip install pillow && python scripts/og/make_card_parts.py assets/og assets/og"""
 import sys, os, math
@@ -9,7 +10,7 @@ INK=(15,17,21); IVORY=(236,232,223); BRASS=(201,168,98); MUTED=(154,159,171); RU
 cas = lambda s: ImageFont.truetype(f"{TTF}/LibreCaslonDisplay-Regular.ttf", s)
 mono = lambda s, b=False: ImageFont.truetype(f"{TTF}/JetBrainsMono-{'Bold' if b else 'Regular'}.ttf", s)
 S=2  # draw at 2x, then downsample for smooth lines
-for name,(W,H) in {"16x9":(1200,675),"4x3":(1200,900),"1x1":(1200,1200)}.items():
+for name,(W,H) in {"16x9":(1200,675),"4x3":(1200,900),"1x1":(1200,1200),"wide":(1200,504)}.items():
     im=Image.new("RGB",(W*S,H*S),INK); d=ImageDraw.Draw(im)
     m=28*S
     d.rectangle([m,m,W*S-m,H*S-m],outline=BRASS,width=2*S)          # brass frame
@@ -21,9 +22,10 @@ for name,(W,H) in {"16x9":(1200,675),"4x3":(1200,900),"1x1":(1200,1200)}.items()
     d.text((W*S-x-d.textlength(t,font=fm),top+18*S),t,font=fm,fill=MUTED)
     y=top+62*S
     d.line([x,y,W*S-x,y],fill=IVORY,width=S); d.line([x,y+5*S,W*S-x,y+5*S],fill=IVORY,width=S)   # double rule
-    yb=H*S-118*S
+    yb=H*S-(100 if name=="wide" else 118)*S
     d.line([x,yb,W*S-x,yb],fill=RULE,width=S)
-    t="coldcasetech.com"; d.text((x,yb+24*S),t,font=mono(17*S,True),fill=BRASS)
+    if name != "wide":   # the wide cover keeps its footer for the case line only
+        t="coldcasetech.com"; d.text((x,yb+24*S),t,font=mono(17*S,True),fill=BRASS)
     im.resize((W,H),Image.LANCZOS).save(f"{OUT}/card-{name}.png",optimize=True)
 # seals: transparent PNG, 150 px
 seals={"report":("NEWS","REPORT",BRASS,False),"open":("OPEN","CASE",(179,165,255),True),
@@ -72,6 +74,6 @@ Image.new("RGBA", (90, 3), BRASS + (255,)).save(f"{OUT}/rule-brass.png", optimiz
 for w, h in [(936, 470), (936, 280)]:
     Image.new("RGBA", (w, h), (0, 0, 0, 0)).save(f"{OUT}/clear-{w}x{h}.png", optimize=True)
 # transparent canvases for wrapped text (Hugo wraps at the canvas edge)
-for w,h in [(860,340),(860,560),(860,860)]:
+for w,h in [(860,340),(860,560),(860,860),(860,210)]:
     Image.new("RGBA",(w,h),(0,0,0,0)).save(f"{OUT}/clear-{w}x{h}.png",optimize=True)
 print("ok")
