@@ -17,7 +17,7 @@
     "correctionsPolicy" $about
     "email" "editor@coldcasetech.com"
     "contactPoint" (dict "@type" "ContactPoint" "contactType" "editorial" "email" "editor@coldcasetech.com" "url" $about)
-    "sameAs" (slice "https://x.com/coldcasetech" "https://www.instagram.com/coldcasetech/") -}}
+    "sameAs" (slice "https://x.com/coldcasetech" "https://bsky.app/profile/coldcasetech.com" "https://t.me/coldcasetechh" "https://www.instagram.com/coldcasetech/") -}}
 {{- if .IsHome }}
 {{- $site := dict "@type" "WebSite" "@id" (print $home "#website") "url" $home "name" "ColdCaseTech" "inLanguage" "en" "publisher" (dict "@id" (print $home "#org")) }}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $org $site) | jsonify | safeJS }}</script>
