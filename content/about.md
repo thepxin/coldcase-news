@@ -16,6 +16,7 @@ ShowBreadCrumbs: false
   <div><dt>Ownership</dt><dd>Independently owned. No company we report on owns ColdCaseTech or has any say in what we publish.</dd></div>
   <div><dt>Editor</dt><dd><a href="mailto:editor@coldcasetech.com">editor@coldcasetech.com</a></dd></div>
   <div><dt>Corrections</dt><dd>Write to the editor with the article link. Every correction is noted on the article, with its date.</dd></div>
+  <div><dt>Follow</dt><dd><a href="https://x.com/coldcasetech">X</a> · <a href="https://bsky.app/profile/coldcasetech.com">Bluesky</a> · <a href="https://t.me/coldcasetechh">Telegram</a> · <a href="https://www.instagram.com/coldcasetech/">Instagram</a> · <a href="/index.xml">RSS</a></dd></div>
   <div><dt>Tips &amp; press</dt><dd><a href="mailto:editor@coldcasetech.com">editor@coldcasetech.com</a> · <a href="https://x.com/coldcasetech">X (@coldcasetech)</a></dd></div>
 </dl>
 
