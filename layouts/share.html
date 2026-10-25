@@ -1,11 +1,11 @@
 {{- define "main" }}
 {{- /* Share kit (private, not indexed): for each article from the last 14 days, the ready-to-post text for X,
-       Instagram and Reddit (written and fact-checked by the daily run, cut to each platform's limits), the Instagram
+       Threads, Instagram and Reddit (written and fact-checked by the daily run, cut to each platform's limits), the Instagram
        image, and one-tap buttons. Nothing is posted automatically: every button opens the app with the text ready. */}}
 <header class="page-header rec-page-h">
   <p class="rec-kicker">Editor's desk · not listed</p>
   <h1>Share kit</h1>
-  <div class="post-description">Every new article, ready for X and Reddit. Instagram is posted automatically once it is connected.</div>
+  <div class="post-description">Every new article, ready for X, Threads, Instagram and Reddit. Tap a button, check the text, post.</div>
 </header>
 {{- $cut := now.AddDate 0 0 -14 }}
 {{- $items := slice }}
@@ -14,8 +14,7 @@
 {{- $p := . }}{{ $s := .Params.social }}
 {{- $url := .Permalink }}
 {{- $ig := partialCached "ig_card.html" . .RelPermalink }}{{ with $ig }}{{ $ig = .Process "jpg q90" }}{{ end }}
-{{- $posted := index (hugo.Data.instagram_log | default dict) "posted" | default dict }}
-{{- $done := index $posted .File.ContentBaseName }}
+{{- $th := $s.threads | default (print $s.hook "\n\nEvery line sourced: " $url) }}
 <article class="rec-share" id="{{ .File.ContentBaseName }}">
   <p class="rec-kicker">{{ .Date.UTC.Format "2 Jan 2006" }} · {{ (partial "seal_kind.html" .).label }}</p>
   <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
@@ -27,7 +26,6 @@
         <a class="cct-btn-money" href="{{ .RelPermalink }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.jpg">Download image</a>
         <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-{{ $p.File.ContentBaseName }}.jpg" data-copy-from="ig-{{ $p.File.ContentBaseName }}" hidden>Copy caption &amp; share image</button>
         <span>1080 × 1350 · Instagram portrait</span>
-        {{- with $done }}<span class="rec-posted">Posted to Instagram{{ with .posted_at }} · {{ (time.AsTime .).Format "2 Jan, 15:04" }} UTC{{ end }}</span>{{ end }}
       </figcaption>
     </figure>
     {{- end }}
@@ -39,7 +37,13 @@
           <a class="cct-btn-money" href="https://x.com/intent/post?text={{ replace ($s.x | urlquery) "+" "%20" }}" target="_blank" rel="noopener">Post on X</a></p>
       </section>
       <section>
-        <h3>Instagram caption <span class="rec-of">{{ if $done }}already posted automatically{{ else }}posted automatically once connected; or post it with the image{{ end }}</span></h3>
+        <h3>Threads <span class="rec-of">up to 500 · the link becomes a preview card</span></h3>
+        <textarea id="th-{{ .File.ContentBaseName }}" readonly rows="5">{{ $th }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="th-{{ .File.ContentBaseName }}">Copy</button>
+          <a class="cct-btn-money" href="https://www.threads.com/intent/post?text={{ replace ($th | urlquery) "+" "%20" }}" target="_blank" rel="noopener">Post on Threads</a></p>
+      </section>
+      <section>
+        <h3>Instagram caption <span class="rec-of">post it with the image · links don't work in captions</span></h3>
         <textarea id="ig-{{ .File.ContentBaseName }}" readonly rows="7">{{ $s.instagram }}</textarea>
         <p><button class="rec-btn" type="button" data-copy="ig-{{ .File.ContentBaseName }}">Copy caption</button></p>
       </section>
@@ -60,7 +64,7 @@
   <h2>Before you post</h2>
   <ul>
     <li><b>Reddit:</b> read each subreddit's rules once. Many tech subreddits remove links that are not the original source, and Reddit flags accounts that mostly post their own site. Comment and help in those communities between posts.</li>
-    <li><b>Instagram:</b> new articles are posted automatically (see "Posted to Instagram" above). To post one by hand, on your phone "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste.</li>
+    <li><b>Instagram:</b> on your phone, "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste the caption.</li>
     <li><b>X:</b> the post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
   </ul>
 </aside>

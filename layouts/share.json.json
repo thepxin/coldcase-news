@@ -1,15 +1,17 @@
-{{- /* /share/index.json: what the Instagram workflow posts (scripts/instagram.py). Articles from the last 3 days with a
-       share kit, oldest first, each with its public JPEG image (1080x1350) and caption. */ -}}
-{{- $cut := now.AddDate 0 0 -3 -}}
+{{- /* /share/index.json: machine-readable share kit for the last 7 days, oldest first. Used by scripts/syndicate.py for the
+       Dev.to and Hashnode cover ("cover", 1200x504) and by scripts/promote.py for Bluesky and Telegram ("card", 1200x675). Also lists the Instagram
+       JPEG and caption, in case Instagram posting is ever automated again. */ -}}
+{{- $cut := now.AddDate 0 0 -7 -}}
 {{- $items := slice -}}
 {{- range (where site.RegularPages "Section" "posts").ByDate -}}
   {{- $p := . -}}
   {{- if and $p.Params.social ($p.Date.After $cut) -}}
-    {{- with partialCached "ig_card.html" $p $p.RelPermalink -}}
-      {{- $jpg := .Process "jpg q90" -}}
-      {{- $items = $items | append (dict "slug" $p.File.ContentBaseName "url" $p.Permalink "date" ($p.Date.UTC.Format "2006-01-02T15:04:05Z")
-            "title" $p.Title "image" $jpg.Permalink "width" $jpg.Width "height" $jpg.Height "caption" $p.Params.social.instagram) -}}
-    {{- end -}}
+    {{- $it := dict "slug" $p.File.ContentBaseName "url" $p.Permalink "date" ($p.Date.UTC.Format "2006-01-02T15:04:05Z") "title" $p.Title "caption" $p.Params.social.instagram -}}
+    {{- $cards := partialCached "og_cards.html" $p $p.RelPermalink -}}
+    {{- with index $cards "wide" }}{{ $it = merge $it (dict "cover" .Permalink) }}{{ end -}}
+    {{- with index $cards "16x9" }}{{ $it = merge $it (dict "card" .Permalink) }}{{ end -}}
+    {{- with partialCached "ig_card.html" $p $p.RelPermalink }}{{ $it = merge $it (dict "image" (.Process "jpg q90").Permalink) }}{{ end -}}
+    {{- $items = $items | append $it -}}
   {{- end -}}
 {{- end -}}
 {{- dict "generated" (now.UTC.Format "2006-01-02T15:04:05Z") "items" $items | jsonify (dict "indent" " ") -}}
