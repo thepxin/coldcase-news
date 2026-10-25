@@ -3,44 +3,15 @@
 Every post is built from parts that already passed the fact-check (headline, the hook, the summary, Then/Now),
 so nothing here can add a new claim. Limits (October 2026):
   X          280 characters for standard accounts; every link counts as 23; emoji and CJK count as 2.
-  Threads    500 characters (we count bytes, the strictest reading); the first link becomes a preview card.
   Instagram  2,200-character caption, at most 30 hashtags; links in captions are not clickable ("link in bio").
-  Reddit     300-character title; most tech subreddits want the article's own headline and no editorialising.
 """
 import re
 import unicodedata
 
 X_LIMIT, X_URL = 280, 23
-THREADS_LIMIT, INSTAGRAM_LIMIT, REDDIT_TITLE_LIMIT = 500, 2200, 300
+INSTAGRAM_LIMIT = 2200
 URL_RE = re.compile(r"https?://\S+")
 
-# Subreddits that fit each field. Big general subs come last: they are strict about blogspam and original sources.
-FIELD_SUBS = {
-    "ai": ["artificial", "singularity", "technology"],
-    "chips and silicon": ["hardware", "technology"],
-    "devices": ["gadgets", "technology"],
-    "software": ["software", "technology"],
-    "platforms": ["technology"],
-    "policy and privacy": ["privacy", "technology"],
-    "crypto": ["CryptoCurrency", "Bitcoin"],
-    "evs": ["electricvehicles", "technology"],
-    "space": ["space", "Futurology"],
-    "quantum": ["QuantumComputing", "Futurology"],
-    "robotics": ["robotics", "Futurology"],
-    "energy": ["energy", "RenewableEnergy"],
-    "telecom": ["telecom", "technology"],
-    "gaming": ["pcgaming", "gaming"],
-    "cloud and infrastructure": ["cloudcomputing", "technology"],
-}
-# Communities for the company or product the article is about (checked against the headline and sources).
-NAME_SUBS = [
-    (r"\bgeforce now\b", "GeForceNOW"), (r"\bemulat", "emulation"), (r"\bnvidia\b|\bgeforce\b|\brtx\b", "nvidia"),
-    (r"\bamd\b|\bradeon\b|\bryzen\b", "Amd"), (r"\bintel\b", "intel"), (r"\biphone\b", "iphone"),
-    (r"\bapple\b|\bmac\b|\bipad\b|\bwatchos\b|\bios\b", "apple"), (r"\bandroid\b|\bpixel\b", "Android"),
-    (r"\bsamsung\b|\bgalaxy\b", "samsung"), (r"\bmicrosoft\b|\bwindows\b", "microsoft"), (r"\bopenai\b|\bchatgpt\b", "OpenAI"),
-    (r"\btesla\b", "teslamotors"), (r"\bspacex\b|\bstarship\b", "SpaceXLounge"), (r"\bnasa\b", "nasa"),
-    (r"\bqualcomm\b|\bsnapdragon\b", "hardware"), (r"\bsteam\b|\bvalve\b", "Steam"),
-]
 FIELD_TAGS = {"ai": "AI", "chips and silicon": "Semiconductors", "devices": "Gadgets", "software": "Software",
               "platforms": "BigTech", "policy and privacy": "Privacy", "crypto": "Crypto", "evs": "EV",
               "space": "Space", "quantum": "QuantumComputing", "robotics": "Robotics", "energy": "Energy",
@@ -73,17 +44,6 @@ def _status_line(status: str, verdict: str, due: str) -> str:
     if status == "closed" and verdict:
         return f"Verdict: {verdict}."
     return ""
-
-
-def subreddits(field_key: str, headline: str, sources: list[dict], n: int = 3) -> list[str]:
-    text = " ".join([headline] + [f"{s.get('outlet', '')} {s.get('title', '')}" for s in sources or []]).lower()
-    picks = [sub for pat, sub in NAME_SUBS if re.search(pat, text)]
-    picks += FIELD_SUBS.get(field_key, ["technology"])
-    out = []
-    for s in picks:
-        if s.lower() not in [o.lower() for o in out]:
-            out.append(s)
-    return out[:n]
 
 
 def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labels: tuple[str, str],
@@ -122,16 +82,6 @@ def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labe
     if summary and (summary.strip() == (then or "").strip() or
                     len(words(summary) & words(hook)) > 0.6 * max(1, len(words(summary)))):
         summary = ""   # never say (nearly) the same sentence twice
-    # Threads: hook, (summary), status, link. Drop the summary, then trim the hook, until it fits.
-    blen = lambda t: len(t.encode("utf-8"))
-    def th(h, summ):
-        return "\n\n".join(p for p in [h, summ, status_line, f"Every line sourced: {url}"] if p)
-    threads = th(hook, summary if summary and summary != hook else "")
-    if blen(threads) > THREADS_LIMIT:
-        threads = th(hook, "")
-    if blen(threads) > THREADS_LIMIT:
-        threads = th(_trim(hook, THREADS_LIMIT - blen(th("", "")) - 2, blen), "")
-
     tags = ["#coldcasetech", "#technews", "#tech", field_tag.lower()]
     instagram = "\n\n".join(p for p in [
         hook, summary if summary and summary != hook else "", status_line,
@@ -141,40 +91,25 @@ def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labe
     if len(instagram) > INSTAGRAM_LIMIT:
         instagram = instagram[:INSTAGRAM_LIMIT - 1] + "…"
 
-    subs = subreddits(field_key, headline, sources)
-    reddit_comment = "\n\n".join(p for p in [
-        f"Summary: {summary}" if summary else "", status_line,
-        f"{checked} The article links each line to its source, so you can read the originals."] if p)
     return {
         "hook": hook,
         "x": x, "x_chars": x_length(x),
-        "threads": threads, "instagram": instagram,
-        "reddit_title": _trim(headline, REDDIT_TITLE_LIMIT), "reddit_comment": reddit_comment,
-        "subreddits": subs,
+        "instagram": instagram,
     }
 
 
 def as_text(article_title: str, kit: dict, url: str, share_url: str) -> str:
     """The plain-text version written to scripts/latest_social_teaser.txt after each daily run."""
     line = "=" * 64
-    subs = "\n".join(f"  r/{s}: https://www.reddit.com/r/{s}/submit?url={url}" for s in kit["subreddits"])
     return f"""{line}
 {article_title}
 Share kit with buttons and the Instagram image: {share_url}
+(Bluesky and Telegram post automatically.)
 {line}
 
 X ({kit['x_chars']}/280):
 {kit['x']}
 
-THREADS:
-{kit.get('threads', '')}
-
 INSTAGRAM (post this caption with the image from the share kit):
 {kit['instagram']}
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: {kit['reddit_title']}
-Comment: {kit['reddit_comment']}
-Best-fit subreddits (read each one's rules first):
-{subs}
 """
