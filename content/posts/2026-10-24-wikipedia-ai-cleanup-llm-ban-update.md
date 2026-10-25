@@ -2,7 +2,7 @@
 title: "Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues"
 date: "2026-10-24T17:35:49Z"
 description: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026."
-tags: ["Tech", "Cloud and Infrastructure"]
+tags: ["Tech", "AI"]
 desk: "tech"
 verdict: ""
 status: "report"
@@ -29,11 +29,12 @@ sources:
     url: "https://spectrum.ieee.org/wikipedia-wikiproject-ai-writing-cleanup"
 social:
   hook: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026."
-  x: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.\n\nEvery line sourced: https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/\n\n#Cloud #TechNews"
-  instagram: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.\n\nFull story and every source: link in bio.\n\nColdCaseTech · An independent record of technology's promises\n\n#coldcasetech #technews #tech #cloud"
+  x: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.\n\nEvery line sourced: https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/\n\n#AI #TechNews"
+  threads: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.\n\nEvery line sourced: https://coldcasetech.com/posts/2026-10-24-wikipedia-ai-cleanup-llm-ban-update/"
+  instagram: "Wikipedia has prohibited LLM-generated article content since March 2026; a founding cleanup editor says Pangram flagged 15 or 16 percent of new pages in early 2026.\n\nFull story and every source: link in bio.\n\nColdCaseTech · An independent record of technology's promises\n\n#coldcasetech #technews #tech #ai"
   reddit_title: "Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues"
   reddit_comment: "Checked against 2 sources, including Wikipedia (official). The article links each line to its source, so you can read the originals."
-  subreddits: ["cloudcomputing", "technology"]
+  subreddits: ["artificial", "singularity", "technology"]
 cover:
   image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   alt: "Wikipedia bars LLM-written articles since March 2026 as AI cleanup continues"
