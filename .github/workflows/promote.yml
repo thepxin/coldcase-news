@@ -1,0 +1,67 @@
+name: Promote on Bluesky and Telegram
+
+# Shares each new article on Bluesky (post + link card) and in the Telegram channel (photo + "Read the full story"
+# button), using only fact-checked text. Runs right after the daily article run, and every 4 hours as a backup.
+# Each platform stays off until its secrets exist. Nothing is posted twice (data/promoted.json).
+on:
+  workflow_run:
+    workflows: ["Daily Cold-Case News Generator"]
+    types: [completed]
+  schedule:
+    - cron: '41 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'post = share new articles · dry-run = only show what would be posted · skip-existing = mark current articles as done'
+        required: false
+        default: 'post'
+        type: choice
+        options: [post, dry-run, skip-existing]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pyyaml
+
+      - name: Share new articles
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PROMOTE_MODE: ${{ inputs.mode || 'post' }}
+        run: |
+          git pull --quiet origin main || true
+          python scripts/promote.py
+
+      - name: Save the sharing log
+        if: always()
+        run: |
+          [ -f data/promoted.json ] || exit 0
+          git config user.name "FollowUp Editorial Bot"
+          git config user.email "bot@coldcasetech.com"
+          git add data/promoted.json
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -m "chore(promote): record Bluesky/Telegram posts"
+          for attempt in 1 2 3; do
+            if git pull --rebase --autostash origin main && git push origin main; then break; fi
+            sleep 15
+          done
