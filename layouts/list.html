@@ -30,7 +30,7 @@
 {{- $first := and .IsHome (eq $paginator.PageNumber 1) }}
 
 {{- if and .IsHome (not $pages) }}
-<p class="rec-empty">The first articles are being checked now. New articles are published every day at 20:00 IST, after they pass every check.</p>
+<p class="rec-empty">The first articles are being checked now. New articles are published three times a day, morning, afternoon and night (IST), after they pass every check.</p>
 {{- end }}
 
 {{- range $index, $page := $paginator.Pages }}
