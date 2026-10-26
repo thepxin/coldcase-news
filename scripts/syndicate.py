@@ -68,7 +68,19 @@ def read_post(path):
     return {"title": field("title"), "cover": cover, "body": body, "sources": stored_sources,
             "verdict": field("verdict"), "then": field("then"), "now": field("now"),
             "toolkit": field("toolkit"), "date": field("date"), "desk": field("desk"),
-            "status": field("status"), "due": field("due"), "updates": updates}
+            "status": field("status"), "due": field("due"), "updates": updates, "tags": field("tags")}
+
+
+def devto_tags(post):
+    """Dev.to allows 4 lowercase letters-and-numbers tags: technology, news, tech, plus the article's field."""
+    from social import FIELD_TAGS
+    tags = post.get("tags") if isinstance(post.get("tags"), list) else []
+    fields = [str(t) for t in tags if str(t).lower() != "tech"]
+    extra = ""
+    if fields:
+        extra = FIELD_TAGS.get(fields[0].lower(), fields[0])
+        extra = re.sub(r"[^a-z0-9]", "", extra.lower())[:30]
+    return list(dict.fromkeys(["technology", "news", "tech"] + ([extra] if extra else [])))[:4]
 
 
 _COVERS = None
@@ -165,8 +177,9 @@ def build_body(post, canonical):
         f"{disclosure}"
         f"{case}"
         f"{body}\n\n---\n"
-        f"*Live KEV + EPSS data is on the [ColdCaseTech Threat Radar]({BASE_URL}/radar/) "
-        f"- follow us on [X (@coldcasetech)](https://x.com/coldcasetech).*\n"
+        f"*ColdCaseTech is an independent record of technology's promises: every line links to its source. "
+        f"New cases daily at [coldcasetech.com]({BASE_URL}/). Follow on [X](https://x.com/coldcasetech), "
+        f"[Bluesky](https://bsky.app/profile/coldcasetech.com) or [Telegram](https://t.me/coldcasetechh).*\n"
     )
 
 
@@ -178,7 +191,7 @@ def post_devto(post, canonical, md):
         article = {
             "title": post["title"], "published": True, "body_markdown": md,
             "canonical_url": canonical,
-            "tags": ["technology", "news", "tech", "ai"],
+            "tags": devto_tags(post),
         }
         if post["cover"]:
             article["main_image"] = post["cover"]
