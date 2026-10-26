@@ -1,21 +1,24 @@
 name: Daily Cold-Case News Generator
 
-# Every day, in this order (no job skips another):
-#   1. Case updates: new verified facts for open and recent cases
-#   2. Up to 3 TECH articles, each from a different field: news reports, open cases and verdict cases
+# Three tech articles a day, ONE PER RUN, spread out so the site has fresh news morning, afternoon and night:
+#   02:41 UTC = 08:11 IST (morning)   08:41 UTC = 14:11 IST (afternoon)   14:41 UTC = 20:11 IST (night)
+#   17:47 UTC = 23:17 IST: catch-up, publishes any article an earlier run could not (Claude busy, GitHub late).
+# Each run picks the HOTTEST story it can verify (most outlets covering it, freshest, trending on Google / Hacker
+# News), from a field that has no article yet today. Case updates run once a day, in the first run.
 # Everything is published directly, but only after passing every automated check (approved sources, hard checks,
 # and a clean, separate AI fact-check). Nothing that fails a check is ever published.
-# Times are UTC (GitHub always uses UTC): 14:30 UTC = 20:00 IST, 17:47 UTC = 23:17 IST.
-# The second run is a catch-up: it only redoes jobs that did not finish (Claude overloaded, or GitHub skipped
-# the first run). Finished jobs are skipped, and all runs of the day share one daily request cap (data/daily_runs.json).
+# GitHub always uses UTC, and often starts scheduled runs 5 to 60 minutes late; a late run still publishes.
+# All runs of the day share one daily request cap (data/daily_runs.json).
 on:
   schedule:
-    - cron: '30 14 * * *'
+    - cron: '41 2 * * *'
+    - cron: '41 8 * * *'
+    - cron: '41 14 * * *'
     - cron: '47 17 * * *'
   workflow_dispatch:
     inputs:
       desk:
-        description: 'What to run (auto = updates, then up to 3 tech articles)'
+        description: 'What to run (auto = case updates if not done today, then 1 article if one is still missing today; tech = 1 extra article now)'
         required: false
         default: 'auto'
         type: choice
@@ -54,6 +57,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DESK: ${{ inputs.desk || 'auto' }}
+          # slot = a timed run (1 article), catchup = the 23:17 IST run (all missing articles), manual = Run workflow button
+          RUN_KIND: ${{ github.event_name == 'workflow_dispatch' && 'manual' || (github.event.schedule == '47 17 * * *' && 'catchup' || 'slot') }}
         run: python scripts/generate_followup.py
 
       - name: Publish today's cases and case updates
