@@ -195,11 +195,14 @@
     "microsoft.com",
     "msrc.microsoft.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://blogs.microsoft.com/feed/"
+   ],
    "desks": [
     "security",
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "github",
@@ -509,10 +512,13 @@
    "domains": [
     "apple.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://www.apple.com/newsroom/rss-feed.rss"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "openai",
@@ -521,10 +527,13 @@
    "domains": [
     "openai.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://openai.com/news/rss.xml"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "anthropic",
@@ -547,10 +556,13 @@
     "about.meta.com",
     "ai.meta.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://about.fb.com/feed/"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "amd",
@@ -559,10 +571,13 @@
    "domains": [
     "amd.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://ir.amd.com/news-events/press-releases/rss"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "intel",
@@ -584,10 +599,13 @@
     "news.samsung.com",
     "samsung.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://news.samsung.com/global/feed"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "qualcomm",
@@ -632,10 +650,13 @@
    "domains": [
     "aboutamazon.com"
    ],
-   "feeds": [],
+   "feeds": [
+    "https://www.aboutamazon.com/news/rss"
+   ],
    "desks": [
     "tech"
-   ]
+   ],
+   "verified": true
   },
   {
    "id": "engadget",
