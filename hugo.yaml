@@ -4,6 +4,10 @@ title: "ColdCaseTech"
 theme: "PaperMod"
 enableRobotsTXT: true
 
+# Only tags are used (fields like AI, Energy). Turning off the unused "categories" list stops an empty /categories/ page being built.
+taxonomies:
+  tag: tags
+
 minify:
   disableJSON: true
 
