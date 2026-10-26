@@ -9,6 +9,7 @@ import anthropic
 import cases
 import guards
 import social
+import trends
 from source_discovery import (discover, evaluate, load_config, find_update, case_keys, Finder, can_give_verdict,
                               TECH_AREAS)
 
@@ -176,6 +177,9 @@ HOUSE STYLE (ColdCaseTech should read like the best wire service or financial ne
 - Vary sentence length. Use precise, educated vocabulary, never jargon for its own sake, never hype or filler
   ("in a move", "it is worth noting", "game-changer").
 - The headline is specific and active, in sentence case, and names the key fact or number.
+- Headlines are how readers find us on Google: START with the names people search for, the company and the product
+  exactly as people type them (e.g. "Apple iPhone 18", "OpenAI GPT-6", "Nvidia RTX 6090"), and keep the key fact in
+  the first 60 characters. Plain words, never codenames or jargon readers would not search for.
 """
 
 POLISH_MAX_SAID_PER_100_WORDS = 0.9
@@ -322,7 +326,8 @@ STEP 2: metadata (only when true)
 - headline: factual, under 90 characters. closed: what was promised and what happened. open: what was promised and when
   it is due. report: what happened. No clickbait, no question marks.
 - slug: lowercase words separated by hyphens, 3 to 8 words, no dates.
-- summary_description: one factual sentence under 160 characters.
+- summary_description: one factual sentence under 160 characters that names the company and product (it is the
+  text Google shows under the headline).
 - case_status: "closed", "open" or "report".
 {TYPE_FIELDS}
 STEP 3: {TYPE_BODIES}
@@ -1185,10 +1190,37 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
 
 
 ARTICLES_PER_DAY = int(os.environ.get("ARTICLES_PER_DAY", "3"))
+# One article per slot, spread over the day (UTC; the workflow's cron times must match):
+#   02:41 UTC = 08:11 IST (morning), 08:41 UTC = 14:11 IST (afternoon), 14:41 UTC = 20:11 IST (night).
+# The 17:47 UTC (23:17 IST) catch-up run publishes whatever an earlier slot could not.
+SLOTS_UTC = [(2, 41), (8, 41), (14, 41)]
+PER_ARTICLE_CALLS = 8   # Claude requests one article may use (write, check, re-check, retries)
 
 
-def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1):
-    """Find, write and verify up to `want` articles, each from a DIFFERENT tech field.
+def tech_wanted(kind: str, done_today: int, forced: str, now: datetime | None = None) -> tuple[int, str]:
+    """How many tech articles this run should publish, and why.
+    slot:    1, if a slot has come due that has no article yet (a late or failed slot is made up by the next one)
+    catchup: everything still missing today
+    manual:  1 (a manual 'tech' run always publishes 1, even past the daily number)"""
+    now = now or datetime.now(timezone.utc)
+    if forced == "tech":
+        return 1, "manual tech run"
+    left = ARTICLES_PER_DAY - done_today
+    if left <= 0:
+        return 0, f"all {ARTICLES_PER_DAY} of today's articles are published"
+    if kind == "catchup":
+        return left, f"catch-up run: {left} article(s) still missing today"
+    if kind == "slot":
+        due = sum(1 for h, m in SLOTS_UTC if (now.hour, now.minute) >= (h, max(0, m - 10)))
+        if due <= done_today:
+            return 0, f"{done_today} article(s) published and {due} slot(s) due so far; the next slot will publish"
+        return 1, f"slot {due} of {len(SLOTS_UTC)} is due ({done_today} published today)"
+    return 1, "manual run"
+
+
+def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1, fields_today=None):
+    """Find, write and verify up to `want` articles, hottest stories first, each from a DIFFERENT tech field
+    (fields_today: fields that already have an article today; it grows as articles are published).
     Returns a list of (filename, sources, report, article)."""
     global DESK, DESK_OUT, DESK_CALL_LIMIT, WRITE_CALLS
     DESK, DESK_OUT, WRITE_CALLS = desk, False, 0
@@ -1196,10 +1228,15 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
     names = list(TECH_AREAS)
     topics = [names[(day_of_year + i) % len(names)] for i in range(len(names))]
-    print(f"\n===== TECH DESK: up to {want} article(s) from different fields, approved sources only (data/sources.json) =====")
-    published, fields_done = [], set()
+    print(f"\n===== TECH DESK: up to {want} article(s), hottest stories first, approved sources only (data/sources.json) =====")
+    fields_done = fields_today if fields_today is not None else set()
+    if fields_done:
+        print(f"Fields that already have an article today (skipped for variety): {', '.join(sorted(fields_done))}")
+    published = []
     known = list(known)
-    for topic, sources, mode in discover(topics, used_urls, desk=desk, finder=finder_for(desk), known=known):
+    hot = trends.Hot.fetch()
+    for topic, sources, mode in discover(topics, used_urls, desk=desk, finder=finder_for(desk), known=known,
+                                         skip_fields=fields_done, hot=hot):
         if AI_EXHAUSTED or AI_BUSY or DESK_OUT or len(published) >= want:
             break
         if topic in fields_done:
@@ -1317,6 +1354,12 @@ if __name__ == "__main__":
         if not plan:
             print("All of today's jobs are finished. Nothing to do in this run.")
 
+    run_kind = os.environ.get("RUN_KIND", "manual").strip().lower()
+    want_tech, why = tech_wanted(run_kind, done_today, forced)
+    print(f"Run type: {run_kind}. Tech articles in this run: {want_tech} ({why}).")
+    if want_tech == 0 and "tech" in plan:
+        plan = [j for j in plan if j != "tech"]
+    fields_today = set(run_log.get("tech_fields", []))
     result = {"tech": [], "update": "", "update_desk": ""}
     for job in plan:
         if AI_EXHAUSTED or AI_BUSY:
@@ -1335,11 +1378,12 @@ if __name__ == "__main__":
                 result["update"], result["update_desk"] = up["file"], up["desk"]
             run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) and not up else "done"
             continue
-        want = ARTICLES_PER_DAY - done_today if forced == "auto" else ARTICLES_PER_DAY
-        out = run_desk("tech", used_urls, share, known, want=max(1, want))
+        share = min(share, PER_ARTICLE_CALLS * want_tech)   # leave requests for the later slots of the day
+        out = run_desk("tech", used_urls, share, known, want=want_tech, fields_today=fields_today)
         result["tech"] = [o[0] for o in out]
         done_today += len(out)
         run_log["tech_published"] = done_today
+        run_log["tech_fields"] = sorted(fields_today)
         run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) else ("published" if out else "done")
     run_log["ai_calls"] = used_before + AI_CALLS
     run_log["gemini_calls"] = gemini_before + GEMINI_CALLS

@@ -2,7 +2,9 @@
 
 How a story is found:
   1. Read the feeds of every approved outlet (official bodies and established newsrooms).
-  2. Pick recent items that match today's topic.
+  2. Rank recent items by how HOT they are right now (see heat(): how many approved outlets cover the same story,
+     how fresh it is, whether its names are trending on Google or Hacker News, and whether it is a famous name),
+     across all tech fields, and try the hottest first (one article per field per day).
   3. For each candidate, collect sources about the SAME incident:
      - other approved feed items that share the incident's distinctive name or CVE ID, and
      - pages linked from those articles, but only on approved domains, or on the affected
@@ -252,10 +254,13 @@ def matches_topic(item, topic, desk="security"):
 
 
 KEY_MAX_DF = 3
+# Names in a big story appear in many feed items (8 outlets covering one launch). Story keys may appear in up to this
+# many items, so the hottest stories keep their names; truly common words are in GENERIC or appear far more often.
+HOT_KEY_MAX_DF = 12
 
 
-def subject_keys(title, df):
-    keys = {t for t in tokens(title) if len(t) >= 4 and t not in GENERIC and not t.isdigit() and df.get(t, 0) <= KEY_MAX_DF}
+def subject_keys(title, df, max_df=KEY_MAX_DF):
+    keys = {t for t in tokens(title) if len(t) >= 4 and t not in GENERIC and not t.isdigit() and df.get(t, 0) <= max_df}
     return keys | {c.upper() for c in CVE_PATTERN.findall(title)}
 
 
@@ -444,9 +449,46 @@ def can_give_verdict(sources, rules):
     return len(dated) >= 2 and (dated[-1] - dated[0]).days >= rules["min_spread_days"]
 
 
-def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", finder=None, known=()):
-    """Yield (topic, sources, mode) for every candidate story that passes the source rules, best first.
+def best_topic(item, topics, desk="tech"):
+    """The field a story belongs to: the one with the most matching words (ties go to the earlier field)."""
+    text = (item["title"] + " " + item["summary"]).lower()
+    best, hits = None, 0
+    for t in topics:
+        words = TECH_AREAS.get(t, [t]) if desk == "tech" else SECURITY_TOPICS.get(t, [t])
+        n = sum(1 for w in words if _has_any(text, [w]))
+        if n > hits:
+            best, hits = t, n
+    return best
+
+
+def heat(seed, keys, f, hot=None):
+    """How hot a story is right now. Returns (score, details).
+    coverage: different approved outlets covering the SAME story in the last 4 days (3 points each, up to 6 outlets)
+    fresh:    newest coverage within 24 h = 4, 48 h = 2, 72 h = 1
+    trend:    its names are in Google Trends or on the Hacker News front page (up to 6)
+    famous:   a company or product people search for constantly (2)"""
+    need = 1 if len(keys) <= 1 else 2
+    cluster = [i for i in f.items if i is not seed and abs((i["date"] - seed["date"]).days) <= 4
+               and key_hits(i["title"] + " " + i["summary"], keys) >= need]
+    outlets = {seed["outlet"]["id"]} | {i["outlet"]["id"] for i in cluster}
+    newest = max([seed["date"]] + [i["date"] for i in cluster])
+    age_h = (f.now - newest).total_seconds() / 3600
+    fresh = 4 if age_h <= 24 else 2 if age_h <= 48 else 1 if age_h <= 72 else 0
+    words = {t for t in tokens(seed["title"]) if t not in GENERIC}
+    trend = hot.score(words) if hot else 0
+    famous = 2 if (hot and hot.famous(words)) else 0
+    score = 3 * min(len(outlets), 6) + fresh + trend + famous
+    return score, {"outlets": len(outlets), "fresh": fresh, "trend": trend, "famous": famous, "cluster": cluster}
+
+
+MAX_TRIES = 24   # stories fully checked per run, hottest first
+
+
+def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", finder=None, known=(), skip_fields=(), hot=None):
+    """Yield (topic, sources, mode) for candidate stories that pass the source rules, HOTTEST FIRST across all fields.
     known: keyword sets of existing cases (see case_keys); a story about one of them is left to the update desk.
+    skip_fields: fields that already have an article today (read live, so it can grow while this runs).
+    hot: trends.Hot (what people search for right now); None = rank by coverage and freshness only.
     mode "case":   the sources span enough time for a then-vs-now verdict (the writer may still choose a report or
                    an open case if that fits the sources better).
     mode "report": fresh news without a time gap: only a report (no verdict) or an open case (dated promise)."""
@@ -455,48 +497,71 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", find
         log("No feed items available; nothing to write today.")
         return
     rules, now = f.rules, f.now
-    tried = set()
-    for topic in topics:
-        seeds = [i for i in f.items if matches_topic(i, topic, desk) and not DEAL_TITLE.search(i["title"])
-                 and not SECURITY_TITLE.search(i["title"]) and i["url"] not in used_urls and i["url"] not in tried]
-        scored = []
-        for s in seeds:
-            keys = subject_keys(s["title"], f.df)
-            if not keys:
+    scored = []
+    for s in f.items:
+        if s["url"] in used_urls or DEAL_TITLE.search(s["title"]) or SECURITY_TITLE.search(s["title"]):
+            continue
+        topic = best_topic(s, topics, desk)
+        if not topic or (desk == "tech" and not _has_any((s["title"] + " " + s["summary"]).lower(), OUTCOME_WORDS)):
+            continue
+        keys = subject_keys(s["title"], f.df, HOT_KEY_MAX_DF)
+        if not keys:
+            continue
+        score, d = heat(s, keys, f, hot)
+        scored.append((score, s["date"], topics.index(topic), s, keys, topic, d))
+    scored.sort(key=lambda x: (-x[0], -x[1].timestamp(), x[2]))
+    log(f"[{desk}] {len(scored)} candidate stories from approved feeds. Hottest first:")
+    shown, seen = 0, set()
+    for score, _, _, s, _, topic, d in scored:
+        if shown >= 10:
+            break
+        if s["url"] in seen:
+            continue  # another outlet's version of a story already listed
+        seen.update([s["url"]] + [i["url"] for i in d["cluster"]])
+        shown += 1
+        log(f"  {score:>2} pts  [{topic}] {s['title'][:80]}  (outlets {d['outlets']}, fresh +{d['fresh']}, "
+            f"trending +{d['trend']}, famous +{d['famous']})")
+    tried, tries, attempted = set(), 0, []
+    for score, _, _, seed, keys, topic, d in scored:
+        if tries >= MAX_TRIES:
+            log(f"  stopped after checking the {MAX_TRIES} hottest stories")
+            break
+        if topic in skip_fields or seed["url"] in tried:
+            continue
+        label = seed["title"][:90]
+        if any(same_case(case_keys(seed["title"]), k) for k in known):
+            log(f"  skip '{label}': already an existing case or today's article (the update desk follows it)")
+            tried.add(seed["url"])
+            continue
+        ck = case_keys(seed["title"])
+        if sum(1 for a in attempted if same_case(ck, a)) >= 2:
+            continue  # this story already failed twice from other outlets' versions
+        attempted.append(ck)
+        tries += 1
+        # the same story from other approved outlets first, then anything sharing a name (gather checks each page)
+        related = d["cluster"] + [r for r in f.related_items(seed, keys) if r not in d["cluster"]]
+        org_names = {t for t in tokens(seed["title"]) if len(t) >= 3 and t not in GENERIC}
+        sources, reason = f.gather(seed, keys, related, org_names)
+        if not sources:
+            log(f"  skip '{label}': could not use the article: {reason}")
+            continue
+        ok, reasons = evaluate(sources, rules, False, now)
+        outlets = sorted({f"{s['outlet']} ({s['tier']})" for s in sources})
+        if not ok:
+            log(f"  skip '{label}': " + "; ".join(reasons) + f" [sources: {', '.join(outlets)}]")
+            continue
+        if can_give_verdict(sources, rules):
+            mode = "case"
+        else:
+            newest = max(dd for dd in (parse_date(s["date"]) for s in sources) if dd)
+            if (now - newest).days > rules.get("report_max_age_days", 3):
+                log(f"  skip '{label}': no time gap for a verdict, and too old for a news report [sources: {', '.join(outlets)}]")
                 continue
-            related = f.related_items(s, keys)
-            scored.append((len({r["outlet"]["id"] for r in related}), s["date"], s, keys, related))
-        scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
-        log(f"[{desk}] Topic '{topic}': {len(scored)} candidate stories from approved feeds.")
-        for _, _, seed, keys, related in scored[:8]:
-            if seed["url"] in tried:
-                continue
-            label = seed["title"][:90]
-            if any(same_case(case_keys(seed["title"]), k) for k in known):
-                log(f"  skip '{label}': already an existing case (the update desk follows it)")
-                tried.add(seed["url"])
-                continue
-            org_names = {t for t in tokens(seed["title"]) if len(t) >= 3 and t not in GENERIC}
-            sources, reason = f.gather(seed, keys, related, org_names)
-            if not sources:
-                log(f"  skip '{label}': could not use the article: {reason}")
-                continue
-            ok, reasons = evaluate(sources, rules, False, now)
-            outlets = sorted({f"{s['outlet']} ({s['tier']})" for s in sources})
-            if not ok:
-                log(f"  skip '{label}': " + "; ".join(reasons) + f" [sources: {', '.join(outlets)}]")
-                continue
-            if can_give_verdict(sources, rules):
-                mode = "case"
-            else:
-                newest = max(d for d in (parse_date(s["date"]) for s in sources) if d)
-                if (now - newest).days > rules.get("report_max_age_days", 3):
-                    log(f"  skip '{label}': no time gap for a verdict, and too old for a news report [sources: {', '.join(outlets)}]")
-                    continue
-                mode = "report"
-            tried.update(x["url"] for x in sources)
-            log(f"  PASS ({mode}) '{label}' with {len(sources)} sources: {', '.join(outlets)}")
-            yield topic, clean(sources, rules["max_sources"]), mode
+            mode = "report"
+        tried.update(x["url"] for x in sources)
+        tried.update(i["url"] for i in d["cluster"])
+        log(f"  PASS ({mode}, {score} pts) [{topic}] '{label}' with {len(sources)} sources: {', '.join(outlets)}")
+        yield topic, clean(sources, rules["max_sources"]), mode
 
 
 CASE_STOP = set("""
