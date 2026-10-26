@@ -4,3 +4,5 @@
 /radar/*            /    301
 /tags/security-friday    /    301
 /tags/security-friday/*  /    301
+/categories              /    301
+/categories/*            /    301
