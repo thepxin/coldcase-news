@@ -1,0 +1,6 @@
+# Old addresses from before ColdCaseTech became tech-only. Each sends visitors to the homepage.
+/radar              /    301
+/radar/             /    301
+/radar/*            /    301
+/tags/security-friday    /    301
+/tags/security-friday/*  /    301
