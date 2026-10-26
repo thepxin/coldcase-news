@@ -1,112 +1,21 @@
 ================================================================
-NVIDIA adds StormScope EU to Earth-2 for 10-minute European cloud forecasts
+OpenAI says Codex cut custom code roughly 90% in FDE projects
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
 ================================================================
 
-X (169/280):
-NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
+X (161/280):
+OpenAI says Codex let its FDE teams remove roughly 90% of the custom code from each customer project.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
+Every line sourced: https://coldcasetech.com/posts/2026-10-26-openai-forward-deployed-engineering-codex-custom-code/
 
 #AI #TechNews
 
-THREADS:
-NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
-
-NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
-
 INSTAGRAM (post this caption with the image from the share kit):
-NVIDIA says StormScope EU predicts cloud conditions across 16 Meteosat channels every 10 minutes over Europe.
-
-NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
+OpenAI says Codex let its FDE teams remove roughly 90% of the custom code from each customer project.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
 #coldcasetech #technews #tech #ai
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: NVIDIA adds StormScope EU to Earth-2 for 10-minute European cloud forecasts
-Comment: Summary: NVIDIA announced StormScope EU, a regional Earth-2 model that uses EUMETSAT satellite data to predict cloud conditions across Europe every 10 minutes.
-
-Checked against the official source (NVIDIA). The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/nvidia: https://www.reddit.com/r/nvidia/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
-  r/artificial: https://www.reddit.com/r/artificial/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
-  r/singularity: https://www.reddit.com/r/singularity/submit?url=https://coldcasetech.com/posts/2026-10-25-nvidia-stormscope-eu-earth-2-europe/
-
-
-================================================================
-Wired reviews Meta's camera-free Ray-Ban Meta Audio glasses announced in September
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-================================================================
-
-X (168/280):
-Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
-
-#Gadgets #TechNews
-
-THREADS:
-Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
-
-Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
-
-INSTAGRAM (post this caption with the image from the share kit):
-Wired reports Ray-Ban Meta Audio drops the camera, the only big change from Meta's other smart glasses.
-
-Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #technews #tech #gadgets
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: Wired reviews Meta's camera-free Ray-Ban Meta Audio glasses announced in September
-Comment: Summary: Wired reviewed Meta's camera-free Ray-Ban Meta Audio glasses, announced in September, and reported the lack of a camera is the only big change.
-
-Checked against 2 sources. The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/gadgets: https://www.reddit.com/r/gadgets/submit?url=https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
-  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-25-meta-ray-ban-audio-camera-free-glasses/
-
-
-================================================================
-Amazon renames Kindle Unlimited as Kindle+ at $11.99 a month
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-================================================================
-
-X (189/280):
-Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
-
-#BigTech #TechNews
-
-THREADS:
-Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
-
-Every line sourced: https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
-
-INSTAGRAM (post this caption with the image from the share kit):
-Amazon renamed Kindle Unlimited as Kindle+ on October 22, 2026, keeping the $11.99 monthly price and adding more audiobooks.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #technews #tech #bigtech
-
-REDDIT (link post, title exactly as below, then add the comment):
-Title: Amazon renames Kindle Unlimited as Kindle+ at $11.99 a month
-Comment: Checked against 2 sources, including Amazon (official). The article links each line to its source, so you can read the originals.
-Best-fit subreddits (read each one's rules first):
-  r/technology: https://www.reddit.com/r/technology/submit?url=https://coldcasetech.com/posts/2026-10-25-amazon-renames-kindle-unlimited-kindle-plus/
