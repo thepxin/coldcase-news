@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-10-27T08:24:39Z",
-   "outlet": "CoinDesk",
-   "title": "An AI label alone no longer wins lenders, JPMorgan says",
-   "url": "https://www.coindesk.com/markets/2026/10/27/an-ai-label-alone-no-longer-wins-lenders-jpmorgan-says"
-  },
-  {
-   "date": "2026-10-27T08:18:16Z",
+   "date": "2026-10-27T15:15:00Z",
    "outlet": "Engadget",
-   "title": "OpenAI announces new discoveries in mathematics, computer science and physics",
-   "url": "https://www.engadget.com/2297941/openai-new-discoveries-mathematics-computer-science-physics/"
+   "title": "The reason why some USB ports are orange",
+   "url": "https://www.engadget.com/2295961/reason-why-usb-ports-orange/"
   },
   {
-   "date": "2026-10-27T08:00:00Z",
-   "outlet": "Samsung",
-   "title": "[Hands-On] Comfort, Convenience, and More: A Day With Galaxy Buds On",
-   "url": "https://news.samsung.com/global/hands-on-comfort-convenience-and-more-a-day-with-galaxy-buds-on"
+   "date": "2026-10-27T15:13:39Z",
+   "outlet": "Google Cloud",
+   "title": "RESOLVED: Multiple services were experiencing issues in the europe-west2 region.",
+   "url": "https://status.cloud.google.com/incidents/Xs2XTHzAVC9YnafnPyzj"
   },
   {
-   "date": "2026-10-27T07:44:04Z",
-   "outlet": "CoinDesk",
-   "title": "Solana bug reports now cost 1 SOL as AI floods security teams with spam",
-   "url": "https://www.coindesk.com/tech/2026/10/27/solana-bug-reports-now-cost-1-sol-as-ai-floods-security-teams-with-spam"
+   "date": "2026-10-27T15:13:38Z",
+   "outlet": "Google Cloud",
+   "title": "RESOLVED: Multiple services were experiencing issues in the europe-west2 region.",
+   "url": "https://status.cloud.google.com/incidents/Xs2XTHzAVC9YnafnPyzj"
   },
   {
-   "date": "2026-10-27T07:07:51Z",
-   "outlet": "NASA",
-   "title": "How a Johnson Mentor Shapes the Next Generation of NASA Talent",
-   "url": "https://www.nasa.gov/general/how-a-johnson-mentor-shapes-the-next-generation-of-nasa-talent/"
+   "date": "2026-10-27T15:10:26Z",
+   "outlet": "Wired",
+   "title": "UK Home Office May Face Investigation Over Use of OpenAI Tools",
+   "url": "https://www.wired.com/story/uk-home-office-may-face-investigation-over-use-of-openai-tools/"
   },
   {
-   "date": "2026-10-27T06:34:44Z",
-   "outlet": "TechCrunch",
-   "title": "X is nudging users to promote their posts with a pointing hand, and people are confused",
-   "url": "https://techcrunch.com/2026/10/26/x-is-nudging-users-to-promote-their-posts-with-a-pointing-hand-and-people-are-confused/"
+   "date": "2026-10-27T15:06:04Z",
+   "outlet": "Engadget",
+   "title": "Nintendo sets an Indie World showcase for October 28",
+   "url": "https://www.engadget.com/2298300/nintendo-sets-an-indie-world-showcase-for-october-28/"
   },
   {
-   "date": "2026-10-27T05:52:00Z",
+   "date": "2026-10-27T15:00:20Z",
    "outlet": "NVIDIA",
-   "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid Robust Growth",
-   "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth"
+   "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia",
+   "url": "https://blogs.nvidia.com/blog/open-source-ai-tools-cbrain-dementia/"
   },
   {
-   "date": "2026-10-27T05:39:18Z",
-   "outlet": "The Register",
-   "title": "Elvis rightsholders sue Anthropic for stealing songs and leaving them in Heartbreak Hotel",
-   "url": "https://www.theregister.com/ai-and-ml/2026/10/27/elvis-rightsholders-sue-anthropic-for-stealing-songs-and-leaving-them-in-heartbreak-hotel/5305625"
+   "date": "2026-10-27T15:00:00Z",
+   "outlet": "Google",
+   "title": "8 examples of Gemini 4 Argon in action",
+   "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/"
+  },
+  {
+   "date": "2026-10-27T14:59:09Z",
+   "outlet": "TechCrunch",
+   "title": "Meta AI director Rohit Patel leaves to take on Microsoft Office and Google Workspace",
+   "url": "https://techcrunch.com/2026/10/27/meta-ai-director-rohit-patel-leaves-to-take-on-microsoft-office-and-google-workspace/"
   }
  ],
  "status": "ok",
- "updated": "2026-10-27T08:54:52Z"
+ "updated": "2026-10-27T15:19:41Z"
 }
