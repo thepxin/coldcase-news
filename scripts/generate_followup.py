@@ -51,6 +51,7 @@ CYBER_COVER_IMAGES = [
 class FollowUpArticle(BaseModel):
     has_meaningful_update: bool
     headline: str
+    plain_headline: str   # the same news as a straight headline; used if the house-voice headline is not fully supported
     slug: str
     summary_description: str
     original_claim: str
@@ -75,6 +76,7 @@ class FactCheck(BaseModel):
     corrected_current_reality: str
     corrected_markdown_body: str
     social_supported: bool   # SOCIAL lines state only what the sources state (if false, they are not used)
+    headline_supported: bool   # the house-voice headline only restates sourced facts (if false, plain_headline is used)
 
 
 VERDICTS = {
@@ -180,6 +182,24 @@ HOUSE STYLE (ColdCaseTech should read like the best wire service or financial ne
 - Headlines are how readers find us on Google: START with the names people search for, the company and the product
   exactly as people type them (e.g. "Apple iPhone 18", "OpenAI GPT-6", "Nvidia RTX 6090"), and keep the key fact in
   the first 60 characters. Plain words, never codenames or jargon readers would not search for.
+
+THE HOUSE VOICE (the headline and social_hook ONLY; the article body always stays calm and plain)
+- ColdCaseTech has a dry, well-mannered wit, like a quietly amused old newspaper or a classic commercial parody. It
+  sets true facts side by side and lets the reader see the joke. It never explains the joke or says it out loud.
+- Plain, everyday words and excellent grammar. No big or rare words, no slang, no exclamation marks, no emojis, no
+  puns that need explaining, no question marks.
+- The wit may only rephrase or place side by side facts the sources state. Never add a fact, number, price, cause,
+  motive, rumour, comparison or claim that something is scarce, expensive or popular unless a source states it.
+- Never mock people, customers or victims. The only targets are the gap between a promise and what happened, or an
+  irony that is plainly there in the stated facts.
+- Use it only when the facts offer it naturally (roughly one story in three). Serious stories (job cuts, injuries,
+  deaths, safety, people harmed, lawsuits against individuals) always get a plain headline.
+- Shape: first sentence = the news, starting with the searched names. Optional second short sentence = the wink.
+- Example. Sources: a game launches on GeForce NOW, whose top tier is a monthly membership with RTX 5080-class
+  hardware. headline: "Call of Duty: Modern Warfare 4 lands on GeForce NOW. The RTX 5080 now comes by the month."
+  plain_headline: "Call of Duty: Modern Warfare 4 launches on GeForce NOW with an RTX 5080-class tier"
+- Example. Sources: a company promised twice the speed; testers measured 41 percent more.
+  headline: "Nvidia promised twice the speed. Testers measured 41 percent more."
 """
 
 POLISH_MAX_SAID_PER_100_WORDS = 0.9
@@ -323,8 +343,11 @@ True only if the sources support one of the allowed types with specific, citable
 empty strings for every other field.
 
 STEP 2: metadata (only when true)
-- headline: factual, under 90 characters. closed: what was promised and what happened. open: what was promised and when
-  it is due. report: what happened. No clickbait, no question marks.
+- headline: under 100 characters, in THE HOUSE VOICE when the facts offer it naturally, otherwise plain. closed: what
+  was promised and what happened. open: what was promised and when it is due. report: what happened. No clickbait,
+  no question marks.
+- plain_headline: the same news as a straight, factual headline under 90 characters, starting with the searched names
+  (identical to headline when headline is already plain).
 - slug: lowercase words separated by hyphens, 3 to 8 words, no dates.
 - summary_description: one factual sentence under 160 characters that names the company and product (it is the
   text Google shows under the headline).
@@ -339,13 +362,14 @@ services, not software, not unreleased products. Return [] if there are none.
 STEP 5: social text (only when true)
 - reddit_teaser: three neutral sentences: what happened, the key stated detail, and (closed only) the verdict.
   No links, emojis or hashtags.
-- social_hook: ONE sentence under 140 characters that makes a reader want the full article. Lead with the single most
-  concrete stated fact (a number, a name, a date or a change), true exactly as written and attributed if it is a
-  company's claim. Not the headline reworded. No question marks, no emojis, no hashtags, no links, no hype words,
-  no "you won't believe", no "here's why".
+- social_hook: one or two short sentences, under 150 characters in total, that make a reader want the full article,
+  in THE HOUSE VOICE when the facts offer it naturally (social posts may wink a little more than the headline). Lead
+  with the single most concrete stated fact (a number, a name, a date or a change), true exactly as written and
+  attributed if it is a company's claim. Not the headline reworded. No question marks, no emojis, no hashtags, no
+  links, no hype words, no "you won't believe", no "here's why".
 
 OUTPUT
-Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, slug, summary_description,
+Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, plain_headline, slug, summary_description,
 original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, social_hook, case_status, due_text, due_date
 (strings) and products (a list of strings). Output nothing outside the JSON.
 """
@@ -569,7 +593,7 @@ SOURCES:
 {json.dumps(sources, indent=2, ensure_ascii=False)}
 
 ARTICLE:
-headline: {article.headline}
+headline: {article.plain_headline or article.headline}
 case_status: {article.case_status or "closed"}
 verdict_score: {article.verdict_score}
 due_text: {article.due_text}
@@ -581,6 +605,8 @@ markdown_body:
 SOCIAL (short teasers posted with a link to the article; judge them only in check 8):
 social_hook: {article.social_hook}
 reddit_teaser: {article.reddit_teaser}
+
+HOUSE-VOICE HEADLINE (judge it only in check 9): {article.headline if article.plain_headline else ""}
 
 CHECKS
 1. unsupported_claims (ARTICLE only, not SOCIAL): every statement (names, numbers, dates, quotes, causes, outcomes, who said what, and every
@@ -605,12 +631,36 @@ CHECKS
 8. social_supported: true only if every statement in SOCIAL (social_hook and reddit_teaser) is clearly stated by the
    SOURCES, attributed where it is a company's claim, with no hype, opinion, prediction or added figure. Empty lines
    count as supported. Problems here never go into checks 1 or 2.
+   HOUSE VOICE: a dry, understated line that only rephrases or places side by side facts the sources state counts as
+   supported (example: "The RTX 5080 now comes by the month." when the sources describe a monthly membership with
+   RTX 5080-class hardware). NOT supported: any fact, number, price, cause, motive, rumour or claim that something is
+   scarce, expensive or popular that no source states; mockery of people; opinion words (great, awful, overpriced).
+9. headline_supported: judge the HOUSE-VOICE HEADLINE by the same HOUSE VOICE rule as check 8. If it is empty, return
+   true. Problems here never go into checks 1 or 2.
 """
 
 
 def _hard_checks(article: FollowUpArticle, sources: list[dict]) -> list[str]:
-    return guards.check_article([article.headline, article.summary_description, article.original_claim,
+    _settle_headline(article, sources, None)   # a house-voice headline with an unsourced number falls back to the plain one
+    return guards.check_article([article.plain_headline or article.headline, article.summary_description, article.original_claim,
                                  article.current_reality, article.due_text, article.markdown_body], sources)
+
+
+def _settle_headline(article: FollowUpArticle, sources: list[dict], ai_ok: bool = True) -> None:
+    """The house-voice headline is optional: if it fails a check, the plain headline is used instead.
+    It never stops a good article from publishing."""
+    witty, plain = (article.headline or "").strip(), (article.plain_headline or "").strip()
+    if not plain or witty == plain:
+        article.plain_headline = ""
+        return
+    problems = guards.check_article([witty], sources)
+    if problems or ai_ok is False or len(witty) > 110 or "?" in witty or "!" in witty:
+        why = "; ".join(problems[:2]) or ("the fact-check did not support it" if ai_ok is False else "too long or wrong punctuation")
+        print(f"  headline: house-voice headline not used ({why}); plain headline used instead.")
+        print(f"    not used: {witty}")
+        article.headline, article.plain_headline = plain, ""
+    elif ai_ok is not None:
+        print(f"  headline (house voice): {witty}")
 
 
 def _keep_social(article: FollowUpArticle, sources: list[dict], ai_ok: bool = True) -> None:
@@ -619,7 +669,7 @@ def _keep_social(article: FollowUpArticle, sources: list[dict], ai_ok: bool = Tr
     for field in ("social_hook", "reddit_teaser"):
         text = (getattr(article, field, "") or "").strip()
         problems = guards.check_article([text], sources) if text else []
-        if text and (problems or not ai_ok or len(text) > (160 if field == "social_hook" else 700)):
+        if text and (problems or not ai_ok or len(text) > (170 if field == "social_hook" else 700)):
             why = "; ".join(problems[:2]) or ("the fact-check did not support it" if not ai_ok else "too long")
             print(f"  social: {field} not used ({why}); posts will use the checked summary instead.")
             setattr(article, field, "")
@@ -719,6 +769,7 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
     issues = list(check.unsupported_claims) + list(check.conclusion_or_opinion_sentences)
     if not issues:
         _keep_social(article, sources, check.social_supported)
+        _settle_headline(article, sources, check.headline_supported)
         return article, "passed the fact-check and all hard checks"
 
     print(f"Fact-check found {len(issues)} problem(s); fixing once, then re-checking:")
@@ -744,6 +795,7 @@ def fact_check(article: FollowUpArticle, sources: list[dict]):
             and recheck.open_case_supported) or left:
         return None, f"re-check still found {len(left) or 'verdict/claim'} problem(s)"
     _keep_social(fixed, sources, recheck.social_supported)
+    _settle_headline(fixed, sources, recheck.headline_supported)
     return fixed, f"{len(issues)} problem(s) fixed, then passed a clean re-check and all hard checks"
 
 
