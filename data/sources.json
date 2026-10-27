@@ -909,6 +909,68 @@
    "desks": [
     "security"
    ]
+  },
+  {
+   "id": "playstation",
+   "name": "PlayStation (Sony)",
+   "tier": "A",
+   "domains": [
+    "playstation.com",
+    "blog.playstation.com",
+    "sonyinteractive.com",
+    "sony.com"
+   ],
+   "feeds": [
+    "https://blog.playstation.com/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "xbox",
+   "name": "Xbox (Microsoft)",
+   "tier": "A",
+   "domains": [
+    "xbox.com",
+    "news.xbox.com"
+   ],
+   "feeds": [
+    "https://news.xbox.com/en-us/feed/"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
+  },
+  {
+   "id": "rockstar",
+   "name": "Rockstar Games",
+   "tier": "A",
+   "domains": [
+    "rockstargames.com"
+   ],
+   "feeds": [],
+   "desks": [
+    "tech"
+   ]
+  },
+  {
+   "id": "taketwo",
+   "name": "Take-Two Interactive",
+   "tier": "A",
+   "domains": [
+    "take2games.com",
+    "ir.take2games.com"
+   ],
+   "feeds": [
+    "https://ir.take2games.com/rss/news-releases.xml"
+   ],
+   "desks": [
+    "tech"
+   ],
+   "verified": true
   }
  ],
  "rules": {
