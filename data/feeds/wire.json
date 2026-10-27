@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-10-27T15:15:00Z",
+   "date": "2026-10-27T22:00:00Z",
    "outlet": "Engadget",
-   "title": "The reason why some USB ports are orange",
-   "url": "https://www.engadget.com/2295961/reason-why-usb-ports-orange/"
+   "title": "What are wrong number text scams, and how can you avoid them?",
+   "url": "https://www.engadget.com/2296048/wrong-number-text-scams-how-avoid/"
   },
   {
-   "date": "2026-10-27T15:13:39Z",
-   "outlet": "Google Cloud",
-   "title": "RESOLVED: Multiple services were experiencing issues in the europe-west2 region.",
-   "url": "https://status.cloud.google.com/incidents/Xs2XTHzAVC9YnafnPyzj"
-  },
-  {
-   "date": "2026-10-27T15:13:38Z",
-   "outlet": "Google Cloud",
-   "title": "RESOLVED: Multiple services were experiencing issues in the europe-west2 region.",
-   "url": "https://status.cloud.google.com/incidents/Xs2XTHzAVC9YnafnPyzj"
-  },
-  {
-   "date": "2026-10-27T15:10:26Z",
-   "outlet": "Wired",
-   "title": "UK Home Office May Face Investigation Over Use of OpenAI Tools",
-   "url": "https://www.wired.com/story/uk-home-office-may-face-investigation-over-use-of-openai-tools/"
-  },
-  {
-   "date": "2026-10-27T15:06:04Z",
-   "outlet": "Engadget",
-   "title": "Nintendo sets an Indie World showcase for October 28",
-   "url": "https://www.engadget.com/2298300/nintendo-sets-an-indie-world-showcase-for-october-28/"
-  },
-  {
-   "date": "2026-10-27T15:00:20Z",
-   "outlet": "NVIDIA",
-   "title": "How AI Is Changing the Pace of Discovery for Millions Living With Dementia",
-   "url": "https://blogs.nvidia.com/blog/open-source-ai-tools-cbrain-dementia/"
-  },
-  {
-   "date": "2026-10-27T15:00:00Z",
-   "outlet": "Google",
-   "title": "8 examples of Gemini 4 Argon in action",
-   "url": "https://blog.google/products-and-platforms/products/gemini/gemini-4-argon-in-action/"
-  },
-  {
-   "date": "2026-10-27T14:59:09Z",
+   "date": "2026-10-27T21:47:02Z",
    "outlet": "TechCrunch",
-   "title": "Meta AI director Rohit Patel leaves to take on Microsoft Office and Google Workspace",
-   "url": "https://techcrunch.com/2026/10/27/meta-ai-director-rohit-patel-leaves-to-take-on-microsoft-office-and-google-workspace/"
+   "title": "GM is embracing hybrids now",
+   "url": "https://techcrunch.com/2026/10/27/gm-is-embracing-hybrids-now/"
+  },
+  {
+   "date": "2026-10-27T21:44:34Z",
+   "outlet": "TechCrunch",
+   "title": "Bank of America kindly asks that you don’t share your banking password with your AI assistant",
+   "url": "https://techcrunch.com/2026/10/27/bank-of-america-kindly-asks-that-you-dont-share-your-banking-password-with-your-ai-assistant/"
+  },
+  {
+   "date": "2026-10-27T21:43:14Z",
+   "outlet": "9to5Mac",
+   "title": "Firefox’s AI-powered Smart Window gets form autofill and website monitoring",
+   "url": "https://9to5mac.com/2026/10/27/firefoxs-ai-powered-smart-window-gets-form-autofill-and-website-monitoring/"
+  },
+  {
+   "date": "2026-10-27T21:35:22Z",
+   "outlet": "Engadget",
+   "title": "Why is there a random arm taking over the X composer?",
+   "url": "https://www.engadget.com/2299052/why-is-there-a-random-arm-taking-over-the-x-composer/"
+  },
+  {
+   "date": "2026-10-27T21:30:58Z",
+   "outlet": "Electrek",
+   "title": "BYD’s $10,000 EV blows a tire at nearly 90 mph — Watch what happens",
+   "url": "https://electrek.co/2026/10/27/byds-10k-ev-blows-tire-nearly-90-mph-watch-what-happens/"
+  },
+  {
+   "date": "2026-10-27T21:03:16Z",
+   "outlet": "9to5Mac",
+   "title": "Apple’s European government affairs chief to speak at Web Summit 2026",
+   "url": "https://9to5mac.com/2026/10/27/apples-european-government-affairs-chief-to-speak-at-web-summit-2026/"
+  },
+  {
+   "date": "2026-10-27T20:48:58Z",
+   "outlet": "The Verge",
+   "title": "Researchers are getting tired of OpenAI gatekeeping its breakthroughs",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1019921/openai-breakthrough-math-computer-science-physics"
   }
  ],
  "status": "ok",
- "updated": "2026-10-27T15:19:41Z"
+ "updated": "2026-10-27T22:09:36Z"
 }
