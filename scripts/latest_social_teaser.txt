@@ -1,18 +1,20 @@
 ================================================================
-OpenAI says Codex cut custom code roughly 90% in FDE projects
+OpenAI says its AI disproved the Exponential Time Hypothesis
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (161/280):
-OpenAI says Codex let its FDE teams remove roughly 90% of the custom code from each customer project.
+X (190/280):
+OpenAI says its system proved the Exponential Time Hypothesis false. Its original proposers are now on the team checking the work.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-26-openai-forward-deployed-engineering-codex-custom-code/
+Every line sourced: https://coldcasetech.com/posts/2026-10-27-openai-says-ai-disproved-exponential-time-hypothesis/
 
 #AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-OpenAI says Codex let its FDE teams remove roughly 90% of the custom code from each customer project.
+OpenAI says its system proved the Exponential Time Hypothesis false. Its original proposers are now on the team checking the work.
+
+OpenAI announced three discoveries in math, computer science and physics on 2026-10-26 and named outside expert groups to examine and explain the results.
 
 Full story and every source: link in bio.
 
