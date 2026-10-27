@@ -483,12 +483,32 @@ def heat(seed, keys, f, hot=None):
 
 MAX_TRIES = 24   # stories fully checked per run, hottest first
 
+# Night "cold case" slot: stories where a promise meets its result (reviews and tests of claimed performance, delays,
+# finally shipping, cancellations, fixes, recalls, limited editions). Each phrase found adds points (see cold_points).
+RESULT_WORDS = ["review", "reviewed", "tested", "benchmark", "benchmarks", "measured", "hands-on", "teardown",
+                "delayed", "delay", "delays", "postponed", "pushed back", "finally", "now shipping", "ships", "shipped",
+                "cancelled", "canceled", "scrapped", "missed", "falls short", "recall", "recalled", "firmware",
+                "bios", "driver update", "patch notes", "fixes", "fixed", "throttling", "overheating", "battery life",
+                "limited edition", "special edition", "anniversary edition", "collector's edition", "years after",
+                "promised", "still waiting", "doubles down", "price cut", "price drop", "refund", "backtracks", "reverses"]
 
-def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", finder=None, known=(), skip_fields=(), hot=None):
+
+def cold_points(item):
+    text = (item["title"] + " " + item["summary"]).lower()
+    title = item["title"].lower()
+    n = sum(1 for w in RESULT_WORDS if _has_any(text, [w]))
+    in_title = any(_has_any(title, [w]) for w in RESULT_WORDS)
+    return 0 if not n else min(12, 4 + 2 * n + (4 if in_title else 0))
+
+
+def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", finder=None, known=(), skip_fields=(), hot=None,
+             focus="hot"):
     """Yield (topic, sources, mode) for candidate stories that pass the source rules, HOTTEST FIRST across all fields.
     known: keyword sets of existing cases (see case_keys); a story about one of them is left to the update desk.
     skip_fields: fields that already have an article today (read live, so it can grow while this runs).
     hot: trends.Hot (what people search for right now); None = rank by coverage and freshness only.
+    focus: "hot" = hottest first; "cold" = the night slot: promise-vs-result stories first (cold_points), and stories
+           whose sources span enough time for a verdict are used before plain reports.
     mode "case":   the sources span enough time for a then-vs-now verdict (the writer may still choose a report or
                    an open case if that fits the sources better).
     mode "report": fresh news without a time gap: only a report (no verdict) or an open case (dated promise)."""
@@ -508,9 +528,13 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", find
         if not keys:
             continue
         score, d = heat(s, keys, f, hot)
+        if focus == "cold":
+            d["cold"] = cold_points(s)
+            score = d["cold"] * 2 + 2 * min(d["outlets"], 6) + d["famous"]
         scored.append((score, s["date"], topics.index(topic), s, keys, topic, d))
     scored.sort(key=lambda x: (-x[0], -x[1].timestamp(), x[2]))
-    log(f"[{desk}] {len(scored)} candidate stories from approved feeds. Hottest first:")
+    log(f"[{desk}] {len(scored)} candidate stories from approved feeds. "
+        + ("COLD CASE slot: promise-vs-result stories first:" if focus == "cold" else "Hottest first:"))
     shown, seen = 0, set()
     for score, _, _, s, _, topic, d in scored:
         if shown >= 10:
@@ -520,8 +544,8 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", find
         seen.update([s["url"]] + [i["url"] for i in d["cluster"]])
         shown += 1
         log(f"  {score:>2} pts  [{topic}] {s['title'][:80]}  (outlets {d['outlets']}, fresh +{d['fresh']}, "
-            f"trending +{d['trend']}, famous +{d['famous']})")
-    tried, tries, attempted = set(), 0, []
+            f"trending +{d['trend']}, famous +{d['famous']}" + (f", result words +{d['cold']}" if focus == "cold" else "") + ")")
+    tried, tries, attempted, later = set(), 0, [], []
     for score, _, _, seed, keys, topic, d in scored:
         if tries >= MAX_TRIES:
             log(f"  stopped after checking the {MAX_TRIES} hottest stories")
@@ -560,8 +584,17 @@ def discover(topics, used_urls, cfg=None, log=print, now=None, desk="tech", find
             mode = "report"
         tried.update(x["url"] for x in sources)
         tried.update(i["url"] for i in d["cluster"])
+        if focus == "cold" and mode != "case":
+            log(f"  KEEP FOR LATER ({mode}, {score} pts) [{topic}] '{label}': no verdict possible; tried after verdict stories")
+            later.append((topic, clean(sources, rules["max_sources"]), mode, seed["title"]))
+            continue
         log(f"  PASS ({mode}, {score} pts) [{topic}] '{label}' with {len(sources)} sources: {', '.join(outlets)}")
         yield topic, clean(sources, rules["max_sources"]), mode
+    for topic, sources, mode, title in later:   # cold slot: no verdict story passed, so use the best open case or report
+        if topic in skip_fields or any(same_case(case_keys(title), k) for k in known):
+            continue
+        log(f"  PASS ({mode}, cold slot fallback) [{topic}] '{title[:80]}'")
+        yield topic, sources, mode
 
 
 CASE_STOP = set("""
@@ -592,6 +625,15 @@ def same_case(keys_a, keys_b):
     return shared >= 2 and shared >= 0.6 * min(len(keys_a), len(keys_b))
 
 
+# Everyday product words: they say what KIND of thing a story is about, not WHICH one, so they never count as distinctive.
+CATEGORY_WORDS = set("""
+laptop laptops notebook desktop gpu gpus cpu cpus chip chips processor graphics card cards console consoles tablet tablets
+smartphone smartphones phone phones headset headsets glasses watch watches earbuds headphones monitor monitors keyboard
+mouse router camera cameras drone drones robot robots game games gaming software browser model models server servers
+battery batteries charger display screen storage memory driver drivers fps
+""".split())
+
+
 def find_update(case, finder, log=print):
     """New, verified developments for an existing case, from approved feeds only.
     case: dict with title, since (datetime of the last update or publication) and urls (every URL already used).
@@ -601,14 +643,18 @@ def find_update(case, finder, log=print):
     keys = case_keys(case["title"])
     if not keys:
         return None, "headline has no distinctive names to search for"
-    need = 3 if len(keys) >= 4 else min(2, len(keys))  # a one-name case must have that name in the headline
+    need = min(2, len(keys))  # a one-name case must have that name in the headline
+    # at least one matching name must be distinctive (not in many feed items), so a generic "Nvidia RTX" story
+    # is not mistaken for news about this case; the writer and the checker then confirm it is the same case
+    rare = {k for k in keys if f.df.get(k, 0) <= HOT_KEY_MAX_DF and k not in CATEGORY_WORDS}
     since = case["since"]
     fresh = []
     for i in f.items:
         if i["date"] <= since or i["url"] in case["urls"] or DEAL_TITLE.search(i["title"]):
             continue
-        hits = len(keys & _words(i["title"] + ("" if len(keys) == 1 else " " + i.get("summary", ""))))
-        if hits >= need:
+        found = keys & _words(i["title"] + ("" if len(keys) == 1 else " " + i.get("summary", "")))
+        hits = len(found)
+        if hits >= need and (found & rare or len(keys) <= 2):
             fresh.append((hits, i))
     if not fresh:
         return None, "no new coverage in approved feeds"

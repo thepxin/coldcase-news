@@ -252,11 +252,28 @@ ARTICLE_TYPES = """
 ARTICLE TYPES (choose exactly one; case_status says which)
 1. "closed" = VERDICT CASE. The sources contain a specific earlier promise or claim (THEN) AND a later statement of what
    actually happened (NOW): shipped, launched, measured, delayed, cancelled or ruled on. Give one verdict.
-2. "open" = OPEN CASE. A Tier A source (the company itself or an official body) states a promise with a concrete date
-   or deadline that is still in the future (a day, month, quarter or year), optionally with a concrete figure, and no
-   source states the outcome yet. No verdict.
+2. "open" = OPEN CASE. The company or an official body promises something with a concrete date or deadline that is
+   still in the future (a day, month, quarter, season or year), optionally with a concrete figure, and no source states
+   the outcome yet. The promise may come from the company's own statement (Tier A) OR from an approved newsroom that
+   attributes it to the company ("Apple said the iPad mini reaches stores on November 6"). Rumours, leaks, analysts and
+   unnamed sources never count as a promise. No verdict.
+   PREFER "open" over "report" whenever such a dated promise is part of the story (in-store dates, shipping dates,
+   rollout deadlines, release dates): ColdCaseTech's readers come to see promises checked, and an open case is
+   checked automatically when its date arrives.
 3. "report" = NEWS REPORT. Something new happened in tech and the sources state it: an announcement, a launch, a
-   breakthrough, a record, a result, a ruling, a deal. No promise with a future date to check, and no verdict.
+   breakthrough, a record, a result, a ruling, a deal, and there is no dated promise to check. No verdict.
+
+TWO STORIES COLDCASETECH LOVES (use the matching type above):
+- CLAIM VS. MEASURED ("closed"): the company claimed a performance figure (speed, frame rate, battery life,
+  temperature, noise, range, charging time, efficiency) and independent tests or reviews in the sources measured it.
+  In the table, the Promised cell quotes the claim WITH its conditions exactly as the company stated them ("up to",
+  the game, the setting, the test) and the Delivered cell gives the measured figure with the tester's conditions.
+  Compare like with like only; if the conditions differ, say so in the Details section, attributed.
+- LIMITED EDITION CHECK ("report", or "closed" if the company made a specific claim about what is special): a
+  limited, special or anniversary edition compared with the standard model. Table rows compare what the sources
+  state for each (design, chip, memory, storage, display, software, price), e.g. "Limited: gold finish; standard:
+  black ([Outlet](URL))". When the sources state the hardware is the same, say exactly that, attributed. Never
+  guess a spec the sources do not state.
 """
 
 TYPE_FIELDS = """
@@ -305,7 +322,7 @@ def generate_article(topic: str, sources: list[dict], mode: str = "case") -> Fol
                    'otherwise pick the type that fits.')
     else:
         allowed = ('"open" or "report" only: these sources are too close together in time for a verdict, so never '
-                   'write "closed".')
+                   'write "closed". Choose "open" whenever the company has made a dated promise.')
     prompt = f"""
 You are the editor of ColdCaseTech, a daily tech site. ColdCaseTech does not draw conclusions: it reports what approved,
 verified sources state, across every tech field (AI, chips, devices, software, platforms, policy, crypto, EVs, space,
@@ -621,9 +638,11 @@ CHECKS
 4. main_claim_supported: true only if the sources support both original_claim and current_reality.
 5. own_statements_genuine: true only if every source of kind "own statement" is an official statement published by
    the affected organisation itself (not an attacker, a forum, a reseller or any third party). True if there are none.
-6. open_case_supported: if case_status is "closed" or "report", return true. If "open": true only if a Tier A source states the
-   promise with the date in due_text, that date is still ahead of the newest source, and NO source states the outcome
-   (shipped, measured, cancelled, missed). If any source already states the outcome, return false.
+6. open_case_supported: if case_status is "closed" or "report", return true. If "open": true only if the company or an
+   official body made the promise with the date in due_text (in its own statement, or as an approved newsroom reports
+   it, attributed to the company; never a rumour, leak, analyst or unnamed source), that date is still ahead of the
+   newest source, and NO source states the outcome (shipped, measured, cancelled, missed). If any source already states
+   the outcome, return false.
 7. corrected_original_claim, corrected_current_reality, corrected_markdown_body: the same text with every problem from
    checks 1 and 2 fixed ONLY by deleting it or by replacing it with the source's own wording. Never add facts, links
    or sections. Keep all headings, the table and the timeline. No HTML, no curly braces, no em dashes.
@@ -1270,7 +1289,15 @@ def tech_wanted(kind: str, done_today: int, forced: str, now: datetime | None = 
     return 1, "manual run"
 
 
-def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1, fields_today=None):
+def slot_focus(kind: str, now: datetime | None = None) -> str:
+    """The night slot (14:41 UTC = 20:11 IST) is the COLD CASE slot: promise-vs-result stories first.
+    Morning, afternoon, catch-up and manual runs look for the hottest stories."""
+    now = now or datetime.now(timezone.utc)
+    h, m = SLOTS_UTC[-1]
+    return "cold" if kind == "slot" and (now.hour, now.minute) >= (h, max(0, m - 10)) else "hot"
+
+
+def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1, fields_today=None, focus: str = "hot"):
     """Find, write and verify up to `want` articles, hottest stories first, each from a DIFFERENT tech field
     (fields_today: fields that already have an article today; it grows as articles are published).
     Returns a list of (filename, sources, report, article)."""
@@ -1280,7 +1307,9 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
     day_of_year = datetime.now(timezone.utc).timetuple().tm_yday
     names = list(TECH_AREAS)
     topics = [names[(day_of_year + i) % len(names)] for i in range(len(names))]
-    print(f"\n===== TECH DESK: up to {want} article(s), hottest stories first, approved sources only (data/sources.json) =====")
+    print(f"\n===== TECH DESK: up to {want} article(s), "
+          + ("COLD CASE slot: promise-vs-result stories first" if focus == "cold" else "hottest stories first")
+          + ", approved sources only (data/sources.json) =====")
     fields_done = fields_today if fields_today is not None else set()
     if fields_done:
         print(f"Fields that already have an article today (skipped for variety): {', '.join(sorted(fields_done))}")
@@ -1288,7 +1317,7 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
     known = list(known)
     hot = trends.Hot.fetch()
     for topic, sources, mode in discover(topics, used_urls, desk=desk, finder=finder_for(desk), known=known,
-                                         skip_fields=fields_done, hot=hot):
+                                         skip_fields=fields_done, hot=hot, focus=focus):
         if AI_EXHAUSTED or AI_BUSY or DESK_OUT or len(published) >= want:
             break
         if topic in fields_done:
@@ -1431,7 +1460,8 @@ if __name__ == "__main__":
             run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) and not up else "done"
             continue
         share = min(share, PER_ARTICLE_CALLS * want_tech)   # leave requests for the later slots of the day
-        out = run_desk("tech", used_urls, share, known, want=want_tech, fields_today=fields_today)
+        out = run_desk("tech", used_urls, share, known, want=want_tech, fields_today=fields_today,
+                       focus=slot_focus(run_kind))
         result["tech"] = [o[0] for o in out]
         done_today += len(out)
         run_log["tech_published"] = done_today

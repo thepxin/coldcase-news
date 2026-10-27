@@ -60,10 +60,11 @@ def load_cases(posts_dir=POSTS):
     return out
 
 
-def update_candidates(cases, now=None, recent_days=60, limit=25):
+def update_candidates(cases, now=None, recent_days=180, limit=40):
     """Which cases the update desk looks at, most urgent first:
     1. open cases whose due date has passed, 2. other open cases (soonest due first),
-    3. closed cases with activity in the last `recent_days` days (newest first)."""
+    3. closed cases and reports with activity in the last `recent_days` days (newest first). Hardware and performance
+       stories run for months (firmware fixes, driver updates, price cuts, recalls), so they are followed for 6 months."""
     now = now or datetime.now(timezone.utc)
     open_cases = [c for c in cases if c.get("status") == "open"]
     due = lambda c: _day(c.get("due_by")) or now + timedelta(days=3650)
