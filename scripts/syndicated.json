@@ -72,15 +72,15 @@
   "hashnode": null
  },
  "content/posts/2026-10-23-nasa-virginia-energy-space-act-agreement.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/nasa-langley-and-virginia-energy-sign-space-act-agreement-on-energy-planning-data-30d2",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-24-google-gemini-notebook-co-creation-study-features.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/google-adds-co-creation-review-flow-and-three-study-tools-to-gemini-notebook-30m8",
-  "done": false,
+  "done": true,
   "hashnode": null
  }
 }
