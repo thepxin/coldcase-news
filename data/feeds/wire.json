@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-10-26T20:26:07Z",
+   "date": "2026-10-27T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "[Hands-On] Comfort, Convenience, and More: A Day With Galaxy Buds On",
+   "url": "https://news.samsung.com/global/hands-on-comfort-convenience-and-more-a-day-with-galaxy-buds-on"
+  },
+  {
+   "date": "2026-10-27T00:16:31Z",
    "outlet": "9to5Mac",
-   "title": "From iPhone Duo to Mac, Craft shows what a native productivity app can do",
-   "url": "https://9to5mac.com/2026/10/26/from-iphone-duo-to-mac-craft-shows-what-a-native-productivity-app-can-do/"
+   "title": "9to5Mac Daily: October 26, 2026 – Apple unveils new iPad mini",
+   "url": "https://9to5mac.com/2026/10/26/daily-october-26-2026/"
   },
   {
-   "date": "2026-10-26T20:15:00Z",
-   "outlet": "9to5Google",
-   "title": "What’s new in Android’s October 2026 Google System Updates [U]",
-   "url": "https://9to5google.com/2026/10/26/october-2026-google-system-updates/"
+   "date": "2026-10-26T23:51:19Z",
+   "outlet": "9to5Mac",
+   "title": "T-Mobile’s new plans let users swap between Apple TV and other subscriptions",
+   "url": "https://9to5mac.com/2026/10/26/t-mobiles-new-plans-let-users-swap-between-apple-tv-and-other-subscriptions/"
   },
   {
-   "date": "2026-10-26T19:58:11Z",
-   "outlet": "9to5Google",
-   "title": "Chrome 156 for Googlebook rolling out with 14 updates across sites, shortcuts, more",
-   "url": "https://9to5google.com/2026/10/26/chrome-156-googlebooks/"
+   "date": "2026-10-26T23:34:58Z",
+   "outlet": "The Verge",
+   "title": "OpenAI announces three big science discoveries and a new way to work with academics",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1019143/openai-eth-kaseya-science-math-physics"
   },
   {
-   "date": "2026-10-26T19:49:55Z",
-   "outlet": "Electrek",
-   "title": "BMW’s new iX5 looks like a big upgrade next to the old X5 [Images]",
-   "url": "https://electrek.co/2026/10/26/bmws-new-ix5-looks-like-big-upgrade-next-to-old-x5-images/"
-  },
-  {
-   "date": "2026-10-26T19:47:56Z",
+   "date": "2026-10-26T23:30:00Z",
    "outlet": "Engadget",
-   "title": "Apple adds more Siri AI tools in its 27.2 system updates, out today",
-   "url": "https://www.engadget.com/2297577/apple-adds-more-siri-ai-tools-in-27-2-system-updates-out-today/"
+   "title": "The most popular streaming platforms in the US might not be what you think",
+   "url": "https://www.engadget.com/2295216/most-popular-streaming-platforms-united-states-not-what-you-think/"
   },
   {
-   "date": "2026-10-26T19:32:18Z",
-   "outlet": "9to5Mac",
-   "title": "Apple raises trade-in values for iPads and Macs, with increases of up to $365",
-   "url": "https://9to5mac.com/2026/10/26/apple-raises-trade-in-values-for-ipads-and-macs-with-increases-of-up-to-365/"
+   "date": "2026-10-26T23:00:00Z",
+   "outlet": "Engadget",
+   "title": "6+ ways you can use your PlayStation 5's USB ports",
+   "url": "https://www.engadget.com/2294767/ways-to-use-playstation-5-usb-ports/"
   },
   {
-   "date": "2026-10-26T19:28:08Z",
+   "date": "2026-10-26T22:48:12Z",
    "outlet": "NASA",
-   "title": "NASA SEES Interns Tackle Real-World Challenges in Lunar Exploration",
-   "url": "https://science.nasa.gov/learning-resources/science-activation/nasa-sees-interns-tackle-real-world-challenges-in-lunar-exploration/"
+   "title": "NASA’s Perseverance Views Dust at Neretva Vallis",
+   "url": "https://science.nasa.gov/photojournal/nasas-perseverance-views-dust-at-neretva-vallis/"
   },
   {
-   "date": "2026-10-26T19:22:40Z",
-   "outlet": "TechCrunch",
-   "title": "Uh oh, it sounds like the iPhone Duo keeps cracking and users aren’t happy about it",
-   "url": "https://techcrunch.com/2026/10/26/uh-oh-it-sounds-like-the-iphone-duo-keeps-cracking-and-users-arent-happy-about-it/"
+   "date": "2026-10-26T22:40:37Z",
+   "outlet": "Wired",
+   "title": "Grok Says Its AI-Generated Version of ‘The Odyssey’ Is ‘Not Historically Accurate’",
+   "url": "https://www.wired.com/story/grok-says-its-ai-generated-version-of-the-odyssey-is-not-historically-accurate/"
   }
  ],
  "status": "ok",
- "updated": "2026-10-26T20:27:52Z"
+ "updated": "2026-10-27T00:24:19Z"
 }
