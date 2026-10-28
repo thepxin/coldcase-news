@@ -1,27 +1,23 @@
 ================================================================
-Apple Siri AI adds five languages, with four more due by end of 2026
+OpenAI Agreement Analyzer: Sullivan & Cromwell builds AI contract review tool
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (208/280):
-Apple's Siri AI added five languages on October 26. Four more are due by year end.
+X (209/280):
+A Sullivan & Cromwell partner built Agreement Analyzer as a single-user proof of concept with Codex. OpenAI helped it reach multiple lawyers at once.
 
-Open case: due By the end of the year. We check every day.
+Every line sourced: https://coldcasetech.com/posts/2026-10-28-openai-agreement-analyzer-sullivan-cromwell/
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-28-apple-siri-ai-new-languages-end-of-year/
-
-#Software #TechNews
+#AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Apple's Siri AI added five languages on October 26. Four more are due by year end.
+A Sullivan & Cromwell partner built Agreement Analyzer as a single-user proof of concept with Codex. OpenAI helped it reach multiple lawyers at once.
 
-Apple expanded Siri AI to French, Japanese, Korean, Portuguese and Spanish in iOS 27.2 and listed four more languages due by the end of 2026.
-
-Open case: due By the end of the year. We check every day.
+OpenAI detailed how Sullivan & Cromwell built Agreement Analyzer, an AI tool for reviewing draft agreements, and how AT&T is building on LegalEdge with OpenAI.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #software
+#coldcasetech #technews #tech #ai
