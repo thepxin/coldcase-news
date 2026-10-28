@@ -1,23 +1,25 @@
 ================================================================
-OpenAI Agreement Analyzer: Sullivan & Cromwell builds AI contract review tool
+Tesla Roadster was due in 2020. Tesla now says production starts in 2028.
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (209/280):
-A Sullivan & Cromwell partner built Agreement Analyzer as a single-user proof of concept with Codex. OpenAI helped it reach multiple lawyers at once.
+X (210/280):
+Tesla's Roadster, planned for 2020 delivery, flew for mere seconds in October. Production is now set for 2028, Wired reports.
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-28-openai-agreement-analyzer-sullivan-cromwell/
+Verdict: Not Delivered.
 
-#AI #TechNews
+Every line sourced: https://coldcasetech.com/posts/2026-10-28-tesla-roadster-missed-2020-production-2028/
+
+#EV #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-A Sullivan & Cromwell partner built Agreement Analyzer as a single-user proof of concept with Codex. OpenAI helped it reach multiple lawyers at once.
+Tesla's Roadster, planned for 2020 delivery, flew for mere seconds in October. Production is now set for 2028, Wired reports.
 
-OpenAI detailed how Sullivan & Cromwell built Agreement Analyzer, an AI tool for reviewing draft agreements, and how AT&T is building on LegalEdge with OpenAI.
+Verdict: Not Delivered.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #ai
+#coldcasetech #technews #tech #ev
