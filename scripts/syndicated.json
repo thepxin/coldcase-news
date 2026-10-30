@@ -131,6 +131,12 @@
   "done": false,
   "hashnode": null
  },
+ "content/posts/2026-10-28-tesla-roadster-missed-2020-production-2028.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/tesla-roadster-was-due-in-2020-tesla-now-says-production-starts-in-2028-50e9",
+  "done": false,
+  "hashnode": null
+ },
  "content/posts/2026-10-29-apple-ipad-mini-oled-november-6.md": {
   "attempts": 1,
   "devto": "https://dev.to/coldcasetech/apple-ipad-mini-with-85-inch-oled-display-starts-at-699-due-november-6-33i8",
@@ -138,8 +144,8 @@
   "hashnode": null
  },
  "content/posts/2026-10-29-coderabbit-openai-gpt-6-1-sol-security-agent.md": {
-  "attempts": 1,
-  "devto": null,
+  "attempts": 2,
+  "devto": "https://dev.to/coldcasetech/coderabbit-uses-openai-gpt-61-sol-as-primary-model-in-its-security-agent-326h",
   "done": false,
   "hashnode": null
  },
