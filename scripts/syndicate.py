@@ -2,9 +2,9 @@
 
 Modes:
   python scripts/syndicate.py --due
-      Shares every post that is at least SYNDICATE_DELAY_HOURS old (default 20) and not yet
-      shared, oldest first, at most SYNDICATE_MAX_PER_RUN per run (default 2). Run daily.
-      The delay gives you a day to fix a post on the site before copies go out.
+      Shares every post that is live on the site and not yet shared (SYNDICATE_DELAY_HOURS, default 0 = right away),
+      posts not yet on Dev.to first (newest first), then retries for any platform that failed,
+      at most SYNDICATE_MAX_PER_RUN per run (default 3). Runs after every daily run.
       Progress is kept in scripts/syndicated.json so nothing is ever posted twice.
   python scripts/syndicate.py --indexnow content/posts/<file>.md
       Waits until the new page is live, then pings IndexNow only (fast indexing on publish).
@@ -32,8 +32,8 @@ HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
 HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
 WAIT_SECONDS = int(os.environ.get("SYNDICATE_WAIT_SECONDS", "900"))
 POLL_EVERY = int(os.environ.get("SYNDICATE_POLL_SECONDS", "30"))
-DELAY_HOURS = float(os.environ.get("SYNDICATE_DELAY_HOURS", "20"))
-MAX_PER_RUN = int(os.environ.get("SYNDICATE_MAX_PER_RUN", "2"))
+DELAY_HOURS = float(os.environ.get("SYNDICATE_DELAY_HOURS", "0"))
+MAX_PER_RUN = int(os.environ.get("SYNDICATE_MAX_PER_RUN", "3"))
 MAX_ATTEMPTS = 3
 LEDGER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "syndicated.json")
 POSTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "content", "posts")
@@ -227,12 +227,20 @@ def post_hashnode(post, canonical, md):
         r = requests.post("https://gql.hashnode.com",
                           headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json"},
                           json={"query": query, "variables": {"input": inp}}, timeout=30)
-        data = r.json() if r.status_code == 200 else {}
-        if r.status_code == 200 and "errors" not in data:
+        try:
+            data = r.json()
+        except ValueError:
+            kind = r.headers.get("content-type", "unknown")
+            snippet = " ".join(r.text.split())[:200]
+            print(f"Hashnode ERROR: HTTP {r.status_code}, Hashnode sent back a {kind} page instead of data "
+                  f"(usually a block or a changed address). Start of reply: {snippet}")
+            return None
+        if r.status_code == 200 and not data.get("errors") and (data.get("data") or {}).get("publishPost"):
             url = data["data"]["publishPost"]["post"]["url"] or "posted"
             print(f"Hashnode OK -> {url}")
             return url
-        print(f"Hashnode WARNING {r.status_code}: {r.text[:300]}")
+        errs = "; ".join(e.get("message", "") for e in data.get("errors") or [] if isinstance(e, dict))
+        print(f"Hashnode WARNING HTTP {r.status_code}: {errs or r.text[:300]}")
     except Exception as e:
         print(f"Hashnode ERROR: {e}")
     return None
@@ -323,7 +331,9 @@ def run_due():
         elif age < DELAY_HOURS:
             print(f"{name}: {age:.1f} h old; will share after {DELAY_HOURS:.0f} h (time to fix it on the site first).")
         else:
-            due.append(path)
+            due.append((bool(ledger.get(ledger_key(path), {}).get("devto")), age, path))
+    # posts not yet on Dev.to go first (newest first), then retries for a platform that failed earlier
+    due = [p for _, _, p in sorted(due, key=lambda x: (x[0], x[1]))]
     if not due:
         print("Nothing due for syndication.")
     for path in due[:MAX_PER_RUN]:
