@@ -131,9 +131,21 @@
   "done": false,
   "hashnode": null
  },
- "content/posts/2026-10-28-openai-agreement-analyzer-sullivan-cromwell.md": {
+ "content/posts/2026-10-27-spacex-starlink-musk-ukraine-terms-of-service.md": {
   "attempts": 1,
   "devto": null,
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-10-28-apple-siri-ai-new-languages-end-of-year.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/apple-siri-ai-adds-five-languages-with-four-more-due-by-end-of-2026-3607",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-10-28-openai-agreement-analyzer-sullivan-cromwell.md": {
+  "attempts": 2,
+  "devto": "https://dev.to/coldcasetech/openai-agreement-analyzer-sullivan-cromwell-builds-ai-contract-review-tool-1dne",
   "done": false,
   "hashnode": null
  },
