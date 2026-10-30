@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main   # latest version, even if this run waited in the queue
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,7 +48,8 @@ jobs:
           fi
           git commit -m "chore(feeds): refresh live data"
           for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push origin main; then
+            git rebase --abort 2>/dev/null || true
+            if git pull --rebase -X theirs origin main && git push origin main; then
               echo "Pushed."
               exit 0
             fi

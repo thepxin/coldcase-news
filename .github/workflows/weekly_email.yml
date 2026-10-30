@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # latest version, even if this run waited in the queue
 
       - uses: actions/setup-python@v5
         with:
@@ -51,6 +53,7 @@ jobs:
           fi
           git commit -m "chore(newsletter): record ColdCase Weekly"
           for attempt in 1 2 3; do
-            if git pull --rebase --autostash origin main && git push origin main; then break; fi
+            if git pull --rebase --autostash -X theirs origin main && git push origin main; then break; fi
+            git rebase --abort 2>/dev/null || true
             sleep 15
           done

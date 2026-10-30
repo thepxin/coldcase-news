@@ -39,6 +39,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: main   # latest version, even if this run waited in the queue
           submodules: true
           fetch-depth: 0
 
@@ -87,13 +88,14 @@ jobs:
           [ -n "$(read_result update)" ] && MSG="$MSG; case update"
           git commit -m "$MSG"
           for attempt in 1 2 3; do
-            if git pull --rebase --autostash origin main && git push origin main; then break; fi
+            if git pull --rebase --autostash -X theirs origin main && git push origin main; then break; fi
+            git rebase --abort 2>/dev/null || true
             sleep 15
           done
           if [ -n "$FILES" ]; then echo "published=true" >> "$GITHUB_OUTPUT"; else echo "published=false" >> "$GITHUB_OUTPUT"; fi
 
-      - name: Share yesterday's posts to Dev.to / Hashnode (24-hour delay)
-        # Posts go out about a day after publishing, so any fix you make on the site is included.
+      - name: Share new posts to Dev.to / Hashnode
+        # Each new post goes out as soon as it is live on the site (copies link back to it as the original).
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
           HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
@@ -108,7 +110,8 @@ jobs:
           else
             git commit -m "chore(syndication): update shared-posts log"
             for attempt in 1 2 3; do
-              if git pull --rebase --autostash origin main && git push origin main; then break; fi
+              if git pull --rebase --autostash -X theirs origin main && git push origin main; then break; fi
+              git rebase --abort 2>/dev/null || true
               sleep 15
             done
           fi
