@@ -1,27 +1,23 @@
 ================================================================
-Apple MacBook Pro with PROLED XDR display due November 6 from $2,899
+Microsoft Windows 11 KB5127936 adds a customizable right-click menu
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (214/280):
-Apple's new MacBook Pro has a touchscreen and a date to keep: availability begins November 6.
+X (199/280):
+Windows 11 KB5127936 adds a Customize menu button to the right-click menu. Send to and Create shortcut can now be switched on or off.
 
-Open case: due Friday, November 6. We check every day.
+Every line sourced: https://coldcasetech.com/posts/2026-10-30-windows-11-kb5127936-customizable-right-click-menu/
 
-Every line sourced: https://coldcasetech.com/posts/2026-10-30-apple-macbook-pro-proled-xdr-november-6/
-
-#Gadgets #TechNews
+#Software #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Apple's new MacBook Pro has a touchscreen and a date to keep: availability begins November 6.
+Windows 11 KB5127936 adds a Customize menu button to the right-click menu. Send to and Create shortcut can now be switched on or off.
 
-Apple unveiled the MacBook Pro with PROLED XDR Display and Touch on October 28, with pre-orders open and availability set to begin November 6.
-
-Open case: due Friday, November 6. We check every day.
+Microsoft began a gradual rollout of Windows 11 preview update KB5127936, which adds a customizable File Explorer context menu for versions 26H2 and 25H2.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #gadgets
+#coldcasetech #technews #tech #software
