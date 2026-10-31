@@ -1,14 +1,22 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
-  "checked": "2026-10-30",
+  "checked": "2026-10-31",
   "result": "no new coverage in approved feeds"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
-  "checked": "2026-10-30",
+  "checked": "2026-10-31",
   "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
-  "checked": "2026-10-30",
+  "checked": "2026-10-31",
+  "result": "new coverage only from Tom's Hardware: needs an official source or a second outlet"
+ },
+ "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
+  "checked": "2026-10-31",
+  "result": "no new coverage in approved feeds"
+ },
+ "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
+  "checked": "2026-10-31",
   "result": "no new coverage in approved feeds"
  }
 }

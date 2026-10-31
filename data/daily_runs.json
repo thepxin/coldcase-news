@@ -1,17 +1,13 @@
 {
- "date": "2026-10-30",
+ "date": "2026-10-31",
  "jobs": {
   "updates": "done",
-  "tech": "published"
+  "tech": "done"
  },
- "ai_day": "2026-10-30",
- "ai_calls": 14,
- "gemini_day": "2026-10-30",
+ "ai_day": "2026-10-31",
+ "ai_calls": 7,
+ "gemini_day": "2026-10-31",
  "gemini_calls": 0,
- "tech_published": 3,
- "tech_fields": [
-  "devices",
-  "quantum",
-  "software"
- ]
+ "tech_published": 0,
+ "tech_fields": []
 }
