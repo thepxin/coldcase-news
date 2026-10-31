@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-10-30T21:54:34Z",
+   "date": "2026-10-31T05:01:32Z",
+   "outlet": "CoinDesk",
+   "title": "Bitcoin stolen from Binance tops Tesla’s holdings and is over twice El Salvador’s reserve",
+   "url": "https://www.coindesk.com/markets/2026/10/31/bitcoin-stolen-from-binance-tops-tesla-s-holdings-and-is-over-twice-el-salvador-s-reserve"
+  },
+  {
+   "date": "2026-10-31T04:16:50Z",
    "outlet": "TechCrunch",
-   "title": "Intel’s stock crashes, knocking $12B from government’s stake",
-   "url": "https://techcrunch.com/2026/10/30/intels-stock-crashes-knocking-12b-from-governments-stake/"
+   "title": "Pile-ins, payouts, and pacing pressure: the investors behind the VCs open up",
+   "url": "https://techcrunch.com/2026/10/30/pile-ins-payouts-and-pacing-pressure-the-investors-behind-the-vcs-open-up/"
   },
   {
-   "date": "2026-10-30T21:52:03Z",
+   "date": "2026-10-31T04:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 October 31 – Night on a Spooky Planet",
+   "url": "https://science.nasa.gov/image-article/apod-2026-october-31-night-on-a-spooky-planet/"
+  },
+  {
+   "date": "2026-10-31T01:20:05Z",
    "outlet": "TechCrunch",
-   "title": "Anthropic expected to receive high ‘junk’ rating from credit agencies following IPO, report says",
-   "url": "https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/"
+   "title": "Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia",
+   "url": "https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/"
   },
   {
-   "date": "2026-10-30T21:44:44Z",
-   "outlet": "9to5Mac",
-   "title": "‘Pluribus’ season 2 reportedly begins filming tomorrow",
-   "url": "https://9to5mac.com/2026/10/30/pluribus-season-2-reportedly-begins-filming-tomorrow/"
-  },
-  {
-   "date": "2026-10-30T21:19:26Z",
-   "outlet": "Wired",
-   "title": "How a Contractor’s Claude Agent Got Into the Pentagon",
-   "url": "https://www.wired.com/story/uncanny-valley-podcast-how-a-contractors-claude-agent-got-into-the-pentagon/"
-  },
-  {
-   "date": "2026-10-30T21:01:32Z",
-   "outlet": "The Verge",
-   "title": "Exclusive details about Akai’s MPC Sample Key",
-   "url": "https://www.theverge.com/gadgets/1023649/akai-mpc-sample-key-exclusive"
-  },
-  {
-   "date": "2026-10-30T21:00:00Z",
+   "date": "2026-10-31T01:20:00Z",
    "outlet": "9to5Google",
-   "title": "Pixelated 123: The primary value is the clock",
-   "url": "https://9to5google.com/2026/10/30/pixelated-123-the-primary-value-is-the-clock/"
+   "title": "Samsung mercilessly mocks iPhone Duo ‘crackgate’ in Galaxy Z Fold 8 ads [Video]",
+   "url": "https://9to5google.com/2026/10/30/samsung-mocks-iphone-duo-crackgate-galaxy-z-fold-8/"
   },
   {
-   "date": "2026-10-30T20:48:43Z",
-   "outlet": "The Verge",
-   "title": "Sam Altman says it’s better for RAM to be in a data center than on your desk",
-   "url": "https://www.theverge.com/ai-artificial-intelligence/1023820/sam-altman-ram-shortage-cloud-servers"
-  },
-  {
-   "date": "2026-10-30T20:44:08Z",
+   "date": "2026-10-31T01:03:35Z",
    "outlet": "9to5Mac",
-   "title": "‘Knives Out’ director launches iPhone camera app that shoots like his movies",
-   "url": "https://9to5mac.com/2026/10/30/knives-out-director-launches-iphone-camera-app-that-shoots-like-his-movies/"
+   "title": "Download all 20 Apple HomeView wallpapers in light and dark mode here",
+   "url": "https://9to5mac.com/2026/10/30/download-all-20-apple-homeview-wallpapers-in-light-and-dark-mode-here/"
+  },
+  {
+   "date": "2026-10-31T00:48:56Z",
+   "outlet": "CoinDesk",
+   "title": "OpenAI reportedly cuts fundraising and valuation targets amid AI jitters",
+   "url": "https://www.coindesk.com/business/2026/10/30/openai-reportedly-cuts-fundraising-target-amid-ai-jitters"
+  },
+  {
+   "date": "2026-10-31T00:07:22Z",
+   "outlet": "Ars Technica",
+   "title": "Once again, NASA is asking for ideas to rescue Hubble from certain death",
+   "url": "https://arstechnica.com/space/2026/10/think-you-can-save-the-hubble-space-telescope-nasa-wants-to-know/"
   }
  ],
  "status": "ok",
- "updated": "2026-10-30T22:15:20Z"
+ "updated": "2026-10-31T05:33:54Z"
 }
