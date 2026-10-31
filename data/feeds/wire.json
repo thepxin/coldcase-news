@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-10-31T05:01:32Z",
+   "date": "2026-10-31T12:15:00Z",
+   "outlet": "Engadget",
+   "title": "This Microsoft 365 Family plan cloud storage change may leave you frustrated",
+   "url": "https://www.engadget.com/2301048/this-microsoft-365-family-plan-cloud-storage-change-may-leave-you-frustrated/"
+  },
+  {
+   "date": "2026-10-31T12:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Startup uses AI agent to perform controversial brain surgery on a mouse, Anthropic Sonnet controlled motorized surgery rig",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/startup-uses-ai-agent-to-perform-controversial-brain-surgery-on-a-mouse-anthropic-sonnet-controlled-motorized-surgery-rig-ai-given-free-reign-to-treat-epilepsy-with-a-range-of-gene-therapy-vectors-after-opus-5-5-refused-to-conduct-biological-experiment"
+  },
+  {
+   "date": "2026-10-31T12:00:00Z",
+   "outlet": "The Register",
+   "title": "Goth aesthetic gone wild: a user's self-inflicted black screen of non-death in Windows 3.1’s",
+   "url": "https://www.theregister.com/offbeat/2026/10/31/goth-aesthetic-gone-wild-a-users-self-inflicted-black-screen-of-non-death-in-windows-31s/5306592"
+  },
+  {
+   "date": "2026-10-31T12:00:00Z",
    "outlet": "CoinDesk",
-   "title": "Bitcoin stolen from Binance tops Tesla’s holdings and is over twice El Salvador’s reserve",
-   "url": "https://www.coindesk.com/markets/2026/10/31/bitcoin-stolen-from-binance-tops-tesla-s-holdings-and-is-over-twice-el-salvador-s-reserve"
+   "title": "The $6.3 billion Binance hack paradox: Centralization made the hack possible, but also saved $3 billion",
+   "url": "https://www.coindesk.com/business/2026/10/31/the-usd6-3-billion-binance-hack-paradox-centralization-made-the-hack-possible-but-also-saved-usd3-billion"
   },
   {
-   "date": "2026-10-31T04:16:50Z",
-   "outlet": "TechCrunch",
-   "title": "Pile-ins, payouts, and pacing pressure: the investors behind the VCs open up",
-   "url": "https://techcrunch.com/2026/10/30/pile-ins-payouts-and-pacing-pressure-the-investors-behind-the-vcs-open-up/"
-  },
-  {
-   "date": "2026-10-31T04:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 October 31 – Night on a Spooky Planet",
-   "url": "https://science.nasa.gov/image-article/apod-2026-october-31-night-on-a-spooky-planet/"
-  },
-  {
-   "date": "2026-10-31T01:20:05Z",
-   "outlet": "TechCrunch",
-   "title": "Nvidia weighs playing the cosigner for Nscale’s AI data center in West Virginia",
-   "url": "https://techcrunch.com/2026/10/30/nvidia-weighs-playing-the-cosigner-for-nscales-ai-data-center-in-west-virginia/"
-  },
-  {
-   "date": "2026-10-31T01:20:00Z",
+   "date": "2026-10-31T12:00:00Z",
    "outlet": "9to5Google",
-   "title": "Samsung mercilessly mocks iPhone Duo ‘crackgate’ in Galaxy Z Fold 8 ads [Video]",
-   "url": "https://9to5google.com/2026/10/30/samsung-mocks-iphone-duo-crackgate-galaxy-z-fold-8/"
+   "title": "Motorola Signature 27 specs detailed in new video, including Tandem OLED display",
+   "url": "https://9to5google.com/2026/10/31/motorola-signature-27-specs-hands-on/"
   },
   {
-   "date": "2026-10-31T01:03:35Z",
-   "outlet": "9to5Mac",
-   "title": "Download all 20 Apple HomeView wallpapers in light and dark mode here",
-   "url": "https://9to5mac.com/2026/10/30/download-all-20-apple-homeview-wallpapers-in-light-and-dark-mode-here/"
+   "date": "2026-10-31T11:40:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Veteran Microsoft engineer makes his own RAM from scratch using AI",
+   "url": "https://www.tomshardware.com/pc-components/ram/veteran-microsoft-engineer-makes-his-own-ram-from-scratch-using-ai-attempts-to-build-4mb-of-1970s-pdp-11-ram-from-scratch"
   },
   {
-   "date": "2026-10-31T00:48:56Z",
-   "outlet": "CoinDesk",
-   "title": "OpenAI reportedly cuts fundraising and valuation targets amid AI jitters",
-   "url": "https://www.coindesk.com/business/2026/10/30/openai-reportedly-cuts-fundraising-target-amid-ai-jitters"
-  },
-  {
-   "date": "2026-10-31T00:07:22Z",
+   "date": "2026-10-31T11:15:26Z",
    "outlet": "Ars Technica",
-   "title": "Once again, NASA is asking for ideas to rescue Hubble from certain death",
-   "url": "https://arstechnica.com/space/2026/10/think-you-can-save-the-hubble-space-telescope-nasa-wants-to-know/"
+   "title": "Seabirds racing home over the ocean can get jet-lagged",
+   "url": "https://arstechnica.com/science/2026/10/seabirds-racing-home-over-the-ocean-can-get-jet-lagged/"
+  },
+  {
+   "date": "2026-10-31T11:02:34Z",
+   "outlet": "Ars Technica",
+   "title": "The FDA wants to pull its approval of a drug. It’s not so easy.",
+   "url": "https://arstechnica.com/science/2026/10/the-fda-wants-to-pull-its-approval-of-a-drug-its-not-so-easy/"
   }
  ],
  "status": "ok",
- "updated": "2026-10-31T05:33:54Z"
+ "updated": "2026-10-31T12:19:07Z"
 }
