@@ -131,9 +131,15 @@
   "done": false,
   "hashnode": null
  },
- "content/posts/2026-10-27-spacex-starlink-musk-ukraine-terms-of-service.md": {
+ "content/posts/2026-10-27-openai-says-ai-disproved-exponential-time-hypothesis.md": {
   "attempts": 1,
-  "devto": null,
+  "devto": "https://dev.to/coldcasetech/openai-says-its-ai-disproved-the-exponential-time-hypothesis-jp",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-10-27-spacex-starlink-musk-ukraine-terms-of-service.md": {
+  "attempts": 2,
+  "devto": "https://dev.to/coldcasetech/spacex-starlink-musk-says-ukraine-broke-terms-of-service-kyiv-denies-it-3dlo",
   "done": false,
   "hashnode": null
  },
@@ -168,7 +174,7 @@
   "hashnode": null
  },
  "content/posts/2026-10-30-apple-14-inch-macbook-pro-m6-november-6.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/apple-14-inch-macbook-pro-with-m6-due-in-stores-friday-november-6-45dh",
   "done": false,
   "hashnode": null
