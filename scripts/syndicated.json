@@ -186,13 +186,19 @@
   "hashnode": null
  },
  "content/posts/2026-10-30-windows-11-kb5127936-customizable-right-click-menu.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/microsoft-windows-11-kb5127936-adds-a-customizable-right-click-menu-3agd",
+  "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-10-31-android-17-qpr3-beta-3-pixel-fixes.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/google-android-17-qpr3-beta-3-rolls-out-to-pixel-devices-with-26-fixes-5f3c",
   "done": false,
   "hashnode": null
  },
  "content/posts/2026-10-31-microsoft-project-perception-agentic-insiders.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/microsoft-project-perception-to-contain-ai-agents-inside-companies-6f3",
   "done": false,
   "hashnode": null
