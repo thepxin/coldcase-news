@@ -1,3 +1,7 @@
+{{- /* Google AdSense (publisher ca-pub-1058244251179516). Live site only; never on the private share kit. */ -}}
+{{- if and hugo.IsProduction (ne .RelPermalink "/share/") }}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1058244251179516" crossorigin="anonymous"></script>
+{{- end }}
 <!-- Cookie-Free Privacy Analytics (GoatCounter) -->
 <script data-goatcounter="https://coldcasetech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <!-- Self-hosted fonts (no Google Fonts): preload the two used above the fold (wordmark + body) -->
