@@ -204,13 +204,19 @@
   "hashnode": null
  },
  "content/posts/2026-10-31-world-of-warcraft-forever-geforce-now-nov-4.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/world-of-warcraft-forever-arrives-on-geforce-now-on-nov-4-at-3-pm-pt-50el",
+  "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-11-01-apple-homepod-27-2-mac-speaker-feature.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/apple-homepod-272-promised-a-mac-speaker-mode-the-verge-could-not-turn-it-on-5go",
   "done": false,
   "hashnode": null
  },
  "content/posts/2026-11-01-xbox-new-games-november-2-to-6.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/xbox-sets-voidbreaker-escape-academy-2-and-fm27-dates-for-november-2-to-6-124o",
   "done": false,
   "hashnode": null
