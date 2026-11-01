@@ -63,6 +63,10 @@ menu:
       name: Developing
       url: /developing/
       weight: 15
+    - identifier: trackers
+      name: Trackers
+      url: /tracker/
+      weight: 17
     - identifier: tech
       name: All articles
       url: /tags/tech/
