@@ -192,9 +192,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-31-android-17-qpr3-beta-3-pixel-fixes.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/google-android-17-qpr3-beta-3-rolls-out-to-pixel-devices-with-26-fixes-5f3c",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-31-microsoft-project-perception-agentic-insiders.md": {
@@ -204,8 +204,14 @@
   "hashnode": null
  },
  "content/posts/2026-10-31-world-of-warcraft-forever-geforce-now-nov-4.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/world-of-warcraft-forever-arrives-on-geforce-now-on-nov-4-at-3-pm-pt-50el",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-01-xbox-new-games-november-2-to-6.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/xbox-sets-voidbreaker-escape-academy-2-and-fm27-dates-for-november-2-to-6-124o",
   "done": false,
   "hashnode": null
  }
