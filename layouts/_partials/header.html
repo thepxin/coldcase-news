@@ -11,7 +11,12 @@
       <span class="rec-mono">{{ $c.total }} on the record{{ if $c.today }} · {{ $c.today }} new today{{ end }}</span>
     </div>
     {{- end }}
+    {{- if .IsHome }}
+    {{- /* the homepage's main heading (H1) is the wordmark; the hidden part gives search engines and screen readers context */}}
+    <h1 class="rec-h1"><a class="rec-word" href="{{ "" | absLangURL }}" accesskey="h" title="ColdCaseTech home (Alt + H)">ColdCase<span>Tech</span></a><span class="cct-sr">: the daily record of tech promises</span></h1>
+    {{- else }}
     <a class="rec-word" href="{{ "" | absLangURL }}" accesskey="h" title="ColdCaseTech home (Alt + H)">ColdCase<span>Tech</span></a>
+    {{- end }}
     {{- if .IsHome }}
     <p class="rec-motto">What they promised. What actually happened.</p>
     {{- end }}
