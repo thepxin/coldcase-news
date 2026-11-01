@@ -1,0 +1,77 @@
+# Promise trackers: one page per company at /tracker/<slug>/, built automatically from the articles.
+# "match" = words that mean an article is about this company, checked in the HEADLINE only (headlines name the main
+#           company first; a passing mention such as "also on Xbox" does not count). Lowercase; "|" separates alternatives.
+# A tracker page is listed on /tracker/ and in Google once it has at least 2 articles.
+# To add a company: copy a block, change the four lines, upload this file.
+- slug: apple
+  name: Apple
+  match: "apple|iphone|ipad|macbook|imac|mac mini|mac studio|siri|airpods|vision pro|ios \\d+|macos|watchos"
+  about: "iPhone, iPad, Mac, Siri and Apple Intelligence"
+- slug: nvidia
+  name: NVIDIA
+  match: "nvidia|geforce|rtx \\d+|rtx spark|cuda|cudss|blackwell|dgx"
+  about: "GeForce and RTX graphics, GeForce NOW, AI chips and software"
+- slug: openai
+  name: OpenAI
+  match: "openai|chatgpt|codex|gpt-\\d|sora"
+  about: "ChatGPT, GPT models, Codex and Sora"
+- slug: google
+  name: Google
+  match: "google|android|gemini|chrome|youtube|deepmind|pixel \\d+|pixel (watch|buds|fold|tablet)"
+  about: "Android, Pixel, Gemini, Chrome and YouTube"
+- slug: microsoft
+  name: Microsoft
+  match: "microsoft|windows \\d+|copilot|azure|xbox"
+  about: "Windows, Copilot, Azure and Xbox"
+- slug: meta
+  name: Meta
+  match: "meta|instagram|whatsapp|facebook|ray-ban meta|meta quest|llama"
+  about: "Instagram, WhatsApp, Facebook, Ray-Ban Meta glasses and Llama"
+- slug: amazon
+  name: Amazon
+  match: "amazon|kindle|alexa|aws|prime video|fire tv"
+  about: "Kindle, Alexa, Fire TV and AWS"
+- slug: tesla
+  name: Tesla
+  match: "tesla|cybertruck|robotaxi|roadster|optimus|full self-driving"
+  about: "Roadster, Cybertruck, robotaxi and Full Self-Driving"
+- slug: spacex
+  name: SpaceX
+  match: "spacex|starlink|starship|falcon 9"
+  about: "Starship, Starlink and Falcon launches"
+- slug: samsung
+  name: Samsung
+  match: "samsung|galaxy (z|s|tab|watch|buds|ring|book|ai)"
+  about: "Galaxy phones, tablets, watches and chips"
+- slug: amd
+  name: AMD
+  match: "amd|ryzen|radeon|instinct mi\\d+"
+  about: "Ryzen, Radeon and Instinct AI chips"
+- slug: intel
+  name: Intel
+  match: "intel|core ultra|arc b\\d+|gaudi"
+  about: "Core Ultra processors, Arc graphics and foundry plans"
+- slug: qualcomm
+  name: Qualcomm
+  match: "qualcomm|snapdragon"
+  about: "Snapdragon chips for phones and PCs"
+- slug: sony-playstation
+  name: Sony PlayStation
+  match: "sony|playstation|ps5|ps6"
+  about: "PlayStation consoles, games and services"
+- slug: rockstar-gta-6
+  name: Rockstar Games (GTA 6)
+  match: "rockstar|gta 6|gta vi|grand theft auto"
+  about: "Grand Theft Auto VI and every date Rockstar has given"
+- slug: anthropic
+  name: Anthropic
+  match: "anthropic|claude"
+  about: "Claude models and Anthropic's announcements"
+- slug: xai
+  name: xAI
+  match: "xai|grok"
+  about: "Grok and xAI's models"
+- slug: nasa
+  name: NASA
+  match: "nasa|artemis"
+  about: "Artemis missions, space science and partnerships"
