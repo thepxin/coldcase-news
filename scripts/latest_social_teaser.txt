@@ -1,27 +1,23 @@
 ================================================================
-Apple HomePod 27.2 promised a Mac speaker mode. The Verge could not turn it on.
+EIA Electric Power Monthly: US renewable generation up 10.2% in first eight months of 2026
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (191/280):
-Apple promised a HomePod as the default Mac speaker. The Verge's Sound pane never offered one.
+X (185/280):
+Wind produced 10.6% of US electricity from January to August 2026, Electrek reports from EIA data. Coal output fell 8.7%.
 
-Verdict: Partially Delivered.
+Every line sourced: https://coldcasetech.com/posts/2026-11-01-eia-electric-power-monthly-renewables-2026/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-01-apple-homepod-27-2-mac-speaker-feature/
-
-#Software #TechNews
+#Energy #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Apple promised a HomePod as the default Mac speaker. The Verge's Sound pane never offered one.
+Wind produced 10.6% of US electricity from January to August 2026, Electrek reports from EIA data. Coal output fell 8.7%.
 
-Apple's HomePod 27.2 adds Mac speaker support, Sound Glow and Lock Controls, but The Verge reported the Mac feature did not work in its test.
-
-Verdict: Partially Delivered.
+The US Energy Information Administration's Electric Power Monthly shows renewable generation up 10.2% from January to August 2026, Electrek reports.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #software
+#coldcasetech #technews #tech #energy
