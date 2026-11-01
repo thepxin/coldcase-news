@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-01T04:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 1 – Colors of the Moon",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-1-colors-of-the-moon/"
+   "date": "2026-11-01T13:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Lenovo's 'encrypted' fingerprint USB drive is just an unencrypted SD card in a fancy case — AI-assisted follow-up finds a backdoor and hardc",
+   "url": "https://www.tomshardware.com/tech-industry/cyber-security/lenovo-fingerprint-usb-stick-sold-as-aes-256-encrypted-had-a-plain-sd-card-inside-ai-assisted-follow-up-finds-a-backdoor-and-hardcoded-keys-in-other-secure-usb-products"
   },
   {
-   "date": "2026-11-01T02:22:10Z",
-   "outlet": "TechCrunch",
-   "title": "Data centers are now a midterm issue, even in Brooklyn",
-   "url": "https://techcrunch.com/2026/10/31/data-centers-are-now-a-midterm-issue-even-in-brooklyn/"
-  },
-  {
-   "date": "2026-11-01T01:10:05Z",
-   "outlet": "CoinDesk",
-   "title": "FBI confirms North Korea's role in $6 billion Binance hack, asks DeFi community to block BTC, ETH, SOL addresses",
-   "url": "https://www.coindesk.com/policy/2026/10/31/fbi-confirms-north-korea-s-role-in-usd6-billion-binance-hack-asks-defi-community-to-block-btc-eth-sol-addresses"
-  },
-  {
-   "date": "2026-11-01T00:30:00Z",
-   "outlet": "Engadget",
-   "title": "5 expensive hobbies where owning a 3D printer actually saves you money",
-   "url": "https://www.engadget.com/2300213/3d-printer-expensive-hobbies-where-it-saves-money/"
-  },
-  {
-   "date": "2026-11-01T00:00:00Z",
-   "outlet": "Engadget",
-   "title": "Amazon made the AUX input on older Alexa devices less useful",
-   "url": "https://www.engadget.com/2300219/amazon-made-alexa-devices-aux-port-less-useful/"
-  },
-  {
-   "date": "2026-10-31T21:41:00Z",
-   "outlet": "TechCrunch",
-   "title": "Apple CEO says the company doesn’t ‘want to ship AI for AI’s sake’",
-   "url": "https://techcrunch.com/2026/10/31/apple-ceo-says-the-company-doesnt-want-to-ship-ai-for-ais-sake/"
-  },
-  {
-   "date": "2026-10-31T21:06:58Z",
+   "date": "2026-11-01T13:00:00Z",
    "outlet": "The Verge",
-   "title": "Get in the spirit with these horrors from YouTube",
-   "url": "https://www.theverge.com/entertainment/1024096/halloween-spirit-youtube-horror"
+   "title": "New Zelda and GTA represent a games industry that no longer exists",
+   "url": "https://www.theverge.com/column/1022402/new-zelda-and-gta-represent-a-games-industry-that-no-longer-exists"
   },
   {
-   "date": "2026-10-31T19:49:44Z",
-   "outlet": "9to5Mac",
-   "title": "Here’s how the new MacBook Pro and macOS 27 are optimized for touch",
-   "url": "https://9to5mac.com/2026/10/31/macbook-pro-touch-optimizations-macos-27-golden-gate/"
+   "date": "2026-11-01T13:00:00Z",
+   "outlet": "The Verge",
+   "title": "Prop 45 in California could be hiding a loophole for data centers",
+   "url": "https://www.theverge.com/policy/1023877/prop-45-california-data-centers-energy"
+  },
+  {
+   "date": "2026-11-01T13:00:00Z",
+   "outlet": "CoinDesk",
+   "title": "Sherrod Brown's Ohio edge threatens a rough go for crypto next year",
+   "url": "https://www.coindesk.com/news-analysis/2026/11/01/sherrod-brown-s-ohio-edge-threatens-a-rough-go-for-crypto-next-year"
+  },
+  {
+   "date": "2026-11-01T12:33:52Z",
+   "outlet": "Tom's Hardware",
+   "title": "AI agent swarms unleashed in Minecraft to ‘build a thriving civilization’",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-agent-swarms-unleashed-in-minecraft-to-build-a-thriving-civilization-50-agent-teams-fail-after-falling-into-paralyzing-bureaucracy"
+  },
+  {
+   "date": "2026-11-01T12:30:00Z",
+   "outlet": "Wired",
+   "title": "The 30 Best Gifts for Star Wars Fans (2026)",
+   "url": "https://www.wired.com/gallery/best-star-wars-gifts/"
+  },
+  {
+   "date": "2026-11-01T12:00:00Z",
+   "outlet": "Wired",
+   "title": "There’s a Free Video Editor Inside Google Drive That Anyone Can Use",
+   "url": "https://www.wired.com/story/google-vids-free-video-editor-inside-google-drive/"
+  },
+  {
+   "date": "2026-11-01T11:51:00Z",
+   "outlet": "The Register",
+   "title": "'Mother of all editors' Emacs is 50",
+   "url": "https://www.theregister.com/applications/2026/11/01/mother-of-all-editors-emacs-is-50/5306727"
   }
  ],
  "status": "ok",
- "updated": "2026-11-01T05:56:53Z"
+ "updated": "2026-11-01T13:15:06Z"
 }
