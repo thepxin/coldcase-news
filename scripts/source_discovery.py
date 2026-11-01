@@ -449,13 +449,18 @@ def can_give_verdict(sources, rules):
     return len(dated) >= 2 and (dated[-1] - dated[0]).days >= rules["min_spread_days"]
 
 
+NOT_A_FIELD = re.compile(r"quantum[- ]dots?|qd-oled", re.I)   # display technology, not quantum computing
+
+
 def best_topic(item, topics, desk="tech"):
-    """The field a story belongs to: the one with the most matching words (ties go to the earlier field)."""
-    text = (item["title"] + " " + item["summary"]).lower()
+    """The field a story belongs to: the one with the most matching words, where a word in the HEADLINE counts 3 times
+    (the summary often mentions side topics). Ties go to the earlier field."""
+    title = NOT_A_FIELD.sub(" ", item["title"]).lower()
+    summary = NOT_A_FIELD.sub(" ", item["summary"]).lower()
     best, hits = None, 0
     for t in topics:
         words = TECH_AREAS.get(t, [t]) if desk == "tech" else SECURITY_TOPICS.get(t, [t])
-        n = sum(1 for w in words if _has_any(text, [w]))
+        n = sum(3 if _has_any(title, [w]) else (1 if _has_any(summary, [w]) else 0) for w in words)
         if n > hits:
             best, hits = t, n
     return best
