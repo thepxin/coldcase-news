@@ -1,0 +1,18 @@
+{{- /* Hugo's standard sitemap, with one change: a promise tracker with fewer than 2 articles is left out
+       (it is noindex until it fills; see head.html). A tracker's date is its newest article's. */ -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {{ range where .Pages "Sitemap.Disable" "ne" true }}
+    {{- $skip := false }}{{ $lastmod := .Lastmod }}
+    {{- with .Params.company }}{{ $t := partialCached "tracker_items.html" . . }}{{ if lt (len $t.items) 2 }}{{ $skip = true }}{{ else }}{{ $lastmod = $t.last }}{{ end }}{{ end }}
+    {{- if and .Permalink (not $skip) -}}
+  <url>
+    <loc>{{ .Permalink }}</loc>{{ if not $lastmod.IsZero }}
+    <lastmod>{{ $lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
+    <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
+    <priority>{{ .Sitemap.Priority }}</priority>{{ end }}
+  </url>
+    {{- end -}}
+  {{ end }}
+</urlset>
