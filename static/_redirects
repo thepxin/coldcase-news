@@ -6,3 +6,32 @@
 /tags/security-friday/*  /    301
 /categories              /    301
 /categories/*            /    301
+
+# Security-era articles that were removed (Google still lists them). Visitors land on the homepage instead of "not found".
+/posts/2026-10-19-data-breach-investigations-openai-hpe-subpoena/*            /    301
+/posts/2026-10-19-state-of-tech-cold-cases/*                                  /    301
+/posts/2026-10-20-cloud-outage-post-mortem-analysis/*                         /    301
+/posts/2026-10-20-data-breach-investigations-hpe-finastra-reality-check/*     /    301
+/posts/2026-10-20-dirty-frag-linux-vulnerability-broken-embargo/*             /    301
+/posts/2026-10-20-google-cloud-outage-post-mortems-analysis/*                 /    301
+/posts/2026-10-21-ai-startup-shutdown-reality-check/*                         /    301
+/posts/2026-10-22-crypto-hack-ai-era-bitget-openai-vulnerabilities/*          /    301
+/posts/2026-10-22-security-incidents-remediation-supply-chain-cloud/*         /    301
+/posts/2026-10-22-trezor-qr-code-postal-attack/*                              /    301
+/posts/2026-10-19-data-breach-investigations-openai-hpe-subpoena               /    301
+/posts/2026-10-19-state-of-tech-cold-cases                                     /    301
+/posts/2026-10-20-cloud-outage-post-mortem-analysis                            /    301
+/posts/2026-10-20-data-breach-investigations-hpe-finastra-reality-check        /    301
+/posts/2026-10-20-dirty-frag-linux-vulnerability-broken-embargo                /    301
+/posts/2026-10-20-google-cloud-outage-post-mortems-analysis                    /    301
+/posts/2026-10-21-ai-startup-shutdown-reality-check                            /    301
+/posts/2026-10-22-crypto-hack-ai-era-bitget-openai-vulnerabilities             /    301
+/posts/2026-10-22-security-incidents-remediation-supply-chain-cloud            /    301
+/posts/2026-10-22-trezor-qr-code-postal-attack                                 /    301
+# Old field labels from the security era
+/tags/security--tech/*   /tags/    301
+/tags/security--tech     /tags/    301
+/tags/follow-up/*        /tags/    301
+/tags/follow-up          /tags/    301
+/tags/investigation/*    /tags/    301
+/tags/investigation      /tags/    301
