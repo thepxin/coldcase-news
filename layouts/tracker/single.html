@@ -1,0 +1,34 @@
+{{- define "main" }}
+{{- /* One company's promise tracker: open cases (soonest due first), verdicts and news reports, all built from the
+       articles when the site builds. The company list and its words are in data/trackers.yaml. */}}
+{{- $t := partialCached "tracker_items.html" .Params.company .Params.company }}
+{{- $co := $t.company }}
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">Promise tracker{{ with $t.last }} · updated <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 Jan 2006" }}</time>{{ end }}</p>
+  <h1>{{ $co.name }}: promised vs. delivered</h1>
+  <div class="post-description">Every {{ $co.name }} promise and announcement ColdCaseTech has checked, on {{ $co.about }}. Each line in each article links to its source.</div>
+</header>
+<dl class="rec-tally rec-tally--4">
+  <div><dt>Open cases</dt><dd>{{ len $t.open }}</dd></div>
+  <div class="rec-tally--ok"><dt>Delivered</dt><dd>{{ $t.ok }}</dd></div>
+  <div class="rec-tally--warn"><dt>Partly delivered</dt><dd>{{ $t.part }}</dd></div>
+  <div class="rec-tally--bad"><dt>Not delivered</dt><dd>{{ $t.no }}</dd></div>
+</dl>
+{{- with $t.open }}
+<h2 class="rec-sec-h">Open cases <span>due date ahead, checked every day</span></h2>
+<div class="rec-entries">{{ range . }}{{ partial "rec_entry.html" (dict "p" . "lead" false) }}{{ end }}</div>
+{{- end }}
+{{- with $t.closed }}
+<h2 class="rec-sec-h">Verdicts <span>the date passed, the sources say what happened</span></h2>
+<div class="rec-entries">{{ range . }}{{ partial "rec_entry.html" (dict "p" . "lead" false) }}{{ end }}</div>
+{{- end }}
+{{- with $t.reports }}
+<h2 class="rec-sec-h">News <span>announcements and launches, newest first</span></h2>
+<div class="rec-entries">{{ range . }}{{ partial "rec_entry.html" (dict "p" . "lead" false) }}{{ end }}</div>
+{{- end }}
+{{- if not $t.items }}
+<p class="rec-empty">No {{ $co.name }} cases yet. This page fills itself as soon as ColdCaseTech publishes one.</p>
+{{- end }}
+<p class="rec-more"><a href="{{ "tracker/" | relURL }}">All promise trackers</a> · <a href="{{ "developing/" | relURL }}">Developing</a> · <a href="{{ "verdicts/" | relURL }}">All verdicts</a></p>
+{{ partial "newsletter.html" (dict "place" "tracker") }}
+{{- end }}

@@ -1,0 +1,28 @@
+{{- define "main" }}
+{{- /* /tracker/: every company with at least 2 articles, busiest first. */}}
+<header class="page-header rec-page-h">
+  <p class="rec-kicker">Promise trackers</p>
+  <h1>Who promised what</h1>
+  <div class="post-description">{{ .Description }}</div>
+</header>
+{{- $rows := slice }}
+{{- range hugo.Data.trackers }}
+  {{- $t := partialCached "tracker_items.html" .slug .slug }}
+  {{- if ge (len $t.items) 2 }}{{ $rows = $rows | append (dict "t" $t "n" (len $t.items) "slug" .slug) }}{{ end }}
+{{- end }}
+{{- with $rows }}
+<ul class="rec-trackers">
+{{- range sort . "n" "desc" }}
+  {{- $t := .t }}
+  <li>
+    <a href="{{ printf "tracker/%s/" .slug | relURL }}"><b>{{ $t.company.name }}</b></a>
+    <span class="rec-trackers-about">{{ $t.company.about }}</span>
+    <span class="rec-trackers-n">{{ len $t.open }} open · {{ len $t.closed }} verdict{{ if ne (len $t.closed) 1 }}s{{ end }} · {{ len $t.reports }} report{{ if ne (len $t.reports) 1 }}s{{ end }}</span>
+  </li>
+{{- end }}
+</ul>
+{{- else }}
+<p class="rec-empty">Trackers appear here once a company has two or more articles.</p>
+{{- end }}
+{{ partial "newsletter.html" (dict "place" "trackers") }}
+{{- end }}
