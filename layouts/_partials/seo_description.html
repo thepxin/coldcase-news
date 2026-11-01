@@ -1,0 +1,27 @@
+{{- /* The meta description search engines show under the title: 70 to 160 characters (Bing flags anything outside
+       25 to 160), and different on every page. Social cards and structured data are not affected. */ -}}
+{{- $d := "" -}}
+{{- if .IsHome -}}
+  {{- $d = "The daily record of tech promises: news across AI, chips, devices, software and space, checked line by line, with a clear verdict when a promise comes due." -}}
+{{- else if eq .Kind "term" -}}
+  {{- $d = printf "ColdCaseTech's %s coverage: news reports, open cases and verdicts on tech promises, every line checked against trusted sources." .Title -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $d = "Browse ColdCaseTech by field: AI, chips, devices, software, space, EVs, energy and more, every article checked line by line." -}}
+{{- else if .Description -}}
+  {{- $d = .Description -}}
+{{- else if .IsSection -}}
+  {{- $d = "Every ColdCaseTech article, newest first: tech news reports, open cases and verdicts, every line checked against trusted sources." -}}
+{{- else -}}
+  {{- $d = .Summary | default site.Params.description -}}
+{{- end -}}
+{{- $d = $d | plainify | htmlUnescape | strings.TrimSpace -}}
+{{- if gt (strings.RuneCount $d) 160 -}}
+  {{- $cut := "" -}}
+  {{- $full := false -}}
+  {{- range split $d " " -}}
+    {{- $next := cond (eq $cut "") . (printf "%s %s" $cut .) -}}
+    {{- if and (not $full) (le (strings.RuneCount $next) 157) }}{{ $cut = $next }}{{ else }}{{ $full = true }}{{ end -}}
+  {{- end -}}
+  {{- $d = printf "%s…" (strings.TrimRight ",;:-" $cut) -}}
+{{- end -}}
+{{- $d -}}
