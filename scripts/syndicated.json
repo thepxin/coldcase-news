@@ -210,15 +210,21 @@
   "hashnode": null
  },
  "content/posts/2026-11-01-apple-homepod-27-2-mac-speaker-feature.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/apple-homepod-272-promised-a-mac-speaker-mode-the-verge-could-not-turn-it-on-5go",
   "done": false,
   "hashnode": null
  },
- "content/posts/2026-11-01-xbox-new-games-november-2-to-6.md": {
-  "attempts": 2,
-  "devto": "https://dev.to/coldcasetech/xbox-sets-voidbreaker-escape-academy-2-and-fm27-dates-for-november-2-to-6-124o",
+ "content/posts/2026-11-01-eia-electric-power-monthly-renewables-2026.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/eia-electric-power-monthly-us-renewable-generation-up-102-in-first-eight-months-of-2026-5aef",
   "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-01-xbox-new-games-november-2-to-6.md": {
+  "attempts": 3,
+  "devto": "https://dev.to/coldcasetech/xbox-sets-voidbreaker-escape-academy-2-and-fm27-dates-for-november-2-to-6-124o",
+  "done": true,
   "hashnode": null
  }
 }
