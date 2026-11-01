@@ -1,28 +1,40 @@
 {
  "items": [
   {
+   "date": "2026-11-01T04:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 November 1 – Colors of the Moon",
+   "url": "https://science.nasa.gov/image-article/apod-2026-november-1-colors-of-the-moon/"
+  },
+  {
+   "date": "2026-11-01T02:22:10Z",
+   "outlet": "TechCrunch",
+   "title": "Data centers are now a midterm issue, even in Brooklyn",
+   "url": "https://techcrunch.com/2026/10/31/data-centers-are-now-a-midterm-issue-even-in-brooklyn/"
+  },
+  {
+   "date": "2026-11-01T01:10:05Z",
+   "outlet": "CoinDesk",
+   "title": "FBI confirms North Korea's role in $6 billion Binance hack, asks DeFi community to block BTC, ETH, SOL addresses",
+   "url": "https://www.coindesk.com/policy/2026/10/31/fbi-confirms-north-korea-s-role-in-usd6-billion-binance-hack-asks-defi-community-to-block-btc-eth-sol-addresses"
+  },
+  {
+   "date": "2026-11-01T00:30:00Z",
+   "outlet": "Engadget",
+   "title": "5 expensive hobbies where owning a 3D printer actually saves you money",
+   "url": "https://www.engadget.com/2300213/3d-printer-expensive-hobbies-where-it-saves-money/"
+  },
+  {
    "date": "2026-11-01T00:00:00Z",
    "outlet": "Engadget",
    "title": "Amazon made the AUX input on older Alexa devices less useful",
    "url": "https://www.engadget.com/2300219/amazon-made-alexa-devices-aux-port-less-useful/"
   },
   {
-   "date": "2026-10-31T23:45:00Z",
-   "outlet": "Engadget",
-   "title": "How big and powerful is SpaceX's Starship rocket?",
-   "url": "https://www.engadget.com/2300227/how-big-powerful-spacex-starship-rocket/"
-  },
-  {
    "date": "2026-10-31T21:41:00Z",
    "outlet": "TechCrunch",
    "title": "Apple CEO says the company doesn’t ‘want to ship AI for AI’s sake’",
    "url": "https://techcrunch.com/2026/10/31/apple-ceo-says-the-company-doesnt-want-to-ship-ai-for-ais-sake/"
-  },
-  {
-   "date": "2026-10-31T21:36:07Z",
-   "outlet": "TechCrunch",
-   "title": "4 days left: How TechCrunch Founder Summit helps you make more useful connections to scale",
-   "url": "https://techcrunch.com/2026/10/31/4-days-left-how-techcrunch-founder-summit-helps-you-make-more-useful-connections-to-scale/"
   },
   {
    "date": "2026-10-31T21:06:58Z",
@@ -35,20 +47,8 @@
    "outlet": "9to5Mac",
    "title": "Here’s how the new MacBook Pro and macOS 27 are optimized for touch",
    "url": "https://9to5mac.com/2026/10/31/macbook-pro-touch-optimizations-macos-27-golden-gate/"
-  },
-  {
-   "date": "2026-10-31T19:30:00Z",
-   "outlet": "The Verge",
-   "title": "Keyboards of The Verge",
-   "url": "https://www.theverge.com/gadgets/1017979/keyboards-of-the-verge-staff-picks"
-  },
-  {
-   "date": "2026-10-31T19:30:00Z",
-   "outlet": "9to5Mac",
-   "title": "Indie App Spotlight: ‘Pumpkin Lights’ adds a fun jack-o-lantern to your Mac’s menu bar",
-   "url": "https://9to5mac.com/2026/10/31/pumpkin-lights-adds-a-fun-jack-o-lantern-to-your-macs-menu-bar/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-01T00:05:52Z"
+ "updated": "2026-11-01T05:56:53Z"
 }
