@@ -1,6 +1,7 @@
 User-agent: *
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-Disallow:
+# /go/ pages only forward readers to partner shops (affiliate links); nothing there to index
+Disallow: /go/
 {{- else }}
 Disallow: /
 {{- end }}
