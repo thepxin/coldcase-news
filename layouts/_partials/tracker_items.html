@@ -1,0 +1,29 @@
+{{- /* The articles about one company. Pass the company slug. Matches the company's words (data/trackers.yaml) in each
+       article's headline. Returns dict: company, items (newest first), open (soonest due
+       first), closed, reports, ok, part, no, last (newest article date). Use with partialCached ... slug slug. */ -}}
+{{- $slug := . -}}
+{{- $co := dict -}}
+{{- range hugo.Data.trackers }}{{ if eq .slug $slug }}{{ $co = . }}{{ end }}{{ end -}}
+{{- $items := slice -}}{{- $open := slice -}}{{- $closed := slice -}}{{- $reports := slice -}}
+{{- $ok := 0 -}}{{- $part := 0 -}}{{- $no := 0 -}}
+{{- with $co.match -}}
+  {{- $re := printf `(?i)(^|[^a-z0-9])(%s)($|[^a-z0-9])` . -}}
+  {{- range (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+    {{- if partial "is_case.html" . -}}
+      {{- /* headline only: it names the main company first; summaries also mention platforms ("on PS5 and Xbox") */ -}}
+      {{- if findRE $re .Title 1 -}}
+        {{- $items = $items | append . -}}
+        {{- if eq .Params.status "open" }}{{ $open = $open | append . -}}
+        {{- else if eq .Params.status "report" }}{{ $reports = $reports | append . -}}
+        {{- else -}}
+          {{- $closed = $closed | append . -}}
+          {{- $k := partial "verdict_class.html" .Params.verdict -}}
+          {{- if eq $k "ok" }}{{ $ok = add $ok 1 }}{{ else if eq $k "bad" }}{{ $no = add $no 1 }}{{ else }}{{ $part = add $part 1 }}{{ end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $last := "" -}}{{- with $items }}{{ $last = (index . 0).Lastmod }}{{ end -}}
+{{- return (dict "company" $co "items" $items "open" (sort $open "Params.due_by") "closed" $closed "reports" $reports
+              "ok" $ok "part" $part "no" $no "last" $last) -}}

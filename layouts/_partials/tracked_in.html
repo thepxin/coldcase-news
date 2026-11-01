@@ -1,0 +1,12 @@
+{{- /* On an article: links to the promise trackers of the companies it is about (trackers with 2+ articles only). */ -}}
+{{- $p := . -}}
+{{- $links := slice -}}
+{{- range hugo.Data.trackers -}}
+  {{- $t := partialCached "tracker_items.html" .slug .slug -}}
+  {{- if ge (len $t.items) 2 -}}
+    {{- range $t.items }}{{ if eq .RelPermalink $p.RelPermalink }}{{ $links = $links | append $t.company }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $links }}
+<p class="rec-tracked">Tracked in: {{ range $i, $c := . }}{{ if $i }} · {{ end }}<a href="{{ printf "tracker/%s/" $c.slug | relURL }}">{{ $c.name }} promise tracker</a>{{ end }}</p>
+{{- end }}

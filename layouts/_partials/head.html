@@ -1,8 +1,11 @@
-{{- /* Copy of PaperMod's head.html. Only changes: the <title> uses seo_title.html and the meta description uses seo_description.html. */ -}}
+{{- /* Copy of PaperMod's head.html. Only changes: the <title> uses seo_title.html, the meta description uses seo_description.html, and thin promise trackers are noindex. */ -}}
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+{{- /* A promise tracker with fewer than 2 articles is thin: kept out of Google until it fills. */}}
+{{- $thin := false }}
+{{- with .Params.company }}{{ if lt (len (partialCached "tracker_items.html" . .).items) 2 }}{{ $thin = true }}{{ end }}{{ end }}
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) | and (not $thin) }}
 <meta name="robots" content="index, follow">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
