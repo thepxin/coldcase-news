@@ -419,3 +419,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 @media (max-width:560px){.rec-trackers li{grid-template-columns:1fr}.rec-trackers-n{grid-column:1;grid-row:auto;text-align:left}}
 .rec-tracked{margin:28px 0 0;padding:12px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:15px}
 .rec-tracked a{font-weight:600}
+
+/* homepage H1 wraps the wordmark without changing its look */
+.rec-h1{margin:0;padding:0;font:inherit;line-height:1}
