@@ -7,16 +7,16 @@ ShowToc: true
 TocOpen: true
 ---
 
-*Last Updated: October 2026*
+*Last Updated: November 2026*
 
-**ColdCaseTech** (`https://coldcasetech.com`) operates as an independent tech publication. We respect the privacy of our readers. This document outlines what minimal telemetry we process, how our third-party affiliate attribution links function, and your data privacy rights.
+**ColdCaseTech** (`https://coldcasetech.com`) operates as an independent tech publication. We respect the privacy of our readers. This document outlines what minimal telemetry we process, how advertising and our third-party affiliate attribution links function, and your data privacy rights.
 
 ---
 
 ### 1. FTC Affiliate & Material Connection Disclosure
 In compliance with the Federal Trade Commission (FTC) guidelines (16 CFR Part 255), please note that **ColdCaseTech** is reader-supported. Many articles and resource toolkits on this website contain outbound links (including branded `/go/` redirect links and "Price" buttons that open Amazon) to third-party software, cloud hosting providers, and hardware vendors.
 
-If you click on one of these links and make a qualifying purchase or subscription within the merchant's referral window, ColdCaseTech may receive an affiliate commission at **no additional cost to you**. Our editorial verdicts, vulnerability assessments, and post-mortem grading (`Verified`, `Partially True`, `Escalated`) are written independently and are never influenced by affiliate partnerships.
+If you click on one of these links and make a qualifying purchase or subscription within the merchant's referral window, ColdCaseTech may receive an affiliate commission at **no additional cost to you**. Our editorial verdicts (`Delivered`, `Partially Delivered`, `Not Delivered`) and open cases are written independently and are never influenced by affiliate partnerships or advertisers.
 
 ---
 
@@ -37,8 +37,18 @@ These third-party network cookies do **not** give ColdCaseTech access to your na
 
 ---
 
-### 4. Website Telemetry, APIs & Newsletter Data
-* **Static Architecture:** ColdCaseTech is compiled as a static site via Hugo and hosted via GitHub Pages / Cloudflare. We do not run invasive behavioral ad trackers or sell user data to data brokers.
+### 4. Advertising (Google AdSense)
+ColdCaseTech shows ads served by Google AdSense. Advertisers never choose, review or influence what we publish, and ads are always visually separate from our articles.
+* Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.
+* Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to ColdCaseTech and/or other sites on the Internet.
+* You may opt out of personalised advertising by visiting Google's [My Ad Center](https://myadcenter.google.com/). You can also opt out of some third-party vendors' use of cookies for personalised advertising at [aboutads.info](https://www.aboutads.info/choices/).
+* Learn more in [How Google uses information from sites or apps that use its services](https://policies.google.com/technologies/partner-sites).
+* Visitors in the European Economic Area, the United Kingdom and Switzerland are asked for consent through Google's consent message before personalised ads or advertising cookies are used.
+
+---
+
+### 5. Website Telemetry, APIs & Newsletter Data
+* **Static Architecture:** ColdCaseTech is compiled as a static site via Hugo and hosted on Cloudflare Pages. Apart from the Google ads described in section 4, we do not run ad trackers, and we never sell user data to data brokers.
 * **Live side panels:** The tech headlines in our side panels come from the public news feeds of our approved outlets, and the crypto prices come from CoinGecko's public API. Our own build system fetches them every few hours and publishes them as part of our static pages. Your browser does not contact these sources when you read our pages. Clicking a headline opens that site in a new tab, under its own privacy policy.
 * **"Price" and "Where to buy" buttons:** These open an Amazon search (Amazon.in in India, Amazon.com elsewhere) with our Amazon Associates tag, through a short redirect page on our domain. We do not show or collect prices, and the redirect sends no personal data to us.
 * **Fonts:** Our fonts are hosted on our own domain. We do not load Google Fonts or other third-party font services.
@@ -47,5 +57,5 @@ These third-party network cookies do **not** give ColdCaseTech access to your na
 
 ---
 
-### 5. GDPR, CCPA & Global Privacy Rights
-Regardless of your geographic location (including the European Economic Area under GDPR, California under CCPA/CPRA, or India under the DPDP Act), you have the right to browse ColdCaseTech with strict cookie-blocking shields enabled, opt out of any communications, or request the deletion of any email address voluntarily submitted to us.
+### 6. GDPR, CCPA & Global Privacy Rights
+Regardless of your geographic location (including the European Economic Area under GDPR, California under CCPA/CPRA, or India under the DPDP Act), you have the right to browse ColdCaseTech with strict cookie-blocking shields enabled, refuse or withdraw consent for advertising cookies, opt out of personalised ads, opt out of any communications, or request the deletion of any email address voluntarily submitted to us.
