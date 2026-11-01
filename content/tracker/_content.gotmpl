@@ -1,0 +1,14 @@
+{{- /* Builds one page per company in data/trackers.yaml, at /tracker/<slug>/.
+       The page itself (layouts/tracker/single.html) finds the company's articles when the site builds. */ -}}
+{{- range hugo.Data.trackers }}
+  {{- $title := printf "%s promise tracker" .name }}
+  {{- $desc := printf "Every %s promise ColdCaseTech has checked: open cases with due dates, verdicts and news on %s, each line sourced." .name .about }}
+  {{- $.AddPage (dict
+      "path" .slug
+      "title" $title
+      "description" $desc
+      "kind" "page"
+      "params" (dict "company" .slug "ShowToc" false "hiddenInRss" true)
+      "content" (dict "mediaType" "text/markdown" "value" "")
+  ) }}
+{{- end }}

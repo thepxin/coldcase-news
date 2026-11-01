@@ -2,7 +2,7 @@
 title: "Apple 14-inch MacBook Pro with M6 due in stores Friday, November 6"
 date: "2026-10-30T19:39:41Z"
 description: "Apple announced the 14-inch MacBook Pro with M6 on October 27, 2026, with pre-orders from October 28 and availability from Friday, November 6."
-tags: ["Tech", "Quantum"]
+tags: ["Tech", "Devices"]
 desk: "tech"
 verdict: ""
 status: "open"
