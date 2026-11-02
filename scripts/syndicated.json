@@ -168,9 +168,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-29-coderabbit-openai-gpt-6-1-sol-security-agent.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/coderabbit-uses-openai-gpt-61-sol-as-primary-model-in-its-security-agent-326h",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-30-apple-14-inch-macbook-pro-m6-november-6.md": {
@@ -227,8 +227,14 @@
   "done": true,
   "hashnode": null
  },
- "content/posts/2026-11-02-nasa-hubble-reboost-request-for-information.md": {
+ "content/posts/2026-11-02-cloudflare-dns-zone-builder-memory-cut.md": {
   "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/cloudflare-dns-zone-builder-cuts-peak-memory-85-and-halves-build-delay-j3",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-02-nasa-hubble-reboost-request-for-information.md": {
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/nasa-hubble-rescue-call-goes-out-the-telescope-has-no-onboard-propulsion-1e79",
   "done": false,
   "hashnode": null
