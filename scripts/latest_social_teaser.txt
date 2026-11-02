@@ -1,23 +1,23 @@
 ================================================================
-Cloudflare DNS Zone Builder cuts peak memory 85% and halves build delay
+OpenAI Codex gets Qodo plugin that reviews code before a pull request opens
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (202/280):
-Cloudflare says its DNS builds now use 85% less peak memory. Zone setting changes no longer rebuild zones with tens of millions of records.
+X (181/280):
+Qodo describes customer setups of 10,000 or more repositories. Its Codex plugin reviews code before a pull request opens.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-02-cloudflare-dns-zone-builder-memory-cut/
+Every line sourced: https://coldcasetech.com/posts/2026-11-02-qodo-codex-plugin-code-review-context/
 
-#Cloud #TechNews
+#AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Cloudflare says its DNS builds now use 85% less peak memory. Zone setting changes no longer rebuild zones with tens of millions of records.
+Qodo describes customer setups of 10,000 or more repositories. Its Codex plugin reviews code before a pull request opens.
 
-Cloudflare says a targeted build planner and new scheduler cut peak memory in its DNS Zone Builder by 85% and halved the delay before DNS data reaches Quicksilver.
+OpenAI detailed Qodo's Codex marketplace plugin, which gives Codex codebase rules and independent code review inside the same coding session.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #cloud
+#coldcasetech #technews #tech #ai
