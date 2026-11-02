@@ -180,9 +180,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-30-apple-macbook-pro-proled-xdr-november-6.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/apple-macbook-pro-with-proled-xdr-display-due-november-6-from-2899-5e0p",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-30-windows-11-kb5127936-customizable-right-click-menu.md": {
@@ -216,15 +216,21 @@
   "hashnode": null
  },
  "content/posts/2026-11-01-eia-electric-power-monthly-renewables-2026.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/eia-electric-power-monthly-us-renewable-generation-up-102-in-first-eight-months-of-2026-5aef",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-01-xbox-new-games-november-2-to-6.md": {
   "attempts": 3,
   "devto": "https://dev.to/coldcasetech/xbox-sets-voidbreaker-escape-academy-2-and-fm27-dates-for-november-2-to-6-124o",
   "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-11-02-nasa-hubble-reboost-request-for-information.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/nasa-hubble-rescue-call-goes-out-the-telescope-has-no-onboard-propulsion-1e79",
+  "done": false,
   "hashnode": null
  }
 }
