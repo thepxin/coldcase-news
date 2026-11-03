@@ -1,20 +1,68 @@
 ================================================================
-OpenAI Codex gets Qodo plugin that reviews code before a pull request opens
+Apple posts $114.5 billion record quarter. The iPhone Duo is not in it yet.
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (181/280):
-Qodo describes customer setups of 10,000 or more repositories. Its Codex plugin reviews code before a pull request opens.
+X (177/280):
+Apple reported $114.5 billion in quarterly revenue. The iPhone Duo is not in it, having gone on sale in October.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-02-qodo-codex-plugin-code-review-context/
+Every line sourced: https://coldcasetech.com/posts/2026-11-03-apple-q4-2026-revenue-iphone-duo-constrained/
+
+#Gadgets #TechNews
+
+INSTAGRAM (post this caption with the image from the share kit):
+Apple reported $114.5 billion in quarterly revenue. The iPhone Duo is not in it, having gone on sale in October.
+
+Apple reported $114.5 billion in fourth quarter revenue and said iPhone Duo supply is constrained with no date for supply and demand to balance.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #gadgets
+
+
+================================================================
+Amazon Alexa for Shopping tools detailed ahead of Black Friday on November 27
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
+================================================================
+
+X (190/280):
+Amazon says Alexa for Shopping can show up to 365 days of price history and buy automatically once a price hits your target.
+
+Every line sourced: https://coldcasetech.com/posts/2026-11-03-amazon-alexa-for-shopping-black-friday-tools/
+
+#Software #TechNews
+
+INSTAGRAM (post this caption with the image from the share kit):
+Amazon says Alexa for Shopping can show up to 365 days of price history and buy automatically once a price hits your target.
+
+Amazon detailed how its Alexa for Shopping assistant tracks prices, sets deal alerts and offers auto-buy ahead of Black Friday on November 27, 2026.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #software
+
+
+================================================================
+Anthropic IPO filing runs 614 pages, with over $800 billion in compute commitments
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
+================================================================
+
+X (167/280):
+Anthropic's 614-page IPO filing lists upwards of $800 billion in compute commitments, The Register reports.
+
+Every line sourced: https://coldcasetech.com/posts/2026-11-03-anthropic-ipo-filing-compute-commitments/
 
 #AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Qodo describes customer setups of 10,000 or more repositories. Its Codex plugin reviews code before a pull request opens.
-
-OpenAI detailed Qodo's Codex marketplace plugin, which gives Codex codebase rules and independent code review inside the same coding session.
+Anthropic's 614-page IPO filing lists upwards of $800 billion in compute commitments, The Register reports.
 
 Full story and every source: link in bio.
 
