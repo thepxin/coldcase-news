@@ -162,7 +162,7 @@
   "hashnode": null
  },
  "content/posts/2026-10-29-apple-ipad-mini-oled-november-6.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/apple-ipad-mini-with-85-inch-oled-display-starts-at-699-due-november-6-33i8",
   "done": false,
   "hashnode": null
@@ -228,9 +228,9 @@
   "hashnode": null
  },
  "content/posts/2026-11-02-cloudflare-dns-zone-builder-memory-cut.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/cloudflare-dns-zone-builder-cuts-peak-memory-85-and-halves-build-delay-j3",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-02-nasa-hubble-reboost-request-for-information.md": {
@@ -240,7 +240,7 @@
   "hashnode": null
  },
  "content/posts/2026-11-02-qodo-codex-plugin-code-review-context.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/openai-codex-gets-qodo-plugin-that-reviews-code-before-a-pull-request-opens-39eb",
   "done": false,
   "hashnode": null
