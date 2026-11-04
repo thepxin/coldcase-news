@@ -144,9 +144,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-28-apple-siri-ai-new-languages-end-of-year.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/apple-siri-ai-adds-five-languages-with-four-more-due-by-end-of-2026-3607",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-28-openai-agreement-analyzer-sullivan-cromwell.md": {
@@ -264,9 +264,9 @@
   "hashnode": null
  },
  "content/posts/2026-11-04-google-gemini-4-carbon-tops-intelligence-index.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/google-gemini-4-carbon-tops-one-index-at-59-another-puts-claude-opus-55-first-33f",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19.md": {
@@ -276,7 +276,7 @@
   "hashnode": null
  },
  "content/posts/2026-11-04-macronix-phases-out-nintendo-switch-rom.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/nintendo-switch-cartridge-supplier-macronix-to-phase-out-rom-production-3fkd",
   "done": false,
   "hashnode": null
