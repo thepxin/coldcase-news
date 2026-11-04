@@ -1,23 +1,23 @@
 ================================================================
-Google Gemini 4 Carbon tops one index at 59. Another puts Claude Opus 5.5 first.
+Nintendo Switch cartridge supplier Macronix to phase out ROM production
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (194/280):
-Gemini 4 Carbon scored 59 on the Artificial Analysis index, one point ahead of Claude Opus 5.5. On SemiAnalysis GDPx, the order flips.
+X (198/280):
+Macronix's ROM business fell from 26 percent of sales to five percent in a year. Now the Switch cartridge supplier is phasing it out.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-04-google-gemini-4-carbon-tops-intelligence-index/
+Every line sourced: https://coldcasetech.com/posts/2026-11-04-macronix-phases-out-nintendo-switch-rom/
 
-#AI #TechNews
+#Gadgets #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Gemini 4 Carbon scored 59 on the Artificial Analysis index, one point ahead of Claude Opus 5.5. On SemiAnalysis GDPx, the order flips.
+Macronix's ROM business fell from 26 percent of sales to five percent in a year. Now the Switch cartridge supplier is phasing it out.
 
-Google announced Gemini 4 Carbon on October 28 and reported a score of 59 on the Artificial Analysis Intelligence Index v5.0, with access limited to cyber defenders first.
+Macronix, described as Nintendo's main Switch cartridge supplier, is phasing out ROM production to focus on NOR flash for data centers, Engadget and The Verge report.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #ai
+#coldcasetech #technews #tech #gadgets
