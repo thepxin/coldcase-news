@@ -1,17 +1,15 @@
 {
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "jobs": {
   "updates": "done",
   "tech": "published"
  },
- "ai_day": "2026-11-03",
- "ai_calls": 12,
- "gemini_day": "2026-11-03",
+ "ai_day": "2026-11-04",
+ "ai_calls": 4,
+ "gemini_day": "2026-11-04",
  "gemini_calls": 0,
- "tech_published": 3,
+ "tech_published": 1,
  "tech_fields": [
-  "ai",
-  "devices",
-  "software"
+  "gaming"
  ]
 }
