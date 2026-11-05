@@ -126,9 +126,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-27-gta-6-release-date-november-19-2026.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/rockstars-gta-6-is-due-november-19-2026-previous-due-dates-fall-2025-and-may-26-2026-5622",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-27-openai-says-ai-disproved-exponential-time-hypothesis.md": {
@@ -138,9 +138,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-27-spacex-starlink-musk-ukraine-terms-of-service.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/spacex-starlink-musk-says-ukraine-broke-terms-of-service-kyiv-denies-it-3dlo",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-28-apple-siri-ai-new-languages-end-of-year.md": {
@@ -276,9 +276,9 @@
   "hashnode": null
  },
  "content/posts/2026-11-04-macronix-phases-out-nintendo-switch-rom.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/nintendo-switch-cartridge-supplier-macronix-to-phase-out-rom-production-3fkd",
-  "done": false,
+  "done": true,
   "hashnode": null
  }
 }
