@@ -282,15 +282,21 @@
   "hashnode": null
  },
  "content/posts/2026-11-05-nvidia-shopify-open-models-european-retail.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/nvidia-open-models-shopify-reports-90-lower-serving-costs-in-sidekick-cec",
   "done": false,
   "hashnode": null
  },
- "content/posts/2026-11-05-zelda-ocarina-of-time-remake-switch-2.md": {
-  "attempts": 2,
-  "devto": "https://dev.to/coldcasetech/nintendo-zelda-ocarina-of-time-remake-arrives-on-switch-2-with-a-new-look-for-link-43kf",
+ "content/posts/2026-11-05-whatsapp-events-invites-guests-without-accounts.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/whatsapp-events-now-invites-friends-who-are-not-on-whatsapp-3ioi",
   "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-05-zelda-ocarina-of-time-remake-switch-2.md": {
+  "attempts": 3,
+  "devto": "https://dev.to/coldcasetech/nintendo-zelda-ocarina-of-time-remake-arrives-on-switch-2-with-a-new-look-for-link-43kf",
+  "done": true,
   "hashnode": null
  }
 }
