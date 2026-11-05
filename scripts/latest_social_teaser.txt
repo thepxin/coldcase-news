@@ -1,23 +1,23 @@
 ================================================================
-NVIDIA open models: Shopify reports 90% lower serving costs in Sidekick
+WhatsApp Events now invites friends who are not on WhatsApp
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (179/280):
-NVIDIA says Shopify cut serving costs 90% with a post-trained open model, measured on Shopify's own internal benchmark.
+X (174/280):
+WhatsApp Events invites now reach friends with no WhatsApp account. The address stays hidden until they RSVP.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-05-nvidia-shopify-open-models-european-retail/
+Every line sourced: https://coldcasetech.com/posts/2026-11-05-whatsapp-events-invites-guests-without-accounts/
 
-#AI #TechNews
+#BigTech #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-NVIDIA says Shopify cut serving costs 90% with a post-trained open model, measured on Shopify's own internal benchmark.
+WhatsApp Events invites now reach friends with no WhatsApp account. The address stays hidden until they RSVP.
 
-NVIDIA detailed how Shopify, Zooplus, Mirakl and other European retailers use its open models, citing a 90% serving cost cut at Shopify on an internal benchmark.
+Meta's WhatsApp is rolling out an Events update that lets hosts invite guests without WhatsApp accounts and adds an Events hub in Settings.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #ai
+#coldcasetech #technews #tech #bigtech
