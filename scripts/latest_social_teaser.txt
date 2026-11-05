@@ -1,23 +1,23 @@
 ================================================================
-Nintendo Zelda: Ocarina of Time remake arrives on Switch 2, with a new look for Link
+NVIDIA open models: Shopify reports 90% lower serving costs in Sidekick
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (162/280):
-Fans compared the new child Link to the Gerber Baby. Ocarina of Time arrives on Switch 2 Thursday.
+X (179/280):
+NVIDIA says Shopify cut serving costs 90% with a post-trained open model, measured on Shopify's own internal benchmark.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-05-zelda-ocarina-of-time-remake-switch-2/
+Every line sourced: https://coldcasetech.com/posts/2026-11-05-nvidia-shopify-open-models-european-retail/
 
-#Gaming #TechNews
+#AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Fans compared the new child Link to the Gerber Baby. Ocarina of Time arrives on Switch 2 Thursday.
+NVIDIA says Shopify cut serving costs 90% with a post-trained open model, measured on Shopify's own internal benchmark.
 
-Nintendo's remake of The Legend of Zelda: Ocarina of Time arrives Thursday exclusively on the Switch 2, and fans are debating the redesigned child Link.
+NVIDIA detailed how Shopify, Zooplus, Mirakl and other European retailers use its open models, citing a 90% serving cost cut at Shopify on an internal benchmark.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #gaming
+#coldcasetech #technews #tech #ai
