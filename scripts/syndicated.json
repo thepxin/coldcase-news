@@ -120,9 +120,9 @@
   "hashnode": null
  },
  "content/posts/2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/apple-oled-ipad-mini-starts-at-699-m6-imac-and-macbook-pro-follow-48l2",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-10-27-gta-6-release-date-november-19-2026.md": {
@@ -132,7 +132,7 @@
   "hashnode": null
  },
  "content/posts/2026-10-27-openai-says-ai-disproved-exponential-time-hypothesis.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/openai-says-its-ai-disproved-the-exponential-time-hypothesis-jp",
   "done": false,
   "hashnode": null
@@ -279,6 +279,12 @@
   "attempts": 3,
   "devto": "https://dev.to/coldcasetech/nintendo-switch-cartridge-supplier-macronix-to-phase-out-rom-production-3fkd",
   "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-11-05-zelda-ocarina-of-time-remake-switch-2.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/nintendo-zelda-ocarina-of-time-remake-arrives-on-switch-2-with-a-new-look-for-link-43kf",
+  "done": false,
   "hashnode": null
  }
 }
