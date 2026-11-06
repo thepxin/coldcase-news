@@ -244,7 +244,7 @@ ARTICLE BODY:
 
 Return JSON with one key: markdown_body (the edited body).
 """
-    out = call_ai(prompt, schema=Polish, purpose="check")
+    out = call_ai(prompt, schema=Polish, purpose="check", model=POLISH_MODEL)
     return out.markdown_body.replace("{", "(").replace("}", ")").strip() if out else None
 
 
@@ -398,19 +398,100 @@ original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, so
 
 BUSY_WAITS = (30, 90)   # Claude overloaded (529) or a server error: wait, then retry the SAME request (3 tries)
 WRITE_MAX_TOKENS = 8000
+# Money saver: the style-only polish pass uses the small, cheap model (about 20x cheaper). It never adds facts, the
+# machine checks reject any change to a fact, link or number, and the full fact-check runs after it.
+POLISH_MODEL = os.environ.get("POLISH_MODEL", "claude-haiku-5-5")
+
+# Money saver: HALF PRICE via Anthropic's Message Batches. Each request is handed in as a one-request batch; Anthropic
+# answers it when it has capacity (usually within minutes) and charges 50% of the normal price.
+# Safety switch: if no answer arrives within CLAUDE_BATCH_WAIT seconds (15 min), the batch is cancelled (cancelled
+# requests are not billed) and the same request is sent the normal way. After one such delay, or after a run has used
+# BATCH_RUN_MINUTES, the rest of that run uses normal requests, so runs stay short.
+# Turn it off without changing code: set a repository variable CLAUDE_BATCH = off (see daily_news.yml).
+CLAUDE_BATCH = os.environ.get("CLAUDE_BATCH", "on").strip().lower() not in ("off", "0", "false", "no")
+BATCH_WAIT = int(os.environ.get("CLAUDE_BATCH_WAIT", "900"))
+BATCH_POLL = int(os.environ.get("CLAUDE_BATCH_POLL", "20"))
+BATCH_RUN_MINUTES = int(os.environ.get("BATCH_RUN_MINUTES", "90"))
+RUN_STARTED = time.time()
+BATCH_ON = CLAUDE_BATCH       # switched off for the rest of the run after a batch problem
+BATCH_STATS = {"half": 0, "normal": 0}
+
+
+class _BatchFallback(Exception):
+    """The batch route could not answer; send the same request the normal way."""
+
+
+def _batch_parse(model: str, content, schema, purpose: str):
+    """Send one request as a one-request batch (half price) and wait for it. Returns an object shaped like the
+    normal parse() response (parsed_output, stop_reason, usage). Raises _BatchFallback when the normal route
+    should be used instead."""
+    global BATCH_ON
+    from types import SimpleNamespace
+    from pydantic import TypeAdapter
+    started = time.time()
+    try:
+        fmt = {"type": "json_schema", "schema": anthropic.transform_schema(TypeAdapter(schema).json_schema())}
+        params = {"model": model, "max_tokens": WRITE_MAX_TOKENS, "messages": [{"role": "user", "content": content}],
+                  "output_config": {"format": fmt}}
+        batch = client.messages.batches.create(requests=[{"custom_id": f"{purpose}-{int(started)}", "params": params}])
+    except Exception as e:
+        BATCH_ON = False
+        print(f"  batch: could not hand in the request ({str(e)[:160]}); normal requests for the rest of this run.")
+        raise _BatchFallback()
+    while True:
+        if time.time() - started > BATCH_WAIT:
+            try:
+                client.messages.batches.cancel(batch.id)
+            except Exception:
+                pass
+            BATCH_ON = False
+            print(f"  batch: no answer after {BATCH_WAIT // 60} min; cancelled (not billed) and sent normally at full "
+                  "price. Normal requests for the rest of this run.")
+            raise _BatchFallback()
+        time.sleep(BATCH_POLL)
+        try:
+            batch = client.messages.batches.retrieve(batch.id)
+        except Exception:
+            continue   # a passing network hiccup: ask again on the next round
+        if getattr(batch, "processing_status", "") == "ended":
+            break
+    try:
+        results = list(client.messages.batches.results(batch.id))
+        result = results[0].result if results else None
+    except Exception as e:
+        result = None
+        print(f"  batch: could not read the answer ({str(e)[:160]}).")
+    if result is None or getattr(result, "type", "") != "succeeded":
+        why = getattr(getattr(getattr(result, "error", None), "error", None), "message", "") or getattr(result, "type", "no result")
+        BATCH_ON = False
+        print(f"  batch: the request did not succeed ({str(why)[:200]}); sent normally. Normal requests for the rest "
+              "of this run.")
+        raise _BatchFallback()
+    msg = result.message
+    text = "".join(getattr(b, "text", "") for b in msg.content if getattr(b, "type", "") == "text")
+    parsed = None
+    if getattr(msg, "stop_reason", "") not in ("max_tokens", "refusal"):
+        try:
+            parsed = schema.model_validate_json(text)
+        except Exception:
+            parsed = None
+    took = int(time.time() - started)
+    BATCH_STATS["half"] += 1
+    print(f"  batch: answered in {took // 60} min {took % 60} s at half price.")
+    return SimpleNamespace(parsed_output=parsed, stop_reason=getattr(msg, "stop_reason", ""), usage=getattr(msg, "usage", None))
 
 
 def _status(e) -> int:
     return int(getattr(e, "status_code", 0) or 0)
 
 
-def _call_claude(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
+def _call_claude(prompt: str, schema=FollowUpArticle, purpose: str = "write", model: str = ""):
     """One budgeted Claude request that returns a validated `schema` object (or None).
     purpose="write" always leaves 1 request for the fact-check. Every try is counted against the budget.
     Overloaded (529) / server errors are retried on the same request after 30 s and 90 s; if Claude is still
     overloaded, the run stops (AI_BUSY) and the catch-up run later the same day tries again.
     Overload never uses up a story's writing attempt. An empty credit balance stops the run (AI_EXHAUSTED)."""
-    global AI_EXHAUSTED, AI_BUSY, AI_CALLS, WRITE_CALLS, _LAST_CALL, DESK_OUT
+    global AI_EXHAUSTED, AI_BUSY, AI_CALLS, WRITE_CALLS, _LAST_CALL, DESK_OUT, BATCH_ON
     rate_waited = False
     busy_tries = 0
     for attempt in range(1, 5):
@@ -433,19 +514,30 @@ def _call_claude(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
         if purpose == "write" and attempt == 1:  # retries of the same request are the same attempt
             WRITE_CALLS += 1
         try:
-            response = client.messages.parse(
-                model=MODEL,
-                max_tokens=WRITE_MAX_TOKENS,
-                messages=[{"role": "user", "content": prompt}],
-                output_format=schema,
-            )
+            response = None
+            if BATCH_ON and (time.time() - RUN_STARTED) > BATCH_RUN_MINUTES * 60:
+                BATCH_ON = False
+                print(f"  batch: this run has taken {BATCH_RUN_MINUTES} min; normal requests for the rest of it.")
+            if BATCH_ON:
+                try:
+                    response = _batch_parse(model or MODEL, prompt, schema, purpose)
+                except _BatchFallback:
+                    response = None
+            if response is None:
+                response = client.messages.parse(
+                    model=model or MODEL,
+                    max_tokens=WRITE_MAX_TOKENS,
+                    messages=[{"role": "user", "content": prompt}],
+                    output_format=schema,
+                )
+                BATCH_STATS["normal"] += 1
             if getattr(response, "stop_reason", "") in ("max_tokens", "refusal") or response.parsed_output is None:
                 print(f"Claude {purpose} request ended early ({getattr(response, 'stop_reason', '?')}); "
                       f"no usable answer ({AI_CALLS}/{AI_BUDGET} used).")
                 return None
             usage = getattr(response, "usage", None)
             used = f", {usage.input_tokens} in / {usage.output_tokens} out tokens" if usage else ""
-            print(f"Claude {purpose} request OK ({AI_CALLS}/{AI_BUDGET} used in this run{used}).")
+            print(f"Claude {purpose} request OK ({model or MODEL}, {AI_CALLS}/{AI_BUDGET} used in this run{used}).")
             return response.parsed_output
         except Exception as e:
             code, msg = _status(e), str(e)
@@ -503,14 +595,15 @@ def gemini_available() -> bool:
     return bool(GEMINI_KEY) and GEMINI_RUN_LEFT - GEMINI_CALLS > 0
 
 
-def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write"):
-    """Claude first; Gemini as the fallback for the rest of the run if Claude cannot answer."""
+def call_ai(prompt: str, schema=FollowUpArticle, purpose: str = "write", model: str = ""):
+    """Claude first; Gemini as the fallback for the rest of the run if Claude cannot answer.
+    model: a different Claude model for this one request (the cheap one for the style-only polish)."""
     global PROVIDER, AI_BUSY, AI_EXHAUSTED, WRITE_CALLS
     if PROVIDER == "claude":
         writes_before = WRITE_CALLS
-        out = _call_claude(prompt, schema, purpose)
+        out = _call_claude(prompt, schema, purpose, model)
         if out is not None:
-            ARTICLE_MODELS.append(MODEL)
+            ARTICLE_MODELS.append(model or MODEL)
             return out
         if not (AI_BUSY or AI_EXHAUSTED):
             return None
@@ -1426,6 +1519,8 @@ if __name__ == "__main__":
     print(f"Claude ({MODEL}): {used_before} request(s) already used today by earlier runs; this run may use "
           f"{AI_BUDGET} (daily cap {DAILY_CAP}). Fallback: "
           + (f"{GEMINI_MODEL}, {GEMINI_RUN_LEFT} free request(s) left today." if GEMINI_KEY else "none (no GEMINI_API_KEY)."))
+    print("Claude billing: " + (f"HALF PRICE batches (if no answer in {BATCH_WAIT // 60} min, sent normally)." if CLAUDE_BATCH
+                                else "normal requests (batches switched off with CLAUDE_BATCH=off)."))
     if forced == "auto":
         finished = [j for j in plan if (j == "updates" and run_log["jobs"].get(j) == "done")
                     or (j == "tech" and done_today >= ARTICLES_PER_DAY)]
@@ -1472,5 +1567,8 @@ if __name__ == "__main__":
     save_run_log(run_log)
     with open("run_result.json", "w", encoding="utf-8") as f:
         json.dump(result, f)
+    if BATCH_STATS["half"] or BATCH_STATS["normal"]:
+        print(f"Claude billing this run: {BATCH_STATS['half']} request(s) at half price (batch), "
+              f"{BATCH_STATS['normal']} at normal price.")
     print(f"\nRun result: {result}  (Claude requests used: {AI_CALLS} in this run, "
           f"{run_log['ai_calls']} today). Jobs today: {run_log['jobs']}")
