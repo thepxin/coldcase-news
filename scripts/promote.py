@@ -1,14 +1,18 @@
-"""Promote each new article on Bluesky and on a Telegram channel, automatically, through their official APIs.
+"""Promote each new article on Bluesky, Telegram, the Facebook Page and Instagram, automatically, through their official APIs.
 
 For every article published in the last MAX_AGE_HOURS that is not yet in data/promoted.json:
   Bluesky   a post with the fact-checked hook (and the verdict or due date), plus a link card showing the article's
             ColdCaseTech share image, title and summary. 300-character limit.
   Telegram  a photo post in your channel: the share image, the headline, the hook, and a "Read the full story" button.
+  Facebook  a link post on the ColdCaseTech Page: the hook and status, with the article's link preview.
+  Instagram a photo post: the site's 4:5 Instagram image (JPEG) and the article's ready-made Instagram caption.
 Both use only text that already passed the fact-check (the article's hook, headline and summary).
 
 Each platform turns on when its secrets exist and stays off otherwise:
   Bluesky:  BLUESKY_HANDLE (e.g. coldcasetech.bsky.social) and BLUESKY_APP_PASSWORD (Settings > App passwords)
   Telegram: TELEGRAM_BOT_TOKEN (from @BotFather) and TELEGRAM_CHAT_ID (e.g. @coldcasetech; the bot must be a channel admin)
+  Facebook: META_PAGE_TOKEN (a Page access token that never expires) and META_PAGE_ID
+  Instagram: META_PAGE_TOKEN and META_IG_USER_ID (the Instagram professional account linked to that Page)
 
 Modes (env PROMOTE_MODE): post (default) | dry-run (show what would be posted) | skip-existing (mark current articles as
 done without posting, e.g. on the first run). Nothing is ever posted twice: data/promoted.json records each post.
@@ -30,6 +34,8 @@ import social  # noqa: E402
 SITE = os.environ.get("SITE_BASE", "https://coldcasetech.com").rstrip("/")
 BSKY = os.environ.get("BSKY_BASE", "https://bsky.social").rstrip("/")
 TG = os.environ.get("TELEGRAM_BASE", "https://api.telegram.org").rstrip("/")
+META = os.environ.get("META_GRAPH_BASE", "https://graph.facebook.com/v27.0").rstrip("/")
+IG_WAIT_SECONDS = int(os.environ.get("IG_WAIT_SECONDS", "120"))   # Instagram needs a moment to fetch the image
 LOG = "data/promoted.json"
 POSTS = "content/posts"
 MAX_AGE_HOURS = int(os.environ.get("PROMOTE_MAX_AGE_HOURS", "48"))
@@ -87,12 +93,13 @@ def recent_articles():
 
 
 def site_cards(expect):
-    """{slug: share-image URL} from the site, waiting (up to WAIT_FOR_SITE_MIN) until the new articles are listed."""
+    """{slug: share-kit item} from the site ("card" 16:9 PNG, "image" 4:5 Instagram JPEG, "caption"),
+    waiting (up to WAIT_FOR_SITE_MIN) until the new articles are listed."""
     deadline = time.time() + WAIT_FOR_SITE_MIN * 60
     while True:
         try:
             r = requests.get(f"{SITE}/share/index.json", params={"t": int(time.time())}, timeout=30)
-            cards = {i["slug"]: i.get("card", "") for i in r.json().get("items", [])} if r.ok else {}
+            cards = {i["slug"]: i for i in r.json().get("items", [])} if r.ok else {}
         except (requests.RequestException, ValueError):
             cards = {}
         missing = sorted(set(expect) - set(cards))
@@ -110,7 +117,7 @@ def pieces(a):
     field = next((t for t in fm.get("tags", []) if str(t).lower() != "tech"), "")
     return {"title": fm.get("title", ""), "hook": (s.get("hook") or fm.get("description") or "").strip(),
             "summary": (fm.get("description") or "").strip(), "status": status, "field": field,
-            "url": f"{SITE}/posts/{a['slug']}/"}
+            "instagram": (s.get("instagram") or "").strip(), "url": f"{SITE}/posts/{a['slug']}/"}
 
 
 # ---------------- Bluesky ----------------
@@ -202,13 +209,75 @@ def telegram_post(p, card_url):
     return str(d["result"]["message_id"]), ""
 
 
+# ---------------- Facebook Page and Instagram (Meta Graph API) ----------------
+def meta_error(r):
+    try:
+        e = r.json().get("error", {})
+    except ValueError:
+        return f"{r.status_code}: {r.text[:200]}"
+    msg = f"{r.status_code}: {e.get('message', r.text[:200])}"
+    if e.get("code") == 190:
+        msg += " (the Page key is invalid or expired: make a new one and update the META_PAGE_TOKEN secret)"
+    elif e.get("code") in (10, 200) or "permission" in str(e.get("message", "")).lower():
+        msg += " (a permission is missing: check the app's permissions and make the Page key again)"
+    return msg
+
+
+def facebook_text(p):
+    short = social.FIELD_TAGS.get(p["field"].lower(), re.sub(r"[^A-Za-z0-9]", "", p["field"])) if p["field"] else ""
+    tags = " ".join("#" + t for t in ["TechNews", short] if t)
+    return "\n\n".join(x for x in [p["hook"], p["status"], "Every line links to its source.", tags] if x)
+
+
+def facebook_post(p):
+    r = requests.post(f"{META}/{os.environ['META_PAGE_ID'].strip()}/feed", timeout=60, data={
+        "message": facebook_text(p), "link": p["url"], "access_token": os.environ["META_PAGE_TOKEN"].strip()})
+    if not r.ok:
+        return "", meta_error(r)
+    return r.json().get("id", "posted"), ""
+
+
+def instagram_caption(p, item):
+    return (p["instagram"] or item.get("caption") or "").strip()[:2200]
+
+
+def instagram_post(p, item):
+    image = item.get("image", "")
+    if not image:
+        return "", "the site has no Instagram image for this article"
+    if not instagram_caption(p, item):
+        return "", "this article has no Instagram caption"
+    ig, token = os.environ["META_IG_USER_ID"].strip(), os.environ["META_PAGE_TOKEN"].strip()
+    r = requests.post(f"{META}/{ig}/media", timeout=90,
+                      data={"image_url": image, "caption": instagram_caption(p, item), "access_token": token})
+    if not r.ok:
+        return "", "step 1 (send image): " + meta_error(r)
+    container = r.json()["id"]
+    deadline = time.time() + IG_WAIT_SECONDS
+    while True:   # Instagram downloads and checks the image before it can be published
+        s = requests.get(f"{META}/{container}", timeout=30, params={"fields": "status_code", "access_token": token})
+        code = (s.json().get("status_code") if s.ok else "") or ""
+        if code == "FINISHED":
+            break
+        if code in ("ERROR", "EXPIRED") or time.time() > deadline:
+            return "", f"step 2 (Instagram checking the image): status {code or 'unknown'}"
+        time.sleep(5)
+    r = requests.post(f"{META}/{ig}/media_publish", timeout=90, data={"creation_id": container, "access_token": token})
+    if not r.ok:
+        return "", "step 3 (publish): " + meta_error(r)
+    return r.json().get("id", "posted"), ""
+
+
 def main():
     mode = (os.environ.get("PROMOTE_MODE") or "post").strip().lower()
+    meta = bool(os.environ.get("META_PAGE_TOKEN", "").strip())
     want = {"bluesky": bool(os.environ.get("BLUESKY_HANDLE") and os.environ.get("BLUESKY_APP_PASSWORD")),
-            "telegram": bool(os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"))}
+            "telegram": bool(os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")),
+            "facebook": meta and bool(os.environ.get("META_PAGE_ID", "").strip()),
+            "instagram": meta and bool(os.environ.get("META_IG_USER_ID", "").strip())}
     on = [k for k, v in want.items() if v]
     if not on and mode != "dry-run":
-        print("Neither Bluesky nor Telegram is connected yet (no secrets). Nothing to do.")
+        print("No platform is connected yet (no secrets). Nothing to do.")
         return 0
     log = load_log()
     articles = recent_articles()
@@ -224,10 +293,12 @@ def main():
     cards = site_cards([a["slug"] for a in todo]) if todo else {}
     if mode == "dry-run":
         for a in todo[:MAX_PER_RUN]:
-            p = pieces(a)
-            print(f"\n--- {a['slug']}\ncard: {cards.get(a['slug'], '(not listed yet)')}\n"
+            p, item = pieces(a), cards.get(a["slug"], {})
+            print(f"\n--- {a['slug']}\ncard: {item.get('card', '(not listed yet)')}\n"
                   f"BLUESKY ({len(bluesky_text(p))}/{BSKY_LIMIT}):\n{bluesky_text(p)}\n[link card: {p['url']}]\n"
-                  f"TELEGRAM:\n{telegram_caption(p)}\n[button: Read the full story -> {p['url']}]")
+                  f"TELEGRAM:\n{telegram_caption(p)}\n[button: Read the full story -> {p['url']}]\n"
+                  f"FACEBOOK:\n{facebook_text(p)}\n[link preview: {p['url']}]\n"
+                  f"INSTAGRAM (image: {item.get('image', '(none yet)')}):\n{instagram_caption(p, item)}")
         return 0
     sess, why = (bluesky_login() if "bluesky" in on else (None, ""))
     failed = 0
@@ -236,12 +307,17 @@ def main():
         on.remove("bluesky")
         failed += 1
     for a in [a for a in todo if a["slug"] in cards][:MAX_PER_RUN]:
-        p, card = pieces(a), cards.get(a["slug"], "")
+        p, item = pieces(a), cards.get(a["slug"], {})
+        card = item.get("card", "")
         entry = log.setdefault(a["slug"], {})
         for ch in on:
             if entry.get(ch):
                 continue
-            ref, err = bluesky_post(sess, p, card) if ch == "bluesky" else telegram_post(p, card)
+            try:
+                ref, err = {"bluesky": lambda: bluesky_post(sess, p, card), "telegram": lambda: telegram_post(p, card),
+                            "facebook": lambda: facebook_post(p), "instagram": lambda: instagram_post(p, item)}[ch]()
+            except requests.RequestException as e:
+                ref, err = "", f"network problem: {str(e)[:160]}"
             if ref:
                 entry[ch] = ref
                 print(f"  {ch}: POSTED {a['slug']}")
