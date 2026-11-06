@@ -57,6 +57,9 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Half-price Claude batches. To switch off: Settings > Secrets and variables > Actions > Variables,
+          # add CLAUDE_BATCH with the value off (delete it to switch back on).
+          CLAUDE_BATCH: ${{ vars.CLAUDE_BATCH || 'on' }}
           DESK: ${{ inputs.desk || 'auto' }}
           # slot = a timed run (1 article), catchup = the 23:17 IST run (all missing articles), manual = Run workflow button
           RUN_KIND: ${{ github.event_name == 'workflow_dispatch' && 'manual' || (github.event.schedule == '47 17 * * *' && 'catchup' || 'slot') }}
