@@ -22,7 +22,7 @@ import json
 import os
 import re
 from datetime import datetime, timezone
-from urllib.parse import urljoin, urlparse
+from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlsplit, urlunsplit
 
 import requests
 
@@ -202,10 +202,24 @@ def extract(html, url):
         return None
 
 
+# shop/affiliate and tracking tags that outlets add to links (e.g. amazon.com/...?tag=engadget-20)
+TRACKING_PARAM = re.compile(r"^(utm_.*|tag|ref|ref_|ref_src|affiliate.*|aff_.*|ascsubtag|linkcode|linkid|camp|creative"
+                            r"|creativeasin|fbclid|gclid|dclid|mc_cid|mc_eid|cmpid|campaign_id|smid|sr_share|guccounter)$", re.I)
+
+
+def strip_tracking(u):
+    """Remove affiliate and tracking tags so official links are clean and match each other."""
+    parts = urlsplit(u)
+    if not parts.query:
+        return u
+    keep = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if not TRACKING_PARAM.match(k)]
+    return urlunsplit(parts._replace(query=urlencode(keep)))
+
+
 def links_in(html, base_url):
     out = []
     for href in re.findall(r'href=["\']([^"\'#]+)["\']', html or "", re.I):
-        u = urljoin(base_url, href.strip())
+        u = strip_tracking(urljoin(base_url, href.strip().replace("&amp;", "&")))
         if u.startswith("http") and not SKIP_LINK.search(u) and u not in out:
             out.append(u)
     return out

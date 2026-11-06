@@ -30,6 +30,7 @@ INDEXNOW_KEY = "cctindexnow2026key8941"
 DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
 HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
 HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
+HASHNODE_API = os.environ.get("HASHNODE_API", "https://gql.hashnode.com/")
 WAIT_SECONDS = int(os.environ.get("SYNDICATE_WAIT_SECONDS", "900"))
 POLL_EVERY = int(os.environ.get("SYNDICATE_POLL_SECONDS", "30"))
 DELAY_HOURS = float(os.environ.get("SYNDICATE_DELAY_HOURS", "0"))
@@ -224,15 +225,26 @@ def post_hashnode(post, canonical, md):
     if post["cover"]:
         inp["coverImageOptions"] = {"coverImageURL": post["cover"]}
     try:
-        r = requests.post("https://gql.hashnode.com",
-                          headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json"},
-                          json={"query": query, "variables": {"input": inp}}, timeout=30)
+        # Do not let a redirect turn our POST into a GET (that returns Hashnode's web page, not data):
+        # follow up to 3 redirects ourselves and send the same POST each time.
+        url, hops = HASHNODE_API, []
+        for _ in range(4):
+            r = requests.post(url, headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json",
+                                            "Accept": "application/json", "User-Agent": "ColdCaseTech-syndication/1.0"},
+                              json={"query": query, "variables": {"input": inp}}, timeout=60, allow_redirects=False)
+            if r.status_code in (301, 302, 303, 307, 308) and r.headers.get("location"):
+                url = requests.compat.urljoin(url, r.headers["location"])
+                hops.append(f"{r.status_code} -> {url}")
+                continue
+            break
+        if hops:
+            print("Hashnode: address redirected: " + "; ".join(hops))
         try:
             data = r.json()
         except ValueError:
             kind = r.headers.get("content-type", "unknown")
             snippet = " ".join(r.text.split())[:200]
-            print(f"Hashnode ERROR: HTTP {r.status_code}, Hashnode sent back a {kind} page instead of data "
+            print(f"Hashnode ERROR: HTTP {r.status_code} from {url}, Hashnode sent back a {kind} page instead of data "
                   f"(usually a block or a changed address). Start of reply: {snippet}")
             return None
         if r.status_code == 200 and not data.get("errors") and (data.get("data") or {}).get("publishPost"):
