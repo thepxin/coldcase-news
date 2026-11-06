@@ -282,13 +282,13 @@
   "hashnode": null
  },
  "content/posts/2026-11-05-nvidia-shopify-open-models-european-retail.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/nvidia-open-models-shopify-reports-90-lower-serving-costs-in-sidekick-cec",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-05-whatsapp-events-invites-guests-without-accounts.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/whatsapp-events-now-invites-friends-who-are-not-on-whatsapp-3ioi",
   "done": false,
   "hashnode": null
