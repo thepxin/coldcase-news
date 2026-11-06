@@ -1,7 +1,7 @@
-name: Promote on Bluesky and Telegram
+name: Promote on Bluesky, Telegram, Facebook and Instagram
 
-# Shares each new article on Bluesky (post + link card) and in the Telegram channel (photo + "Read the full story"
-# button), using only fact-checked text. Runs right after the daily article run, and every 4 hours as a backup.
+# Shares each new article on Bluesky (post + link card), in the Telegram channel (photo + "Read the full story"
+# button), on the Facebook Page (link post) and on Instagram (4:5 image + caption), using only fact-checked text. Runs right after the daily article run, and every 4 hours as a backup.
 # Each platform stays off until its secrets exist. Nothing is posted twice (data/promoted.json).
 on:
   workflow_run:
@@ -49,6 +49,9 @@ jobs:
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
           PROMOTE_MODE: ${{ inputs.mode || 'post' }}
         run: |
           git pull --quiet origin main || true
@@ -62,7 +65,7 @@ jobs:
           git config user.email "bot@coldcasetech.com"
           git add data/promoted.json
           if git diff --staged --quiet; then exit 0; fi
-          git commit -m "chore(promote): record Bluesky/Telegram posts"
+          git commit -m "chore(promote): record social posts"
           for attempt in 1 2 3; do
             if git pull --rebase --autostash -X theirs origin main && git push origin main; then break; fi
             git rebase --abort 2>/dev/null || true
