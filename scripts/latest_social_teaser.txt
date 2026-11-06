@@ -1,23 +1,23 @@
 ================================================================
-WhatsApp Events now invites friends who are not on WhatsApp
+Amazon Alexa for Shopping now works by text. The invitation arrives by text too.
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (174/280):
-WhatsApp Events invites now reach friends with no WhatsApp account. The address stays hidden until they RSVP.
+X (173/280):
+Amazon's Alexa for Shopping now takes orders by text, and the invitation to try it arrives by text as well.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-05-whatsapp-events-invites-guests-without-accounts/
+Every line sourced: https://coldcasetech.com/posts/2026-11-06-amazon-alexa-for-shopping-text-rollout/
 
-#BigTech #TechNews
+#Software #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-WhatsApp Events invites now reach friends with no WhatsApp account. The address stays hidden until they RSVP.
+Amazon's Alexa for Shopping now takes orders by text, and the invitation to try it arrives by text as well.
 
-Meta's WhatsApp is rolling out an Events update that lets hosts invite guests without WhatsApp accounts and adds an Events hub in Settings.
+Amazon began rolling out text-message shopping with Alexa for Shopping on November 6, 2026, to a small group of U.S. customers by invitation.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #bigtech
+#coldcasetech #technews #tech #software
