@@ -228,8 +228,10 @@
   "telegram": "46"
  },
  "2026-11-07-fcc-router-ban-conditional-approval-tp-link": {
-  "at": "2026-11-07T15:14:29Z",
+  "at": "2026-11-07T19:11:16Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzq6rnw6lm2n",
+  "facebook": "1489437024244341_122096721741546323",
+  "instagram": "18119908661070827",
   "telegram": "48"
  },
  "2026-11-07-meta-muse-spaces-custom-experiences": {
@@ -238,5 +240,14 @@
   "facebook": "1489437024244341_122096348097546323",
   "instagram": "18495649882111419",
   "telegram": "47"
+ },
+ "2026-11-07-us-midterm-voters-back-data-center-limits": {
+  "at": "2026-11-07T19:11:20Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzqlz6q6me2v",
+  "telegram": "49"
+ },
+ "_last_post": {
+  "facebook": "2026-11-07T19:11:09Z",
+  "instagram": "2026-11-07T19:11:16Z"
  }
 }
