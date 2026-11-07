@@ -207,13 +207,24 @@
   "telegram": "41"
  },
  "2026-11-06-amazon-alexa-for-shopping-text-rollout": {
-  "at": "2026-11-06T18:58:13Z",
+  "at": "2026-11-07T06:35:48Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzo2sso36k2v",
+  "facebook": "1489437024244341_122096213523546323",
+  "instagram": "17981040017918275",
   "telegram": "44"
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
-  "at": "2026-11-06T20:46:09Z",
+  "at": "2026-11-07T06:36:01Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzoattj4742v",
+  "facebook": "1489437024244341_122096213691546323",
+  "instagram": "17894626206654580",
   "telegram": "45"
+ },
+ "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
+  "at": "2026-11-07T06:36:18Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzpbsovr6i2n",
+  "facebook": "1489437024244341_122096213757546323",
+  "instagram": "18195630904398755",
+  "telegram": "46"
  }
 }
