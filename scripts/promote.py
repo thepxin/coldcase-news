@@ -36,6 +36,10 @@ BSKY = os.environ.get("BSKY_BASE", "https://bsky.social").rstrip("/")
 TG = os.environ.get("TELEGRAM_BASE", "https://api.telegram.org").rstrip("/")
 META = os.environ.get("META_GRAPH_BASE", "https://graph.facebook.com/v27.0").rstrip("/")
 IG_WAIT_SECONDS = int(os.environ.get("IG_WAIT_SECONDS", "120"))   # Instagram needs a moment to fetch the image
+# Go gently on Facebook and Instagram (new accounts get security checks when they post in bursts):
+META_MAX_PER_RUN = int(os.environ.get("META_MAX_PER_RUN", "1"))        # posts per platform per run
+META_MIN_GAP_HOURS = float(os.environ.get("META_MIN_GAP_HOURS", "3"))  # hours between posts on each platform
+META_CHANNELS = ("facebook", "instagram")
 LOG = "data/promoted.json"
 POSTS = "content/posts"
 MAX_AGE_HOURS = int(os.environ.get("PROMOTE_MAX_AGE_HOURS", "48"))
@@ -216,7 +220,10 @@ def meta_error(r):
     except ValueError:
         return f"{r.status_code}: {r.text[:200]}"
     msg = f"{r.status_code}: {e.get('message', r.text[:200])}"
-    if e.get("code") == 190:
+    if "cannot call api for app" in str(e.get("message", "")).lower():
+        msg = msg.split(" (")[0] + (" (Meta wants you to confirm your account: log in at developers.facebook.com and"
+                                    " complete the check, e.g. verify email and phone. Then check the Page key is still valid)")
+    elif e.get("code") == 190:
         msg += " (the Page key is invalid or expired: make a new one and update the META_PAGE_TOKEN secret)"
     elif e.get("code") in (10, 200) or "permission" in str(e.get("message", "")).lower():
         msg += " (a permission is missing: check the app's permissions and make the Page key again)"
@@ -306,6 +313,17 @@ def main():
         print("Bluesky: " + why)
         on.remove("bluesky")
         failed += 1
+    last = log.setdefault("_last_post", {})   # when Facebook / Instagram last got a post (not an article)
+    tries = {ch: 0 for ch in META_CHANNELS}
+    for ch in META_CHANNELS:
+        if ch in on and last.get(ch):
+            try:
+                ago = (now() - datetime.strptime(last[ch], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)).total_seconds() / 3600
+            except ValueError:
+                ago = 99
+            if ago < META_MIN_GAP_HOURS:
+                tries[ch] = META_MAX_PER_RUN   # too soon: wait for a later run
+                print(f"  {ch}: last post {ago:.1f} h ago; waiting until {META_MIN_GAP_HOURS:g} h have passed (keeps the account calm).")
     for a in [a for a in todo if a["slug"] in cards][:MAX_PER_RUN]:
         p, item = pieces(a), cards.get(a["slug"], {})
         card = item.get("card", "")
@@ -313,6 +331,10 @@ def main():
         for ch in on:
             if entry.get(ch):
                 continue
+            if ch in tries:
+                if tries[ch] >= META_MAX_PER_RUN:
+                    continue   # this article goes to this platform on a later run
+                tries[ch] += 1
             try:
                 ref, err = {"bluesky": lambda: bluesky_post(sess, p, card), "telegram": lambda: telegram_post(p, card),
                             "facebook": lambda: facebook_post(p), "instagram": lambda: instagram_post(p, item)}[ch]()
@@ -320,6 +342,8 @@ def main():
                 ref, err = "", f"network problem: {str(e)[:160]}"
             if ref:
                 entry[ch] = ref
+                if ch in tries:
+                    last[ch] = iso(now())
                 print(f"  {ch}: POSTED {a['slug']}")
             else:
                 failed += 1
