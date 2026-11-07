@@ -306,14 +306,20 @@
   "hashnode": null
  },
  "content/posts/2026-11-06-blue-origin-new-glenn-return-january-2027.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/blue-origin-new-glenn-now-returns-in-january-2027-not-this-year-i9c",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-06-tesla-cybertruck-production-wind-down-mid-2027.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/tesla-cybertruck-production-to-wind-down-around-mid-2027-musk-announces-4eg1",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-07-meta-muse-spaces-custom-experiences.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/meta-muse-adds-spaces-letting-users-build-custom-app-like-tools-by-describing-them-27mm",
   "done": false,
   "hashnode": null
  }
