@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-07T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 7 – De Gerlache-Kocher Massif",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-7-de-gerlache-kocher-massif/"
-  },
-  {
-   "date": "2026-11-07T05:01:54Z",
-   "outlet": "TechCrunch",
-   "title": "Sequoia shutting down its Scouts program marks the end of an era",
-   "url": "https://techcrunch.com/2026/11/06/sequoia-shutting-down-its-scouts-program-marks-the-end-of-an-era/"
-  },
-  {
-   "date": "2026-11-07T04:16:43Z",
-   "outlet": "TechCrunch",
-   "title": "From the front row to the hot seat — what the midterms mean for Big Tech",
-   "url": "https://techcrunch.com/2026/11/06/from-the-front-row-to-the-hot-seat-what-the-midterms-mean-for-big-tech/"
-  },
-  {
-   "date": "2026-11-07T02:11:48Z",
-   "outlet": "9to5Mac",
-   "title": "Apple Music Classical gets new black-and-white icon in latest update",
-   "url": "https://9to5mac.com/2026/11/06/apple-music-classical-gets-new-black-and-white-icon-in-latest-update/"
-  },
-  {
-   "date": "2026-11-07T01:43:36Z",
+   "date": "2026-11-07T12:53:45Z",
    "outlet": "Electrek",
-   "title": "Amazon set to deploy more than 3,000 TATA electric delivery trucks",
-   "url": "https://electrek.co/2026/11/06/amazon-set-to-deploy-more-than-3000-tata-electric-delivery-trucks/"
+   "title": "Harbinger scores another $240M in latest investment round",
+   "url": "https://electrek.co/2026/11/07/harbinger-scores-another-240m-in-latest-investment-round/"
   },
   {
-   "date": "2026-11-06T23:47:18Z",
-   "outlet": "9to5Mac",
-   "title": "9to5Mac Daily: November 6, 2026 – App Store changes, new MacBook Pro launch",
-   "url": "https://9to5mac.com/2026/11/06/daily-november-6-2026/"
+   "date": "2026-11-07T12:30:10Z",
+   "outlet": "Electrek",
+   "title": "Yamaha’s new electric scooter takes aim at Europe’s 125cc commuters",
+   "url": "https://electrek.co/2026/11/07/yamahas-new-electric-scooter-takes-aim-at-europes-125cc-commuters/"
   },
   {
-   "date": "2026-11-06T23:46:18Z",
+   "date": "2026-11-07T12:30:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Enthusiast abandons self-hosted Microsoft Exchange after 27 years, moving mailboxes to Microsoft 365",
+   "url": "https://www.tomshardware.com/software/enthusiast-abandons-self-hosted-microsoft-exchange-after-27-years-moving-mailboxes-to-microsoft-365-replaces-final-on-premises-relay-with-postfix-starttls-and-lets-encrypt-certificates"
+  },
+  {
+   "date": "2026-11-07T12:30:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "New Bluetooth High Data Throughput may finally satisfy audiophiles",
+   "url": "https://www.tomshardware.com/peripherals/wearable-tech/new-bluetooth-high-data-throughput-may-finally-satisfy-audiophiles-bluetooth-hdt-offers-a-maximum-bandwidth-of-7-5mbps-allowing-true-lossless-transmission"
+  },
+  {
+   "date": "2026-11-07T12:30:00Z",
    "outlet": "The Verge",
-   "title": "OpenAI valued at $1.25 trillion, as rival Anthropic nears its IPO",
-   "url": "https://www.theverge.com/ai-artificial-intelligence/1029380/openai-1-25-trillion-investment-valuation"
+   "title": "Why a new report on Anthropic automating AI development is alarming researchers",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1029126/anthropic-metr-report-accelerating-ai-development"
   },
   {
-   "date": "2026-11-06T23:15:00Z",
+   "date": "2026-11-07T12:30:00Z",
    "outlet": "9to5Google",
-   "title": "Google’s original Nest Doorbell is broken for many right now",
-   "url": "https://9to5google.com/2026/11/06/google-nest-doorbell-live-view-broken-reports/"
+   "title": "Oppo reportedly cancels Find X10 Ultra thanks to RAMageddon",
+   "url": "https://9to5google.com/2026/11/07/oppo-reportedly-cancels-find-x10-ultra-thanks-to-ramageddon/"
+  },
+  {
+   "date": "2026-11-07T12:15:55Z",
+   "outlet": "Ars Technica",
+   "title": "The migration that transformed Africa's languages, genes, and cultures",
+   "url": "https://arstechnica.com/science/2026/11/the-migration-that-transformed-africas-languages-genes-and-cultures/"
+  },
+  {
+   "date": "2026-11-07T12:00:00Z",
+   "outlet": "Wired",
+   "title": "Best Wi-Fi Routers (2026): My Honest Picks After Testing 50+",
+   "url": "https://www.wired.com/gallery/best-wifi-routers/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-07T05:53:44Z"
+ "updated": "2026-11-07T12:54:36Z"
 }
