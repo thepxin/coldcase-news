@@ -22,6 +22,28 @@
   "case|2026-10-30-apple-14-inch-macbook-pro-m6-november-6|2026-10-30",
   "case|2026-10-30-apple-macbook-pro-proled-xdr-november-6|2026-10-30",
   "case|2026-10-30-windows-11-kb5127936-customizable-right-click-menu|2026-10-30",
+  "case|2026-10-31-android-17-qpr3-beta-3-pixel-fixes|2026-10-31",
+  "case|2026-10-31-microsoft-project-perception-agentic-insiders|2026-10-31",
+  "case|2026-10-31-world-of-warcraft-forever-geforce-now-nov-4|2026-10-31",
+  "case|2026-11-01-apple-homepod-27-2-mac-speaker-feature|2026-11-01",
+  "case|2026-11-01-eia-electric-power-monthly-renewables-2026|2026-11-01",
+  "case|2026-11-01-xbox-new-games-november-2-to-6|2026-11-01",
+  "case|2026-11-02-cloudflare-dns-zone-builder-memory-cut|2026-11-02",
+  "case|2026-11-02-nasa-hubble-reboost-request-for-information|2026-11-02",
+  "case|2026-11-02-qodo-codex-plugin-code-review-context|2026-11-02",
+  "case|2026-11-03-amazon-alexa-for-shopping-black-friday-tools|2026-11-03",
+  "case|2026-11-03-anthropic-ipo-filing-compute-commitments|2026-11-03",
+  "case|2026-11-03-apple-q4-2026-revenue-iphone-duo-constrained|2026-11-03",
+  "case|2026-11-04-google-gemini-4-carbon-tops-intelligence-index|2026-11-04",
+  "case|2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19|2026-11-04",
+  "case|2026-11-04-macronix-phases-out-nintendo-switch-rom|2026-11-04",
+  "case|2026-11-05-nvidia-shopify-open-models-european-retail|2026-11-05",
+  "case|2026-11-05-whatsapp-events-invites-guests-without-accounts|2026-11-05",
+  "case|2026-11-05-zelda-ocarina-of-time-remake-switch-2|2026-11-05",
+  "case|2026-11-06-amazon-alexa-for-shopping-text-rollout|2026-11-06",
+  "case|2026-11-06-blue-origin-new-glenn-return-january-2027|2026-11-06",
+  "case|2026-11-06-tesla-cybertruck-production-wind-down-mid-2027|2026-11-06",
+  "case|2026-11-07-meta-muse-spaces-custom-experiences|2026-11-07",
   "update|2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro|2026-10-31"
  ],
  "emails": [
@@ -38,6 +60,13 @@
    "subject": "ColdCase Weekly: 19 new cases",
    "broadcast_id": 26715783,
    "items": 20
+  },
+  {
+   "date": "2026-11-07",
+   "mode": "draft",
+   "subject": "ColdCase Weekly: 22 new cases",
+   "broadcast_id": 26861300,
+   "items": 22
   }
  ]
 }
