@@ -1,23 +1,21 @@
 ================================================================
-Meta Muse adds spaces, letting users build custom app-like tools by describing them
+FCC router ban: Netgear, Eero and Asus win Conditional Approval, TP-Link has not
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (166/280):
-Zuckerberg used Meta's new Muse spaces to build a BBQ game, an event tracker and a home control dashboard.
+X (218/280):
+Wired reports Netgear, Eero and Asus have secured FCC Conditional Approval under the foreign-made router ban, while TP-Link has so far been unsuccessful.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-07-meta-muse-spaces-custom-experiences/
+Every line sourced: https://coldcasetech.com/posts/2026-11-07-fcc-router-ban-conditional-approval-tp-link/
 
-#AI #TechNews
+#Telecom #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Zuckerberg used Meta's new Muse spaces to build a BBQ game, an event tracker and a home control dashboard.
-
-Meta introduced spaces in its Muse app, a feature that builds custom trackers, planners and games from a user's description, available wherever Muse is.
+Wired reports Netgear, Eero and Asus have secured FCC Conditional Approval under the foreign-made router ban, while TP-Link has so far been unsuccessful.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #ai
+#coldcasetech #technews #tech #telecom
