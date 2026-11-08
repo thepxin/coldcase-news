@@ -1,17 +1,15 @@
 {
- "date": "2026-11-07",
+ "date": "2026-11-08",
  "jobs": {
   "updates": "done",
   "tech": "published"
  },
- "ai_day": "2026-11-07",
- "ai_calls": 11,
- "gemini_day": "2026-11-07",
+ "ai_day": "2026-11-08",
+ "ai_calls": 4,
+ "gemini_day": "2026-11-08",
  "gemini_calls": 0,
- "tech_published": 3,
+ "tech_published": 1,
  "tech_fields": [
-  "ai",
-  "cloud and infrastructure",
-  "telecom"
+  "ai"
  ]
 }

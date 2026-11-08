@@ -1,23 +1,23 @@
 ================================================================
-US midterm voters back data center limits as 33 measures win
+Anthropic Claude Personal Finance launches in the US with read-only bank access
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (174/280):
-Tom's Hardware counts 33 data center limits won and six leading. One measure, in Harwood, North Dakota, failed.
+X (172/280):
+Claude can now read two years of your transactions. Anthropic says it cannot move a cent, and it carries no ads.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-07-us-midterm-voters-back-data-center-limits/
+Every line sourced: https://coldcasetech.com/posts/2026-11-08-anthropic-claude-personal-finance-launch-read-only/
 
-#Cloud #TechNews
+#AI #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-Tom's Hardware counts 33 data center limits won and six leading. One measure, in Harwood, North Dakota, failed.
+Claude can now read two years of your transactions. Anthropic says it cannot move a cent, and it carries no ads.
 
-Tom's Hardware and TechCrunch report US midterm voters backed data center restrictions, though the two outlets give different counts of measures on the ballot.
+Anthropic launched Personal Finance in Claude on November 5, 2026, letting US paid subscribers connect bank accounts through Plaid with read-only access.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #cloud
+#coldcasetech #technews #tech #ai
