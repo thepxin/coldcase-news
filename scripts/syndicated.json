@@ -336,8 +336,20 @@
   "hashnode": null
  },
  "content/posts/2026-11-08-anthropic-claude-personal-finance-launch-read-only.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/anthropic-claude-personal-finance-launches-in-the-us-with-read-only-bank-access-3fob",
+  "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-11-08-apple-health-app-redesign-ios-27-3-beta.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/apple-health-app-redesign-in-ios-273-beta-with-public-rollout-promised-later-this-year-5g0j",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-08-nasa-moon-base-student-challenge-1-million.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/nasa-moon-base-student-challenge-opens-with-1-million-for-student-teams-577j",
   "done": false,
   "hashnode": null
  }
