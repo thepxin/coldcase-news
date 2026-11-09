@@ -269,6 +269,13 @@
   "instagram": "18126292139511854",
   "telegram": "52"
  },
+ "2026-11-09-cloudflare-emudhra-weak-keys-forged-certificates": {
+  "at": "2026-11-09T23:43:26Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzw45ahlgh2h",
+  "facebook": "1489437024244341_122098336383546323",
+  "instagram": "18030287483879821",
+  "telegram": "55"
+ },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "at": "2026-11-09T19:27:14Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzvnsvbf4l2h",
@@ -284,7 +291,7 @@
   "telegram": "53"
  },
  "_last_post": {
-  "facebook": "2026-11-09T19:27:00Z",
-  "instagram": "2026-11-09T19:27:14Z"
+  "facebook": "2026-11-09T23:43:19Z",
+  "instagram": "2026-11-09T23:43:26Z"
  }
 }
