@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-09T05:26:29Z",
+   "date": "2026-11-09T19:39:41Z",
    "outlet": "TechCrunch",
-   "title": "Is Jensen Huang’s job on the line? Yale’s Jeffrey Sonnenfeld estimates it’s “about a 50-50”",
-   "url": "https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/"
+   "title": "YouTube streaming data returns to Billboard charts, ending major disagreement",
+   "url": "https://techcrunch.com/2026/11/09/youtube-streaming-data-returns-to-billboard-charts-ending-major-disagreement/"
   },
   {
-   "date": "2026-11-09T05:16:54Z",
+   "date": "2026-11-09T19:36:15Z",
    "outlet": "CoinDesk",
-   "title": "Two rival Ethereum proposals aim to stop Glamsterdam breaking old contracts",
-   "url": "https://www.coindesk.com/tech/2026/11/09/two-rival-ethereum-proposals-aim-to-stop-glamsterdam-breaking-old-contracts"
+   "title": "Robinhood backs tokenization of its stock on OKX–ICE platform even as most companies opt out",
+   "url": "https://www.coindesk.com/business/2026/11/09/robinhood-backs-tokenization-of-its-stock-on-okx-ice-platform-even-as-most-companies-opt-out"
   },
   {
-   "date": "2026-11-09T05:05:00Z",
+   "date": "2026-11-09T19:35:33Z",
+   "outlet": "MIT Technology Review",
+   "title": "The backlash about data centers might really just be about electricity",
+   "url": "https://www.technologyreview.com/2026/11/09/1148194/the-backlash-about-data-centers-might-really-just-be-about-electricity/"
+  },
+  {
+   "date": "2026-11-09T19:30:00Z",
+   "outlet": "Engadget",
+   "title": "How to use your iPhone to take the best picture of the Moon",
+   "url": "https://www.engadget.com/2307830/how-to-use-iphone-take-best-picture-of-moon-guide/"
+  },
+  {
+   "date": "2026-11-09T19:27:20Z",
    "outlet": "NASA",
-   "title": "APOD: 2026 November 9 – Rigel and the Witch Head Nebula",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-9-rigel-and-the-witch-head-nebula/"
+   "title": "La NASA busca a la próxima generación de astronautas",
+   "url": "https://www.nasa.gov/news-release/la-nasa-busca-a-la-proxima-generacion-de-astronautas/"
   },
   {
-   "date": "2026-11-09T05:00:40Z",
-   "outlet": "NVIDIA",
-   "title": "Korea Advances Physical AI Across Industries With NVIDIA",
-   "url": "https://blogs.nvidia.com/blog/korea-physical-ai-ecosystem/"
+   "date": "2026-11-09T19:24:51Z",
+   "outlet": "TechCrunch",
+   "title": "Anthropic releases new Mythos and Fable models amid RSI concerns",
+   "url": "https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/"
   },
   {
-   "date": "2026-11-09T05:00:39Z",
-   "outlet": "NVIDIA",
-   "title": "Korea’s AI Ecosystem Advances and Secures Agentic AI With NVIDIA",
-   "url": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
+   "date": "2026-11-09T19:13:49Z",
+   "outlet": "Electrek",
+   "title": "Toyota sells 3 electric SUVs, but which one is best for you?",
+   "url": "https://electrek.co/2026/11/09/toyota-sells-3-electric-suvs-which-one-is-best/"
   },
   {
-   "date": "2026-11-09T05:00:00Z",
-   "outlet": "NASA",
-   "title": "Ozone Hole Reaches Its 2026 Maximum",
-   "url": "https://science.nasa.gov/earth/earth-observatory/ozone-hole-reaches-its-2026-maximum/"
-  },
-  {
-   "date": "2026-11-09T04:54:39Z",
-   "outlet": "CoinDesk",
-   "title": "Binance's bitcoin mining pool finds just one block in a week as shutdown nears",
-   "url": "https://www.coindesk.com/tech/2026/11/09/binance-s-bitcoin-mining-pool-finds-just-one-block-in-a-week-as-shutdown-nears"
-  },
-  {
-   "date": "2026-11-09T02:14:17Z",
-   "outlet": "The Register",
-   "title": "Huawei says it’s made a 100 percent Chinese PC",
-   "url": "https://www.theregister.com/systems/2026/11/09/huawei-says-its-made-a-100-percent-chinese-pc/5308335"
+   "date": "2026-11-09T19:09:58Z",
+   "outlet": "The Verge",
+   "title": "Apple’s $50 Intelligence Usage Packs extend access to some AI features",
+   "url": "https://www.theverge.com/tech/1030084/apple-intelligence-usage-packs-ai-features-creator-studio-logic-pro"
   }
  ],
  "status": "ok",
- "updated": "2026-11-09T06:17:21Z"
+ "updated": "2026-11-09T19:45:48Z"
 }
