@@ -1,27 +1,23 @@
 ================================================================
-NASA ESCAPADE completes Earth flybys and is due at Mars in September 2027
+Cloudflare eMudhra weak keys: forged certificates appeared within hours of disclosure
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (223/280):
-ESCAPADE borrowed Earth's gravity twice in two days. NASA says Mars arrival is on target for September 2027.
+X (175/280):
+eMudhra picked the number 4 as a key. Cloudflare logged about 22,000 attempted handshakes with the weak keys.
 
-Open case: due September 2027. We check every day.
+Every line sourced: https://coldcasetech.com/posts/2026-11-09-cloudflare-emudhra-weak-keys-forged-certificates/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-09-nasa-escapade-earth-flybys-mars-september-2027/
-
-#Space #TechNews
+#Software #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-ESCAPADE borrowed Earth's gravity twice in two days. NASA says Mars arrival is on target for September 2027.
+eMudhra picked the number 4 as a key. Cloudflare logged about 22,000 attempted handshakes with the weak keys.
 
-NASA's twin ESCAPADE spacecraft completed powered Earth flybys on Nov. 7 and Nov. 9, 2026, and are on target to reach Mars in September 2027.
-
-Open case: due September 2027. We check every day.
+Cloudflare reported about 22,000 handshakes using eMudhra's weak keys and said it has seen no evidence of interception of its own connections so far.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #technews #tech #space
+#coldcasetech #technews #tech #software
