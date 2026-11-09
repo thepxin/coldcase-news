@@ -348,13 +348,19 @@
   "hashnode": null
  },
  "content/posts/2026-11-08-nasa-moon-base-student-challenge-1-million.md": {
-  "attempts": 2,
+  "attempts": 3,
   "devto": "https://dev.to/coldcasetech/nasa-moon-base-student-challenge-opens-with-1-million-for-student-teams-577j",
+  "done": true,
+  "hashnode": null
+ },
+ "content/posts/2026-11-09-nasa-escapade-earth-flybys-mars-september-2027.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/nasa-escapade-completes-earth-flybys-and-is-due-at-mars-in-september-2027-490b",
   "done": false,
   "hashnode": null
  },
  "content/posts/2026-11-09-nvidia-board-investigation-ceo-jensen-huang.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/nvidia-board-opens-independent-investigation-into-ceo-jensen-huang-e3b",
   "done": false,
   "hashnode": null
