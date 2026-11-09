@@ -1,30 +1,30 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
-  "checked": "2026-11-08",
+  "checked": "2026-11-09",
   "result": "new coverage only from Ars Technica: needs an official source or a second outlet"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
-  "checked": "2026-11-08",
-  "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
+  "checked": "2026-11-09",
+  "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
-  "checked": "2026-11-04",
-  "result": "the site did not return the page (blocked, timed out or not found)"
+  "checked": "2026-11-09",
+  "result": "new coverage only from Wired: needs an official source or a second outlet"
  },
  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
   "checked": "2026-11-05",
   "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
  },
  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
-  "checked": "2026-11-03",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-09",
+  "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
   "checked": "2026-11-05",
   "result": "no new coverage in approved feeds"
  },
  "2026-11-01-xbox-new-games-november-2-to-6": {
-  "checked": "2026-11-08",
+  "checked": "2026-11-09",
   "result": "no new coverage in approved feeds"
  },
  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
@@ -32,11 +32,15 @@
   "result": "new coverage only from Engadget: needs an official source or a second outlet"
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
-  "checked": "2026-11-08",
+  "checked": "2026-11-09",
   "result": "no new coverage in approved feeds"
  },
  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
-  "checked": "2026-11-08",
-  "result": "new coverage only from The Verge: needs an official source or a second outlet"
+  "checked": "2026-11-09",
+  "result": "no new coverage in approved feeds"
+ },
+ "2026-11-08-apple-health-app-redesign-ios-27-3-beta": {
+  "checked": "2026-11-09",
+  "result": "no new coverage in approved feeds"
  }
 }
