@@ -1,10 +1,13 @@
-{{- /* Works out this page's affiliate picks from data/affiliates.json:
+{{- /* Works out this page's affiliate picks from data/affiliates.json (older 'general' articles use their field via affiliates.fields):
        card    = first product (that has card copy) not already linked in the article
        toolkit = up to 3 remaining products, also skipping anything linked inline.
      Uses .RawContent so it is safe inside the {{< recommend >}} shortcode. */ -}}
 {{- $out := dict -}}
 {{- $all := hugo.Data.affiliates.products -}}
-{{- with .Params.toolkit -}}{{- with index hugo.Data.affiliates.categories . -}}
+{{- $key := .Params.toolkit | default "general" -}}
+{{- with .File }}{{ with index hugo.Data.affiliates.overrides .ContentBaseName }}{{ $key = . }}{{ end }}{{ end -}}
+{{- if eq $key "general" -}}{{- with index (.Params.tags | default slice) 1 -}}{{- with index hugo.Data.affiliates.fields (lower .) -}}{{- $key = . -}}{{- end -}}{{- end -}}{{- end -}}
+{{- with $key -}}{{- with index hugo.Data.affiliates.categories . -}}
   {{- $pool := slice .card | append .toolkit -}}
   {{- $free := slice -}}
   {{- range $pool -}}
