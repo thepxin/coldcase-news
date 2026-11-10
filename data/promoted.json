@@ -298,17 +298,19 @@
   "telegram": "56"
  },
  "2026-11-10-tesla-cybertruck-production-ending-sales-estimate": {
-  "at": "2026-11-10T02:55:03Z",
+  "at": "2026-11-10T10:26:06Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzwc2dwbgb2x",
+  "facebook": "1489437024244341_122098698909546323",
+  "instagram": "18128188255901511",
   "telegram": "57"
  },
  "2026-11-10-waymo-school-bus-recall-nhtsa-query": {
-  "at": "2026-11-10T02:55:03Z",
+  "at": "2026-11-10T10:26:06Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzwc2h4aqe2j",
   "telegram": "58"
  },
  "_last_post": {
-  "facebook": "2026-11-10T02:54:47Z",
-  "instagram": "2026-11-10T02:55:03Z"
+  "facebook": "2026-11-10T10:25:55Z",
+  "instagram": "2026-11-10T10:26:06Z"
  }
 }
