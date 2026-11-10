@@ -116,17 +116,29 @@ def pick_toolkit(text: str) -> str:
     return best[2] if best[0] > 0 else "privacy"
 
 
+GAME_ONLY_WORDS = ["gaming", "game", "games", "gamer", "gamers", "console", "consoles", "playstation", "xbox", "nintendo",
+                   "steam", "geforce now", "call of duty", "fps"]
 GAMING_WORDS = ["gpu", "gpus", "rtx", "geforce", "radeon", "gaming", "game", "games", "console", "playstation", "xbox", "nintendo", "steam", "fps", "latency"]
 TECH_AREA_TOOLKIT = {"ai": "ai", "devices": "hardware", "chips and silicon": "hardware", "software": "infra",
                      "gaming": "gaming", "cloud and infrastructure": "infra", "telecom": "privacy", "quantum": "general",
-                     "robotics": "general", "energy": "general",
-                     "platforms": "privacy", "policy and privacy": "privacy", "crypto": "crypto", "evs": "general", "space": "general"}
+                     "robotics": "general", "energy": "power",
+                     "platforms": "privacy", "policy and privacy": "privacy", "crypto": "crypto", "evs": "power", "space": "space"}
+DESKTOP_WORDS = ["windows", "macos", "pc", "pcs", "desktop", "laptop", "laptops", "file explorer", "pdf"]
+CLOUD_WORDS = ["cloud", "server", "servers", "api", "apis", "hosting", "database", "kubernetes",
+               "open-source", "open source", "self-host", "self-hosted", "infrastructure", "data center", "datacenter"]
 
 
 def pick_tech_toolkit(topic: str, text: str) -> str:
     t = re.sub(r"https?://\S+|\]\([^)]*\)", " ", (text or "").lower())
-    if topic in ("devices", "chips and silicon", "platforms") and any(re.search(r"\b" + w + r"\b", t) for w in GAMING_WORDS):
+    # A gaming card only when the story is about games (a GPU used for science or AI is not a gaming story).
+    game_hits = sum(len(re.findall(r"\b" + w + r"\b", t)) for w in GAME_ONLY_WORDS)
+    if topic in ("devices", "chips and silicon", "platforms", "cloud and infrastructure", "software") and game_hits >= 2:
         return "gaming"
+    cloud_hits = sum(len(re.findall(r"\b" + re.escape(w) + r"\b", t)) for w in CLOUD_WORDS)
+    if topic == "software" and cloud_hits < 3:
+        # an app or OS story: a cloud-server card would be off-topic. Computer software stories get creative software.
+        desk_hits = sum(len(re.findall(r"\b" + re.escape(w) + r"\b", t)) for w in DESKTOP_WORDS)
+        return "desktop" if desk_hits >= 2 else "general"
     return TECH_AREA_TOOLKIT.get(topic, "general")
 
 
