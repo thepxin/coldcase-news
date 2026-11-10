@@ -33,7 +33,11 @@
         <h3>X <span class="rec-of">fits in 280 · each link counts as 23</span></h3>
         <textarea id="x-{{ .File.ContentBaseName }}" readonly rows="6">{{ $s.x }}</textarea>
         <p><button class="rec-btn" type="button" data-copy="x-{{ .File.ContentBaseName }}">Copy</button>
-          <a class="cct-btn-money" href="https://x.com/intent/post?text={{ $s.x }}" target="_blank" rel="noopener">Post on X</a></p>
+          <a class="cct-btn-money" href="https://x.com/intent/post?text={{ $s.x }}" target="_blank" rel="noopener">Post on X</a>
+          {{- with index (partialCached "og_cards.html" $p $p.RelPermalink) "16x9" }}
+          <a class="rec-btn" href="{{ .RelPermalink }}" download="coldcasetech-x-{{ $p.File.ContentBaseName }}.png">Download picture for X</a>
+          <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-x-{{ $p.File.ContentBaseName }}.png" data-copy-from="x-{{ $p.File.ContentBaseName }}" hidden>Copy text &amp; share picture</button>
+          {{- end }}</p>
       </section>
       <section>
         <h3>Instagram caption <span class="rec-of">post it with the image · links don't work in captions</span></h3>
@@ -50,7 +54,7 @@
   <h2>Before you post</h2>
   <ul>
     <li><b>Instagram:</b> on your phone, "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste the caption.</li>
-    <li><b>X:</b> the post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
+    <li><b>X:</b> posts with a picture do better: download the picture and attach it (on a phone, "Copy text &amp; share picture" does both). The post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
   </ul>
 </aside>
 <script>
