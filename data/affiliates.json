@@ -1,5 +1,5 @@
 {
-  "_readme": "One place for every affiliate placement. url must point to an existing /go/ page. Edit wording here; never edit the /go/ pages' affiliate URLs or tags.",
+  "_readme": "One place for every affiliate placement. url must point to an existing /go/ page. Edit wording here; never edit the /go/ pages' affiliate URLs or tags. Picks are for a tech-news audience: the product type the article is about, never security add-ons on unrelated stories. 'general' shows nothing.",
   "products": {
     "yubikey": {
       "name": "YubiKey hardware security keys",
@@ -14,25 +14,28 @@
       "name": "Contabo Object Storage",
       "url": "/go/contabo-storage.html",
       "amazon": false,
-      "card_title": "Keep one backup somewhere else",
-      "card_text": "A copy of critical data with a second provider means one compromised account or one regional outage cannot take everything down with it.",
+      "card_title": "Room for big files and backups",
+      "card_text": "S3-compatible object storage holds datasets, media libraries and backups at a flat monthly price.",
       "card_cta": "See Contabo storage plans",
-      "kit_line": "Off-site backups at a second provider"
+      "kit_line": "S3-compatible storage for datasets, media and backups"
     },
     "contabo-dedicated": {
       "name": "Contabo dedicated servers",
       "url": "/go/contabo-dedicated.html",
       "amazon": false,
-      "kit_line": "A standby server outside your main cloud for failover",
-      "card_title": "Have somewhere to fail over to",
-      "card_text": "A standby server outside your main cloud lets critical services keep running when one provider or region goes down.",
+      "kit_line": "A whole physical server for heavier workloads",
+      "card_title": "When a shared server is not enough",
+      "card_text": "A dedicated server gives one project all of a machine's processor, memory and disks.",
       "card_cta": "See Contabo dedicated servers"
     },
     "contabo-vps": {
-      "name": "Contabo VPS",
+      "name": "Contabo Core VPS",
       "url": "/go/contabo-vps.html",
       "amazon": false,
-      "kit_line": "A cheap, disposable Linux box for testing and research"
+      "kit_line": "A low-cost cloud server for testing software and small projects",
+      "card_title": "Try it on your own server",
+      "card_text": "A low-cost cloud server is enough to run open-source software, test an API or host a small project, billed monthly.",
+      "card_cta": "Configure a Contabo Core VPS"
     },
     "surfshark-id": {
       "name": "Surfshark Alternative ID",
@@ -62,7 +65,7 @@
       "name": "UPS battery backups",
       "url": "/go/ups-backup.html",
       "amazon": true,
-      "kit_line": "Keeps routers and home servers up through short power cuts"
+      "kit_line": "Keeps your router and PC running through short power cuts"
     },
     "firewall": {
       "name": "Network firewall appliances",
@@ -83,10 +86,70 @@
       "name": "ElevenLabs",
       "url": "/go/elevenlabs.html",
       "amazon": false,
-      "kit_line": "AI voice generation for narrating reports, videos and briefings",
+      "kit_line": "AI voice generation for narration, videos and podcasts",
       "card_title": "Turn text into natural-sounding speech",
       "card_text": "ElevenLabs generates voiceovers and narration from text, in many voices and languages.",
       "card_cta": "Try ElevenLabs"
+    },
+    "portable-ssd": {
+      "name": "Portable SSDs",
+      "url": "/go/buy.html?q=portable+SSD+USB-C",
+      "amazon": true,
+      "card_title": "More room for photos, games and projects",
+      "card_text": "A pocket-sized SSD adds fast storage to a laptop, console or phone over USB-C.",
+      "card_cta": "Compare portable SSDs",
+      "kit_line": "Fast, pocket-sized storage for laptops, consoles and phones"
+    },
+    "usb-c-charger": {
+      "name": "GaN USB-C chargers",
+      "url": "/go/buy.html?q=GaN+USB-C+charger",
+      "amazon": true,
+      "card_title": "One small charger for every device",
+      "card_text": "A multi-port GaN charger can power a laptop, phone and tablet from a single plug.",
+      "card_cta": "Compare GaN chargers",
+      "kit_line": "One compact charger for laptop, phone and tablet"
+    },
+    "power-station": {
+      "name": "Portable power stations",
+      "url": "/go/buy.html?q=portable+power+station",
+      "amazon": true,
+      "card_title": "Keep devices charged when the power is out",
+      "card_text": "A portable power station stores enough energy to charge phones and laptops or run small appliances during a power cut or a trip.",
+      "card_cta": "Compare power stations",
+      "kit_line": "Battery power for phones, laptops and small appliances, at home or away"
+    },
+    "telescope": {
+      "name": "Beginner telescopes",
+      "url": "/go/buy.html?q=beginner+telescope",
+      "amazon": true,
+      "card_title": "See the night sky for yourself",
+      "card_text": "A beginner telescope shows the Moon's craters and Jupiter's largest moons from a backyard.",
+      "card_cta": "Compare beginner telescopes",
+      "kit_line": "A first telescope for the Moon and planets"
+    },
+    "tenergy": {
+      "name": "Tenergy rechargeable batteries",
+      "url": "/go/tenergy.html",
+      "amazon": false,
+      "kit_line": "Rechargeable batteries and chargers (Tenergy ships within the US)"
+    },
+    "contabo-ai": {
+      "name": "Contabo servers for AI models",
+      "url": "/go/contabo-ai.html",
+      "amazon": false,
+      "card_title": "Run an AI model on your own server",
+      "card_text": "Open models such as DeepSeek can run on a rented server instead of someone else's app, so prompts and data stay on a machine you control.",
+      "card_cta": "See Contabo's AI server setup",
+      "kit_line": "A rented server set up for running open AI models yourself"
+    },
+    "corel": {
+      "name": "Corel creative software",
+      "url": "/go/corel.html",
+      "amazon": false,
+      "card_title": "Design, photo and PDF tools for your computer",
+      "card_text": "Corel makes CorelDRAW, PaintShop Pro and WordPerfect for Windows, with CorelDRAW also on Mac, sold as one-time purchases or subscriptions.",
+      "card_cta": "See Corel software",
+      "kit_line": "Design, photo-editing and office software for Windows and Mac"
     }
   },
   "categories": {
@@ -99,44 +162,40 @@
       ]
     },
     "infra": {
-      "card": "contabo-storage",
+      "card": "contabo-vps",
       "toolkit": [
-        "contabo-dedicated",
-        "gearup",
-        "ups-backup",
-        "firewall"
+        "contabo-storage",
+        "contabo-dedicated"
       ]
     },
     "privacy": {
       "card": "surfshark-vpn",
       "toolkit": [
-        "yubikey",
         "surfshark-id",
-        "contabo-vps"
+        "yubikey"
       ]
     },
     "ai": {
-      "card": "elevenlabs",
+      "card": "contabo-ai",
       "toolkit": [
+        "elevenlabs",
         "contabo-vps",
-        "surfshark-id",
-        "yubikey"
+        "contabo-storage"
       ]
     },
     "gaming": {
       "card": "gearup",
       "toolkit": [
-        "ups-backup",
-        "encrypted-ssd",
-        "surfshark-vpn"
+        "portable-ssd",
+        "ups-backup"
       ]
     },
     "hardware": {
-      "card": "encrypted-ssd",
+      "card": "portable-ssd",
       "toolkit": [
+        "usb-c-charger",
         "ups-backup",
-        "gearup",
-        "firewall"
+        "corel"
       ]
     },
     "crypto": {
@@ -148,12 +207,45 @@
       ]
     },
     "general": {
-      "card": "surfshark-vpn",
+      "card": "",
+      "toolkit": []
+    },
+    "power": {
+      "card": "power-station",
       "toolkit": [
-        "gearup",
-        "elevenlabs",
-        "ups-backup"
+        "ups-backup",
+        "usb-c-charger",
+        "tenergy"
       ]
+    },
+    "space": {
+      "card": "telescope",
+      "toolkit": []
+    },
+    "desktop": {
+      "card": "corel",
+      "toolkit": []
     }
+  },
+  "fields": {
+    "_note": "Older articles saved with toolkit 'general' use their field instead (the second tag).",
+    "space": "space",
+    "evs": "power",
+    "energy": "power"
+  },
+  "overrides": {
+    "_note": "Articles published before the tech-news remap, re-sorted with the current rules (slug: category).",
+    "2026-10-23-call-of-duty-modern-warfare-4-geforce-now": "gaming",
+    "2026-10-24-nvidia-cudss-generally-available-simulation-library": "hardware",
+    "2026-10-24-wikipedia-ai-cleanup-llm-ban-update": "ai",
+    "2026-10-28-apple-siri-ai-new-languages-end-of-year": "general",
+    "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": "hardware",
+    "2026-10-30-windows-11-kb5127936-customizable-right-click-menu": "desktop",
+    "2026-11-01-apple-homepod-27-2-mac-speaker-feature": "desktop",
+    "2026-11-03-amazon-alexa-for-shopping-black-friday-tools": "general",
+    "2026-11-06-amazon-alexa-for-shopping-text-rollout": "general",
+    "2026-11-08-apple-health-app-redesign-ios-27-3-beta": "general",
+    "2026-11-09-cloudflare-emudhra-weak-keys-forged-certificates": "general",
+    "2026-11-10-waymo-school-bus-recall-nhtsa-query": "general"
   }
 }
