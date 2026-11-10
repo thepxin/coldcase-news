@@ -1,4 +1,4 @@
-"""Share posts to Dev.to and Hashnode, and ping IndexNow.
+"""Share posts to Dev.to, and ping IndexNow.
 
 Modes:
   python scripts/syndicate.py --due
@@ -28,9 +28,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 BASE_URL = "https://coldcasetech.com"
 INDEXNOW_KEY = "cctindexnow2026key8941"
 DEVTO_API_KEY = os.environ.get("DEVTO_API_KEY", "")
-HASHNODE_TOKEN = os.environ.get("HASHNODE_TOKEN", "")
-HASHNODE_PUB_ID = os.environ.get("HASHNODE_PUB_ID", "")
-HASHNODE_API = os.environ.get("HASHNODE_API", "https://gql.hashnode.com/")
 WAIT_SECONDS = int(os.environ.get("SYNDICATE_WAIT_SECONDS", "900"))
 POLL_EVERY = int(os.environ.get("SYNDICATE_POLL_SECONDS", "30"))
 DELAY_HOURS = float(os.environ.get("SYNDICATE_DELAY_HOURS", "0"))
@@ -209,55 +206,6 @@ def post_devto(post, canonical, md):
     return None
 
 
-def post_hashnode(post, canonical, md):
-    if not (HASHNODE_TOKEN and HASHNODE_PUB_ID):
-        print("Hashnode: skipped (missing token or publication id)")
-        return "skipped"
-    pub = HASHNODE_PUB_ID.replace("dashboards/", "").strip("/")
-    query = "mutation P($input: PublishPostInput!){publishPost(input:$input){post{url}}}"
-    inp = {
-        "title": post["title"], "publicationId": pub, "contentMarkdown": md,
-        "originalArticleURL": canonical,
-        "tags": [{"slug": "technology", "name": "Technology"},
-                 {"slug": "news", "name": "News"},
-                 {"slug": "tech", "name": "Tech"}],
-    }
-    if post["cover"]:
-        inp["coverImageOptions"] = {"coverImageURL": post["cover"]}
-    try:
-        # Do not let a redirect turn our POST into a GET (that returns Hashnode's web page, not data):
-        # follow up to 3 redirects ourselves and send the same POST each time.
-        url, hops = HASHNODE_API, []
-        for _ in range(4):
-            r = requests.post(url, headers={"Authorization": HASHNODE_TOKEN, "Content-Type": "application/json",
-                                            "Accept": "application/json", "User-Agent": "ColdCaseTech-syndication/1.0"},
-                              json={"query": query, "variables": {"input": inp}}, timeout=60, allow_redirects=False)
-            if r.status_code in (301, 302, 303, 307, 308) and r.headers.get("location"):
-                url = requests.compat.urljoin(url, r.headers["location"])
-                hops.append(f"{r.status_code} -> {url}")
-                continue
-            break
-        if hops:
-            print("Hashnode: address redirected: " + "; ".join(hops))
-        try:
-            data = r.json()
-        except ValueError:
-            kind = r.headers.get("content-type", "unknown")
-            snippet = " ".join(r.text.split())[:200]
-            print(f"Hashnode ERROR: HTTP {r.status_code} from {url}, Hashnode sent back a {kind} page instead of data "
-                  f"(usually a block or a changed address). Start of reply: {snippet}")
-            return None
-        if r.status_code == 200 and not data.get("errors") and (data.get("data") or {}).get("publishPost"):
-            url = data["data"]["publishPost"]["post"]["url"] or "posted"
-            print(f"Hashnode OK -> {url}")
-            return url
-        errs = "; ".join(e.get("message", "") for e in data.get("errors") or [] if isinstance(e, dict))
-        print(f"Hashnode WARNING HTTP {r.status_code}: {errs or r.text[:300]}")
-    except Exception as e:
-        print(f"Hashnode ERROR: {e}")
-    return None
-
-
 def ping_indexnow(urls):
     try:
         r = requests.post("https://api.indexnow.org/indexnow", timeout=15, json={
@@ -296,7 +244,7 @@ def ledger_key(path):
 def share(path, ledger):
     """Post to every platform not yet done for this file; record results in the ledger."""
     key = ledger_key(path)
-    entry = ledger.get(key, {"devto": None, "hashnode": None, "attempts": 0})
+    entry = ledger.get(key, {"devto": None, "attempts": 0})
     post = read_post(path)
     canonical = canonical_for(path)
     if not wait_until_live(canonical):
@@ -307,11 +255,9 @@ def share(path, ledger):
     entry["attempts"] = entry.get("attempts", 0) + 1
     if not entry.get("devto"):
         entry["devto"] = post_devto(post, canonical, md)
-    if not entry.get("hashnode"):
-        entry["hashnode"] = post_hashnode(post, canonical, md)
-    entry["done"] = bool(entry.get("devto") and entry.get("hashnode")) or entry["attempts"] >= MAX_ATTEMPTS
-    if entry["done"] and not (entry.get("devto") and entry.get("hashnode")):
-        print(f"{key}: giving up on the failed platform(s) after {MAX_ATTEMPTS} attempts.")
+    entry["done"] = bool(entry.get("devto")) or entry["attempts"] >= MAX_ATTEMPTS
+    if entry["done"] and not entry.get("devto"):
+        print(f"{key}: giving up on Dev.to after {MAX_ATTEMPTS} attempts.")
     ledger[key] = entry
     save_ledger(ledger)
 

@@ -74,7 +74,7 @@ lines += [
     "- [ ] No sentence draws a conclusion or gives advice",
     "",
     "### How to decide (GitHub phone app works)",
-    "- **Publish:** tap **Merge pull request**, then **Confirm merge**. It goes live in about 2 minutes; Dev.to and Hashnode copies follow on a later daily run.",
+    "- **Publish:** tap **Merge pull request**, then **Confirm merge**. It goes live in about 2 minutes; the Dev.to copy follows on a later daily run.",
     "- **Reject:** tap **Close pull request**. Nothing is published.",
     "- **Fix first:** in a browser, open **Files changed**, tap **...** on the file, **Edit file**, commit to this branch, then merge.",
     "",

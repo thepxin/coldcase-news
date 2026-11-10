@@ -653,11 +653,13 @@ battery batteries charger display screen storage memory driver drivers fps
 """.split())
 
 
-def find_update(case, finder, log=print):
+def find_update(case, finder, log=print, allow_single=False):
     """New, verified developments for an existing case, from approved feeds only.
     case: dict with title, since (datetime of the last update or publication) and urls (every URL already used).
     Returns (sources, reason). Every new source is dated AFTER 'since', is about the same case, and together they
-    include at least one Tier A source or two different outlets."""
+    include at least one Tier A source or two different outlets.
+    allow_single=True (used only by the past-due check, which adds official pages and applies the rule itself)
+    also returns coverage from a single outlet."""
     f = finder
     keys = case_keys(case["title"])
     if not keys:
@@ -691,8 +693,161 @@ def find_update(case, finder, log=print):
             reason = "no new source is dated after the last check"
             continue
         outlets = {s["outlet"] for s in new}
-        if not (any(s["tier"] == "A" for s in new) or len(outlets) >= 2):
+        if not allow_single and not (any(s["tier"] == "A" for s in new) or len(outlets) >= 2):
             reason = f"new coverage only from {', '.join(sorted(outlets))}: needs an official source or a second outlet"
             continue
         return clean(new, f.rules["max_sources"]), ""
     return None, reason
+
+
+# ---------------------------------------------------------------- past-due check (open cases whose date has passed)
+# When a promise's date has passed and ordinary coverage is not enough to say what happened, look at the company's
+# own pages directly: (1) its official feed posts published since the case, read in full (the outcome is often in the
+# text, not the headline), and (2) the official pages its own announcement links to (product and store pages), read
+# today. Coverage from a single outlet may be added. The usual rule still applies to the result: at least one
+# official source, or two different outlets. The writer and the fact-checker then decide what the pages state.
+MAX_DUE_FEED_FETCHES = 5
+MAX_DUE_PAGE_FETCHES = 4
+MAX_DUE_SOURCES = 4
+DUE_FILLER = set("""
+due starts start stores store adds add end five four three two one asks ask free around returns return completes
+previous fall spring summer winter public wind sets set dates date nov dec jan feb mar apr jun jul aug sep sept oct
+friday monday tuesday wednesday thursday saturday sunday display inch new now late early mid still more
+""".split())
+DUE_JUNK_PATH = re.compile(r"/(docs?|guides?|help|support|careers|jobs|legal|privacy|terms|cookies?|login|signin|signup|"
+                           r"register|contact|account|cart|bag|feed|rss|tags?|author|category|search|subscribe|newsletter|"
+                           r"sitemap|compare|accessories|trade-in|financing)(/|$)|\.(jpg|jpeg|png|gif|svg|pdf|zip|mp4|css|js|xml)$", re.I)
+DATED_PAGE = re.compile(r"/20\d\d/|newsroom|/blog|/news|/press|/stories", re.I)
+
+
+def due_names(title):
+    """The words that NAME the thing a case is about ('ipad', 'mini', 'oled'), without date and filler words."""
+    keys = case_keys(title)
+    names = {k for k in keys if k not in DUE_FILLER}
+    return names or keys
+
+
+def official_outlets(case, cfg):
+    """Official (Tier A) outlets tied to a case: those among its sources, and those named in its headline."""
+    found = {}
+    for src in case.get("sources") or []:
+        o = outlet_for(src.get("url", ""), cfg)
+        if o and o["tier"] == "A":
+            found[o["id"]] = o
+    title_words = set(tokens(case.get("title", "")))
+    for o in cfg["outlets"]:
+        name_words = {t for t in tokens(o["name"]) if t not in GENERIC and t not in CATEGORY_WORDS}
+        if o["tier"] == "A" and name_words & title_words:
+            found[o["id"]] = o
+    return list(found.values())
+
+
+def focus_excerpt(text, names, limit):
+    """The part of a long page that talks about the case: the opening, plus the passage around its names when they
+    appear further down than the normal excerpt reaches (e.g. one game in a long weekly list)."""
+    if len(text) <= limit or key_hits(text[:limit], names) >= min(3, len(names)):
+        return text[:limit]
+    low, spots = text.lower(), []
+    for k in names:
+        m = re.search(r"\b" + re.escape(k) + r"\b", low)
+        if m:
+            spots.append(m.start())
+    if not spots:
+        return text[:limit]
+    head = limit // 4
+    start = max(head, sorted(spots)[len(spots) // 2] - (limit - head) // 2)
+    return text[:head] + " [...] " + text[start:start + limit - head]
+
+
+def _page(finder, url):
+    """(html, data) for a page, downloaded at most once per run and counted against the run's page limit."""
+    if url not in finder.cache:
+        if finder.fetches >= MAX_ARTICLE_FETCHES:
+            return None, None
+        finder.fetches += 1
+        try:
+            html = fetch_html(url)
+        except Exception:
+            html = None
+        finder.cache[url] = (html, extract(html, url) if html else None)
+    return finder.cache[url]
+
+
+def find_due_evidence(case, finder, log=print):
+    """For an OPEN case whose due date has passed. case: title, since, urls, sources (the case's own source list).
+    Returns (sources, reason) like find_update."""
+    f, cfg = finder, finder.cfg
+    names = due_names(case["title"])
+    if not names:
+        return None, "headline has no distinctive names to search for"
+    need = min(3, len(names))
+    since, used, today = case["since"], set(case["urls"]), iso(f.now)
+    limit = f.rules["excerpt_chars"]
+    officials = official_outlets(case, cfg)
+    official_ids = {o["id"] for o in officials}
+    found, read_posts, read_pages = [], 0, 0
+
+    def relevant(url):
+        html, data = _page(f, url)
+        text = (data or {}).get("text") or ""
+        if not html or len(text) < 400:
+            return None, None
+        excerpt = focus_excerpt(text, names, limit)
+        return (data, excerpt) if key_hits(excerpt, names) >= need else (None, None)
+
+    # 1. the company's own feed posts since the case, read in full
+    posts = [i for i in f.items if i["outlet"]["id"] in official_ids and i["date"] > since and i["url"] not in used
+             and not DEAL_TITLE.search(i["title"])]
+    posts.sort(key=lambda i: (key_hits(i["title"] + " " + i.get("summary", ""), names), i["date"]), reverse=True)
+    for i in posts[:MAX_DUE_FEED_FETCHES]:
+        read_posts += 1
+        data, excerpt = relevant(i["url"])
+        if data:
+            found.append({"outlet": i["outlet"]["name"], "tier": "A", "kind": "official", "title": data.get("title") or i["title"],
+                          "url": i["url"], "date": iso(i["date"]), "excerpt": excerpt})
+
+    # 2. official pages linked from the case's own official sources (product and store pages), as they read today
+    orgs = {org_label(d) for o in officials for d in ("https://" + x for x in o["domains"])}
+    candidates = {}
+    for src in [x for x in case.get("sources") or [] if x.get("tier") == "A"][:3]:
+        html, _ = _page(f, src["url"])
+        for u in links_in(html, src["url"]):
+            path = urlparse(u).path or "/"
+            if u in used or u in candidates or path == "/" or DUE_JUNK_PATH.search(path) or org_label(u) not in orgs | {org_label(src["url"])}:
+                continue
+            hits = key_hits(re.sub(r"[-_/.]+", " ", path), names)
+            if hits:
+                candidates[u] = hits
+    for u in sorted(candidates, key=candidates.get, reverse=True)[:MAX_DUE_PAGE_FETCHES]:
+        if any(u == x["url"] for x in found):
+            continue
+        read_pages += 1
+        data, excerpt = relevant(u)
+        if not data:
+            continue
+        o = outlet_for(u, cfg)
+        own = f"{org_label(u).capitalize()} (official page)"
+        if DATED_PAGE.search(u):   # a dated post: it only counts if it was published after the case
+            d = parse_date(data.get("date"))
+            if not d or d <= since:
+                continue
+            found.append({"outlet": o["name"] if o else own, "tier": "A", "kind": "official", "title": data.get("title") or u,
+                          "url": u, "date": iso(d), "excerpt": excerpt})
+        else:                      # a live page (product, store): what it shows on the day it was read
+            found.append({"outlet": o["name"] if o else own, "tier": "A", "kind": f"official page, read on {today}",
+                          "title": data.get("title") or u, "url": u, "date": today, "excerpt": excerpt})
+
+    # 3. newsroom coverage, even from a single outlet (it counts only together with the above, or with a second outlet)
+    extra, _ = find_update(case, f, log, allow_single=True)
+    for x in extra or []:
+        if all(x["url"] != y["url"] for y in found):
+            found.append(x)
+
+    if not found:
+        return None, (f"past-due check: read {read_posts} official post(s) and {read_pages} official page(s); "
+                      "none of them is about this case yet")
+    outlets = {x["outlet"] for x in found}
+    if not (any(x["tier"] == "A" for x in found) or len(outlets) >= 2):
+        return None, (f"past-due check: coverage only from {', '.join(sorted(outlets))}, and no official page about "
+                      f"this case yet ({read_posts} official post(s), {read_pages} official page(s) read)")
+    return clean(found, MAX_DUE_SOURCES), ""
