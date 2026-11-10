@@ -370,5 +370,23 @@
   "devto": "https://dev.to/coldcasetech/nvidia-board-opens-independent-investigation-into-ceo-jensen-huang-e3b",
   "done": true,
   "hashnode": null
+ },
+ "content/posts/2026-11-10-anthropic-claude-fable-5-2-launch-price.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/anthropic-claude-fable-52-launches-at-8-per-million-input-tokens-1l6g",
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-10-tesla-cybertruck-production-ending-sales-estimate.md": {
+  "attempts": 1,
+  "devto": null,
+  "done": false,
+  "hashnode": null
+ },
+ "content/posts/2026-11-10-waymo-school-bus-recall-nhtsa-query.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/waymo-school-bus-recall-nhtsa-opens-query-into-whether-the-fix-worked-ecj",
+  "done": false,
+  "hashnode": null
  }
 }
