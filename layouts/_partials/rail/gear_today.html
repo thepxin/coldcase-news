@@ -3,7 +3,10 @@
 {{- $keys := slice }}{{ $from := dict -}}
 {{- range first 3 (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
   {{- $p := . -}}
-  {{- with index $d.categories (.Params.toolkit | default "general") -}}
+  {{- $key := .Params.toolkit | default "general" -}}
+  {{- with .File }}{{ with index $d.overrides .ContentBaseName }}{{ $key = . }}{{ end }}{{ end -}}
+  {{- if eq $key "general" -}}{{- with index (.Params.tags | default slice) 1 -}}{{- with index $d.fields (lower .) -}}{{- $key = . -}}{{- end -}}{{- end -}}{{- end -}}
+  {{- with index $d.categories $key -}}
     {{- $k := .card -}}
     {{- if and $k (not (in $keys $k)) }}{{ $keys = $keys | append $k }}{{ $from = merge $from (dict $k $p) }}{{ end -}}
   {{- end -}}
