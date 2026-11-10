@@ -1,20 +1,72 @@
 ================================================================
-Cloudflare eMudhra weak keys: forged certificates appeared within hours of disclosure
+Anthropic Claude Fable 5.2 launches at $8 per million input tokens
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (175/280):
-eMudhra picked the number 4 as a key. Cloudflare logged about 22,000 attempted handshakes with the weak keys.
+X (203/280):
+Anthropic's Claude Fable 5.2 costs $8 per million input tokens, down from $10, TechCrunch reports. Mythos 5.2 starts with vetted organizations.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-09-cloudflare-emudhra-weak-keys-forged-certificates/
+Every line sourced: https://coldcasetech.com/posts/2026-11-10-anthropic-claude-fable-5-2-launch-price/
+
+#AI #TechNews
+
+INSTAGRAM (post this caption with the image from the share kit):
+Anthropic's Claude Fable 5.2 costs $8 per million input tokens, down from $10, TechCrunch reports. Mythos 5.2 starts with vetted organizations.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #ai
+
+
+================================================================
+Tesla Cybertruck: Musk cited 1 million reservations. Experts estimate 71,000 sold.
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
+================================================================
+
+X (207/280):
+Elon Musk cited 1 million Cybertruck reservations. Industry experts estimate about 71,000 trucks sold since November 2023.
+
+Verdict: Not Delivered.
+
+Every line sourced: https://coldcasetech.com/posts/2026-11-10-tesla-cybertruck-production-ending-sales-estimate/
+
+#EV #TechNews
+
+INSTAGRAM (post this caption with the image from the share kit):
+Elon Musk cited 1 million Cybertruck reservations. Industry experts estimate about 71,000 trucks sold since November 2023.
+
+Tesla CEO Elon Musk said Cybertruck production ends in about eight months, after he predicted 250,000 annual sales and industry experts estimate about 71,000 sold.
+
+Verdict: Not Delivered.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #technews #tech #ev
+
+
+================================================================
+Waymo school bus recall: NHTSA opens query into whether the fix worked
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
+================================================================
+
+X (190/280):
+NHTSA says most Waymo school bus incidents came after the software fix. Waymo says it has had no citations since March 2026.
+
+Every line sourced: https://coldcasetech.com/posts/2026-11-10-waymo-school-bus-recall-nhtsa-query/
 
 #Software #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-eMudhra picked the number 4 as a key. Cloudflare logged about 22,000 attempted handshakes with the weak keys.
+NHTSA says most Waymo school bus incidents came after the software fix. Waymo says it has had no citations since March 2026.
 
-Cloudflare reported about 22,000 handshakes using eMudhra's weak keys and said it has seen no evidence of interception of its own connections so far.
+NHTSA opened a recall query into Waymo's robotaxi software remedy after reporting that most school bus passing incidents occurred after the update.
 
 Full story and every source: link in bio.
 
