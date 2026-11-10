@@ -92,7 +92,7 @@ def recent_articles():
         except ValueError:
             continue
         if date > cut and fm.get("social"):
-            out.append({"slug": name[:-3], "fm": fm, "date": date})
+            out.append({"slug": name[:-3], "fm": fm, "date": date, "body": text[4:].split("\n---\n", 1)[-1]})
     return sorted(out, key=lambda a: a["date"])
 
 
@@ -119,16 +119,19 @@ def pieces(a):
     fm, s = a["fm"], a["fm"]["social"]
     status = social._status_line(fm.get("status", ""), fm.get("verdict", ""), fm.get("due", ""))
     field = next((t for t in fm.get("tags", []) if str(t).lower() != "tech"), "")
+    # Hashtags that name the story (#Waymo #NHTSA). New articles carry them; older ones get them worked out here.
+    names = s.get("tags")
+    if not isinstance(names, list):
+        names = social.story_tags(fm.get("title", ""), a.get("body", ""), skip=social.outlet_words(fm.get("sources")))
     return {"title": fm.get("title", ""), "hook": (s.get("hook") or fm.get("description") or "").strip(),
             "summary": (fm.get("description") or "").strip(), "status": status, "field": field,
+            "names": [str(t) for t in names], "field_tag": social.field_tag_for(str(field)) if field else "Tech",
             "instagram": (s.get("instagram") or "").strip(), "url": f"{SITE}/posts/{a['slug']}/"}
 
 
 # ---------------- Bluesky ----------------
 def bluesky_text(p):
-    short = social.FIELD_TAGS.get(p["field"].lower(), re.sub(r"[^A-Za-z0-9]", "", p["field"])) if p["field"] else ""
-    tags = ["TechNews"] + ([short] if short else [])   # e.g. "Cloud and Infrastructure" -> #Cloud
-    tag_line = " ".join("#" + t for t in tags if t)
+    tag_line = social.tag_line(p["names"], p["field_tag"], 2)   # e.g. "#Waymo #NHTSA"
     for parts in ([p["hook"], p["status"], tag_line], [p["hook"], p["status"]], [p["hook"]]):
         text = "\n\n".join(x for x in parts if x)
         if len(text) <= BSKY_LIMIT:
@@ -190,10 +193,12 @@ def bluesky_post(sess, p, card_url):
 def telegram_caption(p):
     e = lambda t: html.escape(t, quote=False)
     parts = [f"<b>{e(p['title'])}</b>", e(p["hook"]) if p["hook"] != p["title"] else "", e(p["status"]),
-             "Every line links to its source."]
-    text = "\n\n".join(x for x in parts if x)
-    if len(re.sub(r"<[^>]+>", "", html.unescape(text))) > TG_CAPTION:
-        text = f"<b>{e(p['title'])}</b>"
+             "Every line links to its source.", social.tag_line(p["names"], p["field_tag"], 3)]
+    plain = lambda t: len(re.sub(r"<[^>]+>", "", html.unescape(t)))
+    for keep in (parts, parts[:-1], parts[:1]):   # too long for a photo caption: drop the hashtags, then the rest
+        text = "\n\n".join(x for x in keep if x)
+        if plain(text) <= TG_CAPTION:
+            break
     return text
 
 
@@ -231,8 +236,7 @@ def meta_error(r):
 
 
 def facebook_text(p):
-    short = social.FIELD_TAGS.get(p["field"].lower(), re.sub(r"[^A-Za-z0-9]", "", p["field"])) if p["field"] else ""
-    tags = " ".join("#" + t for t in ["TechNews", short] if t)
+    tags = social.tag_line(p["names"], p["field_tag"], 3)
     return "\n\n".join(x for x in [p["hook"], p["status"], "Every line links to its source.", tags] if x)
 
 
@@ -245,7 +249,12 @@ def facebook_post(p):
 
 
 def instagram_caption(p, item):
-    return (p["instagram"] or item.get("caption") or "").strip()[:2200]
+    cap = (p["instagram"] or item.get("caption") or "").strip()
+    lines = cap.split("\n")
+    if lines and lines[-1].startswith("#coldcasetech") and p["names"]:   # captions written before story hashtags existed
+        lines[-1] = social.tag_line(p["names"], p["field_tag"], 5, brand=True, lower=True)
+        cap = "\n".join(lines)
+    return cap[:2200]
 
 
 def instagram_post(p, item):

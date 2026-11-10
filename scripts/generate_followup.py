@@ -1041,10 +1041,11 @@ draft: false
                          then=article.original_claim, now=article.current_reality, labels=labels,
                          status="report" if kind == "report" else ("open" if is_open else "closed"),
                          verdict=article.verdict_score, due=article.due_text.strip() if is_open else "",
-                         url=canonical_url, field_key=topic, field_label=area_label(topic), sources=sources or [])
+                         url=canonical_url, field_key=topic, field_label=area_label(topic), sources=sources or [],
+                         body=article.markdown_body, hot=TRENDING_NOW)
     fm_social = "social:\n" + "".join(
         f"  {k}: {json.dumps(kit[k], ensure_ascii=False)}\n"
-        for k in ("hook", "x", "instagram"))
+        for k in ("hook", "x", "instagram", "tags"))
     with open(filename, "r", encoding="utf-8") as f:
         text = f.read()
     with open(filename, "w", encoding="utf-8") as f:
@@ -1421,6 +1422,7 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
     return result
 
 
+TRENDING_NOW = {}   # {word: weight} from trends.Hot, set when a desk run starts
 MAX_DUE_CHECKS = int(os.environ.get("MAX_DUE_CHECKS", "6"))   # past-due cases given the deeper check per run
 ARTICLES_PER_DAY = int(os.environ.get("ARTICLES_PER_DAY", "3"))
 # One article per slot, spread over the day (UTC; the workflow's cron times must match):
@@ -1484,6 +1486,8 @@ def run_desk(desk: str, used_urls: set, call_limit: int, known=(), want: int = 1
     published = []
     known = list(known)
     hot = trends.Hot.fetch()
+    global TRENDING_NOW
+    TRENDING_NOW = hot.weight   # also used to put a trending name first in the hashtags
     for topic, sources, mode in discover(topics, used_urls, desk=desk, finder=finder_for(desk), known=known,
                                          skip_fields=fields_done, hot=hot, focus=focus):
         if AI_EXHAUSTED or AI_BUSY or DESK_OUT or len(published) >= want:

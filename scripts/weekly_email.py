@@ -108,8 +108,17 @@ def desk(c):
     return "Security Friday" if c.get("desk") == "security" else "Tech"
 
 
-def build(verdicts, new_cases, other, watching, now):
-    """Returns (subject, preview_text, html, markdown)."""
+def lead_picture(case):
+    """The share picture of this week's top story, from the site's share kit (None if the site does not list it)."""
+    try:
+        items = requests.get(f"{BASE_URL}/share/index.json", timeout=20).json().get("items", [])
+        return next((i.get("card") for i in items if i.get("slug") == case.get("_slug") and i.get("card")), None)
+    except Exception:
+        return None
+
+
+def build(verdicts, new_cases, other, watching, now, picture=None):
+    """Returns (subject, preview_text, html, markdown). picture: (image URL, case) shown at the top, or None."""
     parts, md = [], []
     n_v, n_new = len(verdicts), len(new_cases)
     bits = []
@@ -126,6 +135,10 @@ def build(verdicts, new_cases, other, watching, now):
     parts.append("<p>What they promised, what actually happened: the cases that moved this week. "
                  "Every case links to its sources.</p>")
     md.append("What they promised, what actually happened: the cases that moved this week.")
+    if picture and picture[0]:
+        img, top = picture
+        parts.append(f'<p><a href="{esc(url_for(top))}{UTM}"><img src="{esc(img)}" alt="{esc(top.get("title"))}" width="600" '
+                     f'style="width:100%;max-width:600px;height:auto;border:0;display:block"></a></p>')
 
     if verdicts:
         parts.append("<h2>Verdicts this week</h2><ul>")
@@ -219,7 +232,9 @@ def main(mode):
     if not (verdicts or new_cases or other):
         print("Nothing new since the last email: no email this week. (This is expected in a quiet week.)")
         return 0
-    subject, preview, body, md = build(verdicts, new_cases, other, watching, now)
+    top = verdicts[0][0] if verdicts else (new_cases[0] if new_cases else (other[0][0] if other else None))
+    subject, preview, body, md = build(verdicts, new_cases, other, watching, now,
+                                       picture=(lead_picture(top), top) if top else None)
     print(f"Subject: {subject}\nPreview: {preview}\n\n{md}")
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:

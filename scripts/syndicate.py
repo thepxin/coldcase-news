@@ -70,7 +70,7 @@ def read_post(path):
 
 
 def devto_tags(post):
-    """Dev.to allows 4 lowercase letters-and-numbers tags: technology, news, tech, plus the article's field."""
+    """Dev.to allows 4 lowercase letters-and-numbers tags: technology, news, the article's field, and the story's main name."""
     from social import FIELD_TAGS
     tags = post.get("tags") if isinstance(post.get("tags"), list) else []
     fields = [str(t) for t in tags if str(t).lower() != "tech"]
@@ -78,7 +78,14 @@ def devto_tags(post):
     if fields:
         extra = FIELD_TAGS.get(fields[0].lower(), fields[0])
         extra = re.sub(r"[^a-z0-9]", "", extra.lower())[:30]
-    return list(dict.fromkeys(["technology", "news", "tech"] + ([extra] if extra else [])))[:4]
+    # one tag that names the story (e.g. "waymo"), so the post shows up for people who follow that name
+    try:
+        from social import story_tags, outlet_words
+        names = story_tags(post.get("title", ""), post.get("body", ""), skip=outlet_words(post.get("sources")))
+    except Exception:
+        names = []
+    name = re.sub(r"[^a-z0-9]", "", names[0].lower())[:30] if names else ""
+    return list(dict.fromkeys(["technology", "news"] + ([extra] if extra else []) + ([name] if name else []) + ["tech"]))[:4]
 
 
 _COVERS = None
