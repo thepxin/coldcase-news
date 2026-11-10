@@ -372,21 +372,21 @@
   "hashnode": null
  },
  "content/posts/2026-11-10-anthropic-claude-fable-5-2-launch-price.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/anthropic-claude-fable-52-launches-at-8-per-million-input-tokens-1l6g",
-  "done": false,
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-10-tesla-cybertruck-production-ending-sales-estimate.md": {
-  "attempts": 1,
-  "devto": null,
-  "done": false,
+  "attempts": 2,
+  "devto": "https://dev.to/coldcasetech/tesla-cybertruck-musk-cited-1-million-reservations-experts-estimate-71000-sold-kd2",
+  "done": true,
   "hashnode": null
  },
  "content/posts/2026-11-10-waymo-school-bus-recall-nhtsa-query.md": {
-  "attempts": 1,
+  "attempts": 2,
   "devto": "https://dev.to/coldcasetech/waymo-school-bus-recall-nhtsa-opens-query-into-whether-the-fix-worked-ecj",
-  "done": false,
+  "done": true,
   "hashnode": null
  }
 }
