@@ -388,5 +388,10 @@
   "devto": "https://dev.to/coldcasetech/waymo-school-bus-recall-nhtsa-opens-query-into-whether-the-fix-worked-ecj",
   "done": true,
   "hashnode": null
+ },
+ "content/posts/2026-11-11-ring-robotics-rover-cam-drone-cam-dates.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/ring-rover-cam-ships-december-16-ring-drone-cam-first-needs-the-fcc-56j",
+  "done": true
  }
 }
