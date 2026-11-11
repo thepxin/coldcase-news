@@ -311,6 +311,13 @@
   "instagram": "18128345965866822",
   "telegram": "58"
  },
+ "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot": {
+  "at": "2026-11-11T16:45:28Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n22fpmssvw2i",
+  "facebook": "1489437024244341_122099864475546323",
+  "instagram": "18112376423240998",
+  "telegram": "60"
+ },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "at": "2026-11-11T10:02:14Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3mzzp6lj2xa2k",
@@ -319,7 +326,7 @@
   "telegram": "59"
  },
  "_last_post": {
-  "facebook": "2026-11-11T10:02:04Z",
-  "instagram": "2026-11-11T10:02:14Z"
+  "facebook": "2026-11-11T16:45:18Z",
+  "instagram": "2026-11-11T16:45:28Z"
  }
 }
