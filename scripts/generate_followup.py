@@ -3,7 +3,7 @@ import re
 import json
 import time
 import hashlib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel
 import anthropic
 
@@ -1308,16 +1308,20 @@ def finder_for(desk: str) -> Finder:
     return FINDERS[desk]
 
 
-def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
+def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None):
     """Look for new, verified developments in open and recent cases; write at most one update per run.
-    Returns dict(file, desk, entry) or None."""
+    only: optional list of case slugs to look at (the due-day watch). Returns dict(file, desk, entry) or None."""
     global DESK, DESK_OUT, DESK_CALL_LIMIT, WRITE_CALLS
     DESK_OUT, WRITE_CALLS = False, 0
     DESK_CALL_LIMIT = AI_CALLS + call_limit
     today = datetime.now(timezone.utc)
     today_str = today.strftime("%Y-%m-%d")
     todo = [c for c in cases.update_candidates(all_cases, today) if c.get("desk") == "tech"]
-    print(f"\n===== CASE UPDATES: checking {len(todo)} case(s) (open cases first) for new verified developments =====")
+    if only is not None:
+        todo = [c for c in todo if c["_slug"] in only]
+        print(f"\n===== DUE-DAY WATCH: {len(todo)} open case(s) due today or yesterday, checked in every run until a source says what happened =====")
+    else:
+        print(f"\n===== CASE UPDATES: checking {len(todo)} case(s) (open cases first) for new verified developments =====")
     checks, result, due_checks, due_stamps = {}, None, 0, {}
     try:
         earlier_checks = json.load(open(cases.CHECKS_FILE, encoding="utf-8"))
@@ -1334,7 +1338,7 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int):
         found, reason = find_update(brief, finder_for(desk))
         past_due = False
         due_day = cases._day(case.get("due_by"))
-        if (not found and case.get("status") == "open" and due_day and due_day.date() < today.date()
+        if (not found and case.get("status") == "open" and due_day and due_day.date() <= today.date()
                 and not result and due_checks < MAX_DUE_CHECKS):
             # The promised date has passed and ordinary coverage is not enough: read the company's own pages directly.
             due_checks += 1
@@ -1535,10 +1539,23 @@ def plan_for_today(today_name: str, forced: str) -> list:
     return ["updates", "tech"]
 
 
+def due_watch_cases(all_cases: list, now=None) -> list:
+    """Open cases whose promised date is today or was yesterday (UTC). On those days the outcome is news within hours,
+    so these cases are checked in EVERY run, not only in the day's one case-update job."""
+    now = now or datetime.now(timezone.utc)
+    days = {now.date(), (now - timedelta(days=1)).date()}
+    out = []
+    for c in all_cases:
+        d = cases._day(c.get("due_by"))
+        if c.get("status") == "open" and c.get("desk") == "tech" and d and d.date() in days:
+            out.append(c["_slug"])
+    return out
+
+
 def share_for(job: str, plan: list) -> int:
     """How many Claude requests this job may use. Case updates get UPDATE_BUDGET; the tech desk gets the rest."""
     left = AI_BUDGET - AI_CALLS
-    if job == "updates":
+    if job in ("updates", "duewatch"):
         return max(0, min(UPDATE_BUDGET, left - (6 if "tech" in plan[plan.index(job) + 1:] else 0)))
     return max(0, left)
 
@@ -1600,12 +1617,18 @@ if __name__ == "__main__":
           + (f"{GEMINI_MODEL}, {GEMINI_RUN_LEFT} free request(s) left today." if GEMINI_KEY else "none (no GEMINI_API_KEY)."))
     print("Claude billing: " + (f"HALF PRICE batches (if no answer in {BATCH_WAIT // 60} min, sent normally)." if CLAUDE_BATCH
                                 else "normal requests (batches switched off with CLAUDE_BATCH=off)."))
+    watch = []   # open cases due today or yesterday (the due-day watch)
     if forced == "auto":
         finished = [j for j in plan if (j == "updates" and run_log["jobs"].get(j) == "done")
                     or (j == "tech" and done_today >= ARTICLES_PER_DAY)]
         if finished:
             print(f"Already finished earlier today, so skipped now: {', '.join(finished)}.")
         plan = [j for j in plan if j not in finished]
+        watch = due_watch_cases(all_cases) if "updates" in finished else []
+        if watch:
+            print(f"Due-day watch: {len(watch)} open case(s) due today or yesterday are checked again in this run: "
+                  + ", ".join(watch))
+            plan = ["duewatch"] + plan
         if not plan:
             print("All of today's jobs are finished. Nothing to do in this run.")
 
@@ -1627,11 +1650,12 @@ if __name__ == "__main__":
             print(f"Not enough Claude requests left today for '{job}' ({share}); it needs at least 3.")
             run_log["jobs"][job] = "cut"
             continue
-        if job == "updates":
-            up = run_update_desk(all_cases, used_urls, share)
+        if job in ("updates", "duewatch"):
+            up = run_update_desk(all_cases, used_urls, share, only=watch if job == "duewatch" else None)
             if up:
                 result["update"], result["update_desk"] = up["file"], up["desk"]
-            run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) and not up else "done"
+            if job == "updates":
+                run_log["jobs"][job] = "cut" if (AI_BUSY or AI_EXHAUSTED) and not up else "done"
             continue
         share = min(share, PER_ARTICLE_CALLS * want_tech)   # leave requests for the later slots of the day
         out = run_desk("tech", used_urls, share, known, want=want_tech, fields_today=fields_today,
