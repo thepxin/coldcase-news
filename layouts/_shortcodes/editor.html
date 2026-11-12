@@ -1,0 +1,3 @@
+{{- /* Masthead row for the About page: the editor's name and bio (hugo.yaml params.editor / editorBio) and the editor's email. */ -}}
+{{- $e := partial "editor.html" . -}}
+<div id="editor"><dt>Editor</dt><dd>{{ with $e.name }}<b>{{ . }}</b>{{ with $e.bio }}<br>{{ strings.TrimSuffix "." . }}.{{ end }}<br>{{ end }}<a href="mailto:editor@coldcasetech.com">editor@coldcasetech.com</a></dd></div>
