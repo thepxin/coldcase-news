@@ -1,54 +1,54 @@
 {
  "items": [
   {
+   "date": "2026-11-12T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "Finding the Perfect TV: A Guide to Samsung TVs",
+   "url": "https://news.samsung.com/global/finding-the-perfect-tv-a-guide-to-samsung-tvs"
+  },
+  {
+   "date": "2026-11-12T00:41:35Z",
+   "outlet": "NASA",
+   "title": "Curiosity Blog, Sols 5063-5069 Rocks and Chips",
+   "url": "https://science.nasa.gov/blog/curiosity-blog-sols-5063-5069-rocks-and-chips/"
+  },
+  {
+   "date": "2026-11-12T00:01:00Z",
+   "outlet": "Electrek",
+   "title": "Europe’s electric car sales jump 49% as global EV sales grow",
+   "url": "https://electrek.co/2026/11/11/europes-electric-car-sales-jump-49-as-global-ev-sales-grow/"
+  },
+  {
    "date": "2026-11-12T00:00:00Z",
    "outlet": "OpenAI",
    "title": "Gilbert + Tobin rethinks the business of law with AI",
    "url": "https://openai.com/index/gilbert-tobin-sam-nickless"
   },
   {
-   "date": "2026-11-11T19:32:54Z",
-   "outlet": "9to5Mac",
-   "title": "iCloud+ has new perk in iOS 27 if you pay for more storage",
-   "url": "https://9to5mac.com/2026/11/11/icloud-has-new-perk-in-ios-27-if-you-pay-for-more-storage/"
-  },
-  {
-   "date": "2026-11-11T19:30:00Z",
-   "outlet": "9to5Google",
-   "title": "Google Home update fixes Nest ‘Live View’ issues, improves Nest Hub and Gemini for speakers",
-   "url": "https://9to5google.com/2026/11/11/google-home-update-nest-hub-gemini-cameras/"
-  },
-  {
-   "date": "2026-11-11T19:27:00Z",
-   "outlet": "Engadget",
-   "title": "How many SpaceX Starship rocket tests have failed?",
-   "url": "https://www.engadget.com/2314045/how-many-spacex-starship-rocket-tests-failed/"
-  },
-  {
-   "date": "2026-11-11T19:22:22Z",
+   "date": "2026-11-11T23:50:00Z",
    "outlet": "TechCrunch",
-   "title": "Congress to call Jensen Huang in to answer for alleged Chinese spy affair",
-   "url": "https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/"
+   "title": "The unfolding Jensen Huang scandal: a timeline",
+   "url": "https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/"
   },
   {
-   "date": "2026-11-11T18:58:08Z",
-   "outlet": "Electrek",
-   "title": "BYD’s full-size luxury SUV has a wheel problem, and it’s fixing it for free",
-   "url": "https://electrek.co/2026/11/11/byds-flagship-suv-wheel-problem-fixing-for-free/"
+   "date": "2026-11-11T23:45:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Nvidia’s Board reportedly preparing to oust CEO Jensen Huang as second extra-marital affair emerges",
+   "url": "https://www.tomshardware.com/pc-components/gpus/nvidias-board-reportedly-preparing-to-oust-ceo-jensen-huang-as-second-extra-marital-affair-emerges-stock-has-plunged-20-percent-since-scandals-began-huang-has-been-first-and-only-ceo-for-33-years"
   },
   {
-   "date": "2026-11-11T18:58:06Z",
-   "outlet": "9to5Google",
-   "title": "Google Wallet rolling out digital Google Home keys with supported locks on Android",
-   "url": "https://9to5google.com/2026/11/11/google-wallet-home-key/"
+   "date": "2026-11-11T23:28:45Z",
+   "outlet": "TechCrunch",
+   "title": "Nvidia’s stock drops as board reportedly preps to oust CEO Jensen Huang",
+   "url": "https://techcrunch.com/2026/11/11/nvidias-stock-drops-as-board-reportedly-preps-to-oust-ceo-jensen-huang/"
   },
   {
-   "date": "2026-11-11T18:57:37Z",
-   "outlet": "Engadget",
-   "title": "Cash App founder's killer gets 16 years to life in prison",
-   "url": "https://www.engadget.com/2313991/cash-app-founders-killer-gets-16-years-to-life-in-prison/"
+   "date": "2026-11-11T23:10:17Z",
+   "outlet": "Ars Technica",
+   "title": "CEO Jensen Huang's job is suddenly on the line at Nvidia",
+   "url": "https://arstechnica.com/gadgets/2026/11/ceo-jensen-huangs-job-is-suddenly-on-the-line-at-nvidia/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-11T19:33:35Z"
+ "updated": "2026-11-12T02:14:35Z"
 }
