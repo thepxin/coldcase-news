@@ -42,6 +42,11 @@ params:
   UseHugoToc: true
   TocOpen: true
 
+  # The editor's name and a one-line bio, shown on every article ("Editor: ...") and on the About page.
+  # Leave editor empty to hide them.
+  editor: "Rishit K."
+  editorBio: "Sets the sourcing rules every article follows, keeps the list of approved sources, and handles corrections"
+
   mainSections: ["posts"]
   homeInfoParams:
     Title: "ColdCaseTech"
