@@ -1,23 +1,23 @@
 ================================================================
-Google Gemini arrives on Apple CarPlay. It was already there, inside Google Maps.
+Corsair HX1000i Shift Crystal PSU reviewed: fanless up to 500W, loud when hot
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (183/280):
-9to5Mac reports Gemini was the last major AI chatbot holdout on CarPlay. As of November 11, Google says that is changing.
+X (190/280):
+Corsair's HX1000i Shift Crystal runs fanless up to 500W, Tom's Hardware reports. Its list of drawbacks includes loud when hot.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-12-google-gemini-app-apple-carplay-rollout/
+Every line sourced: https://coldcasetech.com/posts/2026-11-12-corsair-hx1000i-shift-crystal-psu-review/
 
-#Google #Gemini
+#Corsair #HX1000i
 
 INSTAGRAM (post this caption with the image from the share kit):
-9to5Mac reports Gemini was the last major AI chatbot holdout on CarPlay. As of November 11, Google says that is changing.
+Corsair's HX1000i Shift Crystal runs fanless up to 500W, Tom's Hardware reports. Its list of drawbacks includes loud when hot.
 
-Google announced the Gemini app for Apple CarPlay on November 11, bringing Gemini Live conversations to iOS users in every supported Gemini Live language.
+Tom's Hardware reviewed the Corsair HX1000i Shift Crystal 1000W power supply, which Corsair lists at $339.99 with a ten-year warranty.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #google #gemini #googlemaps #apple #carplay #software #technews #tech
+#coldcasetech #corsair #hx1000i #shiftcrystal #bigtech #technews #tech
