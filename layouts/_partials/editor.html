@@ -1,0 +1,5 @@
+{{- /* The site's editor from hugo.yaml (params.editor, params.editorBio). Returns a dict with name and bio, or nothing
+       when params.editor is empty (then the site shows no editor name anywhere). */ -}}
+{{- $out := dict -}}
+{{- with trim (site.Params.editor | default "") " " }}{{ $out = dict "name" . "bio" (trim (site.Params.editorBio | default "") " ") }}{{ end -}}
+{{- return $out -}}
