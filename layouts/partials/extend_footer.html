@@ -37,6 +37,46 @@ document.addEventListener('submit', async function (e) {
 });
 </script>
 <script>
+/* "Email me the verdict" (open case pages). 1) the normal ColdCase Weekly signup to Kit, exactly like the newsletter
+   box; 2) /api/follow tags the reader for this case so the verdict email reaches them. If step 2 is unavailable,
+   the reader is still subscribed and the verdict arrives in ColdCase Weekly. */
+document.addEventListener('submit', async function (e) {
+  var form = e.target;
+  if (!form.classList || !form.classList.contains('cct-follow')) return;
+  e.preventDefault();
+  var input = form.querySelector('input[type=email]');
+  var btn = form.querySelector('button');
+  var msg = form.querySelector('.cct-follow-msg');
+  var email = (input.value || '').trim();
+  if (!email) return;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try {
+    await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+  } catch (err) {
+    form.target = '_blank';
+    form.submit();
+  }
+  var followed = false;
+  try {
+    var r = await fetch('/api/follow', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                                         body: JSON.stringify({ email: email, slug: form.dataset.slug }) });
+    followed = r.status === 200;
+  } catch (err) {}
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'follow-case-' + form.dataset.slug, title: 'Email me the verdict', event: true });
+    }
+  } catch (err) {}
+  input.value = '';
+  btn.textContent = followed ? "You're on the list" : 'Check your inbox';
+  msg.hidden = false;
+  msg.textContent = followed
+    ? 'Done. If you are new here, open the email we just sent to ' + email + ' and click confirm, or the verdict cannot reach you.'
+    : 'Almost done: open the email we just sent to ' + email + ' and click confirm. The verdict will be in ColdCase Weekly.';
+});
+</script>
+<script>
 /* Reader guide: open on a visitor's first visit only (remembered in this browser; works without it too). */
 (function(){var g=document.getElementById('cct-guide');if(!g)return;var seen=false;
 try{seen=localStorage.getItem('cct-guide-seen')==='1';}catch(e){}
