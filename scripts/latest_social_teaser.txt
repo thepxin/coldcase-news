@@ -1,23 +1,23 @@
 ================================================================
-PlugShare 8.0 for iPhone adds dark mode and a rebuilt Apple Watch app
+Google Gemini arrives on Apple CarPlay. It was already there, inside Google Maps.
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (182/280):
-PlugShare 8.0 reaches iPhone on November 10 with dark mode. Android owners wait until early 2027, PlugShare says.
+X (183/280):
+9to5Mac reports Gemini was the last major AI chatbot holdout on CarPlay. As of November 11, Google says that is changing.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-11-plugshare-8-iphone-dark-mode-apple-watch/
+Every line sourced: https://coldcasetech.com/posts/2026-11-12-google-gemini-app-apple-carplay-rollout/
 
-#AppleWatch #PlugShare
+#Google #Gemini
 
 INSTAGRAM (post this caption with the image from the share kit):
-PlugShare 8.0 reaches iPhone on November 10 with dark mode. Android owners wait until early 2027, PlugShare says.
+9to5Mac reports Gemini was the last major AI chatbot holdout on CarPlay. As of November 11, Google says that is changing.
 
-PlugShare released version 8.0 of its EV charging app for iPhone on November 10, adding dark mode, a trip planner change and a rebuilt Apple Watch app.
+Google announced the Gemini app for Apple CarPlay on November 11, bringing Gemini Live conversations to iOS users in every supported Gemini Live language.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #applewatch #plugshare #iphone #ev #technews #tech
+#coldcasetech #google #gemini #googlemaps #apple #carplay #software #technews #tech
