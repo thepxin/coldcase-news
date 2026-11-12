@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to BLUETTI...</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script>
+    /* BLUETTI sells from its own US store, so visitors in India go to BLUETTI on Amazon.in (our India tag) instead. */
+    (function () {
+      var tz = "", lang = (navigator.language || "").toLowerCase();
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+      var india = tz === "Asia/Kolkata" || tz === "Asia/Calcutta" || lang.indexOf("-in") !== -1;
+      var target = india ? "https://www.amazon.in/s?k=BLUETTI+power+station&tag=coldcasetech-21" : "https://www.anrdoezrs.net/click-101908427-16981946";
+      try { navigator.sendBeacon("https://coldcasetech.goatcounter.com/count?p=/go/bluetti&t=Affiliate_Click_bluetti" + (india ? "_IN" : "")); } catch (e) {}
+      window.location.replace(target);
+    })();
+  </script>
+</head>
+<body style="background:#0d1117;color:#8b949e;font-family:monospace;">Redirecting to BLUETTI... <a href="https://www.anrdoezrs.net/click-101908427-16981946" rel="sponsored nofollow" style="color:#58a6ff;">Click here if not redirected</a>.</body>
+</html>
