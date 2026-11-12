@@ -1,6 +1,6 @@
 {{- /* Structured data for Google (schema.org JSON-LD).
        Homepage: who publishes the site (a news organisation) and the site itself.
-       Articles: NewsArticle with headline, dates, three share images (16x9, 4x3, 1x1), field, and every source as a citation.
+       Articles: NewsArticle with headline, the editor (params.editor, when set), dates, three share images (16x9, 4x3, 1x1), field, and every source as a citation.
        Built as data and written with jsonify, so quotes in titles can never break it. */ -}}
 {{- $home := site.Home.Permalink -}}
 {{- $about := "about/" | absURL -}}
@@ -42,6 +42,7 @@
     "inLanguage" "en"
     "isAccessibleForFree" true
     "keywords" $kw }}
+{{- with (partial "editor.html" .).name }}{{ $art = merge $art (dict "editor" (dict "@type" "Person" "name" . "jobTitle" "Editor" "url" (print $about "#editor") "worksFor" (dict "@id" (print $home "#org")))) }}{{ end }}
 {{- with $imgs }}{{ $art = merge $art (dict "image" .) }}{{ end }}
 {{- with partial "field.html" . }}{{ $art = merge $art (dict "articleSection" .) }}{{ end }}
 {{- with $cites }}{{ $art = merge $art (dict "citation" .) }}{{ end }}
