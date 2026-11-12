@@ -422,3 +422,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 
 /* homepage H1 wraps the wordmark without changing its look */
 .rec-h1{margin:0;padding:0;font:inherit;line-height:1}
+
+/* "Email me the verdict" box on open case pages */
+.cct-follow{margin:10px 0 14px;padding:12px 14px;border:1px solid var(--rule);border-left:3px solid var(--open);border-radius:3px;background:var(--surface)}
+.cct-follow-q{margin:0 0 8px;font-size:15.5px;line-height:1.5;color:var(--ink-2)}.cct-follow-q b{color:var(--ink)}
+.cct-follow-row{display:flex;flex-wrap:wrap;gap:8px}
+.cct-follow-row input{flex:1;min-width:200px;font:16px var(--serif);padding:8px 11px;border-radius:3px;border:1px solid var(--rule);background:var(--surface);color:var(--ink)}
+.cct-follow-row input::placeholder{color:var(--muted)}
+.cct-follow-note{margin:8px 0 0;font:12.5px/1.5 var(--mono);color:var(--muted)}
+.cct-follow-msg{margin:8px 0 0;font:13.5px/1.5 var(--mono);color:var(--ok)}
