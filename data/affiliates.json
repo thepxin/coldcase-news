@@ -150,6 +150,24 @@
       "card_text": "Corel makes CorelDRAW, PaintShop Pro and WordPerfect for Windows, with CorelDRAW also on Mac, sold as one-time purchases or subscriptions.",
       "card_cta": "See Corel software",
       "kit_line": "Design, photo-editing and office software for Windows and Mac"
+    },
+    "bluetti": {
+      "name": "BLUETTI power stations",
+      "url": "/go/bluetti.html",
+      "amazon": false,
+      "card_title": "Keep devices charged when the power is out",
+      "card_text": "BLUETTI's portable power stations store enough energy to charge phones and laptops or run small appliances during a power cut, on a trip, or from solar panels.",
+      "card_cta": "See BLUETTI power stations",
+      "kit_line": "Portable power stations for power cuts, trips and solar"
+    },
+    "steelseries": {
+      "name": "SteelSeries gaming gear",
+      "url": "/go/steelseries.html",
+      "amazon": false,
+      "card_title": "Gear for the games in this story",
+      "card_text": "SteelSeries makes the Arctis headsets, plus gaming mice and keyboards for PC and consoles.",
+      "card_cta": "See SteelSeries gear",
+      "kit_line": "Arctis headsets, gaming mice and keyboards"
     }
   },
   "categories": {
@@ -184,8 +202,9 @@
       ]
     },
     "gaming": {
-      "card": "gearup",
+      "card": "steelseries",
       "toolkit": [
+        "gearup",
         "portable-ssd",
         "ups-backup"
       ]
@@ -211,7 +230,7 @@
       "toolkit": []
     },
     "power": {
-      "card": "power-station",
+      "card": "bluetti",
       "toolkit": [
         "ups-backup",
         "usb-c-charger",
