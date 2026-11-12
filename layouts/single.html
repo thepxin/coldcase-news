@@ -32,6 +32,7 @@
     {{- with .Description }}<p class="rec-dek">{{ . }}</p>{{ end }}
     {{- if $s.open }}
     <p class="rec-due">{{ if $s.pastdue }}Was due <b>{{ .Params.due }}</b>. No verdict until a source confirms what happened{{ else }}Due <b>{{ .Params.due }}</b>. We check every day and will close this case{{ end }}{{ with $s.checked }} · last checked <time datetime="{{ . }}">{{ (time.AsTime .).Format "2 Jan" }}</time>{{ end }}.</p>
+    {{- partial "follow_case.html" . }}
     {{- end }}
     {{- with $s.change }}<p class="rec-change">{{ partial "verdict_change.html" . }}</p>{{ end }}
     <p class="rec-byline">By the ColdCaseTech desk · {{ .ReadingTime }} min read · <a href="{{ "about/" | relURL }}">How we verify</a>{{ with .Params.corrections }}{{ with index (last 1 .) 0 }} · <span class="cct-corrected">Corrected <time datetime="{{ .date }}">{{ .date }}</time></span>{{ end }}{{ end }}</p>

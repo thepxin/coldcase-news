@@ -1,0 +1,6 @@
+{{- /* /follow/index.json: the open cases a reader can follow with "Email me the verdict" (checked by functions/api/follow.js). */ -}}
+{{- $open := slice -}}
+{{- range where site.RegularPages "Section" "posts" -}}
+  {{- if eq .Params.status "open" }}{{ $open = $open | append .File.ContentBaseName }}{{ end -}}
+{{- end -}}
+{{- dict "open" $open | jsonify -}}
