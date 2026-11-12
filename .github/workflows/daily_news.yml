@@ -97,6 +97,26 @@ jobs:
           done
           if [ -n "$FILES" ]; then echo "published=true" >> "$GITHUB_OUTPUT"; else echo "published=false" >> "$GITHUB_OUTPUT"; fi
 
+      - name: Email the verdict to readers who asked for it
+        # "Email me the verdict" on open case pages. One Kit email per closed case, only to readers who asked.
+        # To review before sending: Settings > Secrets and variables > Actions > Variables, VERDICT_EMAIL_MODE = draft
+        env:
+          KIT_API_KEY: ${{ secrets.KIT_API_KEY }}
+          VERDICT_EMAIL_MODE: ${{ vars.VERDICT_EMAIL_MODE || 'send' }}
+        run: |
+          python scripts/verdict_alerts.py || echo "Verdict emails had a problem (see above); the site is not affected."
+          if [ -f data/verdict_alerts.json ]; then
+            git add data/verdict_alerts.json
+            if ! git diff --staged --quiet; then
+              git commit -m "chore(email): verdict emails log"
+              for attempt in 1 2 3; do
+                if git pull --rebase --autostash -X theirs origin main && git push origin main; then break; fi
+                git rebase --abort 2>/dev/null || true
+                sleep 15
+              done
+            fi
+          fi
+
       - name: Share new posts to Dev.to
         # Each new post goes out as soon as it is live on the site (copies link back to it as the original).
         env:
