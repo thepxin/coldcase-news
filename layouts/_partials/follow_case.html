@@ -1,0 +1,13 @@
+{{- /* "Email me the verdict": on open case pages only. The form signs the reader up to ColdCase Weekly (Kit form
+       10077030, which sends the confirmation email and the free guide); the page script then asks /api/follow to tag
+       them for this case, so they get one email with the verdict when it closes (scripts/verdict_alerts.py). */ -}}
+<form class="cct-follow" data-slug="{{ .File.ContentBaseName }}" action="https://app.kit.com/forms/10077030/subscriptions" method="post">
+  <p class="cct-follow-q"><b>Want to know how this ends?</b> We'll email you the verdict the day this case closes.</p>
+  <div class="cct-follow-row">
+    <label class="cct-sr" for="cct-follow-email">Email address</label>
+    <input type="email" id="cct-follow-email" name="email_address" required autocomplete="email" placeholder="you@example.com">
+    <button type="submit" class="cct-btn-money">Email me the verdict</button>
+  </div>
+  <p class="cct-follow-note">You'll also get ColdCase Weekly and our free Fine Print guide. Unsubscribe in one click. <a href="{{ "privacy/" | relURL }}">Privacy</a></p>
+  <p class="cct-follow-msg" role="status" aria-live="polite" hidden></p>
+</form>
