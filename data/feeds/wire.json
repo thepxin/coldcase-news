@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-13T10:39:44Z",
+   "date": "2026-11-13T19:33:08Z",
+   "outlet": "9to5Mac",
+   "title": "Apple releases tvOS 27.2.1 and HomePod 27.2.1, here’s what’s new",
+   "url": "https://9to5mac.com/2026/11/13/apple-releases-tvos-27-2-1-and-homepod-27-2-1-heres-whats-new/"
+  },
+  {
+   "date": "2026-11-13T19:31:05Z",
+   "outlet": "9to5Mac",
+   "title": "Perplexity brings AI agents feature called Teammates to the Mac",
+   "url": "https://9to5mac.com/2026/11/13/perplexity-brings-ai-agents-feature-called-teammates-to-the-mac/"
+  },
+  {
+   "date": "2026-11-13T19:30:00Z",
+   "outlet": "9to5Google",
+   "title": "Motorola MA2 wireless Android Auto adapter just vanished days after finally going on sale",
+   "url": "https://9to5google.com/2026/11/13/motorola-ma2-android-auto-amazon-delay/"
+  },
+  {
+   "date": "2026-11-13T19:26:07Z",
+   "outlet": "Cloudflare",
+   "title": "Adapting to AI penetration testing orchestrators: The Modern Security Model",
+   "url": "https://blog.cloudflare.com/adapting-to-ai-penetration-testing-orchestrators/"
+  },
+  {
+   "date": "2026-11-13T19:15:32Z",
    "outlet": "Engadget",
-   "title": "Whoop Humans is a social network designed for fitness enthusiasts",
-   "url": "https://www.engadget.com/2315689/whoop-humans-is-a-social-network-designed-for-fitness-enthusiasts/"
+   "title": "Google now lets people connect Gemini to their bank accounts",
+   "url": "https://www.engadget.com/2316384/google-now-lets-people-connect-gemini-to-their-bank-accounts/"
   },
   {
-   "date": "2026-11-13T10:30:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "1994 Jeep Cherokee owner hacks 32-year-old car with Claude AI to pass California smog tests",
-   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/1994-jeep-cherokee-owner-hacks-32-year-old-car-with-claude-ai-to-pass-california-smog-tests-enthusiast-reverse-engineered-the-ancient-ecu-for-diagnostics-and-control"
+   "date": "2026-11-13T19:14:38Z",
+   "outlet": "The Verge",
+   "title": "Here’s how you can save on your GTA VI preorder ahead of launch",
+   "url": "https://www.theverge.com/gadgets/1033046/playstation-xbox-gift-card-gta-vi-6-preorder-deal-sale"
   },
   {
-   "date": "2026-11-13T10:30:00Z",
+   "date": "2026-11-13T19:13:42Z",
+   "outlet": "Xbox (Microsoft)",
+   "title": "Fable: Deep Dive Into New Gameplay With Playground Games | Official XBOX Podcast",
+   "url": "https://news.xbox.com/en-us/2026/11/13/fable-deep-dive-into-new-gameplay-with-playground-games-official-xbox-podcast/"
+  },
+  {
+   "date": "2026-11-13T19:08:57Z",
    "outlet": "Wired",
-   "title": "‘Call Him Out’: Cybertruck Loyalists Are in Mourning—and They Want Answers From Elon Musk",
-   "url": "https://www.wired.com/story/cybertruck-fans-demand-answers-from-elon-musk-about-the-vehicles-demise/"
-  },
-  {
-   "date": "2026-11-13T10:15:00Z",
-   "outlet": "The Register",
-   "title": "Brit police watchdog says cops' use of facial recog risks wrongful arrests",
-   "url": "https://www.theregister.com/security/2026/11/13/brit-police-watchdog-says-cops-use-of-facial-recog-risks-wrongful-arrests/5309379"
-  },
-  {
-   "date": "2026-11-13T10:00:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "macOS on PC becomes possible again thanks to Apple Silicon translator for x86-64",
-   "url": "https://www.tomshardware.com/software/macos/macos-on-pc-becomes-possible-again-thanks-to-apple-silicon-translator-for-x86-64-hackintosh-revival-project-currently-slow-and-not-very-stable"
-  },
-  {
-   "date": "2026-11-13T10:00:00Z",
-   "outlet": "MIT Technology Review",
-   "title": "More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials",
-   "url": "https://www.technologyreview.com/2026/11/13/1148474/more-autonomy-fewer-ndas-volunteers-have-new-requests-for-brain-implant-trials/"
-  },
-  {
-   "date": "2026-11-13T10:00:00Z",
-   "outlet": "MIT Technology Review",
-   "title": "Silicon Valley claims to know the future. So why did it get the midterms so wrong?",
-   "url": "https://www.technologyreview.com/2026/11/13/1148498/silicon-valley-claims-to-know-the-future-so-why-did-it-get-the-midterms-so-wrong/"
-  },
-  {
-   "date": "2026-11-13T10:00:00Z",
-   "outlet": "Wired",
-   "title": "The Hubble Space Telescope Is Sinking. NASA Is Looking for Ways to Keep It Afloat",
-   "url": "https://www.wired.com/story/nasa-wants-to-keep-the-hubble-space-telescope-afloat/"
+   "title": "Microsoft 365 Crawls Back to Life After a 24-Hour Outage",
+   "url": "https://www.wired.com/story/microsoft-365-crawls-back-to-life-after-a-24-hour-outage/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-13T10:53:13Z"
+ "updated": "2026-11-13T19:37:15Z"
 }
