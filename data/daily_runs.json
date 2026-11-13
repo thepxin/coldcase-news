@@ -5,11 +5,12 @@
   "tech": "published"
  },
  "ai_day": "2026-11-13",
- "ai_calls": 5,
+ "ai_calls": 8,
  "gemini_day": "2026-11-13",
  "gemini_calls": 0,
- "tech_published": 1,
+ "tech_published": 2,
  "tech_fields": [
+  "gaming",
   "software"
  ]
 }
