@@ -52,7 +52,7 @@ params:
     Title: "ColdCaseTech"
     Content: "What they promised. What actually happened."
   footer:
-    text: "An independent record of technology's promises · [Our standards](/about/) · [editor@coldcasetech.com](mailto:editor@coldcasetech.com) · [Privacy & Terms](/privacy/) · [RSS](/index.xml)"
+    text: "An independent record of technology's promises · [Our standards](/about/) · [Contact](/contact/) · [Privacy & Terms](/privacy/) · [RSS](/index.xml)"
 
 menu:
   main:
