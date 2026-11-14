@@ -39,6 +39,7 @@
           <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-x-{{ $p.File.ContentBaseName }}.png" data-copy-from="x-{{ $p.File.ContentBaseName }}" hidden>Copy text &amp; share picture</button>
           {{- end }}</p>
       </section>
+      {{- partial "x_replies.html" $p }}
       <section>
         <h3>Instagram caption <span class="rec-of">post it with the image · links don't work in captions</span></h3>
         <textarea id="ig-{{ .File.ContentBaseName }}" readonly rows="7">{{ $s.instagram }}</textarea>
@@ -55,6 +56,7 @@
   <ul>
     <li><b>Instagram:</b> on your phone, "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste the caption.</li>
     <li><b>X:</b> posts with a picture do better: download the picture and attach it (on a phone, "Copy text &amp; share picture" does both). The post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
+    <li><b>Replies under big accounts:</b> "Copy reply &amp; find their post" copies the reply and opens that account's latest posts about the story. Open the newest one, tap Reply, paste. If they haven't posted about it, skip them: a reply under an unrelated post looks like spam. Use each reply once, 3 to 5 replies a day in all, and answer anyone who replies to you.</li>
   </ul>
 </aside>
 <script>
