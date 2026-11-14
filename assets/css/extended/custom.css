@@ -401,6 +401,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 .rec-share p{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
 .rec-btn{display:inline-block;font:600 14px var(--serif);background:none;border:1px solid var(--brass);color:var(--brass);border-radius:3px;padding:7px 12px;cursor:pointer;text-decoration:none}
 .rec-btn:hover{background:var(--brass-soft)}
+.rec-replies ol{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.rec-replies li{margin:0}
+.rec-reply-to{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;margin:0 0 4px!important;font:13px var(--mono);color:var(--muted)}
+.rec-reply-to a{font:600 15px var(--serif);color:var(--ink)}
+.rec-angle{margin-left:auto;font:600 12px var(--serif);font-variant:all-small-caps;letter-spacing:.09em;color:var(--brass)}
+.rec-share .rec-replies-more{display:block;font-size:14.5px;color:var(--ink-2);margin-top:10px}
+.rec-replies-more a{color:var(--brass);text-decoration:underline;text-underline-offset:2px}
 .rec-share-rules{border-top:1px solid var(--rule);margin-top:10px;padding-top:12px;font-size:15.5px;color:var(--ink-2)}
 .rec-share-rules h2{font:600 15px var(--serif);font-variant:all-small-caps;letter-spacing:.09em;color:var(--brass);margin:0 0 6px}
 .rec-share-rules ul{padding-left:20px;margin:0}
