@@ -43,7 +43,28 @@
   "case|2026-11-06-amazon-alexa-for-shopping-text-rollout|2026-11-06",
   "case|2026-11-06-blue-origin-new-glenn-return-january-2027|2026-11-06",
   "case|2026-11-06-tesla-cybertruck-production-wind-down-mid-2027|2026-11-06",
+  "case|2026-11-07-fcc-router-ban-conditional-approval-tp-link|2026-11-07",
   "case|2026-11-07-meta-muse-spaces-custom-experiences|2026-11-07",
+  "case|2026-11-07-us-midterm-voters-back-data-center-limits|2026-11-07",
+  "case|2026-11-08-anthropic-claude-personal-finance-launch-read-only|2026-11-08",
+  "case|2026-11-08-apple-health-app-redesign-ios-27-3-beta|2026-11-08",
+  "case|2026-11-08-nasa-moon-base-student-challenge-1-million|2026-11-08",
+  "case|2026-11-09-cloudflare-emudhra-weak-keys-forged-certificates|2026-11-09",
+  "case|2026-11-09-nasa-escapade-earth-flybys-mars-september-2027|2026-11-09",
+  "case|2026-11-09-nvidia-board-investigation-ceo-jensen-huang|2026-11-09",
+  "case|2026-11-10-anthropic-claude-fable-5-2-launch-price|2026-11-10",
+  "case|2026-11-10-tesla-cybertruck-production-ending-sales-estimate|2026-11-10",
+  "case|2026-11-10-waymo-school-bus-recall-nhtsa-query|2026-11-10",
+  "case|2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot|2026-11-11",
+  "case|2026-11-11-plugshare-8-iphone-dark-mode-apple-watch|2026-11-11",
+  "case|2026-11-11-ring-robotics-rover-cam-drone-cam-dates|2026-11-11",
+  "case|2026-11-12-corsair-hx1000i-shift-crystal-psu-review|2026-11-12",
+  "case|2026-11-12-google-gemini-app-apple-carplay-rollout|2026-11-12",
+  "case|2026-11-12-google-intelligent-eyewear-pre-orders-december-10|2026-11-12",
+  "case|2026-11-13-apple-sports-adds-live-ufc-stats|2026-11-13",
+  "case|2026-11-13-apple-tv-4k-youtube-app-error-fix|2026-11-13",
+  "case|2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16|2026-11-13",
+  "case|2026-11-14-openai-chatgpt-wallet-dot-agents-purchases|2026-11-14",
   "update|2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro|2026-10-31"
  ],
  "emails": [
@@ -67,6 +88,13 @@
    "subject": "ColdCase Weekly: 22 new cases",
    "broadcast_id": 26861300,
    "items": 22
+  },
+  {
+   "date": "2026-11-14",
+   "mode": "draft",
+   "subject": "ColdCase Weekly: 21 new cases",
+   "broadcast_id": 27040710,
+   "items": 21
   }
  ]
 }
