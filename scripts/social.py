@@ -213,6 +213,25 @@ def _trim(text: str, room: int, measure=len) -> str:
     return (" ".join(words).rstrip(",;:") + "…") if words else ""
 
 
+REPLY_LIMIT = 220
+_REPLY_BANNED = re.compile(r"(?i)https?://|www\.|#\w|@\w|!|coldcase|follow us|read more|link in bio|\bthread\b|🧵")
+
+
+def reply_problem(text: str) -> str:
+    """Why an X reply (posted under someone else's post) can't be used, or "" if it is fine. Replies carry no link,
+    hashtag or @mention (X shows replies with links to fewer people, and tags in replies look like spam)."""
+    if x_length(text) > REPLY_LIMIT:
+        return f"longer than {REPLY_LIMIT} characters"
+    m = _REPLY_BANNED.search(text)
+    if m:
+        return f"contains '{m.group(0)}'"
+    if text.count("?") > 1:
+        return "more than one question"
+    if any(ord(ch) > 0x2FFF and not 0x3000 <= ord(ch) <= 0x9FFF for ch in text):
+        return "contains an emoji"
+    return ""
+
+
 def _status_line(status: str, verdict: str, due: str) -> str:
     if status == "open":
         return f"Open case: due {due}. We check every day." if due else "Open case: we check every day."
@@ -223,7 +242,7 @@ def _status_line(status: str, verdict: str, due: str) -> str:
 
 def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labels: tuple[str, str],
             status: str, verdict: str, due: str, url: str, field_key: str, field_label: str,
-            sources: list[dict], body: str = "", hot=None) -> dict:
+            sources: list[dict], body: str = "", hot=None, replies=None) -> dict:
     hook = (hook or summary or headline).strip()
     status_line = _status_line(status, verdict, due)
     field = field_tag_for(field_key, field_label)
@@ -271,6 +290,7 @@ def compose(*, headline: str, hook: str, summary: str, then: str, now: str, labe
         "x": x, "x_chars": x_length(x),
         "instagram": instagram,
         "tags": tags,
+        "replies": [r for r in (replies or []) if r and not reply_problem(r)][:3],
     }
 
 
@@ -288,4 +308,5 @@ X ({kit['x_chars']}/280):
 
 INSTAGRAM (post this caption with the image from the share kit):
 {kit['instagram']}
-"""
+""" + ("\nX REPLIES (post under big accounts' posts about this story; the share kit says which accounts):\n"
+       + "\n".join(f"{i}. {r}" for i, r in enumerate(kit.get("replies") or [], 1)) + "\n" if kit.get("replies") else "")

@@ -61,6 +61,7 @@ class FollowUpArticle(BaseModel):
     markdown_body: str
     reddit_teaser: str
     social_hook: str   # one-sentence teaser for social posts; checked like the article, replaced by the summary if not supported
+    x_replies: list[str]   # 3 replies to post under big X accounts' posts about this story (receipt, clock, question); checked like social_hook
     case_status: str   # "closed" = has a verdict; "open" = promise with a future date, no verdict yet
     due_text: str      # open cases: the promised date, in the source's words (e.g. "December 2026"); else ""
     due_date: str      # open cases: YYYY-MM-DD, the last day of that promised period; else ""
@@ -397,11 +398,27 @@ STEP 5: social text (only when true)
   with the single most concrete stated fact (a number, a name, a date or a change), true exactly as written and
   attributed if it is a company's claim. Not the headline reworded. No question marks, no emojis, no hashtags, no
   links, no hype words, no "you won't believe", no "here's why".
+- x_replies: exactly 3 replies our X account will post UNDER big accounts' posts about this story (a news site's or
+  the company's own post). Strangers read them in a busy thread, so each must earn attention in its first five words
+  and stand on its own. Each under 200 characters, each a different angle, in this order:
+  1. THE RECEIPT: the single most concrete stated fact the thread is probably missing, set beside the promise
+     (a date, a number, an earlier date that moved). Specific beats clever: "First promised for March. Then June.
+     Now November 16." People reshare a fact that makes them look well informed.
+  2. THE CLOCK: open case: the promised date stated plainly as a date on the record, then "We check on the day." or
+     a close variant (we really do). Closed case: the verdict in plain words with the one fact behind it. Report:
+     the one stated detail that matters most to someone who owns or wants the product.
+  3. THE QUESTION: one stated fact, then one short, neutral question that readers will want to answer from their
+     own view (whether the date holds, whether they will use it). Never a leading or loaded question. This is the
+     only reply that may use a question mark.
+  For all three: sound like a sharp, well-informed person, not a brand. Calm and dry, never smug, never mocking
+  anyone. Only facts the SOURCES state, attributed if they are a company's claim. No links, no hashtags, no
+  @mentions, no emojis, no exclamation marks, no hype words, no "follow us", "read more", "thread" or "link in bio",
+  and never the name ColdCaseTech. Plain everyday words.
 
 OUTPUT
 Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, plain_headline, slug, summary_description,
 original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, social_hook, case_status, due_text, due_date
-(strings) and products (a list of strings). Output nothing outside the JSON.
+(strings), products (a list of strings) and x_replies (a list of 3 strings). Output nothing outside the JSON.
 """
     article = call_ai(prompt)
     if article is not None:
@@ -728,6 +745,7 @@ markdown_body:
 SOCIAL (short teasers posted with a link to the article; judge them only in check 8):
 social_hook: {article.social_hook}
 reddit_teaser: {article.reddit_teaser}
+x_replies: {json.dumps(list(getattr(article, "x_replies", None) or []), ensure_ascii=False)}
 
 HOUSE-VOICE HEADLINE (judge it only in check 9): {article.headline if article.plain_headline else ""}
 
@@ -753,9 +771,11 @@ CHECKS
    checks 1 and 2 fixed ONLY by deleting it or by replacing it with the source's own wording. Never add facts, links
    or sections. Keep all headings, the table and the timeline. No HTML, no curly braces, no em dashes.
    If there were no problems, return the text unchanged.
-8. social_supported: true only if every statement in SOCIAL (social_hook and reddit_teaser) is clearly stated by the
-   SOURCES, attributed where it is a company's claim, with no hype, opinion, prediction or added figure. Empty lines
-   count as supported. Problems here never go into checks 1 or 2.
+8. social_supported: true only if every statement in SOCIAL (social_hook, reddit_teaser and each of x_replies) is
+   clearly stated by the SOURCES, attributed where it is a company's claim, with no hype, opinion, prediction or added
+   figure. Empty lines count as supported. Problems here never go into checks 1 or 2.
+   In x_replies, "We check on the day." (or a close variant) and one short neutral closing question count as
+   supported, as long as every fact around them is stated by the SOURCES. A loaded or leading question is not.
    HOUSE VOICE: a dry, understated line that only rephrases or places side by side facts the sources state counts as
    supported (example: "The RTX 5080 now comes by the month." when the sources describe a monthly membership with
    RTX 5080-class hardware). NOT supported: any fact, number, price, cause, motive, rumour or claim that something is
@@ -798,6 +818,20 @@ def _keep_social(article: FollowUpArticle, sources: list[dict], ai_ok: bool = Tr
             why = "; ".join(problems[:2]) or ("the fact-check did not support it" if not ai_ok else "too long")
             print(f"  social: {field} not used ({why}); posts will use the checked summary instead.")
             setattr(article, field, "")
+    # Replies for big accounts' threads: each one must pass on its own; the share page has a plain fallback.
+    kept = []
+    for text in list(getattr(article, "x_replies", None) or [])[:3]:
+        text = " ".join(str(text or "").split())
+        if not text:
+            continue
+        why = social.reply_problem(text) or "; ".join(guards.check_article([text], sources)[:2])
+        if not why and not ai_ok:
+            why = "the fact-check did not support it"
+        if why:
+            print(f"  social: an X reply was not used ({why}): {text[:90]}")
+        else:
+            kept.append(text)
+    article.x_replies = kept
 
 
 def open_case_problem(article: FollowUpArticle, today: datetime | None = None) -> str:
@@ -1042,10 +1076,10 @@ draft: false
                          status="report" if kind == "report" else ("open" if is_open else "closed"),
                          verdict=article.verdict_score, due=article.due_text.strip() if is_open else "",
                          url=canonical_url, field_key=topic, field_label=area_label(topic), sources=sources or [],
-                         body=article.markdown_body, hot=TRENDING_NOW)
+                         body=article.markdown_body, hot=TRENDING_NOW, replies=getattr(article, "x_replies", None))
     fm_social = "social:\n" + "".join(
         f"  {k}: {json.dumps(kit[k], ensure_ascii=False)}\n"
-        for k in ("hook", "x", "instagram", "tags"))
+        for k in ("hook", "x", "instagram", "tags", "replies") if k != "replies" or kit[k])
     with open(filename, "r", encoding="utf-8") as f:
         text = f.read()
     with open(filename, "w", encoding="utf-8") as f:
