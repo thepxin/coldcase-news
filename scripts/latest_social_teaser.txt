@@ -1,23 +1,28 @@
 ================================================================
-Apple TV 4K arrives. YouTube says it is not yet available on this device.
+OpenAI ChatGPT Wallet lets dot agents buy for US Pro users
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (162/280):
-The new Apple TV 4K arrived with a YouTube app that reported it is not yet available on this device.
+X (190/280):
+ChatGPT Wallet launched Friday with one rule: the agent shops, the human approves every purchase with Face ID or a fingerprint.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-13-apple-tv-4k-youtube-app-error-fix/
+Every line sourced: https://coldcasetech.com/posts/2026-11-14-openai-chatgpt-wallet-dot-agents-purchases/
 
-#Apple #YouTube
+#OpenAI #ChatGPT
 
 INSTAGRAM (post this caption with the image from the share kit):
-The new Apple TV 4K arrived with a YouTube app that reported it is not yet available on this device.
+ChatGPT Wallet launched Friday with one rule: the agent shops, the human approves every purchase with Face ID or a fingerprint.
 
-The first new Apple TV 4K units showed a YouTube error on November 13, and The Verge and 9to5Mac listed a tvOS 27.2 update and reinstall as the fix.
+OpenAI launched ChatGPT Wallet on November 13, letting its dot agents complete purchases for US ChatGPT Pro subscribers after a biometric security check.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #apple #youtube #bigtech #technews #tech
+#coldcasetech #openai #chatgpt #pro #ai #technews #tech
+
+X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
+1. OpenAI says the agent never sees the real card number. A payment token stands in, which The Verge reports OpenAI likens to tap to pay, Apple Pay and Google Wallet.
+2. Launch is limited to Pro subscribers aged 18 and up in the US, with a US billing address and eligible US-issued cards, according to The Verge.
+3. Every purchase needs a Face ID or fingerprint check, OpenAI says. Would you let an agent fill the cart if you approve the final step?

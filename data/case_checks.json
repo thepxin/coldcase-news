@@ -1,7 +1,7 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
-  "checked": "2026-11-13",
-  "result": "the page does not mention this story"
+  "checked": "2026-11-14",
+  "result": "new coverage only from The Register: needs an official source or a second outlet"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
   "checked": "2026-11-09",
@@ -16,7 +16,7 @@
   "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
  },
  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
-  "checked": "2026-11-13",
+  "checked": "2026-11-14",
   "result": "past-due check: coverage only from 9to5Mac, and no official page about this case yet (5 official post(s), 4 official page(s) read)"
  },
  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
@@ -40,7 +40,7 @@
   "result": "no new coverage in approved feeds"
  },
  "2026-11-08-apple-health-app-redesign-ios-27-3-beta": {
-  "checked": "2026-11-13",
+  "checked": "2026-11-14",
   "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
@@ -48,11 +48,15 @@
   "result": "no new coverage in approved feeds"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
-  "checked": "2026-11-13",
+  "checked": "2026-11-14",
   "result": "no new coverage in approved feeds"
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
-  "checked": "2026-11-13",
+  "checked": "2026-11-14",
+  "result": "the site did not return the page (blocked, timed out or not found)"
+ },
+ "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
+  "checked": "2026-11-14",
   "result": "no new coverage in approved feeds"
  }
 }
