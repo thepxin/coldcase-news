@@ -1,0 +1,62 @@
+{{- /* Share kit: "Replies under big accounts". Up to 3 big X accounts that post about this story (data/x_accounts.json),
+       each paired with a reply to post under their post about it. The replies are written and fact-checked by the
+       daily run (social.replies); older articles get plain replies built from their checked hook, date and verdict.
+       "Copy reply & find their post" copies the reply and opens X's search for that account's latest posts on the
+       story, so the reply goes under a post that is really about it. */ -}}
+{{- $p := . }}{{ $s := .Params.social }}{{ $d := site.Data.x_accounts }}
+{{- $slug := .File.ContentBaseName }}
+{{- with $d }}
+{{- /* the replies */}}
+{{- $replies := slice }}{{ $angles := slice "The receipt" "The clock" "The question" }}
+{{- with $s.replies }}{{ $replies = . }}{{ else }}
+  {{- $angles = slice "The hook" "The clock" "The question" }}
+  {{- with $s.hook }}{{ $replies = $replies | append . }}{{ end }}
+  {{- $st := $p.Params.status | default "" }}{{ $due := $p.Params.due | default "" }}
+  {{- $ahead := false }}{{ with $p.Params.due_by }}{{ $ahead = (time.AsTime .).After now }}{{ end }}
+  {{- if and (eq $st "open") $due $ahead }}
+    {{- $replies = $replies | append (printf "The date on the record is %s. We check on the day." $due) }}
+    {{- $replies = $replies | append (printf "%s is the date on the record. Does it hold?" $due) }}
+  {{- else if $p.Params.verdict }}
+    {{- $replies = $replies | append (printf "Verdict on the record: %s." (strings.TrimSuffix "." $p.Params.verdict)) }}
+  {{- end }}
+{{- end }}
+{{- /* the accounts: the company, reporters for the names in the headline, the field, then general */}}
+{{- $tags := $s.tags | default slice }}
+{{- $hay := lower (printf " %s %s " $p.Title (delimit $tags " ")) }}
+{{- $hits := slice }}
+{{- range $d.companies }}{{ $c := . }}{{ if lt (len $hits) 1 }}{{ range $c.match }}{{ if and (lt (len $hits) 1) (findRE (printf `(?i)(^|[^a-z0-9])%s([^a-z0-9]|$)` .) $hay 1) }}{{ $hits = $hits | append $c.handle }}{{ end }}{{ end }}{{ end }}{{ end }}
+{{- range $d.names }}{{ $n := . }}{{ $on := false }}{{ range $n.match }}{{ if findRE (printf `(?i)(^|[^a-z0-9])%s([^a-z0-9]|$)` .) $hay 1 }}{{ $on = true }}{{ end }}{{ end }}{{ if $on }}{{ $hits = $hits | append $n.handles }}{{ end }}{{ end }}
+{{- $field := lower (index ($p.Params.tags | default (slice "" "")) 1 | default "") }}
+{{- with index $d.fields $field }}{{ $hits = $hits | append . }}{{ end }}
+{{- $hits = $hits | append $d.general }}
+{{- $accounts := first (len $replies) (first 3 (uniq $hits)) }}{{/* one reply per account: the same words under several accounts look like spam */}}
+{{- /* what to search for: the story's names (CamelCase split into words). For an account's posts, the most specific
+       name is best (a company name finds everything that company did), so company names are used only if nothing else. */}}
+{{- $names := slice }}{{ range $tags }}{{ $names = $names | append (replaceRE `([a-z])([A-Z])` "$1 $2" .) }}{{ end }}
+{{- if not $names }}{{ $names = slice (index (split $p.Title " ") 0) }}{{ end }}
+{{- $cw := slice }}{{ range $d.companies }}{{ $cw = $cw | append .match }}{{ end }}
+{{- $specific := slice }}{{ range $names }}{{ if not (in $cw (lower .)) }}{{ $specific = $specific | append . }}{{ end }}{{ end }}
+{{- $specific = $specific | append $names }}
+{{- if $replies }}
+<section class="rec-replies">
+  <h3>Replies under big accounts <span class="rec-of">no link, no hashtag · best in the first 30 minutes of their post</span></h3>
+  <ol>
+  {{- range $i, $h := $accounts }}
+    {{- $r := index $replies $i }}
+    {{- $q := "" }}{{ range $specific }}{{ if and (not $q) (not (in (lower $h) (lower (replace . " " "")))) }}{{ $q = . }}{{ end }}{{ end }}
+    {{- $search := printf "https://x.com/search?%s" (querify "q" (trim (printf "from:%s %s" $h $q) " ") "f" "live") }}
+    {{- $id := printf "rp%d-%s" $i $slug }}
+    <li>
+      <p class="rec-reply-to"><a href="https://x.com/{{ $h }}" target="_blank" rel="noopener">@{{ $h }}</a> <span>{{ index $d.who $h | default "" }}</span><span class="rec-angle">{{ index $angles $i }}</span></p>
+      <textarea id="{{ $id }}" readonly rows="3">{{ $r }}</textarea>
+      <p><a class="cct-btn-money" href="{{ $search }}" target="_blank" rel="noopener" data-copy-first="{{ $id }}">Copy reply &amp; find their post</a>
+        <button class="rec-btn" type="button" data-copy="{{ $id }}">Copy</button></p>
+    </li>
+  {{- end }}
+  </ol>
+  {{- with index $names 0 }}
+  <p class="rec-replies-more">More big posts about it: <a href="{{ printf "https://x.com/search?%s" (querify "q" (printf "%s min_faves:200" .) "f" "live") }}" target="_blank" rel="noopener">popular posts on {{ . }} right now</a></p>
+  {{- end }}
+</section>
+{{- end }}
+{{- end }}
