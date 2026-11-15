@@ -395,6 +395,13 @@
   "instagram": "17918450514551741",
   "telegram": "70"
  },
+ "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
+  "at": "2026-11-15T22:16:52Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2f23w6aqi2x",
+  "facebook": "1489437024244341_122103560841546323",
+  "instagram": "17961717573016804",
+  "telegram": "73"
+ },
  "2026-11-15-kuxiu-k4-air-magsafe-charger-hands-on": {
   "at": "2026-11-15T16:02:46Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2ef6vqo5y22",
@@ -410,7 +417,7 @@
   "telegram": "71"
  },
  "_last_post": {
-  "facebook": "2026-11-15T16:02:34Z",
-  "instagram": "2026-11-15T16:02:46Z"
+  "facebook": "2026-11-15T22:16:44Z",
+  "instagram": "2026-11-15T22:16:52Z"
  }
 }
