@@ -1,28 +1,28 @@
 ================================================================
-Kuxiu K4 Air charger folds to 8.5 mm, against 8.25 mm for an iPhone 17 Pro
+DeepSeek V4 and Kimi K3 weights match Nvidia Blackwell chips, researchers allege
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (145/280):
-Kuxiu K4 Air: 8.5 mm folded. An iPhone 17 Pro: roughly 8.25 mm, per 9to5Mac.
+X (173/280):
+Unemployment Labs found Blackwell fingerprints in DeepSeek V4 weights. It cannot say where the chips sat.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-15-kuxiu-k4-air-magsafe-charger-hands-on/
+Every line sourced: https://coldcasetech.com/posts/2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint/
 
-#iPhone17Pro #iPhone17
+#DeepSeek #DeepSeekV4
 
 INSTAGRAM (post this caption with the image from the share kit):
-Kuxiu K4 Air: 8.5 mm folded. An iPhone 17 Pro: roughly 8.25 mm, per 9to5Mac.
+Unemployment Labs found Blackwell fingerprints in DeepSeek V4 weights. It cannot say where the chips sat.
 
-9to5Mac's hands-on with the Kuxiu K4 Air 3-in-1 MagSafe charger covers its 8.5 mm folded thickness, 25W iPhone charging and $79 price.
+Unemployment Labs says DeepSeek V4, Kimi K3 and other open-weight Chinese models bear fingerprints of training on export-banned Nvidia Blackwell chips.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #iphone17pro #iphone17 #kuxiuk4air #gadgets #technews #tech
+#coldcasetech #deepseek #deepseekv4 #nvidia #blackwell #kimik3 #ai #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Kuxiu lists the folded K4 Air at 8.5 mm and 120 g. 9to5Mac's reviewer puts their iPhone 17 Pro at roughly 8.25mm thick.
-2. 9to5Mac reports the K4 Air is back in stock at $79 on Kuxiu's website, in Space Gray and Burgundy, with a 45W brick, cable and pouch in the box.
-3. 9to5Mac's reviewer says an opened iPhone Duo tilts slightly left on the K4 Air in landscape but works well in portrait. Which orientation would you use?
+1. Blackwell B chips have 148 shader modules, GB chips 152. Researchers matched that to DeepSeek V4 weights. Changing the counts broke the match.
+2. The method works only on open-weight models. Tom's Hardware notes that renting Blackwell hardware abroad is not currently illegal for Chinese companies, as far as it can tell.
+3. Epoch AI estimates about two million advanced chips entered China in 2024 and 2025. Do you think weight fingerprints will be accepted as proof of where models were trained?
