@@ -1,32 +1,32 @@
 ================================================================
-Tesla Cybercab costs $29,990. It will not operate without $299 a month.
+SpaceX Starship Flight 15: the ship was caught, the booster was not
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (231/280):
-Tesla Cybercab: $29,990 to buy, $299 a month to make it move. Delivery is estimated for December 2026 in Austin.
+X (224/280):
+Starship Flight 15 put 26 Starlink V3 satellites in orbit and the ship in the tower's arms. The booster went to the Gulf instead.
 
-Open case: due December 2026. We check every day.
+Verdict: Partially Delivered.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription/
+Every line sourced: https://coldcasetech.com/posts/2026-11-15-spacex-starship-flight-15-ship-catch-booster-abort/
 
-#Tesla #TeslaCybercab
+#SpaceX #Starship
 
 INSTAGRAM (post this caption with the image from the share kit):
-Tesla Cybercab: $29,990 to buy, $299 a month to make it move. Delivery is estimated for December 2026 in Austin.
+Starship Flight 15 put 26 Starlink V3 satellites in orbit and the ship in the tower's arms. The booster went to the Gulf instead.
 
-Tesla opened Cybercab pre-orders to select customers at $29,990, plus a $299 monthly subscription, with Austin delivery estimated for December 2026.
+SpaceX caught the Starship upper stage with its launch tower for the first time on Flight 15, but the Super Heavy V3 booster aborted its catch.
 
-Open case: due December 2026. We check every day.
+Verdict: Partially Delivered.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #tesla #teslacybercab #ev #technews #tech
+#coldcasetech #spacex #starship #space #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. The order page lists $29,990 and a $1,000 non-refundable deposit. Estimated delivery: December 2026, in Austin, Texas.
-2. Delivery date on the order page: December 2026. Tesla's agreement says the car will not operate without the $299 subscription. We check on the day.
-3. Musk said the $299 monthly fee is too high and should be nearer $115. The order page still lists $299. Does the monthly fee change whether you would order one?
+1. The booster aborted its catch and exploded over the Gulf. Ars Technica reports the cause is unspecified, and The Verge says SpaceX is still working it out.
+2. Partially Delivered. The Ship was caught by the tower, but the booster was not, so the full recovery for reuse that Ars Technica previewed did not happen.
+3. All 26 Starlink V3 satellites reached orbit and the Ship was caught, per Ars Technica and Engadget. The booster was lost. Which of those results matters most to you?
