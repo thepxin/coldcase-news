@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-15T16:07:39Z",
-   "outlet": "Electrek",
-   "title": "Mowing milestone: Greenzie surpasses 255,000 autonomous miles mowed",
-   "url": "https://electrek.co/2026/11/15/mowing-milestone-greenzie-surpasses-255000-autonomous-miles-mowed/"
+   "date": "2026-11-15T22:30:00Z",
+   "outlet": "Engadget",
+   "title": "Samsung is discontinuing these useful mobile apps in December",
+   "url": "https://www.engadget.com/2313930/samsung-is-discontinuing-these-useful-mobile-apps-in-december/"
   },
   {
-   "date": "2026-11-15T16:00:00Z",
+   "date": "2026-11-15T22:15:00Z",
+   "outlet": "Engadget",
+   "title": "How one 13-year-old is helping solve a huge solar panel limitation",
+   "url": "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/"
+  },
+  {
+   "date": "2026-11-15T22:00:01Z",
+   "outlet": "OpenAI",
+   "title": "A step toward defining the Standard Model on a lattice",
+   "url": "https://openai.com/index/step-toward-defining-the-standard-model"
+  },
+  {
+   "date": "2026-11-15T22:00:00Z",
+   "outlet": "OpenAI",
+   "title": "Our new blog for science",
+   "url": "https://openai.com/index/our-new-blog-for-science"
+  },
+  {
+   "date": "2026-11-15T21:56:35Z",
    "outlet": "TechCrunch",
-   "title": "The tech products we enthusiastically recommend this holiday season",
-   "url": "https://techcrunch.com/2026/11/15/the-tech-products-we-enthusiastically-recommend-this-holiday-season/"
+   "title": "Is bad news for Jensen Huang also bad news for the AI industry?",
+   "url": "https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/"
   },
   {
-   "date": "2026-11-15T16:00:00Z",
-   "outlet": "Engadget",
-   "title": "Some places have already banned AI glasses, and the list just keeps growing",
-   "url": "https://www.engadget.com/2313707/ai-glasses-banned-places-list-keeps-growing/"
+   "date": "2026-11-15T21:49:22Z",
+   "outlet": "The Verge",
+   "title": "Listen to this: Armand Hammer’s Snakes &#038; Ladders",
+   "url": "https://www.theverge.com/entertainment/1034013/armand-hammers-snakes-ladders-review"
   },
   {
-   "date": "2026-11-15T16:00:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "357 detailed CPU die shots spanning 1971 to 2024 crammed into a new gallery",
-   "url": "https://www.tomshardware.com/pc-components/cpus/357-detailed-cpu-die-shots-spanning-1971-to-2024-crammed-into-a-new-gallery-motorola-68000-intel-486dx2-amd-athlon-xp-apple-m1-and-many-more-in-beautiful-detail"
-  },
-  {
-   "date": "2026-11-15T15:57:57Z",
+   "date": "2026-11-15T21:44:51Z",
    "outlet": "9to5Mac",
-   "title": "The new Apple TV has twice as much RAM as the previous model, but apps and games can’t use it",
-   "url": "https://9to5mac.com/2026/11/15/new-apple-tv-ram-limit/"
+   "title": "Here’s one small change that could improve iPhone Duo’s unoptimized apps",
+   "url": "https://9to5mac.com/2026/11/15/iphone-duo-default-split-view-option-suggestion/"
   },
   {
-   "date": "2026-11-15T15:48:52Z",
-   "outlet": "9to5Mac",
-   "title": "Apple’s Siri AI smart glasses are reportedly launching next year, here’s what to expect",
-   "url": "https://9to5mac.com/2026/11/15/apples-siri-ai-smart-glasses-are-reportedly-launching-next-year-heres-what-to-expect/"
-  },
-  {
-   "date": "2026-11-15T15:45:00Z",
-   "outlet": "Engadget",
-   "title": "Can you use your Android phone as a computer speaker?",
-   "url": "https://www.engadget.com/2313706/use-android-phone-as-computer-speaker/"
-  },
-  {
-   "date": "2026-11-15T15:41:13Z",
-   "outlet": "Tom's Hardware",
-   "title": "Microsoft 365 outage leads to chlorine gas poisoning of 15 hotel guests",
-   "url": "https://www.tomshardware.com/tech-industry/data-centers/microsoft-365-outage-leads-to-chlorine-gas-poisoning-of-15-hotel-guests-email-warning-system-fails-40-first-responders-deployed-for-triage-four-hospitalized"
+   "date": "2026-11-15T21:36:43Z",
+   "outlet": "9to5Google",
+   "title": "‘Lenovo Googlebook Duet 13’ leak points to January launch [Gallery]",
+   "url": "https://9to5google.com/2026/11/15/lenovo-googlebook-duet-13-leak/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-15T16:18:47Z"
+ "updated": "2026-11-15T22:46:49Z"
 }
