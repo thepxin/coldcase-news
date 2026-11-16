@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-15T22:30:00Z",
+   "date": "2026-11-16T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "Inside Dakar 2026: How Galaxy Innovation Shaped the Athlete Experience",
+   "url": "https://news.samsung.com/global/inside-dakar-2026-how-galaxy-innovation-shaped-the-athlete-experience"
+  },
+  {
+   "date": "2026-11-16T06:06:05Z",
    "outlet": "Engadget",
-   "title": "Samsung is discontinuing these useful mobile apps in December",
-   "url": "https://www.engadget.com/2313930/samsung-is-discontinuing-these-useful-mobile-apps-in-december/"
+   "title": "Apple's new research app is designed to make AI health tools more user-friendly",
+   "url": "https://www.engadget.com/2317303/apple-new-research-app-designed-to-make-ai-health-tools-user-friendly/"
   },
   {
-   "date": "2026-11-15T22:15:00Z",
+   "date": "2026-11-16T06:01:41Z",
+   "outlet": "CoinDesk",
+   "title": "Trump administration to name Nvidia, OpenAI and several others as AI national champions",
+   "url": "https://www.coindesk.com/markets/2026/11/16/trump-administration-to-name-nvidia-openai-and-several-others-as-u-s-ai-national-champions"
+  },
+  {
+   "date": "2026-11-16T05:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 November 16 – NGC 7129: Star Formation with Jets from Webb",
+   "url": "https://science.nasa.gov/image-article/apod-2026-november-16-ngc-7129-star-formation-with-jets-from-webb/"
+  },
+  {
+   "date": "2026-11-16T05:01:17Z",
+   "outlet": "CoinDesk",
+   "title": "Bitcoin’s biggest bet is now a drop below $60,000, not a rally above $100,000",
+   "url": "https://www.coindesk.com/markets/2026/11/16/bitcoin-s-biggest-bet-is-now-a-drop-below-usd60-000-not-a-rally-above-usd100-000"
+  },
+  {
+   "date": "2026-11-16T05:00:00Z",
+   "outlet": "NASA",
+   "title": "The Last Ice on Puncak Jaya",
+   "url": "https://science.nasa.gov/earth/earth-observatory/the-last-ice-on-puncak-jaya/"
+  },
+  {
+   "date": "2026-11-16T04:56:53Z",
    "outlet": "Engadget",
-   "title": "How one 13-year-old is helping solve a huge solar panel limitation",
-   "url": "https://www.engadget.com/2313927/13-year-old-solving-solar-panel-limitation/"
+   "title": "ULA Vulcan rocket failure destroys 40 Amazon Leo satellites",
+   "url": "https://www.engadget.com/2317283/ula-vulcan-rocket-failure-destroys-40-amazon-leo-satellites/"
   },
   {
-   "date": "2026-11-15T22:00:01Z",
-   "outlet": "OpenAI",
-   "title": "A step toward defining the Standard Model on a lattice",
-   "url": "https://openai.com/index/step-toward-defining-the-standard-model"
-  },
-  {
-   "date": "2026-11-15T22:00:00Z",
-   "outlet": "OpenAI",
-   "title": "Our new blog for science",
-   "url": "https://openai.com/index/our-new-blog-for-science"
-  },
-  {
-   "date": "2026-11-15T21:56:35Z",
-   "outlet": "TechCrunch",
-   "title": "Is bad news for Jensen Huang also bad news for the AI industry?",
-   "url": "https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/"
-  },
-  {
-   "date": "2026-11-15T21:49:22Z",
-   "outlet": "The Verge",
-   "title": "Listen to this: Armand Hammer’s Snakes &#038; Ladders",
-   "url": "https://www.theverge.com/entertainment/1034013/armand-hammers-snakes-ladders-review"
-  },
-  {
-   "date": "2026-11-15T21:44:51Z",
-   "outlet": "9to5Mac",
-   "title": "Here’s one small change that could improve iPhone Duo’s unoptimized apps",
-   "url": "https://9to5mac.com/2026/11/15/iphone-duo-default-split-view-option-suggestion/"
-  },
-  {
-   "date": "2026-11-15T21:36:43Z",
-   "outlet": "9to5Google",
-   "title": "‘Lenovo Googlebook Duet 13’ leak points to January launch [Gallery]",
-   "url": "https://9to5google.com/2026/11/15/lenovo-googlebook-duet-13-leak/"
+   "date": "2026-11-16T01:32:57Z",
+   "outlet": "The Register",
+   "title": "Amazon loses first batch of broadband satellites launched on custom rocket",
+   "url": "https://www.theregister.com/networks/2026/11/16/amazon-loses-first-batch-of-broadband-satellites-launched-on-custom-rocket/5310000"
   }
  ],
  "status": "ok",
- "updated": "2026-11-15T22:46:49Z"
+ "updated": "2026-11-16T06:20:31Z"
 }
