@@ -1,28 +1,28 @@
 ================================================================
-DeepSeek V4 and Kimi K3 weights match Nvidia Blackwell chips, researchers allege
+Apple AirPods Pro 3 fall to $179 at Amazon, against a $249 list price
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (173/280):
-Unemployment Labs found Blackwell fingerprints in DeepSeek V4 weights. It cannot say where the chips sat.
+X (171/280):
+AirPods Pro 3 are $179 at Amazon against a $249 list price. 9to5Mac puts that within $10 of the late June low.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint/
+Every line sourced: https://coldcasetech.com/posts/2026-11-16-apple-airpods-pro-3-179-amazon-early-black-friday/
 
-#DeepSeek #DeepSeekV4
+#Amazon #Apple
 
 INSTAGRAM (post this caption with the image from the share kit):
-Unemployment Labs found Blackwell fingerprints in DeepSeek V4 weights. It cannot say where the chips sat.
+AirPods Pro 3 are $179 at Amazon against a $249 list price. 9to5Mac puts that within $10 of the late June low.
 
-Unemployment Labs says DeepSeek V4, Kimi K3 and other open-weight Chinese models bear fingerprints of training on export-banned Nvidia Blackwell chips.
+Apple AirPods Pro 3 dropped to $179.99 shipped at Amazon on November 15, from a $249 list price, 9to5Mac reported in the early Black Friday sale.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #deepseek #deepseekv4 #nvidia #blackwell #kimik3 #ai #technews #tech
+#coldcasetech #amazon #apple #airpods #airpodspro #gadgets #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Blackwell B chips have 148 shader modules, GB chips 152. Researchers matched that to DeepSeek V4 weights. Changing the counts broke the match.
-2. The method works only on open-weight models. Tom's Hardware notes that renting Blackwell hardware abroad is not currently illegal for Chinese companies, as far as it can tell.
-3. Epoch AI estimates about two million advanced chips entered China in 2024 and 2025. Do you think weight fingerprints will be accepted as proof of where models were trained?
+1. Earlier this week the same AirPods Pro 3 were listed at $199. 9to5Mac now has Amazon at $179.99 shipped, against a $249 regular price.
+2. 9to5Mac says $179 is within $10 of the late June all-time low, which jumped in and out of stock. It also matches the fall Prime Day price.
+3. Wired listed AirPods Pro 3 at $200 on November 13 at Amazon, Target and Walmart. Amazon is now at $179 per 9to5Mac. Which price did you see first?
