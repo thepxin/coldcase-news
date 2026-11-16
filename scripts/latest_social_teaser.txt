@@ -1,28 +1,28 @@
 ================================================================
-Apple AirPods Pro 3 fall to $179 at Amazon, against a $249 list price
+Minisforum Elite Mini M2 Air-304 reviewed: quiet, 0.47 liters, light workloads
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (171/280):
-AirPods Pro 3 are $179 at Amazon against a $249 list price. 9to5Mac puts that within $10 of the late June low.
+X (191/280):
+Minisforum M2 Air-304: 0.47 liters, 440 grams, $263 barebones. Tom's Hardware says the performance suits light workloads.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-16-apple-airpods-pro-3-179-amazon-early-black-friday/
+Every line sourced: https://coldcasetech.com/posts/2026-11-16-minisforum-elite-mini-m2-air-304-review/
 
-#Amazon #Apple
+#M2Air #MinisforumElite
 
 INSTAGRAM (post this caption with the image from the share kit):
-AirPods Pro 3 are $179 at Amazon against a $249 list price. 9to5Mac puts that within $10 of the late June low.
+Minisforum M2 Air-304: 0.47 liters, 440 grams, $263 barebones. Tom's Hardware says the performance suits light workloads.
 
-Apple AirPods Pro 3 dropped to $179.99 shipped at Amazon on November 15, from a $249 list price, 9to5Mac reported in the early Black Friday sale.
+Tom's Hardware reviewed the Minisforum Elite Mini M2 Air-304, a 0.47-liter mini PC with Intel's Core 3 processor 304, starting at $263 barebones.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #amazon #apple #airpods #airpodspro #gadgets #technews #tech
+#coldcasetech #m2air #minisforumelite #semiconductors #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Earlier this week the same AirPods Pro 3 were listed at $199. 9to5Mac now has Amazon at $179.99 shipped, against a $249 regular price.
-2. 9to5Mac says $179 is within $10 of the late June all-time low, which jumped in and out of stock. It also matches the fall Prime Day price.
-3. Wired listed AirPods Pro 3 at $200 on November 13 at Amazon, Target and Walmart. Amazon is now at $179 per 9to5Mac. Which price did you see first?
+1. Barebones price is $263. The tested 16GB and 500GB configuration is listed at $559, an introductory price, according to Tom's Hardware.
+2. Tom's Hardware says B&H Photo has already raised its price to $729. Minisforum's small text points to $699 for the tested configuration.
+3. Tom's Hardware found one SODIMM slot and one M.2 slot, both populated in its sample. Would a single-slot mini PC suit your desk?
