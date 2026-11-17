@@ -57,8 +57,7 @@
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-17",
-  "result": "past-due check: the company's pages have not changed since the last check (no outcome stated yet)",
-  "evidence": "9efbe37687f1e79c"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-17",
@@ -75,7 +74,7 @@
  "_queue": [],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
-   "stamp": "bf78094e1a958089",
+   "stamp": "848554f7ac4db7ad",
    "why": "nothing new",
    "day": "2026-11-17"
   }
