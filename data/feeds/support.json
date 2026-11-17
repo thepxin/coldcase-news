@@ -1,0 +1,67 @@
+{
+ "items": [
+  {
+   "ended": {
+    "date": "2026-10-01",
+    "what": "Pixel 6 and 6 Pro"
+   },
+   "link": "https://endoflife.date/pixel",
+   "month": true,
+   "name": "Google Pixel",
+   "next": [
+    {
+     "date": "2027-07-01",
+     "what": "Pixel 6a"
+    },
+    {
+     "date": "2027-10-01",
+     "what": "Pixel 7 and 7 Pro"
+    }
+   ],
+   "note": "Google publishes an end date for every Pixel."
+  },
+  {
+   "ended": {
+    "date": "2026-10-13",
+    "what": "Windows 11 24H2"
+   },
+   "link": "https://endoflife.date/windows",
+   "name": "Windows",
+   "next": [
+    {
+     "date": "2027-10-12",
+     "what": "Windows 11 25H2"
+    },
+    {
+     "date": "2028-03-14",
+     "what": "Windows 11 26H1"
+    }
+   ],
+   "note": "Home and Pro editions. Each yearly update gets about 2 years of fixes."
+  },
+  {
+   "ended": {
+    "date": "2026-04-22",
+    "what": "iPhone XS, XS Max and XR"
+   },
+   "link": "https://endoflife.date/iphone",
+   "name": "iPhone",
+   "note": "Apple doesn't announce end dates; it drops models when a new iOS comes out.",
+   "still": "iPhone 11 (2019) and newer"
+  },
+  {
+   "ended": {
+    "date": "2026-09-14",
+    "what": "macOS 14 Sonoma"
+   },
+   "link": "https://endoflife.date/macos",
+   "name": "Mac",
+   "note": "Apple doesn't announce end dates; older macOS versions stop getting fixes.",
+   "still": "macOS 15 Sequoia, 26 Tahoe and 27 Golden Gate"
+  }
+ ],
+ "source": "endoflife.date",
+ "source_url": "https://endoflife.date/",
+ "status": "ok",
+ "updated": "2026-11-17T12:17:46Z"
+}

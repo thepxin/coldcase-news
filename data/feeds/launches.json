@@ -1,0 +1,62 @@
+{
+ "items": [
+  {
+   "mission": "Unknown Payload",
+   "net": "2026-11-18T22:50:00Z",
+   "pad": "Taiyuan Satellite Launch Center, China",
+   "precision": "Hour",
+   "provider": "CASC (China)",
+   "rocket": "Long March 2D",
+   "status": "Go"
+  },
+  {
+   "mission": "USSF-317",
+   "net": "2026-11-19T03:00:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
+  },
+  {
+   "mission": "SatNet LEO Group",
+   "net": "2026-11-20T11:00:00Z",
+   "pad": "Wenchang Space Launch Site, China",
+   "precision": "Hour",
+   "provider": "CASC (China)",
+   "rocket": "Long March 8A",
+   "status": "TBC"
+  },
+  {
+   "mission": "NROL-136",
+   "net": "2026-11-21T12:30:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
+  },
+  {
+   "mission": "Amazon Leo (LE-04)",
+   "net": "2026-11-23T00:00:00Z",
+   "pad": "Guiana Space Centre, French Guiana",
+   "precision": "Day",
+   "provider": "Arianespace",
+   "rocket": "Ariane 64",
+   "status": "TBD"
+  },
+  {
+   "mission": "USSF-266",
+   "net": "2026-11-23T16:04:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
+  }
+ ],
+ "source": "The Space Devs (Launch Library 2)",
+ "source_url": "https://thespacedevs.com/llapi",
+ "status": "ok",
+ "updated": "2026-11-17T12:17:45Z"
+}
