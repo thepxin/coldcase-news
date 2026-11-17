@@ -6,13 +6,15 @@
 {{- $soon := slice }}{{ $late := slice -}}
 {{- range sort $up "Params.due_by" }}{{ if lt ((time.AsTime .Params.due_by).Sub now).Hours -24 }}{{ $late = $late | append . }}{{ else }}{{ $soon = $soon | append . }}{{ end }}{{ end -}}
 {{- $show := first 4 ($soon | append $late) -}}
+{{- $today := time.AsTime (now.UTC.Format "2006-01-02") -}}
 {{- with $up }}
 <section class="cct-feed rec-due-box" aria-labelledby="rail-due">
   <h2 id="rail-due">Due soon <span class="cct-feed-tag">open cases</span></h2>
   <ul>
     {{- range $show }}
-    {{- $days := int (div ((time.AsTime .Params.due_by).Sub now).Hours 24) }}
-    <li><a href="{{ .RelPermalink }}"><span class="rec-count">{{ if lt $days 0 }}—{{ else }}{{ $days }}{{ end }}<small>{{ if lt $days 0 }}past due{{ else }}day{{ if ne $days 1 }}s{{ end }}{{ end }}</small></span>
+    {{- /* whole calendar days (UTC) from today to the due date: on the 17th, a case due on the 19th is 2 days away */ -}}
+    {{- $days := int (math.Round (div ((time.AsTime .Params.due_by).Sub $today).Hours 24)) }}
+    <li><a href="{{ .RelPermalink }}"><span class="rec-count">{{ if lt $days 0 }}—{{ else }}{{ $days }}{{ end }}<small>{{ if lt $days 0 }}past due{{ else if eq $days 0 }}today{{ else }}day{{ if ne $days 1 }}s{{ end }}{{ end }}</small></span>
       <span class="rec-due-t">{{ .Title | truncate 70 }}<small>{{ if lt $days 0 }}was due {{ .Params.due }} · verdict pending{{ else }}due {{ .Params.due }}{{ end }}</small></span></a></li>
     {{- end }}
   </ul>
