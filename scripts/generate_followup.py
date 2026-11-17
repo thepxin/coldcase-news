@@ -23,7 +23,8 @@ AI_BUSY = False        # True once Claude stays overloaded (529): stop this run;
 DESK_OUT = False           # True once this desk's share of the budget is used: move to the next desk
 DESK = "tech"              # ColdCaseTech is tech-only (the old security desk was removed)
 DESK_CALL_LIMIT = 10
-UPDATE_BUDGET = int(os.environ.get("UPDATE_BUDGET", "3"))   # case updates: 1 update = write + check (+ re-check)
+UPDATE_BUDGET = int(os.environ.get("UPDATE_BUDGET", "5"))   # case updates: 1 update = write + check (+ fix + re-check),
+                                                            # plus 1 spare for a case whose coverage has nothing new
 # Claude API is paid per use, so every run has a request budget (this keeps the monthly bill predictable):
 # each run uses at most 18: case updates 3, then up to 3 tech articles (each = write + check, sometimes a fix + re-check,
 # plus drafts that fail a check). All runs of one day together use at most AI_DAILY_CAP (bottom of this file).
@@ -1342,7 +1343,7 @@ def finder_for(desk: str) -> Finder:
     return FINDERS[desk]
 
 
-def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None):
+def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None, waiting_run=False):
     """Look for new, verified developments in open and recent cases; write at most one update per run.
     only: optional list of case slugs to look at (the due-day watch). Returns dict(file, desk, entry) or None."""
     global DESK, DESK_OUT, DESK_CALL_LIMIT, WRITE_CALLS
@@ -1351,7 +1352,10 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
     today = datetime.now(timezone.utc)
     today_str = today.strftime("%Y-%m-%d")
     todo = [c for c in cases.update_candidates(all_cases, today) if c.get("desk") == "tech"]
-    if only is not None:
+    if only is not None and waiting_run:
+        todo = [c for c in todo if c["_slug"] in only]
+        print(f"\n===== WAITING CASE UPDATES: {len(todo)} case(s) that had new coverage but no free slot =====")
+    elif only is not None:
         todo = [c for c in todo if c["_slug"] in only]
         print(f"\n===== DUE-DAY WATCH: {len(todo)} open case(s) due today or yesterday, checked in every run until a source says what happened =====")
     else:
@@ -1361,9 +1365,25 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
         earlier_checks = json.load(open(cases.CHECKS_FILE, encoding="utf-8"))
     except Exception:
         earlier_checks = {}
+    # "_seen": coverage the writer already looked at without a publishable update (same links = not asked again).
+    # "_queue": cases that had new coverage but no free slot last time; they go first now, so no case waits forever.
+    seen = dict(earlier_checks.get("_seen") or {})
+    queue = [s for s in (earlier_checks.get("_queue") or []) if isinstance(s, str)]
+    todo = sorted(todo, key=lambda c: queue.index(c["_slug"]) if c["_slug"] in queue else len(queue))
+    waiting = []
+
+    def note(case, text):
+        if case.get("status") == "open":
+            checks[case["_slug"]] = {"checked": today_str, "result": text}
+
+    def links_stamp(sources):
+        return hashlib.sha1("\n".join(sorted(x["url"] for x in sources)).encode()).hexdigest()[:16]
+
+    looked = set()   # cases actually examined in this run (a run that stops early keeps the rest of the queue)
     for case in todo:
         if AI_EXHAUSTED or AI_BUSY:
             break
+        looked.add(case["_slug"])
         desk = case["desk"]
         last = cases.last_activity(case)
         since_dt = last.replace(hour=23, minute=59, second=59)
@@ -1371,6 +1391,13 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
         brief = {"title": case.get("title", ""), "since": since_dt, "urls": cases.all_urls(case)}
         found, reason = find_update(brief, finder_for(desk))
         past_due = False
+        slug = case["_slug"]
+        if found:
+            was = seen.get(slug) or {}
+            if was.get("stamp") == links_stamp(found) and (was.get("why") == "nothing new" or was.get("tries", 0) >= 2):
+                reason = ("same coverage as the last check: nothing new in it" if was.get("why") == "nothing new"
+                          else "same coverage as before: an update written from it failed the checks twice")
+                found = None
         due_day = cases._day(case.get("due_by"))
         if (not found and case.get("status") == "open" and due_day and due_day.date() <= today.date()
                 and not result and due_checks < MAX_DUE_CHECKS):
@@ -1397,20 +1424,25 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
             continue
         if result or DESK_OUT or AI_BUSY or AI_EXHAUSTED:
             print(f"  {label}: new verified coverage found; it will be written on the next run (one update per run).")
+            waiting.append(slug)
+            note(case, "new coverage found; first in line for the next run")
             continue
         print(f"  {label}: new verified coverage from {', '.join(sorted({s['outlet'] for s in found}))}")
         DESK = desk
         up = write_update(case, found, since_dt.strftime("%Y-%m-%d"), past_due=past_due)
         if up is None:
             print("  No draft (see the Claude message above).")
+            waiting.append(slug)
+            note(case, "new coverage found, but the writer was not available; first in line for the next run")
             continue
         if not up.has_new_development:
             print("  The writer found no new development in these sources.")
-            if case.get("status") == "open":
-                checks[case["_slug"]] = {"checked": today_str, "result": (
-                    "past-due check: the company's pages do not state the outcome yet" if past_due
-                    else "coverage found, but no new development")}
+            if not past_due:   # (the past-due check keeps its own stamp of the company's pages)
+                seen[slug] = {"stamp": links_stamp(found), "why": "nothing new", "day": today_str}
+            note(case, "past-due check: the company's pages do not state the outcome yet" if past_due
+                 else "coverage found, but no new development")
             continue
+        tried = links_stamp(found)
         if past_due:
             # Pages that turned out to be about something else were not cited: drop them; the source rule must still hold.
             cited = {guards._norm_url(u) for u in guards.MD_LINK.findall(up.update_markdown)}
@@ -1426,6 +1458,11 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
         checked, report = check_update(case, up, found)
         if checked is None:
             print(f"  NOT adding this update: {report}.")
+            if not report.endswith("could not run"):   # (a check that could not run is the AI's problem, not the update's)
+                was = seen.get(slug) or {}
+                tries = (was.get("tries", 0) if was.get("stamp") == tried else 0) + 1
+                seen[slug] = {"stamp": tried, "why": "failed checks", "tries": tries, "day": today_str}
+            note(case, f"an update was written but did not pass the checks ({report[:120]})")
             continue
         entry = {"date": today_str, "summary": checked.summary.strip(), "text": checked.update_markdown,
                  "status_from": case.get("status") or "closed", "status_to": checked.case_status,
@@ -1449,12 +1486,22 @@ def run_update_desk(all_cases: list, used_urls: set, call_limit: int, only=None)
         print(f"SUCCESS: update added to {case['_path']} ({report}).{moved}")
         if case.get("status") == "open":
             checks[case["_slug"]] = {"checked": today_str, "result": "updated"}
+        seen.pop(slug, None)
         result = {"file": case["_path"], "desk": desk, "entry": entry, "title": case.get("title", ""), "report": report}
     for slug, stamp in due_stamps.items():   # remember what the company's pages said, to skip an identical re-check
         if slug in checks and checks[slug]["result"].startswith("past-due check: the company's pages"):
             checks[slug]["evidence"] = stamp
+    live = {c["_slug"] for c in all_cases}
+    keep = [s for s in queue if s in live and (s not in looked or s in waiting)]   # same order as before
+    new_queue = keep + [s for s in waiting if s in live and s not in keep]
+    new_seen = {k: v for k, v in seen.items() if k in live}
+    if new_seen != (earlier_checks.get("_seen") or {}) or new_queue != (earlier_checks.get("_queue") or []):
+        checks["_seen"], checks["_queue"] = new_seen, new_queue
     if checks:
         cases.record_checks(checks)
+    if waiting:
+        print(f"[updates] {len(waiting)} case(s) with new coverage are first in line for the next run "
+              f"(waiting in all: {len(new_queue)}).")
     if not result:
         print("[updates] No case update today. This is expected on most days.")
     return result
@@ -1586,9 +1633,23 @@ def due_watch_cases(all_cases: list, now=None) -> list:
     return out
 
 
-def share_for(job: str, plan: list) -> int:
-    """How many Claude requests this job may use. Case updates get UPDATE_BUDGET; the tech desk gets the rest."""
+def queued_cases(all_cases: list, skip=()) -> list:
+    """Cases that had new coverage but no free update slot (data/case_checks.json "_queue"), oldest first."""
+    try:
+        q = json.load(open(cases.CHECKS_FILE, encoding="utf-8")).get("_queue") or []
+    except Exception:
+        q = []
+    live = {c["_slug"] for c in all_cases if c.get("desk") == "tech"}
+    return [s for s in q if isinstance(s, str) and s in live and s not in skip]
+
+
+def share_for(job: str, plan: list, owed: int = 0) -> int:
+    """How many Claude requests this job may use. Case updates get UPDATE_BUDGET; the tech desk gets the rest.
+    backlog (the waiting case updates, after the articles): only what is left after keeping 6 requests for each
+    article still owed today, so waiting updates never take an article's requests."""
     left = AI_BUDGET - AI_CALLS
+    if job == "backlog":
+        return max(0, min(UPDATE_BUDGET, left - 6 * max(0, owed)))
     if job in ("updates", "duewatch"):
         return max(0, min(UPDATE_BUDGET, left - (6 if "tech" in plan[plan.index(job) + 1:] else 0)))
     return max(0, left)
@@ -1652,6 +1713,7 @@ if __name__ == "__main__":
     print("Claude billing: " + (f"HALF PRICE batches (if no answer in {BATCH_WAIT // 60} min, sent normally)." if CLAUDE_BATCH
                                 else "normal requests (batches switched off with CLAUDE_BATCH=off)."))
     watch = []   # open cases due today or yesterday (the due-day watch)
+    backlog = []   # cases with new coverage still waiting for an update slot
     if forced == "auto":
         finished = [j for j in plan if (j == "updates" and run_log["jobs"].get(j) == "done")
                     or (j == "tech" and done_today >= ARTICLES_PER_DAY)]
@@ -1663,6 +1725,13 @@ if __name__ == "__main__":
             print(f"Due-day watch: {len(watch)} open case(s) due today or yesterday are checked again in this run: "
                   + ", ".join(watch))
             plan = ["duewatch"] + plan
+        backlog = queued_cases(all_cases, skip=watch) if "updates" in finished else []
+        if backlog:
+            # The day's case-update job wrote its one update; cases with new coverage still waiting get one more
+            # update per later run, after the article, from requests the articles do not need.
+            print(f"Waiting case updates: {len(backlog)} case(s) had new coverage but no free slot; one more update "
+                  "may be written in this run, after the article: " + ", ".join(backlog))
+            plan = plan + ["backlog"]
         if not plan:
             print("All of today's jobs are finished. Nothing to do in this run.")
 
@@ -1678,6 +1747,19 @@ if __name__ == "__main__":
             print(f"'{job}' did not run: Claude is {'overloaded' if AI_BUSY else 'unavailable (credit or key)'}. "
                   "The catch-up run will try it again.")
             run_log["jobs"][job] = "cut"
+            continue
+        if job == "backlog":
+            owed = 0 if forced == "tech" else max(0, ARTICLES_PER_DAY - done_today)
+            share = share_for(job, plan, owed)
+            if result["update"]:
+                print("Waiting case updates: not this run (an update was already written; one update per run).")
+            elif share < 3:
+                print(f"Waiting case updates: not this run ({share} Claude request(s) to spare after keeping "
+                      f"{6 * owed} for the {owed} article(s) still due today).")
+            else:
+                up = run_update_desk(all_cases, used_urls, share, only=backlog, waiting_run=True)
+                if up:
+                    result["update"], result["update_desk"] = up["file"], up["desk"]
             continue
         share = share_for(job, plan)
         if share < 3:
