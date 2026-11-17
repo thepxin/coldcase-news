@@ -48,14 +48,24 @@ async function statuspage(name, host) {
 }
 
 // PlayStation Network: the data file behind status.playstation.com. Every "status" list is empty when all is well;
-// any entry anywhere (region, country or service) means Sony is reporting something.
+// an entry anywhere (region, country or service) means Sony is reporting something. Sony also posts notices meant
+// for one language only (e.g. a Russian-only notice that has stood since 11 Nov 2026); those are not shown to our
+// readers on Sony's page either, so only notices with an English text (or with no text at all) count.
 async function playstation() {
   const name = "PlayStation Network";
   let seen = 0;
   const services = new Set();
   let outage = false, maintenance = false;
+  const forUs = (e) => {
+    const m = ((e || {}).message || {}).messages;
+    if (!m || typeof m !== "object") return true;
+    const langs = Object.keys(m);
+    return !langs.length || langs.some((k) => /^en/i.test(k));
+  };
   const note = (list, service) => {
-    if (!Array.isArray(list) || !list.length) return;
+    if (!Array.isArray(list)) return;
+    list = list.filter(forUs);
+    if (!list.length) return;
     seen += 1;
     if (service) services.add(service);
     const txt = JSON.stringify(list).toLowerCase();
