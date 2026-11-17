@@ -56,7 +56,7 @@
   "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
-  "checked": "2026-11-16",
+  "checked": "2026-11-17",
   "result": "coverage found, but no new development"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
@@ -70,5 +70,13 @@
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
   "checked": "2026-11-17",
   "result": "no new coverage in approved feeds"
+ },
+ "_queue": [],
+ "_seen": {
+  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
+   "stamp": "1376bfc33250ba27",
+   "why": "nothing new",
+   "day": "2026-11-17"
+  }
  }
 }
