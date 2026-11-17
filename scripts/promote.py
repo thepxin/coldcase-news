@@ -213,6 +213,19 @@ def telegram_post(p, card_url):
             "chat_id": chat, "text": telegram_caption(p) + f"\n\n{html.escape(p['url'])}", "parse_mode": "HTML",
             "reply_markup": button})
     d = r.json() if r.headers.get("content-type", "").startswith("application/json") else {}
+    if card_url and not (r.ok and d.get("ok")) and "url" in str(d.get("description", "")).lower():
+        # Telegram could not download the picture from our site (seen right after an article went live). Download it
+        # here and upload it to Telegram directly instead.
+        try:
+            img = requests.get(card_url, timeout=30)
+            img.raise_for_status()
+            r = requests.post(f"{TG}/bot{token}/sendPhoto", timeout=60,
+                              data={"chat_id": chat, "caption": telegram_caption(p), "parse_mode": "HTML",
+                                    "reply_markup": json.dumps(button)},
+                              files={"photo": ("coldcasetech.png", img.content, img.headers.get("content-type", "image/png"))})
+            d = r.json() if r.headers.get("content-type", "").startswith("application/json") else {}
+        except Exception as e:
+            return "", f"Telegram couldn't fetch the picture, and uploading it ourselves failed too ({e})"
     if not (r.ok and d.get("ok")):
         return "", f"{r.status_code}: {d.get('description', r.text[:200])}"
     return str(d["result"]["message_id"]), ""
