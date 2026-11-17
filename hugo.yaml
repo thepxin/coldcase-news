@@ -72,6 +72,10 @@ menu:
       name: Trackers
       url: /tracker/
       weight: 17
+    - identifier: stakeout
+      name: Stakeout
+      url: /stakeout/
+      weight: 18
     - identifier: tech
       name: All articles
       url: /tags/tech/
