@@ -1,0 +1,183 @@
+{{- define "main" }}
+{{- /* /stakeout/: the live board. Promise clocks (own data), launch watch and support clock (data/feeds, refreshed
+       every 3 hours by the feeds job; visitors' browsers never contact those sources). A small script makes the
+       clocks tick and shows launch times in the reader's own time zone; without it, the page still reads correctly. */}}
+<header class="page-header rec-page-h so-head">
+  <p class="rec-kicker"><span class="so-live" aria-hidden="true"></span>Live board · outages every 2 minutes, the rest every 3 hours</p>
+  <h1>Stakeout</h1>
+  <div class="post-description">{{ .Description }}</div>
+</header>
+<nav class="so-jump" aria-label="On this page"><a href="#outages">Outage watch</a><a href="#promises">Promise clocks</a><a href="#launches">Launch watch</a><a href="#support">Support clock</a></nav>
+
+{{- /* ---------- 0. Outage watch: what each company's own status page says. Filled in the reader's browser from
+       /api/status (our own Cloudflare function, which asks the status pages at most once every 2 minutes). ---------- */}}
+{{- $groups := slice
+  (dict "title" "Gaming" "items" (slice
+    (dict "name" "PlayStation Network" "url" "https://status.playstation.com/")
+    (dict "name" "Xbox network" "url" "https://support.xbox.com/xbox-live-status")
+    (dict "name" "Rockstar / GTA Online" "url" "https://support.rockstargames.com/servicestatus")
+    (dict "name" "Epic Games" "url" "https://status.epicgames.com/")
+    (dict "name" "Steam" "url" "https://help.steampowered.com/")))
+  (dict "title" "Apps & AI" "items" (slice
+    (dict "name" "ChatGPT" "url" "https://status.openai.com/")
+    (dict "name" "Claude" "url" "https://status.claude.com/")
+    (dict "name" "GitHub" "url" "https://www.githubstatus.com/")
+    (dict "name" "Cloudflare" "url" "https://www.cloudflarestatus.com/")
+    (dict "name" "Discord" "url" "https://discordstatus.com/")
+    (dict "name" "Reddit" "url" "https://www.redditstatus.com/")
+    (dict "name" "Zoom" "url" "https://status.zoom.us/")
+    (dict "name" "Dropbox" "url" "https://status.dropbox.com/"))) }}
+<section id="outages" class="so-sec" data-status-src="{{ "api/status" | relURL }}">
+  <h2 class="so-h">Outage watch <span>what each company's own status page says</span></h2>
+  {{- range $groups }}
+  <h3 class="so-sub">{{ .title }}</h3>
+  <ul class="so-tiles">
+    {{- range .items }}
+    <li><a class="so-tile" data-svc="{{ .name }}" href="{{ .url }}" target="_blank" rel="noopener">
+      <span class="so-dot" aria-hidden="true"></span><b>{{ .name }}</b>
+      <span class="so-state">Checking…</span></a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  <p class="cct-feed-credit so-out-foot"><span class="so-checked">Checked every 2 minutes.</span> Status pages are run by the companies themselves and are sometimes updated late: a green dot means the company hasn't reported a problem, a grey one that we couldn't read their page. Tap a service for its official page.</p>
+</section>
+
+{{- /* ---------- 1. Promise clocks: open cases with a date ---------- */}}
+{{- $today := time.AsTime (now.UTC.Format "2006-01-02") }}
+{{- $soon := slice }}{{ $late := slice }}
+{{- range sort (where (where site.RegularPages "Section" "posts") "Params.status" "open") "Params.due_by" }}
+  {{- $p := . }}
+  {{- with .Params.due_by }}
+    {{- $d := int (math.Round (div ((time.AsTime .).Sub $today).Hours 24)) }}
+    {{- if lt $d 0 }}{{ $late = $late | append $p }}{{ else }}{{ $soon = $soon | append $p }}{{ end }}
+  {{- end }}
+{{- end }}
+<section id="promises" class="so-sec">
+  <h2 class="so-h">Promise clocks <span>open cases · nearest date first</span></h2>
+  {{- with $soon }}
+  <ol class="so-list">
+    {{- range . }}
+    {{- $due := time.AsTime .Params.due_by }}
+    {{- $d := int (math.Round (div ($due.Sub $today).Hours 24)) }}
+    <li class="so-row">
+      <span class="so-clock{{ if le $d 7 }} so-clock--near{{ end }}">
+        {{- if eq $d 0 }}<b>Today</b><small>due date</small>{{ else }}<b>{{ $d }}</b><small>day{{ if ne $d 1 }}s{{ end }} left</small>{{ end -}}
+      </span>
+      <a class="so-what" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span class="so-meta">Due: {{ .Params.due }} · case opened {{ .Date.Format "2 Jan" }}</span>
+    </li>
+    {{- end }}
+  </ol>
+  {{- end }}
+  {{- with $late }}
+  <details class="so-late">
+    <summary>{{ len . }} past due, waiting for a sourced verdict</summary>
+    <ol class="so-list">
+      {{- range . }}
+      {{- $d := int (math.Round (div ((time.AsTime .Params.due_by).Sub $today).Hours 24)) }}
+      <li class="so-row">
+        <span class="so-clock so-clock--late"><b>{{ mul $d -1 }}</b><small>day{{ if ne $d -1 }}s{{ end }} late</small></span>
+        <a class="so-what" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <span class="so-meta">Was due: {{ .Params.due }} · we check for the outcome every day</span>
+      </li>
+      {{- end }}
+    </ol>
+  </details>
+  {{- end }}
+</section>
+
+{{- /* ---------- 2. Launch watch ---------- */}}
+{{- $l := partial "feeds/get.html" "launches" }}
+{{- with $l.items }}
+<section id="launches" class="so-sec">
+  <h2 class="so-h">Launch watch <span>next rockets on the pad</span></h2>
+  <ol class="so-list">
+    {{- range first 6 (where . "net" "gt" ((now.Add (time.ParseDuration "-1h")).UTC.Format "2006-01-02T15:04:05Z")) }}
+    {{- $t := time .net }}
+    <li class="so-row">
+      {{- if in (slice "Minute" "Hour" "Second") .precision }}
+      <span class="so-clock" data-to="{{ .net }}"><b>{{ int (math.Floor (div ($t.Sub now).Hours 24)) }}</b><small>days</small><i></i></span>
+      {{- else }}
+      <span class="so-clock so-clock--soft"><b>{{ $t.Format "2 Jan" }}</b><small>time not set</small></span>
+      {{- end }}
+      <span class="so-what">{{ .rocket }} <span class="so-mission">· {{ .mission }}</span>
+        <span class="so-chip so-chip--{{ lower .status }}" title="{{ if eq .status "Go" }}Go for launch{{ else if eq .status "TBC" }}To be confirmed{{ else }}To be determined{{ end }}">{{ .status }}</span></span>
+      <span class="so-meta">{{ .provider }} · {{ .pad }} · {{ if in (slice "Minute" "Hour" "Second") .precision }}<time data-local="{{ .net }}">{{ $t.UTC.Format "Mon 2 Jan, 15:04" }} UTC</time>{{ else }}{{ $t.Format "Mon 2 Jan" }}, time not announced{{ end }}
+        {{- if eq .provider "SpaceX" }} · <a href="{{ "tracker/spacex/" | relURL }}">SpaceX promises</a>{{ end }}</span>
+    </li>
+    {{- end }}
+  </ol>
+  <p class="cct-feed-credit">As of {{ partial "feeds/ago.html" $l.updated }}. Launch data: <a href="{{ $l.source_url }}" target="_blank" rel="noopener">The Space Devs</a>. Launch dates often move; "Go" means the launch team says it is on.</p>
+</section>
+{{- end }}
+
+{{- /* ---------- 3. Support clock ---------- */}}
+{{- $s := partial "feeds/get.html" "support" }}
+{{- with $s.items }}
+<section id="support" class="so-sec">
+  <h2 class="so-h">Support clock <span>when your device stops getting updates</span></h2>
+  <div class="so-cards">
+    {{- range . }}
+    <article class="so-card">
+      <h3>{{ .name }}</h3>
+      <p class="so-note">{{ .note }}</p>
+      <dl>
+        {{- range $i, $n := .next }}{{ with $n }}
+        {{- $t := time .date }}{{ $d := int (math.Round (div ($t.Sub $today).Hours 24)) }}
+        <div><dt>{{ if eq $i 0 }}Next to lose updates{{ else }}After that{{ end }}</dt><dd><b>{{ .what }}</b><span>{{ if .month }}{{ $t.Format "January 2006" }}{{ else }}{{ $t.Format "2 Jan 2006" }}{{ end }} · in {{ $d }} days</span></dd></div>
+        {{- end }}{{ end }}
+        {{- with .still }}<div><dt>Still supported</dt><dd><b>{{ . }}</b></dd></div>{{ end }}
+        {{- with .ended }}{{ $t := time .date }}
+        <div class="so-ended"><dt>Updates ended</dt><dd><b>{{ .what }}</b><span>{{ if .month }}{{ $t.Format "January 2006" }}{{ else }}{{ $t.Format "2 Jan 2006" }}{{ end }}</span></dd></div>
+        {{- end }}
+      </dl>
+      <a class="so-more" href="{{ .link }}" target="_blank" rel="noopener">Every model ›</a>
+    </article>
+    {{- end }}
+  </div>
+  <p class="cct-feed-credit">As of {{ partial "feeds/ago.html" $s.updated }}. Support data: <a href="{{ $s.source_url }}" target="_blank" rel="noopener">endoflife.date</a>, a community-run project. Where a company doesn't announce dates, they are the dates its last update came out.</p>
+</section>
+{{- end }}
+
+{{ partial "newsletter.html" (dict "place" "stakeout") }}
+<script>
+(function(){
+  function pad(n){return (n<10?'0':'')+n;}
+  var clocks=[].slice.call(document.querySelectorAll('.so-clock[data-to]'));
+  function tick(){
+    var now=Date.now();
+    clocks.forEach(function(c){
+      var ms=Date.parse(c.getAttribute('data-to'))-now, b=c.querySelector('b'), s=c.querySelector('small'), i=c.querySelector('i');
+      if(!b||!i)return;
+      if(ms<=0){b.textContent='Now';s.textContent='';i.textContent='';return;}
+      var sec=Math.floor(ms/1000), d=Math.floor(sec/86400); sec-=d*86400;
+      var h=Math.floor(sec/3600); sec-=h*3600; var m=Math.floor(sec/60); sec-=m*60;
+      b.textContent=d; s.textContent=d===1?'day':'days'; i.textContent=pad(h)+':'+pad(m)+':'+pad(sec);
+    });
+  }
+  if(clocks.length){tick();setInterval(tick,1000);}
+  /* Outage watch */
+  var box=document.getElementById('outages');
+  function ago(iso){var m=Math.round((Date.now()-Date.parse(iso))/60000);return m<1?'just now':m+' min ago';}
+  function load(){
+    fetch(box.getAttribute('data-status-src'),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
+      (d.services||[]).forEach(function(s){
+        var t=box.querySelector('[data-svc="'+s.name+'"]'); if(!t)return;
+        t.className='so-tile so-st--'+s.state;
+        t.querySelector('.so-state').textContent=s.text;
+      });
+      [].forEach.call(box.querySelectorAll('.so-tile'),function(t){
+        if(t.querySelector('.so-state').textContent==='Checking…'){t.className='so-tile so-st--unknown';t.querySelector('.so-state').textContent='Couldn\'t read their page just now';}
+      });
+      if(d.checked)box.querySelector('.so-checked').textContent='Checked '+ago(d.checked)+'.';
+    }).catch(function(){
+      [].forEach.call(box.querySelectorAll('.so-tile'),function(t){t.className='so-tile so-st--unknown';t.querySelector('.so-state').textContent='Couldn\'t read their page just now';});
+    });
+  }
+  if(box){load();setInterval(load,120000);}
+  [].forEach.call(document.querySelectorAll('time[data-local]'),function(t){
+    try{t.textContent=new Date(t.getAttribute('data-local')).toLocaleString(undefined,{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+' your time';}catch(e){}
+  });
+})();
+</script>
+{{- end }}
