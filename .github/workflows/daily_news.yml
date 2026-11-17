@@ -4,10 +4,14 @@ name: Daily Cold-Case News Generator
 #   02:41 UTC = 08:11 IST (morning)   08:41 UTC = 14:11 IST (afternoon)   14:41 UTC = 20:11 IST (night)
 #   17:47 UTC = 23:17 IST: catch-up, publishes any article an earlier run could not (Claude busy, GitHub late).
 # Each run picks the HOTTEST story it can verify (most outlets covering it, freshest, trending on Google / Hacker
-# News), from a field that has no article yet today. Case updates run once a day, in the first run.
+# News), from a field that has no article yet today. Case updates run once a day, in the first run; cases that had
+# new coverage but no free slot get one more update in later runs, after the article.
 # Everything is published directly, but only after passing every automated check (approved sources, hard checks,
 # and a clean, separate AI fact-check). Nothing that fails a check is ever published.
-# GitHub always uses UTC, and often starts scheduled runs 5 to 60 minutes late; a late run still publishes.
+# GitHub always uses UTC, and often starts its own scheduled runs hours late. So the on-time start comes from a
+# Cloudflare timer (scripts/cloudflare_timer.js), which presses "Run workflow" at the times below with run_kind
+# slot or catchup. GitHub's own schedule stays as a backup: a run that finds today's article already published
+# publishes nothing more.
 # All runs of the day share one daily request cap (data/daily_runs.json).
 on:
   schedule:
@@ -23,6 +27,12 @@ on:
         default: 'auto'
         type: choice
         options: [auto, updates, tech]
+      run_kind:
+        description: 'Leave as manual. (slot and catchup are used by the Cloudflare timer)'
+        required: false
+        default: 'manual'
+        type: choice
+        options: [manual, slot, catchup]
 
 permissions:
   contents: write
@@ -62,7 +72,8 @@ jobs:
           CLAUDE_BATCH: ${{ vars.CLAUDE_BATCH || 'on' }}
           DESK: ${{ inputs.desk || 'auto' }}
           # slot = a timed run (1 article), catchup = the 23:17 IST run (all missing articles), manual = Run workflow button
-          RUN_KIND: ${{ github.event_name == 'workflow_dispatch' && 'manual' || (github.event.schedule == '47 17 * * *' && 'catchup' || 'slot') }}
+          # (the Cloudflare timer uses the Run workflow button too, with run_kind slot or catchup)
+          RUN_KIND: ${{ github.event_name == 'workflow_dispatch' && (inputs.run_kind || 'manual') || (github.event.schedule == '47 17 * * *' && 'catchup' || 'slot') }}
         run: python scripts/generate_followup.py
 
       - name: Publish today's cases and case updates
