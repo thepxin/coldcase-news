@@ -1,28 +1,56 @@
 ================================================================
-Xbox turns 25 with a 25-game PC bundle and an $899 Series X25
+Apple HomeView goes on sale at $299 with Siri AI, but not in the EU
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
 X (176/280):
-The original Xbox sold 24 million units. Its 25th birthday brings 25 free games with new PCs and an $899 console.
+Apple HomeView went on sale at $299 on November 13. Apple says Siri AI is currently unavailable in iOS in the EU.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-17-xbox-25th-anniversary-bundle-series-x25/
+Every line sourced: https://coldcasetech.com/posts/2026-11-17-apple-homeview-on-sale-299-siri-ai/
 
-#Xbox #SeriesX25
+#Apple #HomeView
 
 INSTAGRAM (post this caption with the image from the share kit):
-The original Xbox sold 24 million units. Its 25th birthday brings 25 free games with new PCs and an $899 console.
+Apple HomeView went on sale at $299 on November 13. Apple says Siri AI is currently unavailable in iOS in the EU.
 
-Microsoft marked 25 years of Xbox with a 25-game bundle for new Windows PCs and a limited-edition Xbox Series X25 priced at $899 at Best Buy.
+Apple began selling the HomeView smart display on November 13 for $299 in the U.S., powered by Siri AI, in select regions but not in the EU.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #xbox #seriesx25 #gaming #technews #tech
+#coldcasetech #apple #homeview #siri #ai #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. The original Xbox reached North America on Nov 15, 2001 and sold 24 million units, according to Tom's Hardware.
-2. The Xbox Series X25 is translucent OG Green with 1TB SSD and a matching controller. Tom's Hardware lists it at $899 at Best Buy.
-3. The 25-game anniversary bundle comes with qualifying new Windows PCs, not consoles. Will you look for it when buying a PC?
+1. Apple HomeView went on sale November 13 at $299 in the U.S. Apple lists the PoE wall mount for early 2027 at $129.95.
+2. Apple says HomeView is not sold in the EU because Siri AI is currently unavailable in iOS there.
+3. Apple says HomeView recognizes up to six people by face and shows personal content only when their paired iPhone or iPad is present and recently unlocked. Would you use that?
+
+
+================================================================
+Google Wallet arrives on iOS in the U.S. Tap to pay is not included.
+Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
+(Bluesky and Telegram post automatically.)
+================================================================
+
+X (183/280):
+Google Wallet reached iOS in the U.S. on November 17. Google notes tap-to-pay is not supported on iOS at this time.
+
+Every line sourced: https://coldcasetech.com/posts/2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay/
+
+#Google #GoogleWallet
+
+INSTAGRAM (post this caption with the image from the share kit):
+Google Wallet reached iOS in the U.S. on November 17. Google notes tap-to-pay is not supported on iOS at this time.
+
+Full story and every source: link in bio.
+
+ColdCaseTech · An independent record of technology's promises
+
+#coldcasetech #google #googlewallet #ios #software #technews #tech
+
+X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
+1. Google's own announcement adds one line: tap-to-pay functionality isn't supported on iOS at this time.
+2. For iPhone users in the U.S., Google says Wallet can scan loyalty and gym cards with the camera and manage payment cards for online checkout.
+3. 9to5Google reports the Gemini Wallet connector is read-only and opt-in, and Gemini cannot move, manage or invest money. Would you switch it on?
