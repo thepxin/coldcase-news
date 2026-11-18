@@ -1,6 +1,42 @@
 {
  "items": [
   {
+   "date": "2026-11-18T21:03:40Z",
+   "outlet": "Engadget",
+   "title": "Rockstar just settled a major question about GTA 6's controversial FPS decision",
+   "url": "https://www.engadget.com/2321134/rockstar-just-settled-a-major-question-about-gta-6s-controversial-fps-decision/"
+  },
+  {
+   "date": "2026-11-18T21:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "AMD’s Twitter brag that it ‘loves gamers’ met with savage Community Note",
+   "url": "https://www.tomshardware.com/pc-components/amds-twitter-brag-that-it-loves-gamers-met-with-savage-community-note-post-met-with-backlash-over-the-companys-pivot-to-ai"
+  },
+  {
+   "date": "2026-11-18T21:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Nvidia GeForce driver bug reportedly hammers SSDs with up to 30GB of writes per hour",
+   "url": "https://www.tomshardware.com/pc-components/gpu-drivers/nvidia-geforce-driver-bug-reportedly-hammers-ssds-with-up-to-30gb-of-writes-per-hour-users-trace-massive-idle-wear-to-background-service-newer-driver-reportedly-still-affected"
+  },
+  {
+   "date": "2026-11-18T21:00:00Z",
+   "outlet": "9to5Google",
+   "title": "Review: Amazon’s Alexa Tablet 8 is a Fire Tablet with Google Play for $150 – what’s not to love?",
+   "url": "https://9to5google.com/2026/11/18/amazon-alexa-tablet-8-review/"
+  },
+  {
+   "date": "2026-11-18T20:48:35Z",
+   "outlet": "9to5Mac",
+   "title": "Instagram finally lets users edit Stories after publishing, but there’s a catch",
+   "url": "https://9to5mac.com/2026/11/18/instagram-finally-lets-users-edit-stories-after-publishing-but-theres-a-catch/"
+  },
+  {
+   "date": "2026-11-18T20:41:12Z",
+   "outlet": "Ars Technica",
+   "title": "Windows Server 2028 trades compatibility for out-of-the-box security",
+   "url": "https://arstechnica.com/gadgets/2026/11/windows-server-2028-public-preview-bets-on-a-security-first-approach/"
+  },
+  {
    "date": "2026-11-18T20:24:20Z",
    "outlet": "Electrek",
    "title": "BYD spotted testing another boxy midsize SUV",
@@ -9,46 +45,10 @@
   {
    "date": "2026-11-18T20:07:01Z",
    "outlet": "TechCrunch",
-   "title": "Sam Altman says his life is so weird that he’s unphased by Andrew Garfield portraying him in upcoming movie",
-   "url": "https://techcrunch.com/2026/11/18/sam-altman-says-his-life-is-so-weird-that-hes-unphased-by-andrew-garfield-portraying-him-in-upcoming-movie/"
-  },
-  {
-   "date": "2026-11-18T20:05:10Z",
-   "outlet": "9to5Mac",
-   "title": "Apple among the companies facing pressure from US senators over ‘nudify’ apps",
-   "url": "https://9to5mac.com/2026/11/18/apple-among-the-companies-facing-pressure-from-us-senators-over-nudify-apps/"
-  },
-  {
-   "date": "2026-11-18T19:59:15Z",
-   "outlet": "Wired",
-   "title": "Australia’s Plan to Manage Neil the Unruly Seal Involves ‘Hazing’ and ‘Seal Enrichment’",
-   "url": "https://www.wired.com/story/australia-neil-the-seal-management-plan/"
-  },
-  {
-   "date": "2026-11-18T19:56:39Z",
-   "outlet": "TechCrunch",
-   "title": "Snapchat now lets developers build AR Lenses with AI assistants like Claude Code and Cursor",
-   "url": "https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/"
-  },
-  {
-   "date": "2026-11-18T19:47:06Z",
-   "outlet": "9to5Mac",
-   "title": "New leaks detail next year’s iPhone Pro redesign and iPhone Duo 2",
-   "url": "https://9to5mac.com/2026/11/18/new-leaks-detail-next-years-iphone-pro-redesign-and-iphone-duo-2/"
-  },
-  {
-   "date": "2026-11-18T19:40:36Z",
-   "outlet": "The Verge",
-   "title": "Trump’s latest land grab is an AI hub in the Philippines",
-   "url": "https://www.theverge.com/policy/1036749/trump-ai-chip-data-center-us-philippines-pax-silica"
-  },
-  {
-   "date": "2026-11-18T19:34:55Z",
-   "outlet": "Wired",
-   "title": "The ‘GTA 6’ Work Blackout Is Here",
-   "url": "https://www.wired.com/story/13-years-of-anticipation-deserves-a-day-off-the-gta-vi-work-blackout-is-here/"
+   "title": "Sam Altman says his life is so weird that he’s unfazed by Andrew Garfield portraying him in upcoming movie",
+   "url": "https://techcrunch.com/2026/11/18/sam-altman-says-his-life-is-so-weird-that-hes-unfazed-by-andrew-garfield-portraying-him-in-upcoming-movie/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-18T20:27:21Z"
+ "updated": "2026-11-18T21:17:48Z"
 }
