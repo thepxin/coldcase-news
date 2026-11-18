@@ -1,26 +1,28 @@
 ================================================================
-Google Play names Arknights: Endfield best game in its Best of Play 2026 awards
+Apple TV starts testing a video podcasts section, free rollout promised soon
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (208/280):
-Google Play's Best Game of 2026 is Arknights: Endfield, with Moonlight Peaks winning cross-device. Five more game awards went to other titles.
+X (200/280):
+Apple TV gets a video podcasts section for developer testing, free for all users soon. The date for everyone else has not been announced.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-18-google-play-best-of-play-2026-games/
+Every line sourced: https://coldcasetech.com/posts/2026-11-18-apple-tv-video-podcasts-section-testing/
 
-#Google #GooglePlay
+#Apple #Software
 
 INSTAGRAM (post this caption with the image from the share kit):
-Google Play's Best Game of 2026 is Arknights: Endfield, with Moonlight Peaks winning cross-device. Five more game awards went to other titles.
+Apple TV gets a video podcasts section for developer testing, free for all users soon. The date for everyone else has not been announced.
+
+Apple began testing a video podcasts section in Apple TV with developers on Monday, with a free rollout to all users promised soon, 9to5Mac reported.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #google #googleplay #arknights #endfield #play #gaming #technews #tech
+#coldcasetech #apple #software #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Google Play's Best Game for 2026 is Arknights: Endfield. Best Cross-device Game went to Moonlight Peaks. Both were announced on November 17.
-2. Google lists five more game winners: Warframe, Subway Surfers City, Deep Rock Galactic: Survivor, Sea of Stars and Zenless Zone Zero.
-3. Google named Sea of Stars its Best Story and Warframe its Best Multiplayer. Which of the winners have you actually played?
+1. Apple says the video podcasts section will be free, with no Apple TV subscription required, and will reach more than a billion devices in total, per 9to5Mac.
+2. Testing with developers began Monday. Apple has promised a full rollout soon, but no date has been announced for the public release.
+3. Apple also plans to add more video podcasts to its regular Podcasts app. Do you watch podcasts on a TV, or do you still only listen?

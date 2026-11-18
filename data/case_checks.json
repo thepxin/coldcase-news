@@ -74,7 +74,6 @@
   "result": "coverage found, but no new development"
  },
  "_queue": [
-  "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million"
  ],
@@ -107,6 +106,11 @@
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
+   "why": "nothing new",
+   "day": "2026-11-18"
+  },
+  "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot": {
+   "stamp": "966dbddd1d7462ca",
    "why": "nothing new",
    "day": "2026-11-18"
   }
