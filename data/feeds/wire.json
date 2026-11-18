@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "date": "2026-11-18T02:17:48Z",
+   "outlet": "9to5Mac",
+   "title": "Apple announces App Store price changes in multiple countries, new California tax rules",
+   "url": "https://9to5mac.com/2026/11/17/apple-announces-app-store-price-changes-in-multiple-countries-new-california-tax-rules/"
+  },
+  {
+   "date": "2026-11-18T01:28:03Z",
+   "outlet": "Electrek",
+   "title": "E-quipment highlight: 110 hp Greenworks OPTIMUS electric UTV [video]",
+   "url": "https://electrek.co/2026/11/17/e-quipment-highlight-110-hp-greenworks-optimus-electric-utv-video/"
+  },
+  {
+   "date": "2026-11-18T01:00:00Z",
+   "outlet": "Engadget",
+   "title": "Here's what you can do if your PC won't read an external hard drive",
+   "url": "https://www.engadget.com/2315721/pc-wont-read-external-hard-drive-fixes/"
+  },
+  {
    "date": "2026-11-18T00:46:25Z",
    "outlet": "CoinDesk",
    "title": "CFTC nominee questions public benefit of prediction markets as legal fight grows",
@@ -29,26 +47,8 @@
    "outlet": "Ars Technica",
    "title": "Copilot is \"the new OS for work,\" and now Office runs inside of it",
    "url": "https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/"
-  },
-  {
-   "date": "2026-11-18T00:16:50Z",
-   "outlet": "TechCrunch",
-   "title": "Nvidia promises that revenue will keep soaring — for now",
-   "url": "https://techcrunch.com/2026/11/17/nvidia-promises-that-revenue-will-keep-soaring-for-now/"
-  },
-  {
-   "date": "2026-11-18T00:01:00Z",
-   "outlet": "TechCrunch",
-   "title": "Stripe backer Atomico calls for Europe to own its success stories",
-   "url": "https://techcrunch.com/2026/11/17/stripe-backer-atomico-calls-for-europe-to-own-its-success-stories/"
-  },
-  {
-   "date": "2026-11-18T00:00:00Z",
-   "outlet": "Engadget",
-   "title": "You can now see and edit what Google Gemini remembers about you",
-   "url": "https://www.engadget.com/2315475/google-gemini-memory-summary-see-what-remembers-about-you/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-18T00:56:12Z"
+ "updated": "2026-11-18T03:17:46Z"
 }
