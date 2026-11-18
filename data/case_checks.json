@@ -1,83 +1,99 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
-  "checked": "2026-11-17",
-  "result": "new coverage only from Engadget: needs an official source or a second outlet"
+  "checked": "2026-11-18",
+  "result": "no new coverage in approved feeds"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
-  "checked": "2026-11-09",
+  "checked": "2026-11-18",
   "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
-  "checked": "2026-11-17",
-  "result": "coverage found, but no new development"
+  "checked": "2026-11-18",
+  "result": "past-due check: read 5 official post(s) and 0 official page(s); none of them is about this case yet"
  },
  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
-  "checked": "2026-11-05",
-  "result": "new coverage only from 9to5Mac: needs an official source or a second outlet"
+  "checked": "2026-11-18",
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "78fd5f68a9ab189f"
  },
  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
-  "checked": "2026-11-17",
-  "result": "past-due check: coverage only from 9to5Mac, and no official page about this case yet (5 official post(s), 4 official page(s) read)"
+  "checked": "2026-11-18",
+  "result": "past-due check: read 5 official post(s) and 4 official page(s); none of them is about this case yet"
  },
  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
-  "checked": "2026-11-17",
-  "result": "past-due check: read 5 official post(s) and 3 official page(s); none of them is about this case yet"
+  "checked": "2026-11-18",
+  "result": "coverage found, but no new development"
  },
  "2026-11-01-xbox-new-games-november-2-to-6": {
-  "checked": "2026-11-10",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-18",
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "390032dfc01c6f86"
  },
  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
-  "checked": "2026-11-05",
-  "result": "new coverage only from Engadget: needs an official source or a second outlet"
+  "checked": "2026-11-18",
+  "result": "new coverage found; first in line for the next run"
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
-  "checked": "2026-11-17",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-18",
+  "result": "new coverage only from Ars Technica: needs an official source or a second outlet"
  },
  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
-  "checked": "2026-11-17",
-  "result": "new coverage only from Electrek: needs an official source or a second outlet"
+  "checked": "2026-11-18",
+  "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-11-08-apple-health-app-redesign-ios-27-3-beta": {
-  "checked": "2026-11-15",
+  "checked": "2026-11-18",
   "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-  "checked": "2026-11-13",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-18",
+  "result": "new coverage found; first in line for the next run"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
-  "checked": "2026-11-17",
+  "checked": "2026-11-18",
   "result": "no new coverage in approved feeds"
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
-  "checked": "2026-11-16",
+  "checked": "2026-11-18",
   "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
-  "checked": "2026-11-17",
-  "result": "past-due check: the company's pages do not state the outcome yet",
-  "evidence": "6be202db12005329"
+  "checked": "2026-11-18",
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
-  "checked": "2026-11-17",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-18",
+  "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription": {
-  "checked": "2026-11-16",
-  "result": "new coverage only from Electrek: needs an official source or a second outlet"
+  "checked": "2026-11-18",
+  "result": "new coverage only from Wired: needs an official source or a second outlet"
  },
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
-  "checked": "2026-11-17",
-  "result": "no new coverage in approved feeds"
+  "checked": "2026-11-18",
+  "result": "new coverage found; first in line for the next run"
  },
- "_queue": [],
+ "_queue": [
+  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16",
+  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
+  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
+  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
+  "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint",
+  "2026-11-13-apple-tv-4k-youtube-app-error-fix",
+  "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
+  "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
+  "2026-11-08-nasa-moon-base-student-challenge-1-million"
+ ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
    "stamp": "848554f7ac4db7ad",
    "why": "nothing new",
    "day": "2026-11-17"
+  },
+  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
+   "stamp": "310b0bf5a829d8e0",
+   "why": "nothing new",
+   "day": "2026-11-18"
   }
  }
 }

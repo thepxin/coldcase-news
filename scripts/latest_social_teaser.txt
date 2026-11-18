@@ -1,56 +1,25 @@
 ================================================================
-Apple HomeView goes on sale at $299 with Siri AI, but not in the EU
+Nvidia Kinsus deal targets 3.5x substrate capacity by Q3 2028
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (176/280):
-Apple HomeView went on sale at $299 on November 13. Apple says Siri AI is currently unavailable in iOS in the EU.
+X (272/280):
+Nvidia announced a multiyear deal with Kinsus to expand ABF substrate capacity dedicated to it by more than 3.5x, with the added capacity targeted for Q3 2028.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-17-apple-homeview-on-sale-299-siri-ai/
+Open case: due Q3 2028. We check every day.
 
-#Apple #HomeView
+Every line sourced: https://coldcasetech.com/posts/2026-11-18-nvidia-kinsus-substrate-capacity-2028/
+
+#Nvidia #NvidiaKinsus
 
 INSTAGRAM (post this caption with the image from the share kit):
-Apple HomeView went on sale at $299 on November 13. Apple says Siri AI is currently unavailable in iOS in the EU.
+Nvidia announced a multiyear deal with Kinsus to expand ABF substrate capacity dedicated to it by more than 3.5x, with the added capacity targeted for Q3 2028.
 
-Apple began selling the HomeView smart display on November 13 for $299 in the U.S., powered by Siri AI, in select regions but not in the EU.
+Open case: due Q3 2028. We check every day.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #apple #homeview #siri #ai #technews #tech
-
-X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Apple HomeView went on sale November 13 at $299 in the U.S. Apple lists the PoE wall mount for early 2027 at $129.95.
-2. Apple says HomeView is not sold in the EU because Siri AI is currently unavailable in iOS there.
-3. Apple says HomeView recognizes up to six people by face and shows personal content only when their paired iPhone or iPad is present and recently unlocked. Would you use that?
-
-
-================================================================
-Google Wallet arrives on iOS in the U.S. Tap to pay is not included.
-Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
-(Bluesky and Telegram post automatically.)
-================================================================
-
-X (183/280):
-Google Wallet reached iOS in the U.S. on November 17. Google notes tap-to-pay is not supported on iOS at this time.
-
-Every line sourced: https://coldcasetech.com/posts/2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay/
-
-#Google #GoogleWallet
-
-INSTAGRAM (post this caption with the image from the share kit):
-Google Wallet reached iOS in the U.S. on November 17. Google notes tap-to-pay is not supported on iOS at this time.
-
-Full story and every source: link in bio.
-
-ColdCaseTech · An independent record of technology's promises
-
-#coldcasetech #google #googlewallet #ios #software #technews #tech
-
-X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Google's own announcement adds one line: tap-to-pay functionality isn't supported on iOS at this time.
-2. For iPhone users in the U.S., Google says Wallet can scan loyalty and gym cards with the camera and manage payment cards for online checkout.
-3. 9to5Google reports the Gemini Wallet connector is read-only and opt-in, and Gemini cannot move, manage or invest money. Would you switch it on?
+#coldcasetech #nvidia #nvidiakinsus #ai #technews #tech
