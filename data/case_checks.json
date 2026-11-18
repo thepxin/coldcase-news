@@ -47,7 +47,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-18",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-18",
@@ -71,13 +71,9 @@
  },
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
   "checked": "2026-11-18",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "_queue": [
-  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint",
-  "2026-11-13-apple-tv-4k-youtube-app-error-fix",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million"
@@ -97,6 +93,21 @@
    "stamp": "1ef1c93e703765d7",
    "why": "failed checks",
    "tries": 1,
+   "day": "2026-11-18"
+  },
+  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
+   "stamp": "0bf47f2c1714755a",
+   "why": "nothing new",
+   "day": "2026-11-18"
+  },
+  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
+   "stamp": "fbb872665fa956c3",
+   "why": "nothing new",
+   "day": "2026-11-18"
+  },
+  "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
+   "stamp": "418b713021a074de",
+   "why": "nothing new",
    "day": "2026-11-18"
   }
  }
