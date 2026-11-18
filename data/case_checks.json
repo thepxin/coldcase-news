@@ -31,7 +31,7 @@
  },
  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
   "checked": "2026-11-18",
-  "result": "new coverage found; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed after the fix: source never cited in the article: Xbox (Microsoft) https://news.xbox.com/en-us/2026/1)"
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
   "checked": "2026-11-18",
@@ -59,7 +59,7 @@
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-18",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-18",
@@ -71,11 +71,9 @@
  },
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
   "checked": "2026-11-18",
-  "result": "new coverage found; first in line for the next run"
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "_queue": [
-  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16",
-  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
   "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint",
@@ -86,13 +84,19 @@
  ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
-   "stamp": "848554f7ac4db7ad",
+   "stamp": "79507b4a4d218af6",
    "why": "nothing new",
-   "day": "2026-11-17"
+   "day": "2026-11-18"
   },
   "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
    "stamp": "310b0bf5a829d8e0",
    "why": "nothing new",
+   "day": "2026-11-18"
+  },
+  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
+   "stamp": "1ef1c93e703765d7",
+   "why": "failed checks",
+   "tries": 1,
    "day": "2026-11-18"
   }
  }
