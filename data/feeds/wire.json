@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "date": "2026-11-18T00:46:25Z",
+   "outlet": "CoinDesk",
+   "title": "CFTC nominee questions public benefit of prediction markets as legal fight grows",
+   "url": "https://www.coindesk.com/policy/2026/11/17/nominee-says-u-s-cftc-must-think-hard-about-public-benefit-of-prediction-markets"
+  },
+  {
+   "date": "2026-11-18T00:35:25Z",
+   "outlet": "9to5Mac",
+   "title": "Kings of Leon to play at Apple Music Hall in December, tickets go on sale November 18",
+   "url": "https://9to5mac.com/2026/11/17/kings-of-leon-to-play-at-apple-music-hall-in-december-tickets-go-on-sale-november-18/"
+  },
+  {
+   "date": "2026-11-18T00:32:39Z",
+   "outlet": "Wired",
+   "title": "‘The Predators Are Real’: Senate Hearing Slams Roblox Over Child Sex Abuse",
+   "url": "https://www.wired.com/story/the-predators-are-real-senate-hearing-slams-roblox-over-child-sex-abuse/"
+  },
+  {
+   "date": "2026-11-18T00:30:00Z",
+   "outlet": "Engadget",
+   "title": "How to set up EV routing on CarPlay and Android Auto",
+   "url": "https://www.engadget.com/2319928/how-to-set-up-ev-routing-carplay-android-auto/"
+  },
+  {
+   "date": "2026-11-18T00:27:29Z",
+   "outlet": "Ars Technica",
+   "title": "Copilot is \"the new OS for work,\" and now Office runs inside of it",
+   "url": "https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/"
+  },
+  {
    "date": "2026-11-18T00:16:50Z",
    "outlet": "TechCrunch",
    "title": "Nvidia promises that revenue will keep soaring — for now",
@@ -17,38 +47,8 @@
    "outlet": "Engadget",
    "title": "You can now see and edit what Google Gemini remembers about you",
    "url": "https://www.engadget.com/2315475/google-gemini-memory-summary-see-what-remembers-about-you/"
-  },
-  {
-   "date": "2026-11-18T00:00:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "Budget-friendly gifts for gamers — keyboards, mice, headsets, and more under $80",
-   "url": "https://www.tomshardware.com/gift-guides-seasonal-sales/budget-friendly-gifts-for-gamers-keyboards-mice-headsets-and-more-under-usd80"
-  },
-  {
-   "date": "2026-11-18T00:00:00Z",
-   "outlet": "Xbox (Microsoft)",
-   "title": "How to Get Ready for November 19",
-   "url": "https://news.xbox.com/en-us/2026/11/17/how-to-get-ready-for-november-19/"
-  },
-  {
-   "date": "2026-11-17T23:45:32Z",
-   "outlet": "Engadget",
-   "title": "Oregon is the latest state to sue OpenAI over child safety",
-   "url": "https://www.engadget.com/2320041/oregon-is-the-latest-state-to-sue-openai-over-child-safety/"
-  },
-  {
-   "date": "2026-11-17T23:41:18Z",
-   "outlet": "The Verge",
-   "title": "Satya Nadella says he’s AGI-pilled now",
-   "url": "https://www.theverge.com/tech/1036111/satya-nadella-says-hes-agi-pilled-now"
-  },
-  {
-   "date": "2026-11-17T23:36:09Z",
-   "outlet": "9to5Mac",
-   "title": "iFixit tears down Apple HomeView, finds lots of glue and endless frustration",
-   "url": "https://9to5mac.com/2026/11/17/ifixit-tears-down-apple-homeview-finds-lots-of-glue-and-endless-frustration/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-18T00:17:45Z"
+ "updated": "2026-11-18T00:56:12Z"
 }
