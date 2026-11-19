@@ -462,6 +462,9 @@ def main():
         return 0
     cards = site_cards([a["slug"] for a in todo]) if todo else {}
     if mode == "dry-run":
+        if "youtube" in on:   # test the YouTube key without uploading anything
+            yt_token, why = youtube_token()
+            print("YouTube login: OK (the saved key works; nothing was uploaded)" if yt_token else "YouTube login: FAILED. " + why)
         for a in todo[:MAX_PER_RUN]:
             p, item = pieces(a), cards.get(a["slug"], {})
             print(f"\n--- {a['slug']}\ncard: {item.get('card', '(not listed yet)')}\n"
