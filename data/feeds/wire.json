@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-19T15:16:45Z",
+   "date": "2026-11-19T18:15:56Z",
+   "outlet": "CoinDesk",
+   "title": "Trump's Democratic SEC pick suggests tokenization policy deserves full rule process",
+   "url": "https://www.coindesk.com/policy/2026/11/19/trump-s-democratic-sec-pick-suggests-tokenization-policy-deserves-full-rule-process"
+  },
+  {
+   "date": "2026-11-19T18:15:00Z",
    "outlet": "The Verge",
-   "title": "ChatGPT can transcribe as you speak now with Live Dictation",
-   "url": "https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation"
+   "title": "Oh, Elon Musk is ‘moderate’ now, is he?",
+   "url": "https://www.theverge.com/policy/1037804/elon-musk-maga-dealbook"
   },
   {
-   "date": "2026-11-19T15:01:45Z",
-   "outlet": "9to5Mac",
-   "title": "UK court rules Apple can share the top secret order everyone already knew",
-   "url": "https://9to5mac.com/2026/11/19/uk-court-rules-apple-can-share-the-top-secret-order-everyone-already-knew/"
-  },
-  {
-   "date": "2026-11-19T15:00:00Z",
-   "outlet": "Google",
-   "title": "Building the right way: Lessons from 20 years in The Dalles",
-   "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/the-dalles-data-center-20-years/"
-  },
-  {
-   "date": "2026-11-19T15:00:00Z",
+   "date": "2026-11-19T18:13:05Z",
    "outlet": "The Verge",
-   "title": "How Silicon Valley lost the public, with Crooked Media’s Jon Favreau",
-   "url": "https://www.theverge.com/podcast/1036484/jon-favreau-pod-save-america-offline-crooked-media-trump-big-tech-ai-2028-election"
+   "title": "Apple’s iPhone camera leader has reportedly left the company",
+   "url": "https://www.theverge.com/tech/1037846/apple-jon-mccormack-retired-iphone-camera"
   },
   {
-   "date": "2026-11-19T14:58:13Z",
-   "outlet": "Tom's Hardware",
-   "title": "Intel continues layoffs with cuts to its IT department, hundreds of employees reportedly affected",
-   "url": "https://www.tomshardware.com/pc-components/cpus/intel-continues-layoffs-with-cuts-to-its-it-department-hundreds-of-employees-reportedly-affected-companys-workforce-reduced-by-27-800-under-lip-bu-tan"
-  },
-  {
-   "date": "2026-11-19T14:54:39Z",
+   "date": "2026-11-19T18:09:11Z",
    "outlet": "TechCrunch",
-   "title": "Anthropic’s IPO puts AI’s circular financing boom to the test",
-   "url": "https://techcrunch.com/2026/11/19/anthropics-ipo-puts-ais-circular-financing-boom-to-the-test/"
+   "title": "Google gives Gemini the ability to use your Mac for you",
+   "url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/"
   },
   {
-   "date": "2026-11-19T14:50:00Z",
-   "outlet": "9to5Google",
-   "title": "Motorola Razr Flex leaks in real life with Fold 8 and iPhone Duo shape, mystery chipset",
-   "url": "https://9to5google.com/2026/11/19/motorola-razr-flex-leak-image-specs/"
+   "date": "2026-11-19T18:00:48Z",
+   "outlet": "Engadget",
+   "title": "How to game share GTA 6 and split the cost with a friend",
+   "url": "https://www.engadget.com/2322043/how-to-game-share-gta-6-split-cost/"
   },
   {
-   "date": "2026-11-19T14:44:39Z",
-   "outlet": "NASA",
-   "title": "NASA Conducts Latest RS-25 Engine Test in Support of Future Artemis Missions",
-   "url": "https://www.nasa.gov/image-article/latest-rs-25-engine-test-in-support-of-future-artemis-missions/"
+   "date": "2026-11-19T18:00:33Z",
+   "outlet": "Ars Technica",
+   "title": "Google will launch Android app verification requirement globally in January 2027",
+   "url": "https://arstechnica.com/gadgets/2026/11/google-will-launch-android-app-verification-requirement-globally-in-january-2027/"
+  },
+  {
+   "date": "2026-11-19T17:58:46Z",
+   "outlet": "Electrek",
+   "title": "Hyundai claims 2027’s ‘Best EV Brand’ title as the IONIQ 5 and IONIQ 9 impress",
+   "url": "https://electrek.co/2026/11/19/hyundai-2027-best-ev-brand-ioniq-5-ioniq-9/"
+  },
+  {
+   "date": "2026-11-19T17:52:01Z",
+   "outlet": "9to5Mac",
+   "title": "Apple’s head of camera and Photos software has retired, per report",
+   "url": "https://9to5mac.com/2026/11/19/apple-head-of-camera-software-retires/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-19T15:17:48Z"
+ "updated": "2026-11-19T18:17:44Z"
 }
