@@ -37,6 +37,7 @@ TG = os.environ.get("TELEGRAM_BASE", "https://api.telegram.org").rstrip("/")
 META = os.environ.get("META_GRAPH_BASE", "https://graph.facebook.com/v27.0").rstrip("/")
 IG_WAIT_SECONDS = int(os.environ.get("IG_WAIT_SECONDS", "120"))   # Instagram needs a moment to fetch the image
 REEL_WAIT_SECONDS = int(os.environ.get("REEL_WAIT_SECONDS", "420"))   # and longer to process a video
+YT_MAX_PER_RUN = int(os.environ.get("YT_MAX_PER_RUN", "1"))   # Shorts per run
 REELS_DIR = "static/reels"   # made by scripts/reel.py in the daily run; served at <site>/reels/<article>.mp4
 # Go gently on Facebook and Instagram (new accounts get security checks when they post in bursts):
 META_MAX_PER_RUN = int(os.environ.get("META_MAX_PER_RUN", "1"))        # posts per platform per run
@@ -371,19 +372,75 @@ def instagram_post(p, item, slug=""):
     return ref, ("step 3 (" + err + ")" if err else "")
 
 
+# ---------------- YouTube Shorts (the article's Reel video) ----------------
+def youtube_token():
+    """A short-lived access key from the long-lived one saved in GitHub secrets. Returns (key, problem)."""
+    r = requests.post("https://oauth2.googleapis.com/token", timeout=30, data={
+        "client_id": os.environ["YT_CLIENT_ID"].strip(), "client_secret": os.environ["YT_CLIENT_SECRET"].strip(),
+        "refresh_token": os.environ["YT_REFRESH_TOKEN"].strip(), "grant_type": "refresh_token"})
+    if r.ok and r.json().get("access_token"):
+        return r.json()["access_token"], ""
+    why = f"{r.status_code}: {r.text[:160]}"
+    if "invalid_grant" in r.text:
+        why += (" (the YouTube key has expired or was withdrawn: is the app set to 'In production'? Make a new key in"
+                " the OAuth Playground and update YT_REFRESH_TOKEN)")
+    return "", "YouTube login failed " + why
+
+
+def youtube_meta(p):
+    clean = lambda t: re.sub(r"[<>]", "", t or "").strip()
+    title = clean(p["title"])
+    if len(title) > 100 - len(" #Shorts"):
+        title = title[:100 - len(" #Shorts") - 1].rsplit(" ", 1)[0] + "…"
+    desc = "\n\n".join(x for x in [
+        clean(p["hook"]), clean(p["status"]), f"Every line sourced: {p['url']}",
+        "ColdCaseTech, an independent record of technology's promises.", "Narration: AI voice.",
+        "#Shorts " + " ".join("#" + re.sub(r"\W", "", n) for n in p["names"][:3] if re.sub(r"\W", "", n))] if x)
+    return {"snippet": {"title": title + " #Shorts", "description": desc[:4900], "categoryId": "28",
+                        "tags": [n for n in p["names"][:8]] + ["tech news"], "defaultLanguage": "en",
+                        "defaultAudioLanguage": "en"},
+            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False, "containsSyntheticMedia": True,
+                       "embeddable": True}}
+
+
+def youtube_post(p, slug, token):
+    path = os.path.join(REELS_DIR, f"{slug}.mp4")
+    data = open(path, "rb").read()
+    head = {"Authorization": f"Bearer {token}"}
+    r = requests.post("https://www.googleapis.com/upload/youtube/v3/videos", timeout=60,
+                      params={"uploadType": "resumable", "part": "snippet,status"}, json=youtube_meta(p),
+                      headers={**head, "X-Upload-Content-Type": "video/mp4", "X-Upload-Content-Length": str(len(data))})
+    if not r.ok or not r.headers.get("Location"):
+        why = f"{r.status_code}: {r.text[:200]}"
+        if "quotaExceeded" in r.text or "uploadLimitExceeded" in r.text:
+            why += " (YouTube's daily upload limit; it will go out tomorrow)"
+        return "", "YouTube step 1 (start upload): " + why
+    u = requests.put(r.headers["Location"], data=data, timeout=300, headers={**head, "Content-Type": "video/mp4"})
+    if not u.ok:
+        return "", f"YouTube step 2 (send video): {u.status_code}: {u.text[:200]}"
+    vid = (u.json() or {}).get("id", "")
+    return (f"https://youtu.be/{vid}" if vid else "posted"), ""
+
+
 def main():
     mode = (os.environ.get("PROMOTE_MODE") or "post").strip().lower()
     meta = bool(os.environ.get("META_PAGE_TOKEN", "").strip())
     want = {"bluesky": bool(os.environ.get("BLUESKY_HANDLE") and os.environ.get("BLUESKY_APP_PASSWORD")),
             "telegram": bool(os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")),
             "facebook": meta and bool(os.environ.get("META_PAGE_ID", "").strip()),
-            "instagram": meta and bool(os.environ.get("META_IG_USER_ID", "").strip())}
+            "instagram": meta and bool(os.environ.get("META_IG_USER_ID", "").strip()),
+            "youtube": all(os.environ.get(k, "").strip() for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"))}
     on = [k for k, v in want.items() if v]
     if not on and mode != "dry-run":
         print("No platform is connected yet (no secrets). Nothing to do.")
         return 0
     log = load_log()
     articles = recent_articles()
+    if "youtube" in on:   # YouTube gets only the Reel video: articles without one are marked so they aren't retried
+        for a in articles:
+            e = log.get(a["slug"], {})
+            if not e.get("youtube") and not os.path.exists(os.path.join(REELS_DIR, f"{a['slug']}.mp4")) and e:
+                e["youtube"] = "no video"
     todo = [a for a in articles if any(not log.get(a["slug"], {}).get(ch) for ch in (on or want))]
     print(f"Connected: {', '.join(on) or 'none'}. {len(articles)} recent article(s); {len(todo)} still to share.")
     if mode == "skip-existing":
@@ -409,6 +466,13 @@ def main():
         print("Bluesky: " + why)
         on.remove("bluesky")
         failed += 1
+    yt_token, yt_tries = "", 0
+    if "youtube" in on and any(not log.get(a["slug"], {}).get("youtube") for a in todo):
+        yt_token, why = youtube_token()
+        if not yt_token:
+            print("  youtube: " + why)
+            on.remove("youtube")
+            failed += 1
     last = log.setdefault("_last_post", {})   # when Facebook / Instagram last got a post (not an article)
     tries = {ch: 0 for ch in META_CHANNELS}
     for ch in META_CHANNELS:
@@ -431,9 +495,17 @@ def main():
                 if tries[ch] >= META_MAX_PER_RUN:
                     continue   # this article goes to this platform on a later run
                 tries[ch] += 1
+            if ch == "youtube":
+                if not os.path.exists(os.path.join(REELS_DIR, f"{a['slug']}.mp4")):
+                    entry["youtube"] = "no video"   # no Reel for this article: nothing to upload
+                    continue
+                if yt_tries >= YT_MAX_PER_RUN:
+                    continue
+                yt_tries += 1
             try:
                 ref, err = {"bluesky": lambda: bluesky_post(sess, p, card), "telegram": lambda: telegram_post(p, card),
-                            "facebook": lambda: facebook_post(p, card), "instagram": lambda: instagram_post(p, item, a["slug"])}[ch]()
+                            "facebook": lambda: facebook_post(p, card), "instagram": lambda: instagram_post(p, item, a["slug"]),
+                            "youtube": lambda: youtube_post(p, a["slug"], yt_token)}[ch]()
             except requests.RequestException as e:
                 ref, err = "", f"network problem: {str(e)[:160]}"
             if ref:
