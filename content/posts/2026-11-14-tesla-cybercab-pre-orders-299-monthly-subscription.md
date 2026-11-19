@@ -9,10 +9,10 @@ status: "open"
 due: "December 2026"
 due_by: "2026-12-31"
 then: "Tesla's order page lists an estimated Cybercab delivery of December 2026 in Austin, Texas, for select customers who pre-order for personal use at $29,990."
-now: "Select customers can now pre-order, with a $1,000 non-refundable deposit and a required $299 monthly subscription, while NHTSA has not ruled on Tesla's response about the car's lack of a brake pedal."
+now: "Tesla's limited release offers select customers Cybercab delivery in December under an agreement requiring an autonomy subscription starting at $299 a month, while Musk posted that the fee should be more like ~$115 a month."
 verified: "2026-11-14"
 toolkit: "power"
-checked: "2026-11-14"
+checked: "2026-11-19"
 sourcing: "approved"
 models: ["claude-sonnet-5-5"]
 
@@ -41,6 +41,29 @@ social:
   instagram: "Tesla Cybercab: $29,990 to buy, $299 a month to make it move. Delivery is estimated for December 2026 in Austin.\n\nTesla opened Cybercab pre-orders to select customers at $29,990, plus a $299 monthly subscription, with Austin delivery estimated for December 2026.\n\nOpen case: due December 2026. We check every day.\n\nFull story and every source: link in bio.\n\nColdCaseTech · An independent record of technology's promises\n\n#coldcasetech #tesla #teslacybercab #ev #technews #tech"
   tags: ["Tesla", "TeslaCybercab"]
   replies: ["The order page lists $29,990 and a $1,000 non-refundable deposit. Estimated delivery: December 2026, in Austin, Texas.", "Delivery date on the order page: December 2026. Tesla's agreement says the car will not operate without the $299 subscription. We check on the day.", "Musk said the $299 monthly fee is too high and should be nearer $115. The order page still lists $299. Does the monthly fee change whether you would order one?"]
+updates:
+  - date: "2026-11-19"
+    summary: "Cybercab agreement terms detailed; Musk posts that the $299 monthly autonomy fee is too high"
+    status_from: "open"
+    status_to: "open"
+    verdict_from: ""
+    verdict_to: ""
+    now_before: "Select customers can now pre-order, with a $1,000 non-refundable deposit and a required $299 monthly subscription, while NHTSA has not ruled on Tesla's response about the car's lack of a brake pedal."
+    text: "Documents posted on Tesla's website state the Cybercab \"will not operate\" without an \"autonomy subscription\" starting at $299 a month, according to Ars Technica [Ars Technica](https://arstechnica.com/cars/2026/11/tesla-will-sell-you-a-cybercab-for-30000-then-charge-299-a-month-to-use-it/). The agreement restricts operation to portions of cities in Florida and Texas, an area that can expand, contract or \"relocate\" at any time [Ars Technica](https://arstechnica.com/cars/2026/11/tesla-will-sell-you-a-cybercab-for-30000-then-charge-299-a-month-to-use-it/). Wired detailed that the current agreement limits the car to personal use, prohibits placing it on Tesla's Robotaxi network, and bars sale or transfer without Tesla's written consent [Wired](https://www.wired.com/story/tesla-cybercab-is-the-subscription-hell-they-told-you-not-to-worry-about/). In a post on X, Musk wrote that the monthly autonomy price \"is too high\" and should be \"more like ~$115/month\" [Wired](https://www.wired.com/story/tesla-cybercab-is-the-subscription-hell-they-told-you-not-to-worry-about/)."
+    sources:
+      - outlet: "Wired"
+        tier: "B"
+        kind: "newsroom"
+        date: "2026-11-17"
+        title: "Tesla’s Cybercab Is the Subscription Hell They Told You Not to Worry About"
+        url: "https://www.wired.com/story/tesla-cybercab-is-the-subscription-hell-they-told-you-not-to-worry-about/"
+      - outlet: "Ars Technica"
+        tier: "B"
+        kind: "newsroom"
+        date: "2026-11-18"
+        title: "Tesla’s $30,000 Cybercab comes with a $299 monthly catch"
+        url: "https://arstechnica.com/cars/2026/11/tesla-will-sell-you-a-cybercab-for-30000-then-charge-299-a-month-to-use-it/"
+lastmod: "2026-11-19T00:00:00Z"
 cover:
   image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
   alt: "Tesla Cybercab costs $29,990. It will not operate without $299 a month."
