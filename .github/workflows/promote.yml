@@ -1,4 +1,4 @@
-name: Promote on Bluesky, Telegram, Facebook and Instagram
+name: Promote on Bluesky, Telegram, Facebook, Instagram and YouTube
 
 # Shares each new article on Bluesky (post + link card), in the Telegram channel (photo + "Read the full story"
 # button), on the Facebook Page (link post) and on Instagram (4:5 image + caption), using only fact-checked text. Runs right after the daily article run, and every 4 hours as a backup.
@@ -52,6 +52,10 @@ jobs:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+          # YouTube Shorts (the article's Reel video): Google Cloud OAuth client + key from the OAuth Playground
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           PROMOTE_MODE: ${{ inputs.mode || 'post' }}
         run: |
           git pull --quiet origin main || true
