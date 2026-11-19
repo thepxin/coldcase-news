@@ -1,10 +1,28 @@
 {
  "items": [
   {
+   "date": "2026-11-19T08:36:56Z",
+   "outlet": "Engadget",
+   "title": "Elon Musk accuses Ukraine of being 'untruthful' about Starshield disruptions",
+   "url": "https://www.engadget.com/2321464/elon-musk-accuses-ukraine-of-being-untruthful-about-starshield-disruptions/"
+  },
+  {
+   "date": "2026-11-19T08:30:00Z",
+   "outlet": "The Register",
+   "title": "Google continues model chemistry experiment with Neon",
+   "url": "https://www.theregister.com/ai-and-ml/2026/11/19/google-continues-model-chemistry-experiment-with-neon/5310934"
+  },
+  {
    "date": "2026-11-19T08:00:00Z",
    "outlet": "Samsung",
    "title": "Samsung TV Plus Brings 2026 MAMA AWARDS to K-pop Fans Around the World",
    "url": "https://news.samsung.com/global/samsung-tv-plus-brings-2026-mama-awards-to-k-pop-fans-around-the-world"
+  },
+  {
+   "date": "2026-11-19T06:23:19Z",
+   "outlet": "CoinDesk",
+   "title": "Fed's rate hike push may be a mistake. Here's why",
+   "url": "https://www.coindesk.com/markets/2026/11/19/fed-s-push-for-more-rate-hikes-leans-on-backward-looking-data-as-gas-prices-slide-analysts-argue"
   },
   {
    "date": "2026-11-19T06:05:13Z",
@@ -25,30 +43,12 @@
    "url": "https://www.wired.com/story/home-chef-promo-code/"
   },
   {
-   "date": "2026-11-19T05:39:06Z",
-   "outlet": "CoinDesk",
-   "title": "Ethereum block builders received the most in a $3.4 million vault hack, data shows",
-   "url": "https://www.coindesk.com/tech/2026/11/19/ethereum-block-builders-received-the-most-in-a-usd3-4-million-vault-hack-data-shows"
-  },
-  {
-   "date": "2026-11-19T05:14:27Z",
-   "outlet": "9to5Google",
-   "title": "New gradient icons roll out to Google Messages & Contacts",
-   "url": "https://9to5google.com/2026/11/18/google-messages-contacts-gradient/"
-  },
-  {
-   "date": "2026-11-19T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 19 – The Horsehead and Flame Nebulas",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-19-the-horsehead-and-flame-nebulas/"
-  },
-  {
-   "date": "2026-11-19T05:00:00Z",
-   "outlet": "NASA",
-   "title": "El Niño Rains Paint the Atacama",
-   "url": "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama/"
+   "date": "2026-11-19T05:57:30Z",
+   "outlet": "The Register",
+   "title": "GTA VI didn’t break the internet, thanks to ‘stupid DNS tricks’",
+   "url": "https://www.theregister.com/networks/2026/11/19/gta-vi-didnt-break-the-internet-thanks-to-stupid-dns-tricks/5310950"
   }
  ],
  "status": "ok",
- "updated": "2026-11-19T06:17:44Z"
+ "updated": "2026-11-19T09:17:50Z"
 }

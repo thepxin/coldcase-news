@@ -1,26 +1,26 @@
 {
  "items": [
   {
-   "change_24h": -1.83,
-   "inr": 5918180,
+   "change_24h": -1.46,
+   "inr": 5944282,
    "symbol": "BTC",
-   "usd": 63431
+   "usd": 63729
   },
   {
-   "change_24h": -0.51,
-   "inr": 168050,
+   "change_24h": -0.52,
+   "inr": 168086,
    "symbol": "ETH",
-   "usd": 1801.17
+   "usd": 1802.05
   },
   {
-   "change_24h": -0.21,
-   "inr": 6979.12,
+   "change_24h": -0.48,
+   "inr": 6949.6,
    "symbol": "SOL",
-   "usd": 74.8
+   "usd": 74.51
   }
  ],
  "source": "CoinGecko",
  "source_url": "https://www.coingecko.com/",
  "status": "ok",
- "updated": "2026-11-19T06:17:45Z"
+ "updated": "2026-11-19T09:17:50Z"
 }
