@@ -1,7 +1,7 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
   "checked": "2026-11-19",
-  "result": "new coverage found; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed on the update: source never cited in the article: 9to5Mac https://9to5mac.com/2026/11/18/iphone-18-ip)"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
   "checked": "2026-11-19",
@@ -30,7 +30,7 @@
  },
  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
   "checked": "2026-11-19",
-  "result": "new coverage found; first in line for the next run"
+  "result": "updated"
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
   "checked": "2026-11-19",
@@ -70,7 +70,7 @@
  },
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
   "checked": "2026-11-19",
-  "result": "updated"
+  "result": "no new coverage in approved feeds"
  },
  "2026-11-18-nvidia-kinsus-substrate-capacity-2028": {
   "checked": "2026-11-19",
@@ -80,9 +80,7 @@
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
-  "2026-10-27-gta-6-release-date-november-19-2026",
-  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19"
+  "2026-11-17-xbox-25th-anniversary-bundle-series-x25"
  ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
@@ -94,12 +92,6 @@
    "stamp": "310b0bf5a829d8e0",
    "why": "nothing new",
    "day": "2026-11-18"
-  },
-  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
-   "stamp": "22a427d8b3299ae0",
-   "why": "failed checks",
-   "tries": 1,
-   "day": "2026-11-19"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
    "stamp": "fbb872665fa956c3",
@@ -132,7 +124,7 @@
    "day": "2026-11-19"
   },
   "2026-10-27-gta-6-release-date-november-19-2026": {
-   "stamp": "44d6d97b4b1067f7",
+   "stamp": "04b748c1b2108ca3",
    "why": "failed checks",
    "tries": 1,
    "day": "2026-11-19"
