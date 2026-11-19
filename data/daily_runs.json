@@ -2,7 +2,8 @@
  "date": "2026-11-19",
  "jobs": {
   "updates": "done",
-  "tech": "published"
+  "tech": "published",
+  "duewatch": "cut"
  },
  "ai_day": "2026-11-19",
  "ai_calls": 28,
