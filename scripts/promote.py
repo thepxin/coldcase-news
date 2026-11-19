@@ -36,6 +36,8 @@ BSKY = os.environ.get("BSKY_BASE", "https://bsky.social").rstrip("/")
 TG = os.environ.get("TELEGRAM_BASE", "https://api.telegram.org").rstrip("/")
 META = os.environ.get("META_GRAPH_BASE", "https://graph.facebook.com/v27.0").rstrip("/")
 IG_WAIT_SECONDS = int(os.environ.get("IG_WAIT_SECONDS", "120"))   # Instagram needs a moment to fetch the image
+REEL_WAIT_SECONDS = int(os.environ.get("REEL_WAIT_SECONDS", "420"))   # and longer to process a video
+REELS_DIR = "static/reels"   # made by scripts/reel.py in the daily run; served at <site>/reels/<article>.mp4
 # Go gently on Facebook and Instagram (new accounts get security checks when they post in bursts):
 META_MAX_PER_RUN = int(os.environ.get("META_MAX_PER_RUN", "1"))        # posts per platform per run
 META_MIN_GAP_HOURS = float(os.environ.get("META_MIN_GAP_HOURS", "3"))  # hours between posts on each platform
@@ -294,31 +296,79 @@ def instagram_caption(p, item):
     return cap[:2200]
 
 
-def instagram_post(p, item):
+def ig_wait(container, token, limit, what):
+    """Instagram downloads and checks the media before it can be published. Returns "" when ready, else the problem."""
+    deadline = time.time() + limit
+    while True:
+        s = requests.get(f"{META}/{container}", timeout=30, params={"fields": "status_code", "access_token": token})
+        code = (s.json().get("status_code") if s.ok else "") or ""
+        if code == "FINISHED":
+            return ""
+        if code in ("ERROR", "EXPIRED") or time.time() > deadline:
+            return f"Instagram checking the {what}: status {code or 'unknown'}"
+        time.sleep(5 if what == "image" else 10)
+
+
+def ig_publish(ig, container, token):
+    r = requests.post(f"{META}/{ig}/media_publish", timeout=90, data={"creation_id": container, "access_token": token})
+    if not r.ok:
+        return "", "publish: " + meta_error(r)
+    return r.json().get("id", "posted"), ""
+
+
+def reel_caption(caption):
+    """The Reel's caption: the Instagram caption, plus the honest note that the voice is an AI voice."""
+    lines = caption.split("\n")
+    at = len(lines) - 1 if lines and lines[-1].startswith("#") else len(lines)
+    lines[at:at] = ["Narration: AI voice.", ""] if at < len(lines) else ["", "Narration: AI voice."]
+    return "\n".join(lines).replace("\n\n\n", "\n\n")[:2200]
+
+
+def instagram_reel(p, item, slug, ig, token):
+    """The article's short video as a Reel. Returns (ref, error, fall_back_to_picture)."""
+    url = f"{SITE}/reels/{slug}.mp4"
+    try:
+        h = requests.head(url, timeout=30, allow_redirects=True)
+        live = h.ok and "video" in h.headers.get("content-type", "video")
+    except requests.RequestException:
+        live = False
+    if not live:   # the site is still deploying: try again on the next run rather than post the picture
+        return "", "the Reel video isn't on the site yet; it will be tried again next run", False
+    r = requests.post(f"{META}/{ig}/media", timeout=90, data={
+        "media_type": "REELS", "video_url": url, "caption": reel_caption(instagram_caption(p, item)),
+        "share_to_feed": "true", "access_token": token})
+    if not r.ok:
+        return "", "Reel step 1 (send video): " + meta_error(r), True
+    container = r.json()["id"]
+    problem = ig_wait(container, token, REEL_WAIT_SECONDS, "video")
+    if problem:
+        return "", "Reel step 2: " + problem, True
+    ref, err = ig_publish(ig, container, token)
+    return ref, ("Reel step 3: " + err if err else ""), bool(err)
+
+
+def instagram_post(p, item, slug=""):
     image = item.get("image", "")
-    if not image:
-        return "", "the site has no Instagram image for this article"
     if not instagram_caption(p, item):
         return "", "this article has no Instagram caption"
     ig, token = os.environ["META_IG_USER_ID"].strip(), os.environ["META_PAGE_TOKEN"].strip()
+    if slug and os.path.exists(os.path.join(REELS_DIR, f"{slug}.mp4")):
+        ref, err, fall_back = instagram_reel(p, item, slug, ig, token)
+        if ref or not fall_back:
+            return ref, err
+        print(f"  instagram: the Reel didn't work ({err}); posting the picture instead.")
+    if not image:
+        return "", "the site has no Instagram image for this article"
     r = requests.post(f"{META}/{ig}/media", timeout=90,
                       data={"image_url": image, "caption": instagram_caption(p, item), "access_token": token})
     if not r.ok:
         return "", "step 1 (send image): " + meta_error(r)
     container = r.json()["id"]
-    deadline = time.time() + IG_WAIT_SECONDS
-    while True:   # Instagram downloads and checks the image before it can be published
-        s = requests.get(f"{META}/{container}", timeout=30, params={"fields": "status_code", "access_token": token})
-        code = (s.json().get("status_code") if s.ok else "") or ""
-        if code == "FINISHED":
-            break
-        if code in ("ERROR", "EXPIRED") or time.time() > deadline:
-            return "", f"step 2 (Instagram checking the image): status {code or 'unknown'}"
-        time.sleep(5)
-    r = requests.post(f"{META}/{ig}/media_publish", timeout=90, data={"creation_id": container, "access_token": token})
-    if not r.ok:
-        return "", "step 3 (publish): " + meta_error(r)
-    return r.json().get("id", "posted"), ""
+    problem = ig_wait(container, token, IG_WAIT_SECONDS, "image")
+    if problem:
+        return "", "step 2 (" + problem + ")"
+    ref, err = ig_publish(ig, container, token)
+    return ref, ("step 3 (" + err + ")" if err else "")
 
 
 def main():
@@ -383,7 +433,7 @@ def main():
                 tries[ch] += 1
             try:
                 ref, err = {"bluesky": lambda: bluesky_post(sess, p, card), "telegram": lambda: telegram_post(p, card),
-                            "facebook": lambda: facebook_post(p, card), "instagram": lambda: instagram_post(p, item)}[ch]()
+                            "facebook": lambda: facebook_post(p, card), "instagram": lambda: instagram_post(p, item, a["slug"])}[ch]()
             except requests.RequestException as e:
                 ref, err = "", f"network problem: {str(e)[:160]}"
             if ref:

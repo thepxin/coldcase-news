@@ -217,6 +217,27 @@ REPLY_LIMIT = 220
 _REPLY_BANNED = re.compile(r"(?i)https?://|www\.|#\w|@\w|!|coldcase|follow us|read more|link in bio|\bthread\b|🧵")
 
 
+REEL_LINE_LIMIT = 110
+
+
+def reel_problem(text: str) -> str:
+    """Why a Reel line can't be used ("" = fine). The lines are shown on screen and read aloud by a voice."""
+    t = (text or "").strip()
+    if not t:
+        return "empty"
+    if len(t) > REEL_LINE_LIMIT:
+        return f"too long ({len(t)} characters)"
+    if re.search(r"https?://|www\.|#\w|@\w", t):
+        return "has a link, hashtag or @mention"
+    if "?" in t or "!" in t:
+        return "a question or exclamation mark"
+    if re.search(r"coldcasetech|link in bio|follow us|subscribe", t, re.I):
+        return "names us or asks for a follow"
+    if re.search(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", t):
+        return "has an emoji"
+    return ""
+
+
 def reply_problem(text: str) -> str:
     """Why an X reply (posted under someone else's post) can't be used, or "" if it is fine. Replies carry no link,
     hashtag or @mention (X shows replies with links to fewer people, and tags in replies look like spam)."""

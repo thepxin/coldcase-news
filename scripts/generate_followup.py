@@ -63,6 +63,7 @@ class FollowUpArticle(BaseModel):
     reddit_teaser: str
     social_hook: str   # one-sentence teaser for social posts; checked like the article, replaced by the summary if not supported
     x_replies: list[str]   # 3 replies to post under big X accounts' posts about this story (receipt, clock, question); checked like social_hook
+    reel_lines: list[str]   # 3 short spoken lines for the article's Reel (shown on screen and read by the AI voice); checked like social_hook
     case_status: str   # "closed" = has a verdict; "open" = promise with a future date, no verdict yet
     due_text: str      # open cases: the promised date, in the source's words (e.g. "December 2026"); else ""
     due_date: str      # open cases: YYYY-MM-DD, the last day of that promised period; else ""
@@ -415,11 +416,20 @@ STEP 5: social text (only when true)
   anyone. Only facts the SOURCES state, attributed if they are a company's claim. No links, no hashtags, no
   @mentions, no emojis, no exclamation marks, no hype words, no "follow us", "read more", "thread" or "link in bio",
   and never the name ColdCaseTech. Plain everyday words.
+- reel_lines: exactly 3 short lines for a 15-second vertical video about this story. Each line is shown on screen AND
+  read aloud by a voice, so write them to be spoken: plain words, short sentences, each under 90 characters.
+  1. The promise or the news, with who said it and when ("NASA said Voyager 1 would reach one light-day from Earth on
+     Nov. 18."). Report: the news itself, attributed.
+  2. Closed case: what actually happened, in plain words ("It did. On schedule."). Open case: where it stands now.
+     Report: the one stated detail that matters most to someone who owns or wants the product.
+  3. One striking stated fact a viewer would repeat to a friend (a number, a date, a change). Not the verdict.
+  Only facts the SOURCES state, attributed where they are a company's claim. No questions, no hype words, no emojis,
+  no hashtags, no links, no "follow", "subscribe" or "link in bio", and never the name ColdCaseTech.
 
 OUTPUT
 Return one JSON object with exactly these keys: has_meaningful_update (boolean), headline, plain_headline, slug, summary_description,
 original_claim, current_reality, verdict_score, markdown_body, reddit_teaser, social_hook, case_status, due_text, due_date
-(strings), products (a list of strings) and x_replies (a list of 3 strings). Output nothing outside the JSON.
+(strings), products (a list of strings), x_replies (a list of 3 strings) and reel_lines (a list of 3 strings). Output nothing outside the JSON.
 """
     article = call_ai(prompt)
     if article is not None:
@@ -747,6 +757,7 @@ SOCIAL (short teasers posted with a link to the article; judge them only in chec
 social_hook: {article.social_hook}
 reddit_teaser: {article.reddit_teaser}
 x_replies: {json.dumps(list(getattr(article, "x_replies", None) or []), ensure_ascii=False)}
+reel_lines: {json.dumps(list(getattr(article, "reel_lines", None) or []), ensure_ascii=False)}
 
 HOUSE-VOICE HEADLINE (judge it only in check 9): {article.headline if article.plain_headline else ""}
 
@@ -772,7 +783,7 @@ CHECKS
    checks 1 and 2 fixed ONLY by deleting it or by replacing it with the source's own wording. Never add facts, links
    or sections. Keep all headings, the table and the timeline. No HTML, no curly braces, no em dashes.
    If there were no problems, return the text unchanged.
-8. social_supported: true only if every statement in SOCIAL (social_hook, reddit_teaser and each of x_replies) is
+8. social_supported: true only if every statement in SOCIAL (social_hook, reddit_teaser, each of x_replies and each of reel_lines) is
    clearly stated by the SOURCES, attributed where it is a company's claim, with no hype, opinion, prediction or added
    figure. Empty lines count as supported. Problems here never go into checks 1 or 2.
    In x_replies, "We check on the day." (or a close variant) and one short neutral closing question count as
@@ -833,6 +844,23 @@ def _keep_social(article: FollowUpArticle, sources: list[dict], ai_ok: bool = Tr
         else:
             kept.append(text)
     article.x_replies = kept
+    # The Reel's 3 spoken lines: all or nothing (a Reel with a line missing makes no sense; the picture post is the fallback).
+    lines = [" ".join(str(t or "").split()) for t in list(getattr(article, "reel_lines", None) or [])[:3]]
+    lines = [t for t in lines if t]
+    why = ""
+    if len(lines) < 2:
+        why = "fewer than 2 lines" if lines else ""
+    elif not ai_ok:
+        why = "the fact-check did not support it"
+    else:
+        for t in lines:
+            why = social.reel_problem(t) or "; ".join(guards.check_article([t], sources)[:2])
+            if why:
+                break
+    if why:
+        print(f"  social: no Reel for this article ({why}); Instagram gets the picture instead.")
+        lines = []
+    article.reel_lines = lines
 
 
 def open_case_problem(article: FollowUpArticle, today: datetime | None = None) -> str:
@@ -1081,6 +1109,8 @@ draft: false
     fm_social = "social:\n" + "".join(
         f"  {k}: {json.dumps(kit[k], ensure_ascii=False)}\n"
         for k in ("hook", "x", "instagram", "tags", "replies") if k != "replies" or kit[k])
+    if getattr(article, "reel_lines", None):   # the Reel's script (scripts/reel.py turns it into the video)
+        fm_social += f"  reel: {json.dumps(article.reel_lines, ensure_ascii=False)}\n"
     with open(filename, "r", encoding="utf-8") as f:
         text = f.read()
     with open(filename, "w", encoding="utf-8") as f:
