@@ -2,7 +2,7 @@
  "items": [
   {
    "mission": "USSF-317",
-   "net": "2026-11-20T04:28:55Z",
+   "net": "2026-11-20T04:32:55Z",
    "pad": "Vandenberg SFB, CA, USA",
    "precision": "Second",
    "provider": "SpaceX",
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-19T06:17:45Z"
+ "updated": "2026-11-19T15:17:50Z"
 }
