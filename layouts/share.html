@@ -29,15 +29,25 @@
     </figure>
     {{- end }}
     <div class="rec-share-posts">
+      {{- /* X buries posts with links from small free accounts, so the post goes out without the link and the link
+             goes in your own first reply. Split here from the ready-made X text, so older articles work too. */}}
+      {{- $linkLine := `(?m)^[^\n]*https?://\S+[^\n]*$` }}
+      {{- $xpost := replaceRE $linkLine "Sources in the reply below." $s.x }}
+      {{- $xreply := index (findRE $linkLine $s.x 1) 0 | default (printf "Every line sourced: %s" $url) }}
       <section>
-        <h3>X <span class="rec-of">fits in 280 · each link counts as 23</span></h3>
-        <textarea id="x-{{ .File.ContentBaseName }}" readonly rows="6">{{ $s.x }}</textarea>
+        <h3>X · 1. the post <span class="rec-of">no link in it: X shows link posts from small accounts to almost no one</span></h3>
+        <textarea id="x-{{ .File.ContentBaseName }}" readonly rows="6">{{ $xpost }}</textarea>
         <p><button class="rec-btn" type="button" data-copy="x-{{ .File.ContentBaseName }}">Copy</button>
-          <a class="cct-btn-money" href="https://x.com/intent/post?text={{ $s.x }}" target="_blank" rel="noopener">Post on X</a>
+          <a class="cct-btn-money" href="https://x.com/intent/post?text={{ $xpost }}" target="_blank" rel="noopener">Post on X</a>
           {{- with index (partialCached "og_cards.html" $p $p.RelPermalink) "16x9" }}
           <a class="rec-btn" href="{{ .RelPermalink }}" download="coldcasetech-x-{{ $p.File.ContentBaseName }}.png">Download picture for X</a>
           <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-x-{{ $p.File.ContentBaseName }}.png" data-copy-from="x-{{ $p.File.ContentBaseName }}" hidden>Copy text &amp; share picture</button>
           {{- end }}</p>
+      </section>
+      <section>
+        <h3>X · 2. your first reply <span class="rec-of">open your post, tap Reply, paste this, within a minute of posting</span></h3>
+        <textarea id="xr-{{ .File.ContentBaseName }}" readonly rows="2">{{ $xreply }}</textarea>
+        <p><button class="rec-btn" type="button" data-copy="xr-{{ .File.ContentBaseName }}">Copy first reply</button></p>
       </section>
       {{- partial "x_replies.html" $p }}
       <section>
@@ -55,7 +65,7 @@
   <h2>Before you post</h2>
   <ul>
     <li><b>Instagram:</b> on your phone, "Copy caption &amp; share image" copies the caption and opens the share menu: choose Instagram, then paste the caption.</li>
-    <li><b>X:</b> posts with a picture do better: download the picture and attach it (on a phone, "Copy text &amp; share picture" does both). The post already fits 280 characters. Posting through the button is free; posting through X's paid API is not.</li>
+    <li><b>X:</b> post first (with the picture: on a phone, "Copy text &amp; share picture" does both), then reply to your own post with the link. Stay for 30 minutes and answer every reply: on X, a reply you answer counts far more than likes. Posting through the button is free; X's paid API is not.</li>
     <li><b>Replies under big accounts:</b> "Copy reply &amp; find their post" copies the reply and opens that account's latest posts about the story. Open the newest one, tap Reply, paste. If they haven't posted about it, skip them: a reply under an unrelated post looks like spam. Use each reply once, 3 to 5 replies a day in all, and answer anyone who replies to you.</li>
   </ul>
 </aside>
