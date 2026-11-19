@@ -27,8 +27,8 @@
         <span>1080 × 1350 · Instagram portrait</span>
         {{- $reel := printf "reels/%s.mp4" $p.File.ContentBaseName }}
         {{- if fileExists (printf "static/%s" $reel) }}
-        <a class="rec-btn" href="{{ $reel | relURL }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.mp4">Download video (Reel · Shorts)</a>
-        <span>Instagram gets it automatically. For YouTube: upload it as a Short, add #Shorts to the title.</span>
+        <a class="rec-btn" href="{{ $reel | relURL }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.mp4">Download video</a>
+        <span>Instagram and YouTube Shorts get it automatically. Download it to post it anywhere else.</span>
         {{- end }}
       </figcaption>
     </figure>
