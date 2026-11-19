@@ -76,6 +76,25 @@ jobs:
           RUN_KIND: ${{ github.event_name == 'workflow_dispatch' && (inputs.run_kind || 'manual') || (github.event.schedule == '47 17 * * *' && 'catchup' || 'slot') }}
         run: python scripts/generate_followup.py
 
+      - name: Keep the Reel voice model between runs
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/coldcase-reel
+          key: coldcase-reel-kokoro-v1.0
+
+      - name: Make a Reel for each new article
+        # A 15-second vertical video per new article (scripts/reel.py): its fact-checked 3-line script, read by a free
+        # open-source AI voice over music made from scratch. A bonus only: if this fails, the article still publishes
+        # and Instagram gets the picture post.
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          FILES=$(python -c "import json;v=json.load(open('run_result.json')).get('tech',[]);print(' '.join(v if isinstance(v,list) else [v]))" 2>/dev/null || true)
+          if [ -z "$FILES" ]; then echo "No new articles, so no Reels."; exit 0; fi
+          command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
+          pip install -q kokoro-onnx soundfile fonttools brotli
+          python scripts/reel.py $FILES
+
       - name: Publish today's cases and case updates
         id: push
         run: |
@@ -87,6 +106,8 @@ jobs:
             git add "$F"; FILES="$FILES $F"
           done
           if [ -f scripts/latest_social_teaser.txt ]; then git add scripts/latest_social_teaser.txt; fi
+          # the new Reels (and old ones removed after 21 days)
+          if [ -d static/reels ]; then git add -A static/reels; fi
           # "last checked" dates for open cases, and today's job log (used by the catch-up run)
           if [ -f data/case_checks.json ]; then git add data/case_checks.json; fi
           if [ -f data/daily_runs.json ]; then git add data/daily_runs.json; fi
