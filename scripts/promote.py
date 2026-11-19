@@ -436,12 +436,22 @@ def main():
         return 0
     log = load_log()
     articles = recent_articles()
-    if "youtube" in on:   # YouTube gets only the Reel video: articles without one are marked so they aren't retried
+    def no_video_for_good(slug):
+        """True when an article has no Reel and won't get one: older than 2 days (the daily run makes missing videos
+        for the last 2 days, so a newer article may still get its video)."""
+        if os.path.exists(os.path.join(REELS_DIR, f"{slug}.mp4")):
+            return False
+        try:
+            return (now().date() - datetime.strptime(slug[:10], "%Y-%m-%d").date()).days > 2
+        except ValueError:
+            return True
+    if "youtube" in on:   # YouTube gets only the Reel video: articles that won't have one are marked, not retried
         for a in articles:
             e = log.get(a["slug"], {})
-            if not e.get("youtube") and not os.path.exists(os.path.join(REELS_DIR, f"{a['slug']}.mp4")) and e:
+            if e and not e.get("youtube") and no_video_for_good(a["slug"]):
                 e["youtube"] = "no video"
-    todo = [a for a in articles if any(not log.get(a["slug"], {}).get(ch) for ch in (on or want))]
+    waiting = lambda a, ch: ch == "youtube" and not os.path.exists(os.path.join(REELS_DIR, f"{a['slug']}.mp4"))
+    todo = [a for a in articles if any(not log.get(a["slug"], {}).get(ch) and not waiting(a, ch) for ch in (on or want))]
     print(f"Connected: {', '.join(on) or 'none'}. {len(articles)} recent article(s); {len(todo)} still to share.")
     if mode == "skip-existing":
         for a in todo:
@@ -497,8 +507,9 @@ def main():
                 tries[ch] += 1
             if ch == "youtube":
                 if not os.path.exists(os.path.join(REELS_DIR, f"{a['slug']}.mp4")):
-                    entry["youtube"] = "no video"   # no Reel for this article: nothing to upload
-                    continue
+                    if no_video_for_good(a["slug"]):
+                        entry["youtube"] = "no video"   # no Reel for this article, and none coming
+                    continue   # otherwise its video may come with the next daily run
                 if yt_tries >= YT_MAX_PER_RUN:
                     continue
                 yt_tries += 1

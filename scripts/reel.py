@@ -5,8 +5,9 @@ Voice: Kokoro (open-source voice model, Apache 2.0 licence, runs here, no accoun
 scratch, so nobody else owns any of the sound. Pictures: drawn here in the site's own fonts and colours.
 A Reel is a bonus: if anything fails, the article is unaffected and Instagram gets the picture post instead.
 
-Usage: python scripts/reel.py content/posts/<article>.md [more.md ...]
-Needs ffmpeg and: pip install kokoro-onnx soundfile fonttools brotli
+Usage: python scripts/reel.py [--recent] content/posts/<article>.md [more.md ...]
+  --recent also makes the videos missing for articles of the last 2 days (a run where the Reel step failed).
+Needs ffmpeg and: pip install kokoro-onnx soundfile fonttools brotli pillow numpy pyyaml
 """
 import glob
 import json
@@ -355,8 +356,32 @@ def prune(today=None):
             print(f"  reel: removed {os.path.basename(f)} (older than {KEEP_DAYS} days)")
 
 
-def main(paths):
-    paths = [p for p in paths if p.endswith(".md") and os.path.exists(p)]
+def missing_recent(days=2, today=None):
+    """Articles from the last `days` days that have a Reel script but no video yet."""
+    today = today or datetime.now(timezone.utc).date()
+    out = []
+    for f in sorted(glob.glob(os.path.join(ROOT, "content", "posts", "*.md"))):
+        m = re.match(r"(\d{4}-\d{2}-\d{2})-", os.path.basename(f))
+        if not m or datetime.strptime(m.group(1), "%Y-%m-%d").date() < today - timedelta(days=days):
+            continue
+        slug = os.path.splitext(os.path.basename(f))[0]
+        if os.path.exists(os.path.join(OUT_DIR, slug + ".mp4")):
+            continue
+        try:
+            if plan(read_article(f), today):
+                out.append(os.path.relpath(f, ROOT))
+        except Exception:
+            continue
+    return out
+
+
+def main(args):
+    recent = "--recent" in args
+    paths = [p for p in args if p.endswith(".md") and os.path.exists(p)]
+    if recent:
+        for p in missing_recent():
+            if p not in paths and os.path.join(ROOT, p) not in paths:
+                paths.append(p)
     prune()
     if not paths:
         print("reel: no new articles")
