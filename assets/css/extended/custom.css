@@ -504,3 +504,10 @@ a.so-what:hover{text-decoration:underline;text-underline-offset:3px}
 .so-sub{font:12px var(--mono);font-weight:400;color:var(--muted);margin:16px 0 0}
 .so-st--none .so-dot,.so-st--link .so-dot{visibility:hidden}
 .so-st--link .so-state{color:var(--link)}
+
+/* Google preferred source line (under articles) */
+.cct-gsrc{margin:22px 0 4px;padding:10px 14px;border:1px solid var(--rule);border-left:3px solid var(--brass);border-radius:3px;background:var(--surface);display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
+.cct-gsrc a{font:600 15px/1.4 var(--serif);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.cct-gsrc a:hover{text-decoration:underline;text-underline-offset:3px}
+.cct-gsrc svg{color:var(--brass);flex:none}
+.cct-gsrc span{font:12.5px/1.5 var(--mono);color:var(--muted)}
