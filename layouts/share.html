@@ -25,6 +25,11 @@
         <a class="cct-btn-money" href="{{ .RelPermalink }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.jpg">Download image</a>
         <button class="rec-btn" type="button" data-share-img="{{ .RelPermalink }}" data-name="coldcasetech-{{ $p.File.ContentBaseName }}.jpg" data-copy-from="ig-{{ $p.File.ContentBaseName }}" hidden>Copy caption &amp; share image</button>
         <span>1080 × 1350 · Instagram portrait</span>
+        {{- $reel := printf "reels/%s.mp4" $p.File.ContentBaseName }}
+        {{- if fileExists (printf "static/%s" $reel) }}
+        <a class="rec-btn" href="{{ $reel | relURL }}" download="coldcasetech-{{ $p.File.ContentBaseName }}.mp4">Download video (Reel · Shorts)</a>
+        <span>Instagram gets it automatically. For YouTube: upload it as a Short, add #Shorts to the title.</span>
+        {{- end }}
       </figcaption>
     </figure>
     {{- end }}
