@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "Unknown Payload",
-   "net": "2026-11-18T22:50:00Z",
-   "pad": "Taiyuan Satellite Launch Center, China",
-   "precision": "Hour",
-   "provider": "CASC (China)",
-   "rocket": "Long March 2D",
-   "status": "Go"
-  },
-  {
    "mission": "USSF-317",
    "net": "2026-11-20T02:46:00Z",
    "pad": "Vandenberg SFB, CA, USA",
@@ -53,10 +44,19 @@
    "provider": "Arianespace",
    "rocket": "Ariane 64",
    "status": "Go"
+  },
+  {
+   "mission": "USSF-266",
+   "net": "2026-11-23T16:04:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-18T09:18:00Z"
+ "updated": "2026-11-19T00:17:47Z"
 }
