@@ -479,6 +479,13 @@
   "instagram": "18140456791632470",
   "telegram": "80"
  },
+ "2026-11-19-instagram-edit-stories-15-minute-window": {
+  "at": "2026-11-19T09:01:56Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2npjycxp22t",
+  "facebook": "1489437024244341_122106577221546323",
+  "instagram": "17904206151438132",
+  "telegram": "84"
+ },
  "2026-11-19-nasa-voyager-1-reaches-one-light-day": {
   "at": "2026-11-19T02:58:20Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2n37tcnkc2f",
@@ -487,7 +494,7 @@
   "telegram": "83"
  },
  "_last_post": {
-  "facebook": "2026-11-19T02:58:05Z",
-  "instagram": "2026-11-19T02:58:20Z"
+  "facebook": "2026-11-19T09:01:42Z",
+  "instagram": "2026-11-19T09:01:56Z"
  }
 }
