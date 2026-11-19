@@ -90,10 +90,12 @@ jobs:
         timeout-minutes: 15
         run: |
           FILES=$(python -c "import json;v=json.load(open('run_result.json')).get('tech',[]);print(' '.join(v if isinstance(v,list) else [v]))" 2>/dev/null || true)
-          if [ -z "$FILES" ]; then echo "No new articles, so no Reels."; exit 0; fi
+          # also any article of the last 2 days whose video is missing (e.g. an earlier Reel step failed)
+          MISSING=$(python -c "import glob,os,re,datetime as d;t=d.date.today();print(' '.join(f for f in glob.glob('content/posts/*.md') if re.match(r'\d{4}-\d{2}-\d{2}',os.path.basename(f)) and (t-d.date.fromisoformat(os.path.basename(f)[:10])).days<=2 and '  reel: ' in open(f,encoding='utf-8').read() and not os.path.exists('static/reels/'+os.path.basename(f)[:-3]+'.mp4')))" 2>/dev/null || true)
+          if [ -z "$FILES$MISSING" ]; then echo "No new articles and no missing videos, so no Reels."; exit 0; fi
           command -v ffmpeg >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ffmpeg; }
-          pip install -q kokoro-onnx soundfile fonttools brotli
-          python scripts/reel.py $FILES
+          pip install -q kokoro-onnx soundfile fonttools brotli pillow numpy
+          python scripts/reel.py --recent $FILES
 
       - name: Publish today's cases and case updates
         id: push
