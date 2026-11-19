@@ -248,17 +248,41 @@ def meta_error(r):
     return msg
 
 
-def facebook_text(p):
+def facebook_text(p, link_line="Every line links to its source."):
     tags = social.tag_line(p["names"], p["field_tag"], 3)
-    return "\n\n".join(x for x in [p["hook"], p["status"], "Every line links to its source.", tags] if x)
+    return "\n\n".join(x for x in [p["hook"], p["status"], link_line, tags] if x)
 
 
-def facebook_post(p):
-    r = requests.post(f"{META}/{os.environ['META_PAGE_ID'].strip()}/feed", timeout=60, data={
-        "message": facebook_text(p), "link": p["url"], "access_token": os.environ["META_PAGE_TOKEN"].strip()})
+def facebook_post(p, card_url=""):
+    """A picture post with the link in the first comment: Meta is testing a limit of 2 link posts a month for Pages
+    without paid verification (links in comments are not limited), and picture posts reach more people anyway.
+    No picture -> the old link post. If the comment can't be added, the link goes into the post's text instead,
+    so a post never goes out without its link (and is never posted twice)."""
+    page, token = os.environ["META_PAGE_ID"].strip(), os.environ["META_PAGE_TOKEN"].strip()
+    if not card_url:
+        r = requests.post(f"{META}/{page}/feed", timeout=60, data={
+            "message": facebook_text(p), "link": p["url"], "access_token": token})
+        if not r.ok:
+            return "", meta_error(r)
+        return r.json().get("id", "posted"), ""
+    r = requests.post(f"{META}/{page}/photos", timeout=90, data={
+        "url": card_url, "caption": facebook_text(p, "Every line sourced: link in the first comment."),
+        "access_token": token})
     if not r.ok:
         return "", meta_error(r)
-    return r.json().get("id", "posted"), ""
+    d = r.json()
+    post = d.get("post_id") or f"{page}_{d.get('id', '')}"
+    c = requests.post(f"{META}/{post}/comments", timeout=60, data={
+        "message": f"Every line, with its source: {p['url']}", "access_token": token})
+    if c.ok:
+        return post, ""
+    print(f"  facebook: couldn't add the link as a comment ({meta_error(c)}); putting it in the post's text instead."
+          " To use comments, the Page key needs the pages_manage_engagement permission.")
+    e = requests.post(f"{META}/{post}", timeout=60, data={
+        "message": facebook_text(p, f"Every line sourced: {p['url']}"), "access_token": token})
+    if not e.ok:
+        print(f"  facebook: couldn't add the link to the text either ({meta_error(e)}). The post is up without its link.")
+    return post, ""
 
 
 def instagram_caption(p, item):
@@ -359,7 +383,7 @@ def main():
                 tries[ch] += 1
             try:
                 ref, err = {"bluesky": lambda: bluesky_post(sess, p, card), "telegram": lambda: telegram_post(p, card),
-                            "facebook": lambda: facebook_post(p), "instagram": lambda: instagram_post(p, item)}[ch]()
+                            "facebook": lambda: facebook_post(p, card), "instagram": lambda: instagram_post(p, item)}[ch]()
             except requests.RequestException as e:
                 ref, err = "", f"network problem: {str(e)[:160]}"
             if ref:
