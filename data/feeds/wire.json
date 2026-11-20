@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-19T21:12:06Z",
-   "outlet": "The Verge",
-   "title": "Meta now sells 3D movies on Quest VR headsets",
-   "url": "https://www.theverge.com/tech/1038157/meta-quest-vr-3d-movies-tv-app"
-  },
-  {
-   "date": "2026-11-19T21:11:02Z",
-   "outlet": "9to5Mac",
-   "title": "9to5Mac Daily: November 19, 2026 – New iPhone rumors, leadership changes",
-   "url": "https://9to5mac.com/2026/11/19/daily-november-19-2026/"
-  },
-  {
-   "date": "2026-11-19T21:06:58Z",
+   "date": "2026-11-20T00:03:22Z",
    "outlet": "Engadget",
-   "title": "Meta Quest adds 3D movie purchases and rentals to its TV app",
-   "url": "https://www.engadget.com/2322428/meta-quest-adds-3d-movie-purchases-and-rentals-to-its-tv-app/"
+   "title": "Job posting seemingly confirms Apple is working on its own AI agent for coding and other tasks",
+   "url": "https://www.engadget.com/2322586/job-posting-seemingly-confirms-apple-is-working-on-its-own-ai-agent-for-coding-and-other-tasks/"
   },
   {
-   "date": "2026-11-19T21:00:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "AI data center power demand will double by 2030 thanks to $4 trillion in spending, adding an entire Great Britain to energy strain",
-   "url": "https://www.tomshardware.com/tech-industry/data-centers/ai-data-center-power-demand-will-double-by-2030-thanks-to-usd4-trillion-in-spending-adding-an-entire-great-britain-to-energy-strain-93-large-ai-factories-with-projected-capacity-of-around-50-gigawatts"
-  },
-  {
-   "date": "2026-11-19T20:49:24Z",
+   "date": "2026-11-19T23:47:30Z",
    "outlet": "9to5Mac",
-   "title": "Next year’s iPhone Pro redesign sounds like exactly what I’ve been wanting",
-   "url": "https://9to5mac.com/2026/11/19/next-years-iphone-pro-redesign-sounds-like-exactly-what-ive-been-wanting/"
+   "title": "OpenAI begins testing dots with ChatGPT Plus users, expands Business access",
+   "url": "https://9to5mac.com/2026/11/19/openai-begins-testing-dots-with-chatgpt-plus-users-expands-business-access/"
   },
   {
-   "date": "2026-11-19T20:42:38Z",
+   "date": "2026-11-19T23:37:56Z",
+   "outlet": "TechCrunch",
+   "title": "Elon Musk says SpaceX has a plan to eliminate cell phone dead zones",
+   "url": "https://techcrunch.com/2026/11/19/elon-musk-says-spacex-has-a-plan-to-eliminate-cell-phone-dead-zones/"
+  },
+  {
+   "date": "2026-11-19T23:30:09Z",
+   "outlet": "9to5Google",
+   "title": "Google’s 3D emoji has wild Android spec requirements: 10GB of free space, 6GB RAM",
+   "url": "https://9to5google.com/2026/11/19/android-3d-emoji-specs-requirements/"
+  },
+  {
+   "date": "2026-11-19T23:28:22Z",
    "outlet": "Engadget",
-   "title": "You can now purchase the 512GB Steam Machine like a normal console",
-   "url": "https://www.engadget.com/2322377/you-can-now-purchase-the-512gb-steam-machine-like-a-normal-console/"
+   "title": "The GTA 6 star system says a lot more than just your Wanted level",
+   "url": "https://www.engadget.com/2322564/gta-6-wanted-level-star-system-details/"
   },
   {
-   "date": "2026-11-19T20:34:17Z",
+   "date": "2026-11-19T23:12:17Z",
    "outlet": "Wired",
-   "title": "The Jensen Huang Blast Radius Has Hit His Favorite Restaurants",
-   "url": "https://www.wired.com/story/jensen-huangs-favorite-restaurants-are-caught-up-in-his-scandals-too/"
+   "title": "Dudes Online Are So Mad That ‘Grand Theft Auto 6’ Makes Them Respect Women",
+   "url": "https://www.wired.com/story/dudes-online-are-so-mad-that-gta-vi-makes-them-respect-women/"
   },
   {
-   "date": "2026-11-19T20:30:00Z",
-   "outlet": "Google",
-   "title": "ICYMI: Transfer your history from other AI apps into Gemini.",
-   "url": "https://blog.google/innovation-and-ai/products/gemini-app/switch-ai-assistants-transfer-history/"
+   "date": "2026-11-19T23:01:25Z",
+   "outlet": "9to5Mac",
+   "title": "macOS 27.3 public beta 2 now available, here’s everything new",
+   "url": "https://9to5mac.com/2026/11/19/macos-27-3-public-beta-2-now-available-heres-everything-new/"
+  },
+  {
+   "date": "2026-11-19T22:48:05Z",
+   "outlet": "AWS",
+   "title": "Issue with nginx HTTP/2 Implementation",
+   "url": "https://aws.amazon.com/security/security-bulletins/rss/2026-192-aws/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-19T21:17:49Z"
+ "updated": "2026-11-20T00:17:48Z"
 }
