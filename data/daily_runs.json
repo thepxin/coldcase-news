@@ -2,14 +2,16 @@
  "date": "2026-11-20",
  "jobs": {
   "updates": "done",
-  "tech": "published"
+  "tech": "published",
+  "duewatch": "cut"
  },
  "ai_day": "2026-11-20",
- "ai_calls": 22,
+ "ai_calls": 27,
  "gemini_day": "2026-11-20",
  "gemini_calls": 0,
- "tech_published": 2,
+ "tech_published": 3,
  "tech_fields": [
+  "ai",
   "platforms",
   "software"
  ]

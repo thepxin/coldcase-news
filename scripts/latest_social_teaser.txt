@@ -1,28 +1,28 @@
 ================================================================
-Apple macOS 27.3 beta 2 splits Mac Device Control and Data Access in two
+Nvidia RTX Spark compact desktops go on sale, MSI EdgeMesa N AI+ at $7,499.99
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (172/280):
-Apple's macOS 27.3 beta 2 adds an option for apps to ask every time. Permissions already granted stay in effect.
+X (178/280):
+Nvidia says RTX Spark desktops run 120-billion-parameter models locally. Tom's Hardware lists the MSI one at $7,499.99.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-20-apple-macos-27-3-full-disk-access-changes/
+Every line sourced: https://coldcasetech.com/posts/2026-11-20-nvidia-rtx-spark-compact-desktops-available/
 
-#Apple #macOS
+#Nvidia #RTX
 
 INSTAGRAM (post this caption with the image from the share kit):
-Apple's macOS 27.3 beta 2 adds an option for apps to ask every time. Permissions already granted stay in effect.
+Nvidia says RTX Spark desktops run 120-billion-parameter models locally. Tom's Hardware lists the MSI one at $7,499.99.
 
-Apple macOS 27.3 beta 2 splits Device Control and Data Access into two settings and adds more granular Full Disk Access options for Mac users.
+Nvidia says RTX Spark compact desktops from ASUS, Dell and MSI are available, and Tom's Hardware reviewed the $7,499.99 MSI EdgeMesa N AI+.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #apple #macos #mac #device #software #technews #tech
+#coldcasetech #nvidia #rtx #rtxspark #msi #edgemesa #ai #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Apple's note says all permissions users already granted remain in effect. The new rules apply when approving new app permission requests.
-2. In macOS 27.3 beta 2, Apple split Device Control and Data Access into System & App Protection Override and Accessibility.
-3. Apple will let users set apps to ask for access every time. TechCrunch called it arguably tedious for automation. Would you switch it on?
+1. Tom's Hardware lists the MSI EdgeMesa N AI+ at $7,499.99 with 128GB of memory and 4TB of storage. It says the system drops the ConnectX NIC that DGX Spark systems have.
+2. Nvidia says mini PCs from Acer, GIGABYTE and HP are coming soon, along with the Surface RTX Spark Dev Box. No dates have been given.
+3. Tom's Hardware found the EdgeMesa's AI benchmark result practically identical to Surface Laptop Ultra with the same model. Would a desktop like this suit your local AI work?

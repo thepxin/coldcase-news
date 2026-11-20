@@ -34,7 +34,7 @@
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
   "checked": "2026-11-20",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
   "checked": "2026-11-20",
@@ -85,9 +85,6 @@
  "_queue": [
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
-  "2026-11-06-blue-origin-new-glenn-return-january-2027",
-  "2026-11-17-apple-homeview-on-sale-299-siri-ai",
-  "2026-11-16-apple-airpods-pro-3-179-amazon-early-black-friday",
   "2026-11-15-kuxiu-k4-air-magsafe-charger-hands-on",
   "2026-11-14-openai-chatgpt-wallet-dot-agents-purchases",
   "2026-11-12-google-gemini-app-apple-carplay-rollout",
@@ -161,6 +158,11 @@
    "stamp": "34a76c46f9478240",
    "why": "failed checks",
    "tries": 1,
+   "day": "2026-11-20"
+  },
+  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
+   "stamp": "f52a6eb4157cb8c0",
+   "why": "nothing new",
    "day": "2026-11-20"
   }
  }
