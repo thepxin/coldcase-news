@@ -1,21 +1,21 @@
 {
  "items": [
   {
-   "mission": "USSF-317",
-   "net": "2026-11-20T06:43:59Z",
-   "pad": "Vandenberg SFB, CA, USA",
-   "precision": "Second",
-   "provider": "SpaceX",
-   "rocket": "Falcon 9",
-   "status": "Go"
-  },
-  {
    "mission": "SatNet LEO Group",
    "net": "2026-11-20T11:59:00Z",
    "pad": "Wenchang Space Launch Site, China",
    "precision": "Hour",
    "provider": "CASC (China)",
    "rocket": "Long March 8A",
+   "status": "Go"
+  },
+  {
+   "mission": "USSF-317",
+   "net": "2026-11-21T02:32:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
    "status": "Go"
   },
   {
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-20T02:16:43Z"
+ "updated": "2026-11-20T06:17:47Z"
 }
