@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-20T00:03:22Z",
-   "outlet": "Engadget",
-   "title": "Job posting seemingly confirms Apple is working on its own AI agent for coding and other tasks",
-   "url": "https://www.engadget.com/2322586/job-posting-seemingly-confirms-apple-is-working-on-its-own-ai-agent-for-coding-and-other-tasks/"
-  },
-  {
-   "date": "2026-11-19T23:47:30Z",
+   "date": "2026-11-20T01:54:39Z",
    "outlet": "9to5Mac",
-   "title": "OpenAI begins testing dots with ChatGPT Plus users, expands Business access",
-   "url": "https://9to5mac.com/2026/11/19/openai-begins-testing-dots-with-chatgpt-plus-users-expands-business-access/"
+   "title": "WhatsApp is raising group chat limit to 1,500 participants",
+   "url": "https://9to5mac.com/2026/11/19/whatsapp-is-raising-group-chat-limit-to-1500-participants/"
   },
   {
-   "date": "2026-11-19T23:37:56Z",
-   "outlet": "TechCrunch",
-   "title": "Elon Musk says SpaceX has a plan to eliminate cell phone dead zones",
-   "url": "https://techcrunch.com/2026/11/19/elon-musk-says-spacex-has-a-plan-to-eliminate-cell-phone-dead-zones/"
-  },
-  {
-   "date": "2026-11-19T23:30:09Z",
+   "date": "2026-11-20T01:35:00Z",
    "outlet": "9to5Google",
-   "title": "Google’s 3D emoji has wild Android spec requirements: 10GB of free space, 6GB RAM",
-   "url": "https://9to5google.com/2026/11/19/android-3d-emoji-specs-requirements/"
+   "title": "Samsung’s mobile division has someone new in charge for the first time in years",
+   "url": "https://9to5google.com/2026/11/19/samsung-mobile-division-lead-choi-won-joon/"
   },
   {
-   "date": "2026-11-19T23:28:22Z",
-   "outlet": "Engadget",
-   "title": "The GTA 6 star system says a lot more than just your Wanted level",
-   "url": "https://www.engadget.com/2322564/gta-6-wanted-level-star-system-details/"
+   "date": "2026-11-20T00:59:02Z",
+   "outlet": "Tom's Hardware",
+   "title": "Get an RTX 5070 for just $839.99, a rare savings in the GPU wasteland",
+   "url": "https://www.tomshardware.com/pc-components/get-an-rtx-5070-for-just-usd839-99-a-rare-savings-in-the-gpu-wasteland-msi-geforce-rtx-5070-ventus-2x-oc-12-gb-is-currently-on-sale-at-newegg"
   },
   {
-   "date": "2026-11-19T23:12:17Z",
-   "outlet": "Wired",
-   "title": "Dudes Online Are So Mad That ‘Grand Theft Auto 6’ Makes Them Respect Women",
-   "url": "https://www.wired.com/story/dudes-online-are-so-mad-that-gta-vi-makes-them-respect-women/"
+   "date": "2026-11-20T00:57:45Z",
+   "outlet": "The Register",
+   "title": "Flaws in VMware and KVM need attention, if you have time while fixing Java, PHP, and everything else",
+   "url": "https://www.theregister.com/security/2026/11/20/flaws-in-vmware-and-kvm-need-attention-if-you-have-time-while-fixing-java-php-and-everything-else/5311193"
   },
   {
-   "date": "2026-11-19T23:01:25Z",
-   "outlet": "9to5Mac",
-   "title": "macOS 27.3 public beta 2 now available, here’s everything new",
-   "url": "https://9to5mac.com/2026/11/19/macos-27-3-public-beta-2-now-available-heres-everything-new/"
+   "date": "2026-11-20T00:56:01Z",
+   "outlet": "TechCrunch",
+   "title": "Apple may be developing its own AI agent that runs your Mac",
+   "url": "https://techcrunch.com/2026/11/19/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/"
   },
   {
-   "date": "2026-11-19T22:48:05Z",
-   "outlet": "AWS",
-   "title": "Issue with nginx HTTP/2 Implementation",
-   "url": "https://aws.amazon.com/security/security-bulletins/rss/2026-192-aws/"
+   "date": "2026-11-20T00:43:50Z",
+   "outlet": "TechCrunch",
+   "title": "Anthropic’s 7 founders cashed out nearly $2B in record-breaking IPO",
+   "url": "https://techcrunch.com/2026/11/19/anthropics-7-founders-cashed-out-nearly-2b-in-record-breaking-ipo/"
+  },
+  {
+   "date": "2026-11-20T00:37:45Z",
+   "outlet": "Electrek",
+   "title": "GM’s V2G pilot wants to pay California drivers for power from parked EVs",
+   "url": "https://electrek.co/2026/11/19/gms-v2g-pilot-wants-to-pay-california-drivers-for-power-from-parked-evs/"
+  },
+  {
+   "date": "2026-11-20T00:30:53Z",
+   "outlet": "Electrek",
+   "title": "NSSL keeps growing its electric terminal truck fleet, with no plans to stop",
+   "url": "https://electrek.co/2026/11/19/nssl-keeps-growing-its-electric-terminal-truck-fleet-with-no-plans-to-stop/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-20T00:17:48Z"
+ "updated": "2026-11-20T02:16:41Z"
 }
