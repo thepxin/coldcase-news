@@ -1,7 +1,7 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed on the update: source never cited in the article: 9to5Mac https://9to5mac.com/2026/11/18/iphone-18-ip)"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
   "checked": "2026-11-20",
@@ -13,11 +13,11 @@
  },
  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
   "checked": "2026-11-20",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "past-due check: coverage only from 9to5Mac, and no official page about this case yet (5 official post(s), 4 official page(s) read)"
  },
  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
   "checked": "2026-11-20",
@@ -25,7 +25,8 @@
  },
  "2026-11-01-xbox-new-games-november-2-to-6": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "6dfc302117ddc904"
  },
  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
   "checked": "2026-11-19",
@@ -53,11 +54,12 @@
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "f41d1128a27d88bd"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-20",
@@ -69,7 +71,8 @@
  },
  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
   "checked": "2026-11-20",
-  "result": "new coverage found; first in line for the next run"
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "af172a3e66fb1b21"
  },
  "2026-11-18-nvidia-kinsus-substrate-capacity-2028": {
   "checked": "2026-11-20",
@@ -82,12 +85,6 @@
  "_queue": [
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
-  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6",
-  "2026-10-30-apple-macbook-pro-proled-xdr-november-6",
-  "2026-11-01-xbox-new-games-november-2-to-6",
-  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16",
-  "2026-10-27-gta-6-release-date-november-19-2026",
-  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
   "2026-11-12-google-intelligent-eyewear-pre-orders-december-10",
   "2026-10-28-apple-siri-ai-new-languages-end-of-year",
   "2026-11-08-apple-health-app-redesign-ios-27-3-beta",
@@ -132,9 +129,9 @@
    "day": "2026-11-20"
   },
   "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
-   "stamp": "4d7a9853ece22daa",
+   "stamp": "61c475261f361932",
    "why": "nothing new",
-   "day": "2026-11-19"
+   "day": "2026-11-20"
   },
   "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
    "stamp": "91e1c652d1939e8d",
@@ -142,10 +139,10 @@
    "day": "2026-11-19"
   },
   "2026-10-27-gta-6-release-date-november-19-2026": {
-   "stamp": "04b748c1b2108ca3",
+   "stamp": "33a52cc3dc0a3cdb",
    "why": "failed checks",
    "tries": 1,
-   "day": "2026-11-19"
+   "day": "2026-11-20"
   },
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25": {
    "stamp": "af5d0c9506bd6272",
