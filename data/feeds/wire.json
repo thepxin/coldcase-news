@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-11-20T09:01:00Z",
+   "outlet": "Samsung",
+   "title": "Samsung Electronics Announces New Leadership",
+   "url": "https://news.samsung.com/global/samsung-electronics-announces-new-leadership-5"
+  },
+  {
+   "date": "2026-11-20T02:39:47Z",
+   "outlet": "Wired",
+   "title": "Fiona the Hippo Died After Eating a Hat. But How Does a Hat Kill a Hippo?",
+   "url": "https://www.wired.com/story/fiona-the-hippo-died-after-eating-a-hat-but-how-does-a-hat-kill-a-hippo/"
+  },
+  {
    "date": "2026-11-20T01:54:39Z",
    "outlet": "9to5Mac",
    "title": "WhatsApp is raising group chat limit to 1,500 participants",
@@ -35,20 +47,8 @@
    "outlet": "TechCrunch",
    "title": "Anthropic’s 7 founders cashed out nearly $2B in record-breaking IPO",
    "url": "https://techcrunch.com/2026/11/19/anthropics-7-founders-cashed-out-nearly-2b-in-record-breaking-ipo/"
-  },
-  {
-   "date": "2026-11-20T00:37:45Z",
-   "outlet": "Electrek",
-   "title": "GM’s V2G pilot wants to pay California drivers for power from parked EVs",
-   "url": "https://electrek.co/2026/11/19/gms-v2g-pilot-wants-to-pay-california-drivers-for-power-from-parked-evs/"
-  },
-  {
-   "date": "2026-11-20T00:30:53Z",
-   "outlet": "Electrek",
-   "title": "NSSL keeps growing its electric terminal truck fleet, with no plans to stop",
-   "url": "https://electrek.co/2026/11/19/nssl-keeps-growing-its-electric-terminal-truck-fleet-with-no-plans-to-stop/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-20T02:16:41Z"
+ "updated": "2026-11-20T03:17:43Z"
 }
