@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-20T20:00:45Z",
-   "outlet": "Cloudflare",
-   "title": "How Cloudflare WAF helps protect against phpAfterShell and other critical PHP flaws",
-   "url": "https://blog.cloudflare.com/phpaftershell-waf-protection/"
-  },
-  {
-   "date": "2026-11-20T19:59:48Z",
+   "date": "2026-11-20T21:08:29Z",
    "outlet": "Electrek",
-   "title": "Kia, Lucid, and Volkswagen are slashing EV prices by $10,000+ for Black Friday",
-   "url": "https://electrek.co/2026/11/20/kia-lucid-vw-slash-ev-prices-by-10000-black-friday/"
+   "title": "This 500 kWh energy storage system runs on retired EV batteries",
+   "url": "https://electrek.co/2026/11/20/this-500-kwh-energy-storage-system-runs-on-retired-ev-batteries/"
   },
   {
-   "date": "2026-11-20T19:56:11Z",
-   "outlet": "Electrek",
-   "title": "Podcast: Tesla’s ‘personal’ Cybercab, Ford’s LFP for Fathom, Aptera delivers, and more",
-   "url": "https://electrek.co/2026/11/20/podcast-teslas-personal-cybercab-fords-lfp-for-fathom-aptera-delivers-and-more/"
+   "date": "2026-11-20T21:02:54Z",
+   "outlet": "Engadget",
+   "title": "GTA 6 made $3.79 billion in its first day, but Rockstar's workers still lack job security",
+   "url": "https://www.engadget.com/2323671/gta-6-made-dollar379-billion-in-its-first-day-but-rockstars-workers-still-lack-job-security/"
   },
   {
-   "date": "2026-11-20T19:53:41Z",
-   "outlet": "TechCrunch",
-   "title": "Daniel Ek backs AI researcher’s fusion power startup. Here’s what they’re building.",
-   "url": "https://techcrunch.com/2026/11/20/daniel-ek-backs-ai-researchers-fusion-power-startup-heres-what-theyre-building/"
+   "date": "2026-11-20T21:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "South Korea busts 54 students cheating on national college admission exam by deploying emergency disaster alert during test",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/south-korea-busts-54-students-cheating-on-national-college-admission-exam-by-deploying-emergency-disaster-alert-during-test-ai-micro-cameras-and-phones-drive-cheating-epidemic-that-forced-government-crackdown"
   },
   {
-   "date": "2026-11-20T19:52:59Z",
+   "date": "2026-11-20T20:59:08Z",
    "outlet": "Ars Technica",
-   "title": "Prisons get OK to jam contraband phones. CTIA says nearby phones will be jammed too.",
-   "url": "https://arstechnica.com/tech-policy/2026/11/prisons-get-ok-to-jam-contraband-phones-ctia-says-nearby-phones-will-be-jammed-too/"
+   "title": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
+   "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
   },
   {
-   "date": "2026-11-20T19:52:21Z",
-   "outlet": "Wired",
-   "title": "Jensen Huang’s ‘Lying’ Alarmed Nvidia Board Ahead of His Resignation",
-   "url": "https://www.wired.com/story/jensen-huangs-lying-alarmed-nvidia-board-ahead-of-his-resignation/"
+   "date": "2026-11-20T20:58:29Z",
+   "outlet": "TechCrunch",
+   "title": "Experts warn: nearly everyone in AI is susceptible to a honey trap scheme right now",
+   "url": "https://techcrunch.com/2026/11/20/experts-warn-nearly-everyone-in-ai-is-susceptible-to-a-honey-trap-scheme-right-now/"
   },
   {
-   "date": "2026-11-20T19:52:21Z",
-   "outlet": "9to5Mac",
-   "title": "Apple TV keeps adding fan-favorite movies, here’s what’s new and coming next",
-   "url": "https://9to5mac.com/2026/11/20/apple-tv-keeps-adding-fan-favorite-movies-heres-whats-new-and-coming-next/"
+   "date": "2026-11-20T20:58:29Z",
+   "outlet": "TechCrunch",
+   "title": "Experts warn: nearly everyone in AI is susceptible to a honey trap scheme right now",
+   "url": "https://techcrunch.com/2026/11/20/experts-warn-nearly-everyone-in-ai-is-susceptible-to-a-honey-trap-scheme-right-now/"
   },
   {
-   "date": "2026-11-20T19:40:00Z",
-   "outlet": "9to5Google",
-   "title": "Google Health update fixes my biggest Fitbit Air complaint with ‘in-progress’ workout card",
-   "url": "https://9to5google.com/2026/11/20/google-health-fitbit-air-workouts-in-progress-card/"
+   "date": "2026-11-20T20:46:14Z",
+   "outlet": "NASA",
+   "title": "New NASA Seed Funding Primes Small Businesses for Innovation",
+   "url": "https://www.nasa.gov/directorates/rtmd/new-nasa-seed-funding-primes-small-businesses-for-innovation/"
+  },
+  {
+   "date": "2026-11-20T20:43:52Z",
+   "outlet": "The Verge",
+   "title": "YouTube is reportedly preparing to settle social media addiction claims for $3 billion",
+   "url": "https://www.theverge.com/streaming/1039096/youtube-social-media-addiction-school-districts-settlement"
   }
  ],
  "status": "ok",
- "updated": "2026-11-20T20:07:31Z"
+ "updated": "2026-11-20T21:17:47Z"
 }
