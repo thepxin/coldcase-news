@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "SatNet LEO Group",
-   "net": "2026-11-20T11:59:00Z",
-   "pad": "Wenchang Space Launch Site, China",
-   "precision": "Hour",
-   "provider": "CASC (China)",
-   "rocket": "Long March 8A",
-   "status": "In Flight"
-  },
-  {
    "mission": "USSF-317",
    "net": "2026-11-21T02:32:00Z",
    "pad": "Vandenberg SFB, CA, USA",
@@ -53,10 +44,19 @@
    "provider": "SpaceX",
    "rocket": "Falcon 9",
    "status": "Go"
+  },
+  {
+   "mission": "Progress MS-36 (97P)",
+   "net": "2026-11-24T05:03:00Z",
+   "pad": "Baikonur Cosmodrome, Kazakhstan",
+   "precision": "Minute",
+   "provider": "Roscosmos",
+   "rocket": "Soyuz 2.1b",
+   "status": "TBC"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-20T12:17:55Z"
+ "updated": "2026-11-20T15:17:55Z"
 }
