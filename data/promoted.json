@@ -501,6 +501,14 @@
   "instagram": "18116873633137047",
   "telegram": "83"
  },
+ "2026-11-20-apple-macos-27-3-full-disk-access-changes": {
+  "at": "2026-11-20T09:09:51Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2qaeosawn2i",
+  "facebook": "1489437024244341_122107676421546323",
+  "instagram": "18098666939148031",
+  "telegram": "87",
+  "youtube": "https://youtu.be/AKupBoK4nZg"
+ },
  "2026-11-20-apple-tv-f1-academy-us-streaming-2027": {
   "at": "2026-11-20T03:13:16Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2pmiicgto2e",
@@ -510,7 +518,7 @@
   "youtube": "https://youtu.be/HV40tGCJqNc"
  },
  "_last_post": {
-  "facebook": "2026-11-20T03:12:31Z",
-  "instagram": "2026-11-20T03:13:14Z"
+  "facebook": "2026-11-20T09:08:19Z",
+  "instagram": "2026-11-20T09:09:50Z"
  }
 }
