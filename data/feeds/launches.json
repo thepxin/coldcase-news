@@ -28,15 +28,6 @@
    "status": "Go"
   },
   {
-   "mission": "USSF-266",
-   "net": "2026-11-23T16:04:00Z",
-   "pad": "Vandenberg SFB, CA, USA",
-   "precision": "Minute",
-   "provider": "SpaceX",
-   "rocket": "Falcon 9",
-   "status": "Go"
-  },
-  {
    "mission": "Progress MS-36 (97P)",
    "net": "2026-11-24T05:03:00Z",
    "pad": "Baikonur Cosmodrome, Kazakhstan",
@@ -44,6 +35,15 @@
    "provider": "Roscosmos",
    "rocket": "Soyuz 2.1b",
    "status": "TBC"
+  },
+  {
+   "mission": "USSF-266",
+   "net": "2026-11-24T15:55:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
   },
   {
    "mission": "Shenzhou 24",
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-20T18:17:46Z"
+ "updated": "2026-11-20T20:07:32Z"
 }
