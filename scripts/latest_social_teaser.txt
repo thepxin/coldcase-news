@@ -1,28 +1,28 @@
 ================================================================
-Nvidia RTX Spark compact desktops go on sale, MSI EdgeMesa N AI+ at $7,499.99
+YouTube reportedly set to pay $3 billion to settle school district addiction claims
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (178/280):
-Nvidia says RTX Spark desktops run 120-billion-parameter models locally. Tom's Hardware lists the MSI one at $7,499.99.
+X (196/280):
+Bloomberg reports YouTube agreed in principle to pay around $3 billion to school districts. The next trial is set for February 2027.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-20-nvidia-rtx-spark-compact-desktops-available/
+Every line sourced: https://coldcasetech.com/posts/2026-11-21-youtube-3-billion-school-district-settlement/
 
-#Nvidia #RTX
+#YouTube #BigTech
 
 INSTAGRAM (post this caption with the image from the share kit):
-Nvidia says RTX Spark desktops run 120-billion-parameter models locally. Tom's Hardware lists the MSI one at $7,499.99.
+Bloomberg reports YouTube agreed in principle to pay around $3 billion to school districts. The next trial is set for February 2027.
 
-Nvidia says RTX Spark compact desktops from ASUS, Dell and MSI are available, and Tom's Hardware reviewed the $7,499.99 MSI EdgeMesa N AI+.
+YouTube is reportedly preparing to pay around $3 billion to US school districts to settle claims over addictive design, with new teen safeguards.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #nvidia #rtx #rtxspark #msi #edgemesa #ai #technews #tech
+#coldcasetech #youtube #bigtech #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Tom's Hardware lists the MSI EdgeMesa N AI+ at $7,499.99 with 128GB of memory and 4TB of storage. It says the system drops the ConnectX NIC that DGX Spark systems have.
-2. Nvidia says mini PCs from Acer, GIGABYTE and HP are coming soon, along with the Surface RTX Spark Dev Box. No dates have been given.
-3. Tom's Hardware found the EdgeMesa's AI benchmark result practically identical to Surface Laptop Ultra with the same model. Would a desktop like this suit your local AI work?
+1. Bloomberg's figure is around $3 billion, and the deal is reportedly only in principle. It also needs a majority of school districts to agree.
+2. Reported as the largest settlement ever with US school districts. Meta's August deal with states was $17.1 billion over 10 years, per The Verge.
+3. The February 2027 trial in Oakland names Meta, Snap and TikTok as defendants. Does a YouTube settlement change how you read that case?
