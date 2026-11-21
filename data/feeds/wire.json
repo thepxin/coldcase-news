@@ -1,16 +1,40 @@
 {
  "items": [
   {
-   "date": "2026-11-21T10:02:00Z",
-   "outlet": "Wired",
-   "title": "17 Best Gifts for Women in the Enshittocene (2026)",
-   "url": "https://www.wired.com/story/best-gifts-for-women/"
+   "date": "2026-11-21T12:01:13Z",
+   "outlet": "Ars Technica",
+   "title": "“Race realism” isn’t realistic—and it isn’t good science",
+   "url": "https://arstechnica.com/science/2026/11/race-realism-isnt-realistic-and-it-isnt-good-science/"
   },
   {
-   "date": "2026-11-21T10:00:00Z",
+   "date": "2026-11-21T12:01:00Z",
    "outlet": "Wired",
-   "title": "The Manosphere Isn’t Ready for Brothercore",
-   "url": "https://www.wired.com/story/hey-brother-house-manosphere-content/"
+   "title": "Best Power Banks (2026): My Picks After Testing Over 100",
+   "url": "https://www.wired.com/gallery/best-portable-chargers-power-banks/"
+  },
+  {
+   "date": "2026-11-21T12:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Homelabber’s second-gen Optane build uses two RTX 3090s to run 2.8-trillion-parameter Kimi AI model at 3.11 tokens per second",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/homelabbers-second-gen-optane-build-runs-2-8-trillion-parameter-kimi-k3-at-3-11-tokens-per-second-after-adding-two-rtx-3090s-moving-nearly-half-the-model-into-a-ram-drive-boosted-performance-by-41-percent"
+  },
+  {
+   "date": "2026-11-21T12:00:00Z",
+   "outlet": "Wired",
+   "title": "A Space Probe Returns to Asteroids Where NASA Tested Planetary Defense Systems",
+   "url": "https://www.wired.com/story/a-space-probe-returns-to-astroids-where-nasa-tested-planetary-defense-systems/"
+  },
+  {
+   "date": "2026-11-21T11:46:00Z",
+   "outlet": "The Register",
+   "title": "ChatGPT shrunk down to run on a Super Nintendo",
+   "url": "https://www.theregister.com/offbeat/2026/11/21/chatgpt-shrunk-down-to-run-on-a-super-nintendo/5311418"
+  },
+  {
+   "date": "2026-11-21T11:30:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "One gigabyte of Wikipedia losslessly compressed to 105.39MB with self-learning AI transformer model",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/one-gigabyte-of-wikipedia-losslessly-compressed-to-105-39mb-with-self-learning-ai-transformer-model-tufazip-needs-two-nvidia-b200-gpus-and-about-a-week-to-compress-or-decompress"
   },
   {
    "date": "2026-11-21T07:47:00Z",
@@ -23,32 +47,8 @@
    "outlet": "CoinDesk",
    "title": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
    "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-nodes-could-be-stalled-by-repeating-one-id-50-000-times-ai-found-the-bug"
-  },
-  {
-   "date": "2026-11-21T05:59:19Z",
-   "outlet": "CoinDesk",
-   "title": "XRP falls 10% as long bets unwind and ETF assets slip below $1 billion",
-   "url": "https://www.coindesk.com/markets/2026/11/21/xrp-falls-10-as-long-bets-unwind-and-etf-assets-slip-below-usd1-billion"
-  },
-  {
-   "date": "2026-11-21T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 21 – Voyager’s Neptune",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-21-voyagers-neptune/"
-  },
-  {
-   "date": "2026-11-21T04:00:00Z",
-   "outlet": "TechCrunch",
-   "title": "Startup sues Apple in India over tap-to-share contacts feature",
-   "url": "https://techcrunch.com/2026/11/20/startup-sues-apple-in-india-over-tap-to-share-contacts-feature/"
-  },
-  {
-   "date": "2026-11-21T02:45:00Z",
-   "outlet": "9to5Google",
-   "title": "Samsung might copy the iPhone’s Dynamic Island soon, but it actually looks good [Video]",
-   "url": "https://9to5google.com/2026/11/20/samsung-iphone-dynamic-island-feature-leak/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T10:55:49Z"
+ "updated": "2026-11-21T12:17:46Z"
 }
