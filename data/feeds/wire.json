@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "date": "2026-11-21T06:16:42Z",
+   "outlet": "CoinDesk",
+   "title": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
+   "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-nodes-could-be-stalled-by-repeating-one-id-50-000-times-ai-found-the-bug"
+  },
+  {
+   "date": "2026-11-21T06:00:00Z",
+   "outlet": "Wired",
+   "title": "Uplift Promo Codes: $300 Off",
+   "url": "https://www.wired.com/story/uplift-desk-coupon-code/"
+  },
+  {
+   "date": "2026-11-21T05:59:19Z",
+   "outlet": "CoinDesk",
+   "title": "XRP falls 10% as long bets unwind and ETF assets slip below $1 billion",
+   "url": "https://www.coindesk.com/markets/2026/11/21/xrp-falls-10-as-long-bets-unwind-and-etf-assets-slip-below-usd1-billion"
+  },
+  {
+   "date": "2026-11-21T05:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 November 21 – Voyager’s Neptune",
+   "url": "https://science.nasa.gov/image-article/apod-2026-november-21-voyagers-neptune/"
+  },
+  {
+   "date": "2026-11-21T04:00:00Z",
+   "outlet": "TechCrunch",
+   "title": "Startup sues Apple in India over tap-to-share contacts feature",
+   "url": "https://techcrunch.com/2026/11/20/startup-sues-apple-in-india-over-tap-to-share-contacts-feature/"
+  },
+  {
    "date": "2026-11-21T02:45:00Z",
    "outlet": "9to5Google",
    "title": "Samsung might copy the iPhone’s Dynamic Island soon, but it actually looks good [Video]",
@@ -17,38 +47,8 @@
    "outlet": "9to5Mac",
    "title": "9to5Mac Daily: November 20, 2026 – Siri AI limits, HomeView update",
    "url": "https://9to5mac.com/2026/11/20/daily-november-20-2026/"
-  },
-  {
-   "date": "2026-11-20T23:41:14Z",
-   "outlet": "The Register",
-   "title": "Amazon's split personality: AWS embraces bot commerce while main site enforces bans",
-   "url": "https://www.theregister.com/ai-and-ml/2026/11/20/amazons-split-personality-aws-embraces-bot-commerce-while-main-site-enforces-bans/5311493"
-  },
-  {
-   "date": "2026-11-20T23:40:10Z",
-   "outlet": "Engadget",
-   "title": "YouTube could pay $3 billion to settle social media addiction lawsuits with school districts",
-   "url": "https://www.engadget.com/2323927/youtube-could-pay-3-billion-to-settle-social-media-addiction-lawsuits-with-school-districts/"
-  },
-  {
-   "date": "2026-11-20T23:28:47Z",
-   "outlet": "The Register",
-   "title": "PHP 8.6: Things are gonna get a lot more strict around here",
-   "url": "https://www.theregister.com/devops/2026/11/20/php-86-things-are-gonna-get-a-lot-more-strict-around-here/5311486"
-  },
-  {
-   "date": "2026-11-20T23:24:02Z",
-   "outlet": "Wired",
-   "title": "Cops Are Pushing Extremely Corny ‘Grand Theft Auto 6’ Slop",
-   "url": "https://www.wired.com/story/cops-are-being-extremely-corny-about-gta-vi/"
-  },
-  {
-   "date": "2026-11-20T23:06:00Z",
-   "outlet": "9to5Mac",
-   "title": "iOS 27 lets you use two iPhones with the same phone number",
-   "url": "https://9to5mac.com/2026/11/20/ios-27-lets-you-use-two-iphones-with-the-same-phone-number/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T03:17:45Z"
+ "updated": "2026-11-21T06:17:51Z"
 }
