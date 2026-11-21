@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-21T12:01:13Z",
-   "outlet": "Ars Technica",
-   "title": "“Race realism” isn’t realistic—and it isn’t good science",
-   "url": "https://arstechnica.com/science/2026/11/race-realism-isnt-realistic-and-it-isnt-good-science/"
+   "date": "2026-11-21T15:11:17Z",
+   "outlet": "Electrek",
+   "title": "Elon Musk freezes at awkward Tesla Argentina launch: ‘I don’t know what to say’",
+   "url": "https://electrek.co/2026/11/21/elon-musk-tesla-argentina-launch-awkward-video-milei/"
   },
   {
-   "date": "2026-11-21T12:01:00Z",
-   "outlet": "Wired",
-   "title": "Best Power Banks (2026): My Picks After Testing Over 100",
-   "url": "https://www.wired.com/gallery/best-portable-chargers-power-banks/"
-  },
-  {
-   "date": "2026-11-21T12:00:00Z",
+   "date": "2026-11-21T15:02:17Z",
    "outlet": "Tom's Hardware",
-   "title": "Homelabber’s second-gen Optane build uses two RTX 3090s to run 2.8-trillion-parameter Kimi AI model at 3.11 tokens per second",
-   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/homelabbers-second-gen-optane-build-runs-2-8-trillion-parameter-kimi-k3-at-3-11-tokens-per-second-after-adding-two-rtx-3090s-moving-nearly-half-the-model-into-a-ram-drive-boosted-performance-by-41-percent"
+   "title": "35-year-old SNES runs ChatGPT, accelerated with a Super FX 2 chip — 21 MHz of RISC muscle speeds 2.2M parameter chatbot replies",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/35-year-old-snes-runs-chatgpt-accelerated-with-a-super-fx-2-chip-21-mhz-of-risc-muscle-speeds-2-2m-parameter-chatbot-replies"
   },
   {
-   "date": "2026-11-21T12:00:00Z",
-   "outlet": "Wired",
-   "title": "A Space Probe Returns to Asteroids Where NASA Tested Planetary Defense Systems",
-   "url": "https://www.wired.com/story/a-space-probe-returns-to-astroids-where-nasa-tested-planetary-defense-systems/"
+   "date": "2026-11-21T15:00:00Z",
+   "outlet": "Engadget",
+   "title": "How do those 'metal detector' apps for your phone actually work?",
+   "url": "https://www.engadget.com/2318137/how-phone-metal-detector-apps-work/"
   },
   {
-   "date": "2026-11-21T11:46:00Z",
+   "date": "2026-11-21T15:00:00Z",
+   "outlet": "The Verge",
+   "title": "Can Anthropic afford to put safety first?",
+   "url": "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure"
+  },
+  {
+   "date": "2026-11-21T14:45:00Z",
+   "outlet": "Engadget",
+   "title": "5 gadgets you should never buy used",
+   "url": "https://www.engadget.com/2318096/gadgets-you-should-never-buy-used/"
+  },
+  {
+   "date": "2026-11-21T14:35:00Z",
    "outlet": "The Register",
-   "title": "ChatGPT shrunk down to run on a Super Nintendo",
-   "url": "https://www.theregister.com/offbeat/2026/11/21/chatgpt-shrunk-down-to-run-on-a-super-nintendo/5311418"
+   "title": "AWS got hit by an outage too. Here's why you didn't hear about it",
+   "url": "https://www.theregister.com/columnists/2026/11/21/aws-got-hit-by-an-outage-too-heres-why-you-didnt-hear-about-it/5311511"
   },
   {
-   "date": "2026-11-21T11:30:00Z",
+   "date": "2026-11-21T14:30:00Z",
    "outlet": "Tom's Hardware",
-   "title": "One gigabyte of Wikipedia losslessly compressed to 105.39MB with self-learning AI transformer model",
-   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/one-gigabyte-of-wikipedia-losslessly-compressed-to-105-39mb-with-self-learning-ai-transformer-model-tufazip-needs-two-nvidia-b200-gpus-and-about-a-week-to-compress-or-decompress"
+   "title": "Gigabyte MO27Q2A 27-inch QHD 280 Hz QD-OLED gaming monitor review: Another price buster from Gigabyte",
+   "url": "https://www.tomshardware.com/monitors/gaming-monitors/gigabyte-mo27q2a-27-inch-qhd-280-hz-qd-oled-gaming-monitor-review"
   },
   {
-   "date": "2026-11-21T07:47:00Z",
-   "outlet": "The Register",
-   "title": "NASA Mars rover and orbiter suffer glitches",
-   "url": "https://www.theregister.com/science/2026/11/21/nasa-mars-rover-and-orbiter-suffer-glitches/5311360"
-  },
-  {
-   "date": "2026-11-21T06:16:42Z",
-   "outlet": "CoinDesk",
-   "title": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
-   "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-nodes-could-be-stalled-by-repeating-one-id-50-000-times-ai-found-the-bug"
+   "date": "2026-11-21T14:00:00Z",
+   "outlet": "The Verge",
+   "title": "Chess.com’s next move is a new hub for classic games, from mahjong to sudoku",
+   "url": "https://www.theverge.com/games/1038099/chess-classic-games-expansion-ai"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T12:17:46Z"
+ "updated": "2026-11-21T15:17:47Z"
 }
