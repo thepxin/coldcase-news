@@ -1,32 +1,21 @@
 ================================================================
-Nvidia Vera CPU racks due from Dell, HPE, Lenovo and Supermicro in early 2027
+Amplitude Wave AI agent can ship product fixes in 1-2 days, OpenAI story says
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (218/280):
-Nvidia says its Vera rack holds 192 CPUs and 1 petabyte of storage. Partner racks are due in early 2027.
+X (213/280):
+Amplitude estimates its Wave product agent, built mostly on OpenAI models, can ship product improvements in 1-2 days, down from roughly a month.
 
-Open case: due early 2027. We check every day.
+Every line sourced: https://coldcasetech.com/posts/2026-11-21-amplitude-wave-agent-ships-fixes-1-2-days/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-21-nvidia-vera-cpu-racks-early-2027/
-
-#Nvidia #NvidiaVera
+#OpenAI #AmplitudeWave
 
 INSTAGRAM (post this caption with the image from the share kit):
-Nvidia says its Vera rack holds 192 CPUs and 1 petabyte of storage. Partner racks are due in early 2027.
-
-Nvidia announced its Vera CPU rack-scale platform for HPC on November 16, 2026, with racks expected from Dell, HPE, Lenovo and Supermicro in early 2027.
-
-Open case: due early 2027. We check every day.
+Amplitude estimates its Wave product agent, built mostly on OpenAI models, can ship product improvements in 1-2 days, down from roughly a month.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #nvidia #nvidiavera #dell #hpe #lenovo #semiconductors #technews #tech
-
-X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Nvidia's Vera rack: 192 CPUs, about 300TB of memory, 1 petabyte of storage. Partner racks from Dell, HPE, Lenovo and Supermicro are expected beginning in early 2027.
-2. Nvidia expects Vera CPU racks from four partners beginning in early 2027. The 2.4x performance-per-watt figure is from Nvidia's own OpenFOAM test, against x86.
-3. DKRZ chose Vera CPUs for its HLRE-5 climate supercomputer, expected in early 2028. Do you think CPU-only racks like this have a place next to GPU systems?
+#coldcasetech #openai #amplitudewave #ai #technews #tech
