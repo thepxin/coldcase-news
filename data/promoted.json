@@ -525,6 +525,13 @@
   "telegram": "88",
   "youtube": "https://youtu.be/TonrD0ClPw8"
  },
+ "2026-11-21-amplitude-wave-agent-ships-fixes-1-2-days": {
+  "at": "2026-11-21T14:55:39Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2teafslwx22",
+  "facebook": "1489437024244341_122108981865546323",
+  "instagram": "17957141508324987",
+  "telegram": "91"
+ },
  "2026-11-21-nvidia-vera-cpu-racks-early-2027": {
   "at": "2026-11-21T09:00:18Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2sqdzdyzx2t",
@@ -542,7 +549,7 @@
   "youtube": "https://youtu.be/fkYhfi-UClY"
  },
  "_last_post": {
-  "facebook": "2026-11-21T08:59:35Z",
-  "instagram": "2026-11-21T09:00:16Z"
+  "facebook": "2026-11-21T14:55:29Z",
+  "instagram": "2026-11-21T14:55:39Z"
  }
 }
