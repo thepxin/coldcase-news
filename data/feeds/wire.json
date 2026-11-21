@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-21T07:47:00Z",
+   "outlet": "The Register",
+   "title": "NASA Mars rover and orbiter suffer glitches",
+   "url": "https://www.theregister.com/science/2026/11/21/nasa-mars-rover-and-orbiter-suffer-glitches/5311360"
+  },
+  {
    "date": "2026-11-21T06:16:42Z",
    "outlet": "CoinDesk",
    "title": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
@@ -41,14 +47,8 @@
    "outlet": "Engadget",
    "title": "Why you shouldn't depend on GTA 6 to auto-save",
    "url": "https://www.engadget.com/2323929/why-you-shouldnt-rely-on-gta-6-auto-save/"
-  },
-  {
-   "date": "2026-11-20T23:43:15Z",
-   "outlet": "9to5Mac",
-   "title": "9to5Mac Daily: November 20, 2026 – Siri AI limits, HomeView update",
-   "url": "https://9to5mac.com/2026/11/20/daily-november-20-2026/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T06:17:51Z"
+ "updated": "2026-11-21T09:17:47Z"
 }
