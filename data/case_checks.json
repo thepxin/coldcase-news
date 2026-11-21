@@ -1,11 +1,11 @@
 {
  "2026-10-27-gta-6-release-date-november-19-2026": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed on the update: date not found in sources: 2026-11-19; date not found in sources: month 11, day 19)"
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "the site did not return the page (blocked, timed out or not found)"
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
   "checked": "2026-11-21",
@@ -33,7 +33,7 @@
  },
  "2026-11-06-blue-origin-new-glenn-return-january-2027": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
   "checked": "2026-11-21",
@@ -45,7 +45,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-21",
@@ -88,10 +88,6 @@
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-10-27-gta-6-release-date-november-19-2026",
-  "2026-10-28-apple-siri-ai-new-languages-end-of-year",
-  "2026-11-06-blue-origin-new-glenn-return-january-2027",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
   "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
   "2026-11-18-apple-tv-video-podcasts-section-testing",
   "2026-11-18-google-play-best-of-play-2026-games",
@@ -109,9 +105,9 @@
    "day": "2026-11-18"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-   "stamp": "cb3986d09effa50b",
+   "stamp": "cbb0dc82e313ef93",
    "why": "nothing new",
-   "day": "2026-11-20"
+   "day": "2026-11-21"
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
@@ -134,10 +130,10 @@
    "day": "2026-11-21"
   },
   "2026-10-27-gta-6-release-date-november-19-2026": {
-   "stamp": "3547840e0bad9278",
+   "stamp": "0ca2605f95ea20ce",
    "why": "failed checks",
    "tries": 1,
-   "day": "2026-11-20"
+   "day": "2026-11-21"
   },
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25": {
    "stamp": "af5d0c9506bd6272",
@@ -162,9 +158,9 @@
    "day": "2026-11-20"
   },
   "2026-11-06-blue-origin-new-glenn-return-january-2027": {
-   "stamp": "f52a6eb4157cb8c0",
+   "stamp": "5f463fcd052a7afc",
    "why": "nothing new",
-   "day": "2026-11-20"
+   "day": "2026-11-21"
   },
   "2026-11-14-openai-chatgpt-wallet-dot-agents-purchases": {
    "stamp": "f6cbc9c14ba6db80",
