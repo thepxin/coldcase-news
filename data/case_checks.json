@@ -9,15 +9,15 @@
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
   "checked": "2026-11-21",
-  "result": "new coverage found; first in line for the next run"
+  "result": "updated"
  },
  "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
   "checked": "2026-11-21",
@@ -88,9 +88,6 @@
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-10-29-apple-ipad-mini-oled-november-6",
-  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6",
-  "2026-10-30-apple-macbook-pro-proled-xdr-november-6",
   "2026-10-27-gta-6-release-date-november-19-2026",
   "2026-10-28-apple-siri-ai-new-languages-end-of-year",
   "2026-11-06-blue-origin-new-glenn-return-january-2027",
@@ -127,19 +124,14 @@
    "day": "2026-11-18"
   },
   "2026-10-29-apple-ipad-mini-oled-november-6": {
-   "stamp": "87afcb03389c9ec9",
+   "stamp": "0a732b49388b3faa",
    "why": "nothing new",
-   "day": "2026-11-20"
+   "day": "2026-11-21"
   },
   "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
-   "stamp": "61c475261f361932",
+   "stamp": "b4c15f85947bba1f",
    "why": "nothing new",
-   "day": "2026-11-20"
-  },
-  "2026-10-30-apple-macbook-pro-proled-xdr-november-6": {
-   "stamp": "91e1c652d1939e8d",
-   "why": "nothing new",
-   "day": "2026-11-19"
+   "day": "2026-11-21"
   },
   "2026-10-27-gta-6-release-date-november-19-2026": {
    "stamp": "3547840e0bad9278",

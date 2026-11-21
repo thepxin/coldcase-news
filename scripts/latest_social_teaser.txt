@@ -1,28 +1,32 @@
 ================================================================
-YouTube reportedly set to pay $3 billion to settle school district addiction claims
+Nvidia Vera CPU racks due from Dell, HPE, Lenovo and Supermicro in early 2027
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (196/280):
-Bloomberg reports YouTube agreed in principle to pay around $3 billion to school districts. The next trial is set for February 2027.
+X (218/280):
+Nvidia says its Vera rack holds 192 CPUs and 1 petabyte of storage. Partner racks are due in early 2027.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-21-youtube-3-billion-school-district-settlement/
+Open case: due early 2027. We check every day.
 
-#YouTube #BigTech
+Every line sourced: https://coldcasetech.com/posts/2026-11-21-nvidia-vera-cpu-racks-early-2027/
+
+#Nvidia #NvidiaVera
 
 INSTAGRAM (post this caption with the image from the share kit):
-Bloomberg reports YouTube agreed in principle to pay around $3 billion to school districts. The next trial is set for February 2027.
+Nvidia says its Vera rack holds 192 CPUs and 1 petabyte of storage. Partner racks are due in early 2027.
 
-YouTube is reportedly preparing to pay around $3 billion to US school districts to settle claims over addictive design, with new teen safeguards.
+Nvidia announced its Vera CPU rack-scale platform for HPC on November 16, 2026, with racks expected from Dell, HPE, Lenovo and Supermicro in early 2027.
+
+Open case: due early 2027. We check every day.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #youtube #bigtech #technews #tech
+#coldcasetech #nvidia #nvidiavera #dell #hpe #lenovo #semiconductors #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Bloomberg's figure is around $3 billion, and the deal is reportedly only in principle. It also needs a majority of school districts to agree.
-2. Reported as the largest settlement ever with US school districts. Meta's August deal with states was $17.1 billion over 10 years, per The Verge.
-3. The February 2027 trial in Oakland names Meta, Snap and TikTok as defendants. Does a YouTube settlement change how you read that case?
+1. Nvidia's Vera rack: 192 CPUs, about 300TB of memory, 1 petabyte of storage. Partner racks from Dell, HPE, Lenovo and Supermicro are expected beginning in early 2027.
+2. Nvidia expects Vera CPU racks from four partners beginning in early 2027. The 2.4x performance-per-watt figure is from Nvidia's own OpenFOAM test, against x86.
+3. DKRZ chose Vera CPUs for its HLRE-5 climate supercomputer, expected in early 2028. Do you think CPU-only racks like this have a place next to GPU systems?
