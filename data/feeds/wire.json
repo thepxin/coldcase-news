@@ -1,22 +1,40 @@
 {
  "items": [
   {
+   "date": "2026-11-21T19:00:00Z",
+   "outlet": "Engadget",
+   "title": "Which car has the largest infotainment touchscreen?",
+   "url": "https://www.engadget.com/2318759/largest-car-infotainment-touchscreen/"
+  },
+  {
+   "date": "2026-11-21T18:45:00Z",
+   "outlet": "Engadget",
+   "title": "Six simple Raspberry Pi projects for beginners",
+   "url": "https://www.engadget.com/2318530/simple-raspberry-pi-projects-for-beginners/"
+  },
+  {
+   "date": "2026-11-21T18:44:53Z",
+   "outlet": "TechCrunch",
+   "title": "Trump says reported FBI database hack is ‘not good’",
+   "url": "https://techcrunch.com/2026/11/21/trump-says-reported-fbi-database-hack-is-not-good/"
+  },
+  {
+   "date": "2026-11-21T18:44:53Z",
+   "outlet": "TechCrunch",
+   "title": "Trump says reported FBI database hack is ‘not good’",
+   "url": "https://techcrunch.com/2026/11/21/trump-says-reported-fbi-database-hack-is-not-good/"
+  },
+  {
+   "date": "2026-11-21T18:34:13Z",
+   "outlet": "Electrek",
+   "title": "Toyota just built a tiny folding electric bike to fit in your trunk",
+   "url": "https://electrek.co/2026/11/21/toyota-just-built-a-tiny-folding-electric-bike-to-fit-in-your-trunk/"
+  },
+  {
    "date": "2026-11-21T18:12:54Z",
    "outlet": "Electrek",
    "title": "E-quipment highlight: Mantsinen 200 material handler has tank treads",
    "url": "https://electrek.co/2026/11/21/e-quipment-highlight-mantsinen-200-material-handler-has-tank-treads/"
-  },
-  {
-   "date": "2026-11-21T18:08:24Z",
-   "outlet": "Electrek",
-   "title": "I ride e-bikes for a living. This is the real gear I actually use",
-   "url": "https://electrek.co/2026/11/21/i-ride-e-bikes-for-a-living-this-is-the-real-gear-i-actually-use/"
-  },
-  {
-   "date": "2026-11-21T18:00:00Z",
-   "outlet": "Engadget",
-   "title": "Setting up an Apple HomeView is ridiculously easy thanks to your iPhone",
-   "url": "https://www.engadget.com/2318610/easy-apple-homeview-setup-with-iphone/"
   },
   {
    "date": "2026-11-21T17:50:00Z",
@@ -25,30 +43,12 @@
    "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-bounces-9-from-two-year-low-to-retake-usd60-000-as-traders-eye-monday-s-stock-open"
   },
   {
-   "date": "2026-11-21T17:45:00Z",
-   "outlet": "Engadget",
-   "title": "HomeView vs. Echo Show: What's the difference between Apple's and Amazon's smart displays?",
-   "url": "https://www.engadget.com/2318413/apple-homeview-vs-amazon-echo-show-smart-display-comparison/"
-  },
-  {
-   "date": "2026-11-21T17:00:00Z",
-   "outlet": "TechCrunch",
-   "title": "Here are the top AI agents that can live in your text messages",
-   "url": "https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/"
-  },
-  {
    "date": "2026-11-21T17:00:00Z",
    "outlet": "9to5Google",
    "title": "Galaxy Z Fold 8 features: What you can do on a foldable",
    "url": "https://9to5google.com/2026/11/21/galaxy-z-fold-8-features-what-you-can-do/"
-  },
-  {
-   "date": "2026-11-21T16:41:00Z",
-   "outlet": "CoinDesk",
-   "title": "Cross-chain protocol Chainflip's FLIP tanks 30% after suspected $4.86 million vault drain",
-   "url": "https://www.coindesk.com/business/2026/11/21/cross-chain-protocol-chainflip-s-flip-tanks-30-after-suspected-usd4-86-million-vault-drain"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T18:17:45Z"
+ "updated": "2026-11-21T19:09:43Z"
 }
