@@ -64,8 +64,36 @@
   "case|2026-11-13-apple-sports-adds-live-ufc-stats|2026-11-13",
   "case|2026-11-13-apple-tv-4k-youtube-app-error-fix|2026-11-13",
   "case|2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16|2026-11-13",
+  "case|2026-11-14-apple-arcade-four-new-games-december-3|2026-11-14",
   "case|2026-11-14-openai-chatgpt-wallet-dot-agents-purchases|2026-11-14",
-  "update|2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro|2026-10-31"
+  "case|2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription|2026-11-14",
+  "case|2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint|2026-11-15",
+  "case|2026-11-15-kuxiu-k4-air-magsafe-charger-hands-on|2026-11-15",
+  "case|2026-11-15-spacex-starship-flight-15-ship-catch-booster-abort|2026-11-15",
+  "case|2026-11-16-apple-airpods-pro-3-179-amazon-early-black-friday|2026-11-16",
+  "case|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-16",
+  "case|2026-11-16-minisforum-elite-mini-m2-air-304-review|2026-11-16",
+  "case|2026-11-17-apple-homeview-on-sale-299-siri-ai|2026-11-17",
+  "case|2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay|2026-11-17",
+  "case|2026-11-17-xbox-25th-anniversary-bundle-series-x25|2026-11-17",
+  "case|2026-11-18-apple-tv-video-podcasts-section-testing|2026-11-18",
+  "case|2026-11-18-google-play-best-of-play-2026-games|2026-11-18",
+  "case|2026-11-18-nvidia-kinsus-substrate-capacity-2028|2026-11-18",
+  "case|2026-11-19-aawireless-nexus-nano-adapters-december-8|2026-11-19",
+  "case|2026-11-19-instagram-edit-stories-15-minute-window|2026-11-19",
+  "case|2026-11-19-nasa-voyager-1-reaches-one-light-day|2026-11-19",
+  "case|2026-11-20-apple-macos-27-3-full-disk-access-changes|2026-11-20",
+  "case|2026-11-20-apple-tv-f1-academy-us-streaming-2027|2026-11-20",
+  "case|2026-11-20-nvidia-rtx-spark-compact-desktops-available|2026-11-20",
+  "case|2026-11-21-nvidia-vera-cpu-racks-early-2027|2026-11-21",
+  "case|2026-11-21-youtube-3-billion-school-district-settlement|2026-11-21",
+  "update|2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro|2026-10-31",
+  "update|2026-10-30-apple-macbook-pro-proled-xdr-november-6|2026-11-21",
+  "update|2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19|2026-11-19",
+  "update|2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription|2026-11-19",
+  "update|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-19",
+  "update|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-21",
+  "update|2026-11-17-apple-homeview-on-sale-299-siri-ai|2026-11-20"
  ],
  "emails": [
   {
@@ -95,6 +123,13 @@
    "subject": "ColdCase Weekly: 21 new cases",
    "broadcast_id": 27040710,
    "items": 21
+  },
+  {
+   "date": "2026-11-21",
+   "mode": "draft",
+   "subject": "ColdCase Weekly: 2 verdicts in, 21 new cases",
+   "broadcast_id": 27200178,
+   "items": 28
   }
  ]
 }
