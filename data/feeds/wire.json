@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-11-21T10:02:00Z",
+   "outlet": "Wired",
+   "title": "17 Best Gifts for Women in the Enshittocene (2026)",
+   "url": "https://www.wired.com/story/best-gifts-for-women/"
+  },
+  {
+   "date": "2026-11-21T10:00:00Z",
+   "outlet": "Wired",
+   "title": "The Manosphere Isn’t Ready for Brothercore",
+   "url": "https://www.wired.com/story/hey-brother-house-manosphere-content/"
+  },
+  {
    "date": "2026-11-21T07:47:00Z",
    "outlet": "The Register",
    "title": "NASA Mars rover and orbiter suffer glitches",
@@ -11,12 +23,6 @@
    "outlet": "CoinDesk",
    "title": "Bitcoin nodes could be stalled by repeating one ID 50,000 times. AI found the bug",
    "url": "https://www.coindesk.com/markets/2026/11/21/bitcoin-nodes-could-be-stalled-by-repeating-one-id-50-000-times-ai-found-the-bug"
-  },
-  {
-   "date": "2026-11-21T06:00:00Z",
-   "outlet": "Wired",
-   "title": "Uplift Promo Codes: $300 Off",
-   "url": "https://www.wired.com/story/uplift-desk-coupon-code/"
   },
   {
    "date": "2026-11-21T05:59:19Z",
@@ -41,14 +47,8 @@
    "outlet": "9to5Google",
    "title": "Samsung might copy the iPhone’s Dynamic Island soon, but it actually looks good [Video]",
    "url": "https://9to5google.com/2026/11/20/samsung-iphone-dynamic-island-feature-leak/"
-  },
-  {
-   "date": "2026-11-20T23:48:00Z",
-   "outlet": "Engadget",
-   "title": "Why you shouldn't depend on GTA 6 to auto-save",
-   "url": "https://www.engadget.com/2323929/why-you-shouldnt-rely-on-gta-6-auto-save/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T09:17:47Z"
+ "updated": "2026-11-21T10:55:49Z"
 }
