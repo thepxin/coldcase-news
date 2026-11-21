@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-21T02:45:00Z",
+   "outlet": "9to5Google",
+   "title": "Samsung might copy the iPhone’s Dynamic Island soon, but it actually looks good [Video]",
+   "url": "https://9to5google.com/2026/11/20/samsung-iphone-dynamic-island-feature-leak/"
+  },
+  {
    "date": "2026-11-20T23:48:00Z",
    "outlet": "Engadget",
    "title": "Why you shouldn't depend on GTA 6 to auto-save",
@@ -41,14 +47,8 @@
    "outlet": "9to5Mac",
    "title": "iOS 27 lets you use two iPhones with the same phone number",
    "url": "https://9to5mac.com/2026/11/20/ios-27-lets-you-use-two-iphones-with-the-same-phone-number/"
-  },
-  {
-   "date": "2026-11-20T22:51:14Z",
-   "outlet": "CoinDesk",
-   "title": "Kalshi races to get ahead of New York order that could shut down exchange",
-   "url": "https://www.coindesk.com/policy/2026/11/20/kalshi-races-to-get-ahead-of-new-york-order-that-could-shut-down-exchange"
   }
  ],
  "status": "ok",
- "updated": "2026-11-21T02:10:33Z"
+ "updated": "2026-11-21T03:17:45Z"
 }
