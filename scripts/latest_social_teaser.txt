@@ -1,21 +1,21 @@
 ================================================================
-Amplitude Wave AI agent can ship product fixes in 1-2 days, OpenAI story says
+Anthropic Claude: mathematician claims Riemann hypothesis proof, Lean check passes
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
 X (213/280):
-Amplitude estimates its Wave product agent, built mostly on OpenAI models, can ship product improvements in 1-2 days, down from roughly a month.
+Anthropic mathematician Levent Alpöge claims a Riemann hypothesis proof found with Claude; participants in a chat report that its Lean version compiles.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-21-amplitude-wave-agent-ships-fixes-1-2-days/
+Every line sourced: https://coldcasetech.com/posts/2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim/
 
-#OpenAI #AmplitudeWave
+#Riemann #Lean
 
 INSTAGRAM (post this caption with the image from the share kit):
-Amplitude estimates its Wave product agent, built mostly on OpenAI models, can ship product improvements in 1-2 days, down from roughly a month.
+Anthropic mathematician Levent Alpöge claims a Riemann hypothesis proof found with Claude; participants in a chat report that its Lean version compiles.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #openai #amplitudewave #ai #technews #tech
+#coldcasetech #riemann #lean #anthropic #claude #ai #technews #tech
