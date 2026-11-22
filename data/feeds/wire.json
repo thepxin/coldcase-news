@@ -1,22 +1,28 @@
 {
  "items": [
   {
-   "date": "2026-11-22T00:00:00Z",
+   "date": "2026-11-22T01:02:38Z",
+   "outlet": "Electrek",
+   "title": "Red wave: Xiaomi goes global with first overseas EV sales",
+   "url": "https://electrek.co/2026/11/21/red-wave-xiaomi-goes-global-with-first-overseas-ev-sales/"
+  },
+  {
+   "date": "2026-11-22T01:00:00Z",
    "outlet": "Engadget",
-   "title": "This is the best type of wireless earbuds for audio output",
-   "url": "https://www.engadget.com/2319289/wireless-earbuds-type-best-for-audio-output/"
+   "title": "Attention Pixel 9 and 10 owners: is it actually worth upgrading to the Pixel 11?",
+   "url": "https://www.engadget.com/2319300/pixel-11-is-it-worth-upgrading-from-9-10/"
+  },
+  {
+   "date": "2026-11-22T01:00:00Z",
+   "outlet": "Engadget",
+   "title": "Samsung vs. LG OLED TVs: What's the difference between them?",
+   "url": "https://www.engadget.com/2310887/samsung-vs-lg-oled-tv-difference-between/"
   },
   {
    "date": "2026-11-21T23:50:00Z",
    "outlet": "Electrek",
    "title": "Here are 7 great reasons rural drivers SHOULD embrace EVs in 2027",
    "url": "https://electrek.co/2026/11/21/here-are-6-great-reasons-rural-drivers-should-embrace-evs-in-2026/"
-  },
-  {
-   "date": "2026-11-21T23:45:00Z",
-   "outlet": "Engadget",
-   "title": "How to calibrate your 3D printer (and why you should)",
-   "url": "https://www.engadget.com/2310980/how-to-calibrate-3d-printer-why-should/"
   },
   {
    "date": "2026-11-21T22:22:26Z",
@@ -41,14 +47,8 @@
    "outlet": "TechCrunch",
    "title": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
    "url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/"
-  },
-  {
-   "date": "2026-11-21T21:37:10Z",
-   "outlet": "TechCrunch",
-   "title": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
-   "url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T00:17:58Z"
+ "updated": "2026-11-22T01:13:56Z"
 }
