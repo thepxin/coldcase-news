@@ -548,8 +548,14 @@
   "telegram": "89",
   "youtube": "https://youtu.be/fkYhfi-UClY"
  },
+ "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim": {
+  "at": "2026-11-22T02:59:32Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2umox6slu2k",
+  "facebook": "1489437024244341_122109262209546323",
+  "telegram": "92"
+ },
  "_last_post": {
-  "facebook": "2026-11-21T14:55:29Z",
+  "facebook": "2026-11-22T02:59:27Z",
   "instagram": "2026-11-21T14:55:39Z"
  }
 }
