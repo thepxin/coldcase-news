@@ -48,7 +48,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-22",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-22",
@@ -56,11 +56,12 @@
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
   "checked": "2026-11-22",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-22",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "past-due check: the company's pages do not state the outcome yet",
+  "evidence": "f41d1128a27d88bd"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-22",
@@ -94,12 +95,7 @@
   "2026-11-08-anthropic-claude-personal-finance-launch-read-only",
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
-  "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16",
-  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-18-apple-tv-video-podcasts-section-testing",
-  "2026-11-14-openai-chatgpt-wallet-dot-agents-purchases"
+  "2026-11-10-anthropic-claude-fable-5-2-launch-price"
  ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
@@ -113,9 +109,9 @@
    "day": "2026-11-18"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-   "stamp": "cbb0dc82e313ef93",
+   "stamp": "ddc7c733a9a632eb",
    "why": "nothing new",
-   "day": "2026-11-21"
+   "day": "2026-11-22"
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
@@ -149,10 +145,9 @@
    "day": "2026-11-21"
   },
   "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
-   "stamp": "d6b5d6c054d63032",
-   "why": "failed checks",
-   "tries": 1,
-   "day": "2026-11-20"
+   "stamp": "970b9207f319e9bd",
+   "why": "nothing new",
+   "day": "2026-11-22"
   },
   "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
    "stamp": "c27fb52994af168a",
