@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "NROL-136",
-   "net": "2026-11-22T12:23:56Z",
-   "pad": "Vandenberg SFB, CA, USA",
-   "precision": "Second",
-   "provider": "SpaceX",
-   "rocket": "Falcon 9",
-   "status": "Go"
-  },
-  {
    "mission": "Amazon Leo (LE-04)",
    "net": "2026-11-23T11:09:00Z",
    "pad": "Guiana Space Centre, French Guiana",
@@ -53,10 +44,19 @@
    "provider": "CASC (China)",
    "rocket": "Long March 2D",
    "status": "Go"
+  },
+  {
+   "mission": "Night Owls Never Sleep (StriX Launch 14)",
+   "net": "2026-11-27T00:05:00Z",
+   "pad": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+   "precision": "Minute",
+   "provider": "Rocket Lab",
+   "rocket": "Electron",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-21T21:17:46Z"
+ "updated": "2026-11-22T15:17:45Z"
 }
