@@ -1,16 +1,40 @@
 {
  "items": [
   {
+   "date": "2026-11-22T19:15:00Z",
+   "outlet": "Engadget",
+   "title": "Here's when a Raspberry Pi 5 could be considered overkill",
+   "url": "https://www.engadget.com/2319480/when-raspberry-pi-5-considered-overkill/"
+  },
+  {
+   "date": "2026-11-22T19:13:25Z",
+   "outlet": "NASA",
+   "title": "65 Years of Human Spaceflight at NASA Johnson",
+   "url": "https://www.nasa.gov/centers-and-facilities/johnson/65-years-of-human-spaceflight-at-nasa-johnson/"
+  },
+  {
+   "date": "2026-11-22T19:00:00Z",
+   "outlet": "Engadget",
+   "title": "5 Apple Watch settings that can help you save its battery life",
+   "url": "https://www.engadget.com/2319475/apple-watch-settings-help-save-battery-life/"
+  },
+  {
+   "date": "2026-11-22T19:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Nintendo Switch 2 bundles drop to pre-hike pricing in Black Friday run-up sale",
+   "url": "https://www.tomshardware.com/video-games/handheld-gaming/nintendo-switch-2-bundles-drop-to-pre-hike-pricing-in-black-friday-run-up-sale-get-a-switch-2-along-with-mario-kart-world-and-nintendo-switch-online-for-usd50-off"
+  },
+  {
+   "date": "2026-11-22T18:17:53Z",
+   "outlet": "Tom's Hardware",
+   "title": "Give your gaming setup a serious upgrade with the Razer Basilisk V3 for half price",
+   "url": "https://www.tomshardware.com/pc-components/give-your-gaming-setup-a-serious-upgrade-with-the-razer-basilisk-v3-for-half-price-for-just-usd32-99-you-get-26-000-dpi-sensitivity-programmable-buttons-and-plenty-of-rgb"
+  },
+  {
    "date": "2026-11-22T18:08:43Z",
    "outlet": "TechCrunch",
    "title": "Why data centers are at the center of the Big Tech backlash",
    "url": "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/"
-  },
-  {
-   "date": "2026-11-22T18:00:00Z",
-   "outlet": "Engadget",
-   "title": "Don't throw away your old Xbox — Do this instead",
-   "url": "https://www.engadget.com/2319409/dont-throw-away-old-xbox-do-this-instead-sell-donate/"
   },
   {
    "date": "2026-11-22T17:46:44Z",
@@ -19,36 +43,12 @@
    "url": "https://www.theverge.com/transportation/1039779/delta-flights-delayed-system-outage"
   },
   {
-   "date": "2026-11-22T17:45:00Z",
-   "outlet": "Engadget",
-   "title": "You can mass-delete all of your emails on Gmail in only a few clicks",
-   "url": "https://www.engadget.com/2319403/how-to-mass-delete-all-emails-gmail/"
-  },
-  {
    "date": "2026-11-22T17:25:20Z",
    "outlet": "The Verge",
    "title": "Binding of Isaac developer removes AI music from Repentance Plus",
    "url": "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music"
-  },
-  {
-   "date": "2026-11-22T17:13:56Z",
-   "outlet": "9to5Mac",
-   "title": "Apple tested a ‘complication column’ for the iPhone Duo Lock Screen, per leak",
-   "url": "https://9to5mac.com/2026/11/22/apple-tested-a-complication-column-for-the-iphone-duo-lock-screen-per-leak/"
-  },
-  {
-   "date": "2026-11-22T17:06:00Z",
-   "outlet": "TechCrunch",
-   "title": "TechCrunch Mobility: A/B testing robots vs. humans",
-   "url": "https://techcrunch.com/2026/11/22/techcrunch-mobility-a-b-testing-robots-vs-humans/"
-  },
-  {
-   "date": "2026-11-22T16:08:00Z",
-   "outlet": "The Register",
-   "title": "As cars go digital, US consumers pay an extra $12 billion a year for repairs",
-   "url": "https://www.theregister.com/personal-tech/2026/11/22/as-cars-go-digital-us-consumers-pay-an-extra-12-billion-a-year-for-repairs/5311412"
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T18:17:45Z"
+ "updated": "2026-11-22T19:31:49Z"
 }
