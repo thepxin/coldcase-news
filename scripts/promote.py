@@ -310,11 +310,31 @@ def ig_wait(container, token, limit, what):
         time.sleep(5 if what == "image" else 10)
 
 
-def ig_publish(ig, container, token):
-    r = requests.post(f"{META}/{ig}/media_publish", timeout=90, data={"creation_id": container, "access_token": token})
-    if not r.ok:
-        return "", "publish: " + meta_error(r)
-    return r.json().get("id", "posted"), ""
+IG_PUBLISH_WAITS = (20, 40, 60)   # seconds between tries when Instagram says the media "is not ready" (error 9007)
+
+
+def ig_not_ready(r):
+    """Meta's error 9007 ("Media ID is not available" / "not ready for publishing"): wait and try again."""
+    try:
+        e = r.json().get("error", {})
+    except ValueError:
+        return False
+    return e.get("code") == 9007 or e.get("error_subcode") == 2207027 or "not available" in str(e.get("message", "")).lower()
+
+
+def ig_publish(ig, container, token, waits=IG_PUBLISH_WAITS):
+    """Publish a checked container. Instagram sometimes says "not ready" for a short while even after the check
+    said FINISHED; Meta's advice is to wait a moment and try again. A failed try publishes nothing, so this
+    never posts twice."""
+    for pause in (0, *waits):
+        if pause:
+            time.sleep(pause)
+        r = requests.post(f"{META}/{ig}/media_publish", timeout=90, data={"creation_id": container, "access_token": token})
+        if r.ok:
+            return r.json().get("id", "posted"), ""
+        if not ig_not_ready(r):
+            break
+    return "", "publish: " + meta_error(r)
 
 
 def reel_caption(caption):
