@@ -553,5 +553,10 @@
   "attempts": 1,
   "devto": "https://dev.to/coldcasetech/youtube-reportedly-set-to-pay-3-billion-to-settle-school-district-addiction-claims-1gb1",
   "done": true
+ },
+ "content/posts/2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/anthropic-claude-mathematician-claims-riemann-hypothesis-proof-lean-check-passes-29a8",
+  "done": true
  }
 }
