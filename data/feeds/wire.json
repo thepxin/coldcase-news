@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-22T02:13:24Z",
+   "outlet": "Electrek",
+   "title": "Rumor: Hyundai is getting ready to roll out an all-new, all-electric work truck",
+   "url": "https://electrek.co/2026/11/21/rumor-hyundai-is-getting-ready-to-roll-out-an-all-new-all-electric-work-truck/"
+  },
+  {
    "date": "2026-11-22T01:02:38Z",
    "outlet": "Electrek",
    "title": "Red wave: Xiaomi goes global with first overseas EV sales",
@@ -17,12 +23,6 @@
    "outlet": "Engadget",
    "title": "Samsung vs. LG OLED TVs: What's the difference between them?",
    "url": "https://www.engadget.com/2310887/samsung-vs-lg-oled-tv-difference-between/"
-  },
-  {
-   "date": "2026-11-21T23:50:00Z",
-   "outlet": "Electrek",
-   "title": "Here are 7 great reasons rural drivers SHOULD embrace EVs in 2027",
-   "url": "https://electrek.co/2026/11/21/here-are-6-great-reasons-rural-drivers-should-embrace-evs-in-2026/"
   },
   {
    "date": "2026-11-21T22:22:26Z",
@@ -50,5 +50,5 @@
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T01:13:56Z"
+ "updated": "2026-11-22T03:17:46Z"
 }
