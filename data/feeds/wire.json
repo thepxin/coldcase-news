@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "date": "2026-11-22T09:15:00Z",
+   "outlet": "The Register",
+   "title": "Passive 'ghost' radar can detect airborne threats without revealing its own position",
+   "url": "https://www.theregister.com/offbeat/2026/11/22/passive-ghost-radar-can-detect-airborne-threats-without-revealing-its-own-position/5311023"
+  },
+  {
+   "date": "2026-11-22T09:05:40Z",
+   "outlet": "Tom's Hardware",
+   "title": "OLED gaming laptop with RTX 5060 and Intel Core Ultra 7 CPU price crashes by $650 in Black Friday offer — Lenovo Legion 5i laptop drops to $",
+   "url": "https://www.tomshardware.com/laptops/gaming-laptops/oled-gaming-laptop-with-rtx-5060-and-intel-core-ultra-7-cpu-price-crashes-by-usd650-in-black-friday-offer-lenovo-legion-5i-laptop-drops-to-usd1-349-with-free-games-at-b-and-h"
+  },
+  {
+   "date": "2026-11-22T08:48:00Z",
+   "outlet": "The Register",
+   "title": "Come for the science, stay for the big iron: Supercomputer admin on why he loves the job",
+   "url": "https://www.theregister.com/hpc/2026/11/22/come-for-the-science-stay-for-the-big-iron-supercomputer-admin-on-why-he-loves-the-job/5311247"
+  },
+  {
    "date": "2026-11-22T05:05:00Z",
    "outlet": "NASA",
    "title": "APOD: 2026 November 22 – Swirls and Colors on Jupiter from Juno",
@@ -29,26 +47,8 @@
    "outlet": "Engadget",
    "title": "Samsung vs. LG OLED TVs: What's the difference between them?",
    "url": "https://www.engadget.com/2310887/samsung-vs-lg-oled-tv-difference-between/"
-  },
-  {
-   "date": "2026-11-21T22:22:26Z",
-   "outlet": "9to5Mac",
-   "title": "iOS 27: My favorite new iPhone features (other than AI)",
-   "url": "https://9to5mac.com/2026/11/21/ios-27-my-favorite-new-iphone-features-other-than-ai/"
-  },
-  {
-   "date": "2026-11-21T22:12:41Z",
-   "outlet": "Ars Technica",
-   "title": "Review: Godzilla Minus Zero joins the list of truly stellar sequels",
-   "url": "https://arstechnica.com/culture/2026/11/review-godzilla-minus-zero-is-everything-we-could-want-in-a-sequel/"
-  },
-  {
-   "date": "2026-11-21T21:59:31Z",
-   "outlet": "The Verge",
-   "title": "Amazon is complaining about NYC Council on shipping labels, too",
-   "url": "https://www.theverge.com/tech/1039564/amazon-nyc-council-packages-shipping-label"
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T06:17:49Z"
+ "updated": "2026-11-22T09:17:46Z"
 }
