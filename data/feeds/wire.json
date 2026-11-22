@@ -1,6 +1,30 @@
 {
  "items": [
   {
+   "date": "2026-11-22T11:02:00Z",
+   "outlet": "Wired",
+   "title": "Best Gifts for Mom (2026): Digital Wall Calendars, Better Bags, Personalized Jewelry, and More",
+   "url": "https://www.wired.com/story/best-gifts-for-moms-2026/"
+  },
+  {
+   "date": "2026-11-22T11:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Dev squeezes an AI language model onto a floppy for 486DX and Pentium PC stalwarts",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/dev-squeezes-an-ai-language-model-onto-a-floppy-for-486dx-and-pentium-pc-stalwarts-tiny-2-1-needs-540kb-of-memory-and-speaks-via-pc-speaker-is-a-question-answering-transformer-with-367k-parameters"
+  },
+  {
+   "date": "2026-11-22T11:00:00Z",
+   "outlet": "Wired",
+   "title": "Banks Have Had It Up to Here With Your AI Agent",
+   "url": "https://www.wired.com/story/banks-are-cracking-down-on-ai-agents/"
+  },
+  {
+   "date": "2026-11-22T10:15:48Z",
+   "outlet": "9to5Mac",
+   "title": "AirPods Pro 3 just got even cheaper, now $169 ($80 off)",
+   "url": "https://9to5mac.com/2026/11/22/airpods-pro-3-just-got-even-cheaper-now-169-80-off/"
+  },
+  {
    "date": "2026-11-22T09:15:00Z",
    "outlet": "The Register",
    "title": "Passive 'ghost' radar can detect airborne threats without revealing its own position",
@@ -23,32 +47,8 @@
    "outlet": "NASA",
    "title": "APOD: 2026 November 22 – Swirls and Colors on Jupiter from Juno",
    "url": "https://science.nasa.gov/image-article/apod-2026-november-22-swirls-and-colors-on-jupiter-from-juno/"
-  },
-  {
-   "date": "2026-11-22T02:13:24Z",
-   "outlet": "Electrek",
-   "title": "Rumor: Hyundai is getting ready to roll out an all-new, all-electric work truck",
-   "url": "https://electrek.co/2026/11/21/rumor-hyundai-is-getting-ready-to-roll-out-an-all-new-all-electric-work-truck/"
-  },
-  {
-   "date": "2026-11-22T01:02:38Z",
-   "outlet": "Electrek",
-   "title": "Xiaomi’s 1,548 hp electric supercar is going global, starting in the UAE",
-   "url": "https://electrek.co/2026/11/21/red-wave-xiaomi-goes-global-with-first-overseas-ev-sales/"
-  },
-  {
-   "date": "2026-11-22T01:00:00Z",
-   "outlet": "Engadget",
-   "title": "Attention Pixel 9 and 10 owners: is it actually worth upgrading to the Pixel 11?",
-   "url": "https://www.engadget.com/2319300/pixel-11-is-it-worth-upgrading-from-9-10/"
-  },
-  {
-   "date": "2026-11-22T01:00:00Z",
-   "outlet": "Engadget",
-   "title": "Samsung vs. LG OLED TVs: What's the difference between them?",
-   "url": "https://www.engadget.com/2310887/samsung-vs-lg-oled-tv-difference-between/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T09:17:46Z"
+ "updated": "2026-11-22T11:13:41Z"
 }
