@@ -11,12 +11,12 @@
   },
   {
    "mission": "Amazon Leo (LE-04)",
-   "net": "2026-11-24T11:09:00Z",
+   "net": "2026-11-24T10:45:00Z",
    "pad": "Guiana Space Centre, French Guiana",
-   "precision": "Hour",
+   "precision": "Minute",
    "provider": "Arianespace",
    "rocket": "Ariane 64",
-   "status": "TBC"
+   "status": "Go"
   },
   {
    "mission": "USSF-266",
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-23T09:17:45Z"
+ "updated": "2026-11-23T15:17:48Z"
 }
