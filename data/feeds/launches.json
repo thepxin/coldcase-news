@@ -1,21 +1,21 @@
 {
  "items": [
   {
-   "mission": "Amazon Leo (LE-04)",
-   "net": "2026-11-23T11:09:00Z",
-   "pad": "Guiana Space Centre, French Guiana",
-   "precision": "Minute",
-   "provider": "Arianespace",
-   "rocket": "Ariane 64",
-   "status": "Go"
-  },
-  {
    "mission": "Progress MS-36 (97P)",
    "net": "2026-11-24T10:13:00Z",
    "pad": "Baikonur Cosmodrome, Kazakhstan",
    "precision": "Minute",
    "provider": "Roscosmos",
    "rocket": "Soyuz 2.1b",
+   "status": "TBC"
+  },
+  {
+   "mission": "Amazon Leo (LE-04)",
+   "net": "2026-11-24T11:09:00Z",
+   "pad": "Guiana Space Centre, French Guiana",
+   "precision": "Hour",
+   "provider": "Arianespace",
+   "rocket": "Ariane 64",
    "status": "TBC"
   },
   {
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-22T21:17:49Z"
+ "updated": "2026-11-23T09:17:45Z"
 }
