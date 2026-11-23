@@ -1,22 +1,28 @@
 {
  "items": [
   {
-   "date": "2026-11-23T08:00:00Z",
-   "outlet": "Samsung",
-   "title": "The Technology Behind More Precise Finding With Galaxy SmartTag3 and SmartThings",
-   "url": "https://news.samsung.com/global/the-technology-behind-more-precise-finding-with-galaxy-smarttag3-and-smartthings"
+   "date": "2026-11-23T01:30:00Z",
+   "outlet": "Engadget",
+   "title": "Here's how much Starlink cost in 2020 vs. 2026",
+   "url": "https://www.engadget.com/2319572/how-much-starlink-cost-2020-vs-2026/"
   },
   {
-   "date": "2026-11-22T23:45:00Z",
-   "outlet": "Engadget",
-   "title": "What is the best way to secure your PlayStation 5 for a flight?",
-   "url": "https://www.engadget.com/2319558/best-way-secure-playstation-5-for-flight-travel/"
+   "date": "2026-11-23T01:25:53Z",
+   "outlet": "TechCrunch",
+   "title": "How Notable Capital, GIC, and Baillie Gifford bet big on Anthropic before its IPO",
+   "url": "https://techcrunch.com/2026/11/22/how-notable-capital-gic-and-baillie-gifford-bet-big-on-anthropic-before-its-ipo/"
   },
   {
-   "date": "2026-11-22T23:30:00Z",
+   "date": "2026-11-23T01:00:00Z",
    "outlet": "Engadget",
-   "title": "How to use AI glasses as a teleprompter",
-   "url": "https://www.engadget.com/2319553/how-to-use-ai-glasses-as-teleprompter/"
+   "title": "How to clear your cache on Google TV",
+   "url": "https://www.engadget.com/2319567/how-to-clear-cache-google-tv/"
+  },
+  {
+   "date": "2026-11-23T00:23:31Z",
+   "outlet": "The Register",
+   "title": "$1 of GPT-5.1 tokens finds new ways around China’s Great Firewall",
+   "url": "https://www.theregister.com/security/2026/11/23/1-of-gpt-51-tokens-finds-new-ways-around-chinas-great-firewall/5311532"
   },
   {
    "date": "2026-11-22T22:48:02Z",
@@ -37,12 +43,6 @@
    "url": "https://techcrunch.com/2026/11/22/you-can-see-everything-has-made-more-than-100m-worldwide/"
   },
   {
-   "date": "2026-11-22T21:14:07Z",
-   "outlet": "TechCrunch",
-   "title": "OpenAI’s chief scientist has thoughts on how to limit AI development",
-   "url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/"
-  },
-  {
    "date": "2026-11-22T21:12:41Z",
    "outlet": "9to5Google",
    "title": "Pixel Weather rolls out ‘Report current weather’ to ‘improve local forecasts’",
@@ -50,5 +50,5 @@
   }
  ],
  "status": "ok",
- "updated": "2026-11-23T00:17:53Z"
+ "updated": "2026-11-23T01:38:37Z"
 }
