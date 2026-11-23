@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "date": "2026-11-23T12:15:16Z",
+   "outlet": "Ars Technica",
+   "title": "A triple-screen portable monitor means more pixels—and more bulk",
+   "url": "https://arstechnica.com/gadgets/2026/11/a-triple-screen-portable-monitor-means-more-pixels-and-more-bulk/"
+  },
+  {
+   "date": "2026-11-23T12:15:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Walmart has slashed $1,090 off this RTX 5070 gaming laptop, nearly half price",
+   "url": "https://www.tomshardware.com/laptops/gaming-laptops/walmart-has-slashed-usd1-090-off-this-rtx-5070-gaming-laptop-nearly-half-price-get-a-ryzen-9-powered-machine-for-just-usd1-299"
+  },
+  {
+   "date": "2026-11-23T12:13:35Z",
+   "outlet": "CoinDesk",
+   "title": "Ethereum wallets holding $72 billion ETH are under threat of a future quantum attack",
+   "url": "https://www.coindesk.com/markets/2026/11/23/ethereum-wallets-holding-usd72-billion-eth-are-under-threat-of-a-future-quantum-attack"
+  },
+  {
    "date": "2026-11-23T12:06:58Z",
    "outlet": "9to5Mac",
    "title": "Five recent tech outages were not due to AI; the next round will be",
@@ -29,26 +47,8 @@
    "outlet": "Tom's Hardware",
    "title": "President Trump says Nvidia board rehiring Jensen Huang would be best for the company and US",
    "url": "https://www.tomshardware.com/tech-industry/big-tech/president-trump-says-nvidia-board-rehiring-jensen-huang-would-be-best-for-the-company-and-the-us-treasury-sec-bessent-walks-back-outsider-ceo-comments-claims-huang-is-technically-an-outsider-now"
-  },
-  {
-   "date": "2026-11-23T11:51:09Z",
-   "outlet": "CoinDesk",
-   "title": "Bitcoin rebounds from 2-year low as Wall Street futures recover",
-   "url": "https://www.coindesk.com/markets/2026/11/23/bitcoin-rebounds-from-2-year-low-as-wall-street-futures-recover"
-  },
-  {
-   "date": "2026-11-23T11:33:00Z",
-   "outlet": "CoinDesk",
-   "title": "Japan to ramp up crypto tax audits after uncovering $24.5 million in hidden income",
-   "url": "https://www.coindesk.com/business/2026/11/23/japan-to-ramp-up-crypto-tax-audits-after-uncovering-usd24-5-million-in-hidden-income"
-  },
-  {
-   "date": "2026-11-23T11:30:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "Weird finger-wearable gaming mouse raises $43,000 on Kickstarter, a staggering 8x its crowdfunding goal",
-   "url": "https://www.tomshardware.com/peripherals/gaming-mice/weird-finger-wearable-gaming-mouse-kickstarter-breaks-8x-its-crowdfunding-goal-but-it-potentially-has-major-design-flaws-and-is-kind-of-sketchy"
   }
  ],
  "status": "ok",
- "updated": "2026-11-23T12:17:47Z"
+ "updated": "2026-11-23T12:24:56Z"
 }
