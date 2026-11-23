@@ -1,32 +1,28 @@
 ================================================================
-Nintendo Switch 2 Mario Kart World bundle falls $50 to $499.99 through December 5
+OpenAI GPT-6.2 Astra launches at $8 per million input tokens
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (227/280):
-Nintendo's $50 Switch 2 price rise from early September is rolled back on one bundle until December 5.
+X (184/280):
+OpenAI says GPT-6.2 Astra beats Claude Fable 5.2 by 5.5 points at 5% of the cost. Anthropic launched Fable 5.2 on November 9.
 
-Open case: due Saturday, December 5th. We check every day.
+Every line sourced: https://coldcasetech.com/posts/2026-11-23-openai-gpt-6-2-astra-sol-launch/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-23-nintendo-switch-2-bundle-50-off-december-5/
-
-#Nintendo #Switch2
+#OpenAI #GPT
 
 INSTAGRAM (post this caption with the image from the share kit):
-Nintendo's $50 Switch 2 price rise from early September is rolled back on one bundle until December 5.
+OpenAI says GPT-6.2 Astra beats Claude Fable 5.2 by 5.5 points at 5% of the cost. Anthropic launched Fable 5.2 on November 9.
 
-Nintendo has cut $50 from its Switch 2 Mario Kart World bundle from November 22 through December 5, temporarily rolling back its September price increase.
-
-Open case: due Saturday, December 5th. We check every day.
+OpenAI introduced GPT-6.2 Astra and GPT-6.2 Sol on November 17, with Astra API input priced at $8 per million tokens.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #nintendo #switch2 #mariokartworld #gadgets #technews #tech
+#coldcasetech #openai #gpt #ai #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. The Switch 2 price rose $50 in early September. The Mario Kart World bundle is back to $499.99 until December 5, per The Verge.
-2. Nintendo's bundle price is $499.99 from November 22 through Saturday, December 5. Some game sales end November 29.
-3. Wired lists the Sports Resort bundle at $530 on sale. The Verge says $529.99, unchanged. Which bundle would you pick?
+1. Claude Fable 5.2 launched November 9. OpenAI released GPT-6.2 Astra on November 17 at $8 per million input tokens, the same input price Anthropic lists for Fable 5.2.
+2. OpenAI says GPT-6.2 Astra API prices are 20% below GPT-6 Astra. Sol keeps its prices: $2 input, $10 output per million tokens, per 9to5Google.
+3. OpenAI reports AA-3D scores of 1,318 Elo for Astra, 1,271 for Claude Fable 5.2 and 1,259 for Sol. Which of these would you reach for first?
