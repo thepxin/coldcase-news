@@ -579,6 +579,14 @@
   "telegram": "95",
   "youtube": "https://youtu.be/0q0PGut_qsA"
  },
+ "2026-11-23-nvidia-dgx-spark-hpc-developer-kit-four-nodes": {
+  "at": "2026-11-23T14:52:07Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2yewqota62v",
+  "facebook": "1489437024244341_122110091853546323",
+  "instagram": "18026206268943512",
+  "telegram": "97",
+  "youtube": "https://youtu.be/LojEfTVGOx0"
+ },
  "2026-11-23-openai-gpt-6-2-astra-sol-launch": {
   "at": "2026-11-23T08:56:55Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2xr2m3x5t27",
@@ -588,7 +596,7 @@
   "youtube": "https://youtu.be/KEgRFGWQPXQ"
  },
  "_last_post": {
-  "facebook": "2026-11-23T08:55:33Z",
-  "instagram": "2026-11-23T08:56:54Z"
+  "facebook": "2026-11-23T14:51:22Z",
+  "instagram": "2026-11-23T14:52:05Z"
  }
 }
