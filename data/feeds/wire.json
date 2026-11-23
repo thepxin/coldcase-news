@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-11-23T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "The Technology Behind More Precise Finding With Galaxy SmartTag3 and SmartThings",
+   "url": "https://news.samsung.com/global/the-technology-behind-more-precise-finding-with-galaxy-smarttag3-and-smartthings"
+  },
+  {
+   "date": "2026-11-23T03:00:00Z",
+   "outlet": "The Verge",
+   "title": "Kodak’s next collectible is a tiny digital photo frame that doubles as a tracker",
+   "url": "https://www.theverge.com/tech/1038650/kodak-slidetag-keychain-photo-display-tracker-find-my-hub-google-apple-e-ink"
+  },
+  {
    "date": "2026-11-23T01:30:00Z",
    "outlet": "Engadget",
    "title": "Here's how much Starlink cost in 2020 vs. 2026",
@@ -35,20 +47,8 @@
    "outlet": "9to5Mac",
    "title": "iOS 27 has a clever fix for unreliable Wi-Fi connections",
    "url": "https://9to5mac.com/2026/11/22/ios-27-has-a-clever-fix-for-unreliable-wi-fi-connections/"
-  },
-  {
-   "date": "2026-11-22T21:42:48Z",
-   "outlet": "TechCrunch",
-   "title": "‘You Can See Everything’ has made more than $100M worldwide",
-   "url": "https://techcrunch.com/2026/11/22/you-can-see-everything-has-made-more-than-100m-worldwide/"
-  },
-  {
-   "date": "2026-11-22T21:12:41Z",
-   "outlet": "9to5Google",
-   "title": "Pixel Weather rolls out ‘Report current weather’ to ‘improve local forecasts’",
-   "url": "https://9to5google.com/2026/11/22/pixel-weather-report/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-23T01:38:37Z"
+ "updated": "2026-11-23T03:17:48Z"
 }
