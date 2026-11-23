@@ -1,28 +1,28 @@
 ================================================================
-OpenAI GPT-6.2 Astra launches at $8 per million input tokens
+NVIDIA DGX Spark HPC Developer Kit links four nodes for 512GB of memory
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (184/280):
-OpenAI says GPT-6.2 Astra beats Claude Fable 5.2 by 5.5 points at 5% of the cost. Anthropic launched Fable 5.2 on November 9.
+X (181/280):
+NVIDIA's DGX Spark HPC Developer Kit links four desktop nodes for 512GB of combined memory, with no network switch to buy.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-23-openai-gpt-6-2-astra-sol-launch/
+Every line sourced: https://coldcasetech.com/posts/2026-11-23-nvidia-dgx-spark-hpc-developer-kit-four-nodes/
 
-#OpenAI #GPT
+#NVIDIA #DGX
 
 INSTAGRAM (post this caption with the image from the share kit):
-OpenAI says GPT-6.2 Astra beats Claude Fable 5.2 by 5.5 points at 5% of the cost. Anthropic launched Fable 5.2 on November 9.
+NVIDIA's DGX Spark HPC Developer Kit links four desktop nodes for 512GB of combined memory, with no network switch to buy.
 
-OpenAI introduced GPT-6.2 Astra and GPT-6.2 Sol on November 17, with Astra API input priced at $8 per million tokens.
+NVIDIA introduced the DGX Spark HPC Developer Kit at SC26, a four-node cluster of DGX Spark systems with 512GB of combined memory, on sale now.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #openai #gpt #ai #technews #tech
+#coldcasetech #nvidia #dgx #dgxspark #hpc #hpcdeveloper #semiconductors #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Claude Fable 5.2 launched November 9. OpenAI released GPT-6.2 Astra on November 17 at $8 per million input tokens, the same input price Anthropic lists for Fable 5.2.
-2. OpenAI says GPT-6.2 Astra API prices are 20% below GPT-6 Astra. Sol keeps its prices: $2 input, $10 output per million tokens, per 9to5Google.
-3. OpenAI reports AA-3D scores of 1,318 Elo for Astra, 1,271 for Claude Fable 5.2 and 1,259 for Sol. Which of these would you reach for first?
+1. Four DGX Spark nodes, each linked to its two neighbors in a ring. NVIDIA says no network switch is needed, and 512GB of combined memory at four nodes.
+2. NVIDIA says the kit is on display at SC26 and available for sale now. The HPC SDK playbook is listed as coming soon, with no date given.
+3. NVIDIA says four nodes can run models up to 700B parameters locally with NVFP4. Would a desk-side cluster change how you queue for compute time?
