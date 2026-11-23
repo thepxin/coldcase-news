@@ -1,6 +1,42 @@
 {
  "items": [
   {
+   "date": "2026-11-23T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "The Technology Behind More Precise Finding With Galaxy SmartTag3 and SmartThings",
+   "url": "https://news.samsung.com/global/the-technology-behind-more-precise-finding-with-galaxy-smarttag3-and-smartthings"
+  },
+  {
+   "date": "2026-11-22T23:45:00Z",
+   "outlet": "Engadget",
+   "title": "What is the best way to secure your PlayStation 5 for a flight?",
+   "url": "https://www.engadget.com/2319558/best-way-secure-playstation-5-for-flight-travel/"
+  },
+  {
+   "date": "2026-11-22T23:30:00Z",
+   "outlet": "Engadget",
+   "title": "How to use AI glasses as a teleprompter",
+   "url": "https://www.engadget.com/2319553/how-to-use-ai-glasses-as-teleprompter/"
+  },
+  {
+   "date": "2026-11-22T22:48:02Z",
+   "outlet": "The Verge",
+   "title": "We haven’t seen the last of the major tech outages",
+   "url": "https://www.theverge.com/tech/1039851/major-tech-outages"
+  },
+  {
+   "date": "2026-11-22T22:02:43Z",
+   "outlet": "9to5Mac",
+   "title": "iOS 27 has a clever fix for unreliable Wi-Fi connections",
+   "url": "https://9to5mac.com/2026/11/22/ios-27-has-a-clever-fix-for-unreliable-wi-fi-connections/"
+  },
+  {
+   "date": "2026-11-22T21:42:48Z",
+   "outlet": "TechCrunch",
+   "title": "‘You Can See Everything’ has made more than $100M worldwide",
+   "url": "https://techcrunch.com/2026/11/22/you-can-see-everything-has-made-more-than-100m-worldwide/"
+  },
+  {
    "date": "2026-11-22T21:14:07Z",
    "outlet": "TechCrunch",
    "title": "OpenAI’s chief scientist has thoughts on how to limit AI development",
@@ -11,44 +47,8 @@
    "outlet": "9to5Google",
    "title": "Pixel Weather rolls out ‘Report current weather’ to ‘improve local forecasts’",
    "url": "https://9to5google.com/2026/11/22/pixel-weather-report/"
-  },
-  {
-   "date": "2026-11-22T21:00:00Z",
-   "outlet": "TechCrunch",
-   "title": "The best apps to make new friends right now",
-   "url": "https://techcrunch.com/2026/11/22/as-people-look-for-ways-to-make-new-friends-here-are-the-apps-promising-to-help/"
-  },
-  {
-   "date": "2026-11-22T21:00:00Z",
-   "outlet": "Engadget",
-   "title": "How Secure Is Your Password? Here's How To Test It",
-   "url": "https://www.engadget.com/2319522/how-secure-is-password/"
-  },
-  {
-   "date": "2026-11-22T20:45:00Z",
-   "outlet": "Engadget",
-   "title": "These iOS settings will help you control your mobile data use",
-   "url": "https://www.engadget.com/2319519/ios-settings-help-control-mobile-data-use/"
-  },
-  {
-   "date": "2026-11-22T20:03:52Z",
-   "outlet": "Tom's Hardware",
-   "title": "17-year-old Windows 7 gets unofficial DirectX 12 and Vulkan 1.4 support",
-   "url": "https://www.tomshardware.com/software/windows/17-year-old-windows-7-gets-unofficial-directx-12-and-vulkan-1-4-support-enthusiasts-bring-nvidia-rtx-50-amd-rx-9000-and-intel-arc-gpus-to-the-aging-os"
-  },
-  {
-   "date": "2026-11-22T19:44:00Z",
-   "outlet": "Electrek",
-   "title": "11-term House rep who mocked a kid’s letter about EVs has lost her seat (Upd.)",
-   "url": "https://electrek.co/2026/11/22/this-boomer-rep-mocked-a-child-about-the-4-trillion-debt-she-saddled-him-with/"
-  },
-  {
-   "date": "2026-11-22T19:34:47Z",
-   "outlet": "Tom's Hardware",
-   "title": "An under-desk headphone hanger with three charging ports (up to 20W) for less than $10",
-   "url": "https://www.tomshardware.com/peripherals/usb/under-desk-headphone-hanger-with-three-charging-ports-drops-below-usd10-cozoos-20w-combo-device-has-been-a-useful-addition-to-my-standing-desk-since-2023"
   }
  ],
  "status": "ok",
- "updated": "2026-11-22T21:17:48Z"
+ "updated": "2026-11-23T00:17:53Z"
 }
