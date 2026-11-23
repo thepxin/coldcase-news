@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-23T15:04:01Z",
-   "outlet": "TechCrunch",
-   "title": "Trump endorses Jensen Huang’s return to Nvidia, says US has no evidence of wrongdoing",
-   "url": "https://techcrunch.com/2026/11/23/trump-endorses-jensen-huangs-return-to-nvidia-says-us-has-no-evidence-of-wrongdoing/"
+   "date": "2026-11-23T22:00:00Z",
+   "outlet": "Samsung",
+   "title": "Samsung Launches Odyssey G6: The World’s First 1,100Hz Gaming Monitor",
+   "url": "https://news.samsung.com/global/samsung-launches-odyssey-g6-the-worlds-first-1100hz-gaming-monitor"
   },
   {
-   "date": "2026-11-23T15:02:32Z",
-   "outlet": "CoinDesk",
-   "title": "Eric Trump-backed American Bitcoin secures $150 million loan against its bitcoin",
-   "url": "https://www.coindesk.com/business/2026/11/23/eric-trump-backed-american-bitcoin-secures-usd150-million-loan-against-its-bitcoin"
-  },
-  {
-   "date": "2026-11-23T15:00:44Z",
-   "outlet": "The Verge",
-   "title": "Apple’s AirPods Pro 3 are 40 percent off ahead of Black Friday",
-   "url": "https://www.theverge.com/gadgets/1039978/airpods-pro-3-apple-earbuds-black-friday-2026-deal-sale"
-  },
-  {
-   "date": "2026-11-23T15:00:00Z",
-   "outlet": "The Verge",
-   "title": "The Verge’s favorite holiday gifts that cost $50 or less",
-   "url": "https://www.theverge.com/gadgets/1023471/best-gifts-under-50-2026"
-  },
-  {
-   "date": "2026-11-23T14:55:00Z",
-   "outlet": "9to5Google",
-   "title": "Kodak SlideTag is a $35 Android & iPhone tracker with an E-Ink display to show your photos and more [Gallery]",
-   "url": "https://9to5google.com/2026/11/23/kodak-slidetag-android-iphone-e-ink-tracker/"
-  },
-  {
-   "date": "2026-11-23T14:45:00Z",
+   "date": "2026-11-23T18:15:00Z",
    "outlet": "Engadget",
-   "title": "How to pair your Bluetooth headphones to your Windows PC",
-   "url": "https://www.engadget.com/2320151/how-to-pair-bluetooth-headphones-windows-pc/"
+   "title": "How to clear the cache on your Fire TV",
+   "url": "https://www.engadget.com/2320174/how-to-clear-cache-fire-tv/"
   },
   {
-   "date": "2026-11-23T14:44:21Z",
-   "outlet": "9to5Mac",
-   "title": "Will Siri AI threaten Apple’s environmental target, given Google and Meta admissions?",
-   "url": "https://9to5mac.com/2026/11/23/will-siri-ai-threaten-apples-environmental-target-given-google-and-meta-admissions/"
+   "date": "2026-11-23T18:12:22Z",
+   "outlet": "TechCrunch",
+   "title": "Jensen Huang scheduled to testify next week in Senate following reinstatement as Nvidia CEO",
+   "url": "https://techcrunch.com/2026/11/23/jensen-huang-scheduled-to-testify-next-week-in-senate-following-reinstatement-as-nvidia-ceo/"
   },
   {
-   "date": "2026-11-23T14:43:18Z",
+   "date": "2026-11-23T18:12:05Z",
    "outlet": "CoinDesk",
-   "title": "Bitcoin's 5-year return is nearly zero, great narratives are fading and what's left is the Fed",
-   "url": "https://www.coindesk.com/opinion/2026/11/23/bitcoin-s-5-year-return-is-nearly-zero-great-narratives-are-fading-and-what-s-left-is-the-fed"
+   "title": "Nvidia's Jensen Huang faces Senate scrutiny despite Trump-backed return as CEO",
+   "url": "https://www.coindesk.com/business/2026/11/23/nvidia-s-jensen-huang-faces-senate-scrutiny-despite-trump-backed-return-as-ceo"
+  },
+  {
+   "date": "2026-11-23T18:11:09Z",
+   "outlet": "Tom's Hardware",
+   "title": "Stock up on storage with 4TB T-Force G50 SSD at just $0.10 per GB",
+   "url": "https://www.tomshardware.com/pc-components/ssds/stock-up-on-storage-with-4tb-t-force-g50-ssd-at-just-usd0-10-per-gb-entry-level-pcie-4-0-drive-offers-decent-performance-and-lots-of-capacity"
+  },
+  {
+   "date": "2026-11-23T18:07:53Z",
+   "outlet": "Tom's Hardware",
+   "title": "Crucial’s 1TB P310 SSD plummets to £122 at Amazon for Black Friday",
+   "url": "https://www.tomshardware.com/pc-components/ssds/crucials-1tb-p310-ssd-plummets-to-gbp122-at-amazon-for-black-friday-boost-your-playstation-5-or-pc-storage-for-less"
+  },
+  {
+   "date": "2026-11-23T18:06:32Z",
+   "outlet": "9to5Mac",
+   "title": "Threads app for iPad launching ‘very soon’",
+   "url": "https://9to5mac.com/2026/11/23/threads-app-for-ipad-launching-very-soon/"
+  },
+  {
+   "date": "2026-11-23T18:00:01Z",
+   "outlet": "Meta",
+   "title": "Researchers Are Using Meta’s Open-Weight AI Models to Transform Medicine",
+   "url": "https://about.fb.com/news/2026/11/researchers-using-meta-open-weight-ai-models-medical-breakthroughs/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-23T15:17:47Z"
+ "updated": "2026-11-23T18:17:45Z"
 }
