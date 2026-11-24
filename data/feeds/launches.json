@@ -1,24 +1,6 @@
 {
  "items": [
   {
-   "mission": "Progress MS-36 (97P)",
-   "net": "2026-11-24T10:17:00Z",
-   "pad": "Baikonur Cosmodrome, Kazakhstan",
-   "precision": "Minute",
-   "provider": "Roscosmos",
-   "rocket": "Soyuz 2.1b",
-   "status": "Go"
-  },
-  {
-   "mission": "Amazon Leo (LE-04)",
-   "net": "2026-11-24T10:45:00Z",
-   "pad": "Guiana Space Centre, French Guiana",
-   "precision": "Minute",
-   "provider": "Arianespace",
-   "rocket": "Ariane 64",
-   "status": "Go"
-  },
-  {
    "mission": "USSF-266",
    "net": "2026-11-24T16:08:59Z",
    "pad": "Vandenberg SFB, CA, USA",
@@ -53,10 +35,28 @@
    "provider": "Rocket Lab",
    "rocket": "Electron",
    "status": "Go"
+  },
+  {
+   "mission": "Unknown Payload",
+   "net": "2026-11-27T13:00:00Z",
+   "pad": "Taiyuan Satellite Launch Center, China",
+   "precision": "Hour",
+   "provider": "CASC (China)",
+   "rocket": "Long March 6A",
+   "status": "Go"
+  },
+  {
+   "mission": "Unknown Payload",
+   "net": "2026-11-29T03:50:00Z",
+   "pad": "Taiyuan Satellite Launch Center, China",
+   "precision": "Hour",
+   "provider": "CASC (China)",
+   "rocket": "Long March 6C",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-24T09:17:46Z"
+ "updated": "2026-11-24T12:17:45Z"
 }
