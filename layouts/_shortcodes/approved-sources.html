@@ -9,6 +9,8 @@
   {{- with hugo.Data.draft_sources }}
   <h4>Also for articles written by our editor: established newsrooms</h4>
   <ul>{{ range where .outlets "kind" "newsroom" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
+  <h4>Also for articles written by our editor: official websites</h4>
+  <ul><li>The official website of the company the article is about (the company named in the headline)</li>{{ range where .outlets "kind" "company" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
   {{- with where .outlets "kind" "market data" }}
   <h4>Share-price tables (for prices only)</h4>
   <ul>{{ range . }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
