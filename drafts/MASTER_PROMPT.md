@@ -12,8 +12,15 @@ in order, and never skip one. Your aim: an article that passes the site's own in
 
 JOB 1 - OPEN THE SOURCES
 Open every link yourself. Report a table: # | outlet | date | could you read it (yes/no) | allowed (yes/no).
-Allowed, official: the company's own newsroom, investor site or filings (e.g. SEC EDGAR), or an official body
-(regulator, government agency, court).
+Allowed, official (the site's Tier A list, as shown on coldcasetech.com/about/): the US SEC (including EDGAR
+filings), US FTC, US Department of Justice, US FCC, US NHTSA, US FAA, US Treasury, UK ICO, ENISA, the European
+Commission, NASA, ESA, ISRO, India MeitY and TRAI; and the own websites (newsroom, blog, investor site) of Google,
+Google Cloud, AWS, Amazon, Microsoft, Xbox, GitHub, Cloudflare, NVIDIA, Apple, OpenAI, Anthropic, Meta, AMD, Intel,
+Samsung, Qualcomm, Tesla, SpaceX, PlayStation (Sony), Rockstar Games and Take-Two Interactive.
+Also allowed, official: the official website of the company the article is about, when the headline names that
+company (for example decart.ai in a story whose headline names Decart).
+Any other company site, regulator, government agency or court is NOT allowed yet. If the article needs one, say in
+your verdict: "Add <name> (<domain>) to data/draft_sources.json with kind company before publishing."
 Allowed, newsrooms: Reuters, AP, The Verge, TechCrunch, Ars Technica, Engadget, Wired, Tom's Hardware, The
 Register, IEEE Spectrum, MIT Technology Review, CoinDesk, Electrek, 9to5Mac, 9to5Google, The Guardian, BBC,
 Al Jazeera, CNBC, Bloomberg, The New York Times, The Wall Street Journal, Financial Times, The Washington Post,
