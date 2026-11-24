@@ -1,28 +1,28 @@
 ================================================================
-PHP phpAfterShell flaw rated 9.2 critical, fixed the day it was disclosed
+Uber Recorded Rides pilot starts in four US cities
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (161/280):
-The PHP fix for phpAfterShell arrived the day it was disclosed. So did 16 other security fixes.
+X (165/280):
+Uber's Recorded Rides pilot starts in four cities. The driver's phone camera records the whole trip.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-24-php-aftershell-critical-flaw-fixed-same-day/
+Every line sourced: https://coldcasetech.com/posts/2026-11-24-uber-recorded-rides-pilot-four-cities/
 
-#PHP #phpAfterShell
+#Gadgets #TechNews
 
 INSTAGRAM (post this caption with the image from the share kit):
-The PHP fix for phpAfterShell arrived the day it was disclosed. So did 16 other security fixes.
+Uber's Recorded Rides pilot starts in four cities. The driver's phone camera records the whole trip.
 
-PHP fixed the phpAfterShell flaw, rated 9.2 under CVSS 4.0, on November 19, 2026, and Cloudflare said its WAF blocks known attack patterns.
+Uber is piloting Recorded Rides in four U.S. cities, letting riders book trips where the driver's phone records the drive with Record My Ride.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #php #phpaftershell #software #technews #tech
+#coldcasetech #gadgets #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. The same PHP releases fixed 16 other security flaws on November 19. Six of them are also rated critical, according to Cloudflare.
-2. phpAfterShell is rated 9.2 out of 10 under CVSS 4.0. PHP fixed it in 8.2.36, 8.3.37, 8.4.28, 8.5.13 and 8.6.0. Cloudflare says only a PHP upgrade and worker restart fully fixes it.
-3. Cloudflare says none of the 17 PHP flaws was in CISA's exploited catalog as of November 19. Has your team already moved to a fixed PHP release?
+1. Pilot cities: Baltimore, Raleigh, Indianapolis and St. Louis. Uber says more locations come later. TechCrunch reports the camera records the entire drive.
+2. Uber says recordings are encrypted, stored on the device and deleted unless uploaded for a safety report or insurance claim. Riders and drivers can opt out in the app.
+3. Uber is testing recording by default on late-night and teen rides. Drivers can opt out in Settings, riders via an in-app notification. Would you choose a recorded ride?
