@@ -1,5 +1,12 @@
 # Your drafts
 
+**Two ways to publish your own articles:**
+- **Chat desk (recommended):** check and polish your draft in a Claude chat with `MASTER_PROMPT.md`, approve it,
+  then put it in `drafts/ready/` (see the README there). Published word for word, byline "Written and edited by
+  Rishit K. with AI assistance". About half the AI cost.
+- **Plain draft (below):** put your draft here and the pipeline polishes it for you, byline "Written by Rishit K. ·
+  edited with AI assistance". Approved articles in `drafts/ready/` always go first.
+
 Put the articles you write here, one file per article. Each daily run publishes your oldest waiting draft first,
 one per publishing slot (8:11 am, 2:11 pm, 8:11 pm IST, plus the 11:17 pm catch-up). When no draft is waiting, the AI
 finds a story as before.
