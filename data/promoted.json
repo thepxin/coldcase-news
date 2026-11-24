@@ -595,6 +595,14 @@
   "telegram": "96",
   "youtube": "https://youtu.be/KEgRFGWQPXQ"
  },
+ "2026-11-24-php-aftershell-critical-flaw-fixed-same-day": {
+  "at": "2026-11-24T09:06:41Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n32c47jigz22",
+  "facebook": "1489437024244341_122110500711546323",
+  "instagram": "17994284259067642",
+  "telegram": "99",
+  "youtube": "https://youtu.be/ZnEGwxc3AIk"
+ },
  "2026-11-24-samsung-odyssey-g6-g60h-1100hz-monitor": {
   "at": "2026-11-24T03:00:25Z",
   "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n2znmgechn2i",
@@ -604,7 +612,7 @@
   "youtube": "https://youtu.be/OziAR50E6Ds"
  },
  "_last_post": {
-  "facebook": "2026-11-24T02:59:19Z",
-  "instagram": "2026-11-24T03:00:23Z"
+  "facebook": "2026-11-24T09:06:00Z",
+  "instagram": "2026-11-24T09:06:40Z"
  }
 }
