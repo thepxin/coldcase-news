@@ -7,7 +7,7 @@
    "precision": "Minute",
    "provider": "Roscosmos",
    "rocket": "Soyuz 2.1b",
-   "status": "TBC"
+   "status": "Go"
   },
   {
    "mission": "Amazon Leo (LE-04)",
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-24T03:17:47Z"
+ "updated": "2026-11-24T09:17:46Z"
 }

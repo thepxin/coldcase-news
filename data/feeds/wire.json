@@ -1,6 +1,36 @@
 {
  "items": [
   {
+   "date": "2026-11-24T09:16:00Z",
+   "outlet": "The Register",
+   "title": "UK gov invests in defense startup making virtual training ground for AI",
+   "url": "https://www.theregister.com/ai-and-ml/2026/11/24/uk-gov-invests-in-defense-startup-making-virtual-training-ground-for-ai/5311707"
+  },
+  {
+   "date": "2026-11-24T09:00:00Z",
+   "outlet": "Engadget",
+   "title": "Honor teams up with cinema camera-maker Arri on the Magic 9 Pro Max",
+   "url": "https://www.engadget.com/2325316/honor-teams-up-with-cinema-camera-maker-arri-on-the-magic-9-pro-max/"
+  },
+  {
+   "date": "2026-11-24T08:37:00Z",
+   "outlet": "The Register",
+   "title": "Education software supplier's legacy login system left 355,000 school email addresses exposed",
+   "url": "https://www.theregister.com/cyber-crime/2026/11/24/education-software-suppliers-legacy-login-system-left-355000-school-email-addresses-exposed/5311622"
+  },
+  {
+   "date": "2026-11-24T08:00:00Z",
+   "outlet": "Google",
+   "title": "We’re expanding our London home in King's Cross.",
+   "url": "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/expanding-london-home-kings-cross/"
+  },
+  {
+   "date": "2026-11-24T06:38:11Z",
+   "outlet": "Electrek",
+   "title": "The e-bike industry has a horsepower problem",
+   "url": "https://electrek.co/2026/11/23/the-e-bike-industry-has-a-horsepower-problem/"
+  },
+  {
    "date": "2026-11-24T06:00:40Z",
    "outlet": "Meta",
    "title": "Introducing Muse in the UK: A Personal AI Agent You Control",
@@ -17,38 +47,8 @@
    "outlet": "Meta",
    "title": "Muse Now Available in the UK: Muse Does the Work, You Stay in Control",
    "url": "https://about.fb.com/news/2026/11/muse-now-available-in-the-uk-muse-does-the-work-you-stay-in-control/"
-  },
-  {
-   "date": "2026-11-24T06:00:00Z",
-   "outlet": "Wired",
-   "title": "Pura Promo Codes: $20 Off November 2026",
-   "url": "https://www.wired.com/story/pura-promo-code/"
-  },
-  {
-   "date": "2026-11-24T05:13:51Z",
-   "outlet": "The Register",
-   "title": "Orgs that leak data ‘prioritize corporate interests over customers’ says Have I Been Pwned’s Troy Hunt",
-   "url": "https://www.theregister.com/security/2026/11/24/orgs-that-leak-data-prioritize-corporate-interests-over-customers-says-have-i-been-pwneds-troy-hunt/5311802"
-  },
-  {
-   "date": "2026-11-24T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 24 – Galaxies Battle in the NGC 7771 Group",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-24-galaxies-battle-in-the-ngc-7771-group/"
-  },
-  {
-   "date": "2026-11-24T05:01:00Z",
-   "outlet": "NASA",
-   "title": "Eruption Extends Iwo Jima’s Beach",
-   "url": "https://science.nasa.gov/earth/earth-observatory/eruption-extends-iwo-jimas-beach/"
-  },
-  {
-   "date": "2026-11-24T01:46:56Z",
-   "outlet": "The Register",
-   "title": "Cisco and OpenAI pitch eBPF kernel plugins as the way to tame the patchpocalypse",
-   "url": "https://www.theregister.com/security/2026/11/24/cisco-and-openai-pitch-ebpf-kernel-plugins-as-the-way-to-tame-the-patchpocalypse/5311795"
   }
  ],
  "status": "ok",
- "updated": "2026-11-24T06:17:45Z"
+ "updated": "2026-11-24T09:17:45Z"
 }
