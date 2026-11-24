@@ -1,28 +1,28 @@
 ================================================================
-NVIDIA DGX Spark HPC Developer Kit links four nodes for 512GB of memory
+Samsung Odyssey G6 G60H hits 1,100Hz. The resolution is 1,280 x 720.
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (181/280):
-NVIDIA's DGX Spark HPC Developer Kit links four desktop nodes for 512GB of combined memory, with no network switch to buy.
+X (123/280):
+Samsung's new 27-inch monitor reaches 1,100Hz. At 1,280 x 720.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-23-nvidia-dgx-spark-hpc-developer-kit-four-nodes/
+Every line sourced: https://coldcasetech.com/posts/2026-11-24-samsung-odyssey-g6-g60h-1100hz-monitor/
 
-#NVIDIA #DGX
+#Samsung #G60H
 
 INSTAGRAM (post this caption with the image from the share kit):
-NVIDIA's DGX Spark HPC Developer Kit links four desktop nodes for 512GB of combined memory, with no network switch to buy.
+Samsung's new 27-inch monitor reaches 1,100Hz. At 1,280 x 720.
 
-NVIDIA introduced the DGX Spark HPC Developer Kit at SC26, a four-node cluster of DGX Spark systems with 512GB of combined memory, on sale now.
+Samsung announced the 27-inch Odyssey G6 G60H gaming monitor, which reaches 1,100Hz in HD mode and 600Hz at QHD, with price and release date still to come.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #nvidia #dgx #dgxspark #hpc #hpcdeveloper #semiconductors #technews #tech
+#coldcasetech #samsung #g60h #hz #odysseyg6 #gaming #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Four DGX Spark nodes, each linked to its two neighbors in a ring. NVIDIA says no network switch is needed, and 512GB of combined memory at four nodes.
-2. NVIDIA says the kit is on display at SC26 and available for sale now. The HPC SDK playbook is listed as coming soon, with no date given.
-3. NVIDIA says four nodes can run models up to 700B parameters locally with NVFP4. Would a desk-side cluster change how you queue for compute time?
+1. Samsung lists 600Hz at QHD and 1100Hz at HD. Engadget reports the monitor cannot offer its top resolution and top refresh rate together.
+2. Price and release date for the Odyssey G6 G60H are still to be determined, according to Engadget. Samsung's page lists FreeSync Premium as not supporting 1100Hz.
+3. Samsung says the 1ms response time needs the Extreme mode setting, and 600Hz is not supported on macOS. Would you use a monitor that only reaches its top refresh rate in HD?
