@@ -26,13 +26,13 @@ ShowBreadCrumbs: false
 - **Verdict cases.** What was promised or claimed (**then**), and what sources say actually happened (**now**): shipped, measured, delayed, changed or cancelled. Verdicts: `Delivered`, `Partially Delivered`, `Not Delivered`.
 
 ### How we verify
-ColdCaseTech does not draw conclusions or add opinions. Every article reports only what approved sources state.
+ColdCaseTech does not draw conclusions or add opinions. Every article reports only what the sources listed below state.
 
-1. **Approved sources only.** Every article is built only from the sources listed below. Nothing else is used or linked.
+1. **Approved sources only.** Articles by the ColdCaseTech desk are built only from the approved sources listed below. Articles written by our editor may also use the established newsrooms on his list, also below. Nothing else is used or linked.
 2. **Corroboration.** An article needs either an official source (the company's own statement or an official body) or at least two different respected outlets.
 3. **Then vs. now.** A verdict needs sources from at least two different days, so the change is documented, not assumed. Without that, it is published as a news report or an open case instead.
 4. **Claims are not facts.** A company's own words are reported as its claim, never as proof that something was delivered or works as claimed.
-5. **Checked before publishing.** Every article is written with AI assistance from those sources. Before publishing it must pass a separate claim-by-claim AI check against the sources (a fresh request that did not write the article), and automatic checks that every link, figure and date appears in a source and that every sentence cites its source. If anything fails, the article is not published.
+5. **Checked before publishing.** Articles bylined "By the ColdCaseTech desk" are written with AI assistance from those sources. Articles bylined by our editor start as his own draft and are edited into our house style and format with AI assistance. Every article, whoever wrote it, must pass a separate claim-by-claim AI check against the sources (a fresh request that did not write or edit the article) before publishing, and automatic checks that every link, figure and date appears in a source and that every sentence cites its source. If anything fails, the article is not published.
 6. **Corrections.** If we get something wrong, we fix it and note the correction on the article. Write to [editor@coldcasetech.com](mailto:editor@coldcasetech.com).
 
 **Verdicts:** `Delivered` (it arrived or performed as promised), `Partially Delivered` (late, less than promised, in fewer places, or measured below the claim), `Not Delivered` (cancelled, missed the promised date, or does not do what was promised).
