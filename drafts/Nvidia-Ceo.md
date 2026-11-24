@@ -1,37 +1,51 @@
-Nvidia’s Eleven-Day Succession U-Turn: How Jensen Huang Returned While Export Probes Remain Open
-On November 23, 2026, Nvidia shares jumped 31.48% to close at $165.05 after its board unanimously reinstated Jensen Huang as president, chief executive officer, and board director. The move erased a substantial portion of the losses accumulated since Huang stepped down on November 11, 2026, ending an eleven-day leadership vacuum at the center of the global semiconductor supply chain. 
-Yet the corporate reversal did not close the regulatory files surrounding the company. Hours after Nvidia announced Huang’s return, the U.S. Department of Commerce’s Bureau of Industry and Security (BIS) placed Singapore-based data center operator Megaspeed International and six affiliated Southeast Asian entities on its Entity List. 
-The Eleven-Day Board Reversal
-Nvidia’s governance timeline compressed a multi-year succession crisis into less than two weeks:
-Date	Event / Filing	Documented Action
-Nov. 8, 2026	Board Inquiry Announcement	Nvidia’s board announced an independent inquiry following reporting that Huang had been the target of a foreign intelligence effort.
-Nov. 11–12, 2026	Form 8-K (Item 5.02)	The board accepted Huang’s immediate resignation on November 11, appointed CFO Colette Kress as interim CEO, and named director Harvey C. Jones as the company’s first-ever board chair, disclosing the transition on November 12.
-Nov. 17, 2026	Q3 FY27 Earnings Call & Board Action	Chair Harvey Jones stated on the earnings call that the board did not intend to reinstate Huang. The same day, the board established an independent National Security and Export Control Committee.
-Nov. 19, 2026	California Subpoena	California Attorney General Rob Bonta served an investigative subpoena on Nvidia regarding potential violations of state law, chip exports to China, and investor disclosures.
-Nov. 22–23, 2026	Form 8-K & Press Release	Following a unanimous board vote dated November 22, Nvidia announced on November 23 that Huang had been reinstated effective immediately, while Kress returned exclusively to her CFO role.
-In its November 23 regulatory filing, Nvidia cited two grounds for reversing its November 17 stance. First, directors stated they were satisfied with Huang’s "candor and ability to lead NVIDIA" following a series of meetings. Second, the board stated it had received "input from senior levels of the United States government" and was confident his return "poses no national security risk". 
-President Donald Trump publicly took credit for the turnaround in a November 23 CNBC interview, stating that he had spoken with Nvidia’s board and convinced directors to bring Huang back after assuring them he posed no national security threat.
-The Governance Guardrails Left in Place
-Reinstatement restored Huang’s executive authority, but Nvidia’s filing explicitly separated his return from the resolution of its internal probe. The company confirmed that the committee of independent directors—assisted by retained independent counsel—will continue its investigation into the foreign intelligence targeting reports to conclusion, with Huang’s full cooperation. 
-To insulate export compliance from executive management, the board locked in three structural mechanisms:
-•	Independent Export Oversight: The newly formed National Security and Export Control Committee consists solely of independent directors and is retaining external counsel and advisors with national security expertise. 
-•	Compliance Reporting Line: Nvidia initiated a search for a new Chief Compliance Officer who will report directly to the Nominating and Corporate Governance Committee rather than the CEO.
-•	Continuing Cooperation: Nvidia stated in its Form 8-K exhibit that it will continue cooperating with ongoing government investigations and inquiries.
-The Parallel Export-Control Crackdown
-While Wall Street priced out leadership uncertainty—pushing Nvidia’s trading volume to 772.5 million shares on November 23, roughly 330% above its three-month daily average—federal and state enforcement tracks accelerated. 
-On the afternoon of November 23, BIS filed a final rule (scheduled for formal Federal Register publication on November 25, 2026) adding Singapore-based Megaspeed International Pte. Ltd., alongside affiliated entities across Malaysia, Singapore, and Thailand, to the Entity List. BIS determined that the seven designated entities were acting contrary to U.S. national security or foreign policy interests, imposing a strict export license requirement subject to a presumption of denial. 
-The listing followed scrutiny over whether Megaspeed—where former Chinese state television reporter Alice Huang served as a director—operated as a pass-through conduit to divert restricted Nvidia AI processors to Chinese buyers. Earlier in November, Treasury Secretary Scott Bessent publicly questioned whether Nvidia had conducted sufficient customer due diligence to prevent chip diversion through shell companies. 
-Concurrently, Congressional oversight remains active. Spokespeople for three House panels—the House Intelligence Committee, the House Foreign Affairs Committee, and the House Select Committee on China—confirmed that Huang’s reinstatement does not alter their inquiries, with transcribed interviews scheduled for Huang and Nvidia’s general counsel in early December.
-Nvidia’s board solved its immediate market-capitalization crisis by restoring its founder. In doing so, however, it left its reinstated chief executive operating inside a newly constructed compliance perimeter while federal trade regulators, state prosecutors, and congressional investigators continue auditing the company's past shipments. 
-Sources
-1.	NVIDIA Board Reinstates Jensen Huang as President, CEO and Board Director — U.S. Securities and Exchange Commission (Form 8-K, Exhibit 99.1) 
-2.	NVIDIA Board Reinstates Jensen Huang as President, CEO and Board Director — NVIDIA Newsroom 
-3.	NVIDIA Announces CEO Transition — NVIDIA Newsroom
-4.	Additions to the Entity List (FR Doc. 2026-23999) — Bureau of Industry and Security, U.S. Department of Commerce 
-5.	Attorney General Bonta Serves Investigative Subpoena on Nvidia — State of California Department of Justice 
-6.	US adds Megaspeed to trade blacklist as Nvidia’s Huang returns as CEO — Al Jazeera 
-7.	US adds Megaspeed, AI firm at center of Nvidia scandal, to trade blacklist — The Guardian 
-8.	Trump says Jensen Huang 'did nothing wrong.' The investigations aren't over — CBC News
-9.	Stock Market Today, Nov. 23: Nvidia Surges 31%, Adding Nearly $1 Trillion in Market Value as Jensen Huang Reclaims CEO Role — The Motley Fool 
-10.	U.S. probing alleged spy tied to ex-Nvidia CEO — The Japan Times 
+# Nvidia reinstates Jensen Huang as CEO after board vote
 
+> **Then vs. Now (News report):**
+> * **Then:** On November 17, 2026, Nvidia board chair Harvey C. Jones stated on the company's earnings call that directors had accepted Jensen Huang's resignation and did "not intend to reinstate Jensen as CEO"<sup><a href="#src-6">6</a>, <a href="#src-8">8</a></sup>.
+> * **Now:** Following a unanimous board vote on November 22 and input from senior U.S. government officials, Nvidia reinstated Huang as president, chief executive officer, and board director effective immediately on November 22, announced November 23<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-9">9</a></sup>.
+
+Nvidia announced on November 23, 2026, that it had reinstated co-founder Jensen Huang as president, chief executive officer, and board member<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-9">9</a></sup>. Shares in the chipmaker rose 31.48% to close at $165.05 on November 23<sup><a href="#src-7">7</a></sup>.
+
+## Promised vs. Delivered
+
+| Item | Stated Position | Reported Outcome | Source |
+| --- | --- | --- | --- |
+| CEO succession | Board chair Harvey C. Jones stated on Nov. 17 that directors did not intend to reinstate Huang | Directors voted unanimously on Nov. 22 and announced Nov. 23 that Huang returned effective immediately | <sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-6">6</a>, <a href="#src-8">8</a>, <a href="#src-9">9</a></sup> |
+| Executive leadership | Chief Financial Officer Colette Kress served as interim CEO following Huang's Nov. 11 resignation | Kress continues as executive vice president and CFO following Huang's reinstatement | <sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-3">3</a>, <a href="#src-9">9</a></sup> |
+| Oversight structure | Directors established a National Security and Export Control Oversight Committee on Nov. 17 | On Nov. 23, the board announced a search for a newly created Chief Compliance Officer reporting to the Nominating and Corporate Governance Committee | <sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-5">5</a></sup> |
+| National security review | Huang stepped down amid personal conduct disclosures and a board inquiry into reported foreign intelligence targeting | The board said it received input from senior levels of the U.S. government and is confident his return poses no national security risk | <sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-6">6</a></sup> |
+
+## Timeline
+
+* **2026-11-11**: Nvidia's board accepted Huang's resignation from his roles as president, chief executive officer, and director, naming CFO Colette Kress as interim CEO and appointing Harvey C. Jones as chair of the board<sup><a href="#src-3">3</a></sup>.
+* **2026-11-12**: The chipmaker filed a Form 8-K with the U.S. Securities and Exchange Commission disclosing the executive transition<sup><a href="#src-3">3</a></sup>. Separately, Nvidia shares closed at $166.19, down 4.34%<sup><a href="#src-7">7</a></sup>.
+* **2026-11-17**: Under Kress's interim leadership, Nvidia reported $115.8 billion in third-quarter fiscal 2027 revenue, established an independent National Security and Export Control Oversight Committee, and stated on its earnings call that it did not intend to reinstate Huang<sup><a href="#src-4">4</a>, <a href="#src-5">5</a>, <a href="#src-8">8</a></sup>.
+* **2026-11-20**: Nvidia shares closed at $125.53, down 14.01%<sup><a href="#src-7">7</a></sup>.
+* **2026-11-22**: Following meetings with Huang and input from senior U.S. government officials, the board voted unanimously to reinstate him effective immediately<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-9">9</a></sup>.
+* **2026-11-23**: Nvidia filed a Form 8-K confirming Huang's reinstatement, and shares closed at $165.05, up 31.48%<sup><a href="#src-7">7</a>, <a href="#src-9">9</a></sup>.
+
+## Details (as Reported)
+
+* In its November 23 press release, Nvidia stated that directors held a series of discussions and meetings with Huang and were satisfied with his candor and ability to lead the company<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+* Chair Harvey C. Jones said, "We have every confidence in Jensen and look forward to working with him as he resumes his leadership of the Company," and added, "We are grateful to Colette Kress for her outstanding service as interim CEO"<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+* Huang stated in the company's announcement that he took the responsibility with humility and renewed commitment, thanking the NVIDIA Board for its confidence and deliberation through this process<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+* President Donald Trump told CNBC in a phone interview that Nvidia's board had sought national security assurances from his administration and that he spoke with Huang on November 22 prior to the reinstatement announcement<sup><a href="#src-6">6</a></sup>.
+* Alongside Huang's return, the board confirmed it is recruiting for a newly created Chief Compliance Officer position reporting directly to the Nominating and Corporate Governance Committee<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+* Nvidia's announcement reiterated that its committee comprised solely of independent directors—with independent counsel assisting—will continue its investigation into reported foreign intelligence targeting, and that Huang will cooperate fully<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+
+## What Is Not Yet Confirmed
+
+* Nvidia's independent board committee investigation into reported foreign intelligence targeting remains open, and the company has not announced a completion date or public findings<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup>.
+* Neither Nvidia nor the White House has named the specific senior U.S. government officials who provided national security input to the board during its deliberations<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-6">6</a></sup>.
+
+## Sources
+
+1. <span id="src-1"></span>[NVIDIA Newsroom — NVIDIA Board Reinstates Jensen Huang as President, CEO and Board Director](https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director) (2026-11-23)
+2. <span id="src-2"></span>[NVIDIA Investor Relations — Announcement of Reinstatement of President and CEO](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Board-Reinstates-Jensen-Huang-as-President-CEO-and-Board-Director/) (2026-11-23)
+3. <span id="src-3"></span>[SEC EDGAR — NVIDIA Corporation Form 8-K (Item 5.02, Departure of Directors or Certain Officers)](https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvda-20261111.htm) (2026-11-12)
+4. <span id="src-4"></span>[NVIDIA Investor Relations — NVIDIA Announces Financial Results for Third Quarter Fiscal 2027](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/) (2026-11-17)
+5. <span id="src-5"></span>[NVIDIA Newsroom — NVIDIA Board of Directors Establishes National Security and Export Control Oversight Committee](https://nvidianews.nvidia.com/news/nvidia-board-of-directors-establishes-national-security-and-export-control-oversight-committee) (2026-11-17)
+6. <span id="src-6"></span>[The Guardian — Republican Senators Criticize Nvidia's Decision to Reinstate Jensen Huang](https://www.theguardian.com/technology/2026/nov/23/trump-jensen-huang-nvidia-reinstated) (2026-11-23)
+7. <span id="src-7"></span>[Stock Analysis / S&P Global Market Intelligence — NVIDIA (NVDA) Stock Price History](https://stockanalysis.com/stocks/nvda/history/) (2026-11-23)
+8. <span id="src-8"></span>[The Guardian — Jensen Huang Reinstated as Nvidia Chief Executive](https://www.theguardian.com/technology/2026/nov/23/jensen-huang-reinstated-as-nvidia-chief-executive) (2026-11-23)
+9. <span id="src-9"></span>[SEC EDGAR — NVIDIA Corporation Form 8-K (Period of Report Nov. 22, 2026, Filed Nov. 23, 2026)](https://www.sec.gov/Archives/edgar/data/1045810/000104581026000090/nvda-20261122.htm) (2026-11-23)
