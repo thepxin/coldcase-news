@@ -22,11 +22,12 @@ from datetime import datetime, timezone
 
 DRAFTS_DIR = "drafts"
 PUBLISHED_DIR = os.path.join(DRAFTS_DIR, "published")
+READY_DIR = os.path.join(DRAFTS_DIR, "ready")   # articles the editor already approved (from the chat desk)
 LOG_PATH = os.path.join("data", "drafts_log.json")
 BYLINE = "Rishit K."
 DRAFT_EXT = (".md", ".txt")
-SKIP_NAMES = {"readme.md"}
-MAX_LINKS = 15                # links read per draft (the first 15 in the draft)
+SKIP_NAMES = {"readme.md", "master_prompt.md"}
+MAX_LINKS = 20                # links read per draft (the first 20 in the draft)
 EXTRA_PATH = os.path.join("data", "draft_sources.json")   # extra outlets accepted for drafts only
 MARKET_DATA = "market data (prices only)"
 MIN_WORDS = 60                # shorter drafts are held without spending an AI request
@@ -65,6 +66,15 @@ def is_draft_file(name: str) -> bool:
             and not low.startswith((".", "_")))
 
 
+def key(path: str) -> str:
+    """The log key: the path inside drafts/ ("nvidia.md" or "ready/nvidia.md")."""
+    return os.path.relpath(path, DRAFTS_DIR).replace(os.sep, "/")
+
+
+def is_ready(path: str) -> bool:
+    return key(path).startswith("ready/")
+
+
 def note_path(path: str) -> str:
     return os.path.splitext(path)[0] + ".NOTE.md"
 
@@ -88,12 +98,42 @@ def pending(log: dict, folder=DRAFTS_DIR, now=None) -> list[str]:
             continue
         if not text.strip():
             continue
-        entry = log.setdefault(name, {})
+        entry = log.setdefault(key(path), {})
         entry.setdefault("first_seen", now.strftime("%Y-%m-%dT%H:%M:%SZ"))
         if entry.get("status") == "held" and entry.get("hash") == digest(text):
             continue
         out.append(path)
-    return sorted(out, key=lambda p: (log[os.path.basename(p)]["first_seen"], os.path.basename(p)))
+    return sorted(out, key=lambda p: (log[key(p)]["first_seen"], os.path.basename(p)))
+
+
+HTML_CITE = re.compile(r"<\s*(sup|a|span)\b", re.I)
+
+
+def parse_ready(text: str) -> dict:
+    """An approved article from the chat desk: first line "# Headline", then "type: closed|open|report" (optional),
+    then the body with inline [Outlet](URL) citations. Code-fence lines (```) and any "## Sources" section are
+    ignored, so the chat's code block can be pasted as it is."""
+    lines = [l for l in text.strip().splitlines() if not l.strip().startswith("```")]
+    headline, kind = "", ""
+    while lines and not headline:
+        headline = lines.pop(0).strip().lstrip("#").strip()
+    headline = re.sub(r"^(title|headline)\s*:\s*", "", headline, flags=re.I)
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    if lines:
+        m = re.match(r"^\s*type\s*:\s*(closed|open|report)\b", lines[0], re.I)
+        if m:
+            kind = m.group(1).lower()
+            lines.pop(0)
+    body = "\n".join(lines).strip()
+    body = re.split(r"(?mi)^#{1,3}\s*sources\s*$", body)[0].strip()
+    links = []
+    for u in URL_RE.findall(body):
+        u = u.rstrip(".,;:!?*_")
+        if u not in links:
+            links.append(u)
+    return {"headline": headline, "type": kind, "body": body, "links": links,
+            "words": len(re.sub(URL_RE, " ", body).split()), "html": bool(HTML_CITE.search(body))}
 
 
 def parse(text: str) -> dict:
@@ -195,7 +235,7 @@ def hold(path: str, log: dict, text: str, reasons: list[str], notes=(), now=None
     """Mark a draft as held and write the note next to it."""
     now = now or _now()
     name = os.path.basename(path)
-    entry = log.setdefault(name, {})
+    entry = log.setdefault(key(path), {})
     entry.update({"status": "held", "hash": digest(text), "checked": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
                   "reasons": list(reasons)[:12]})
     lines = [f"# Not published yet: {name}", "",
@@ -216,6 +256,7 @@ def published(path: str, log: dict, text: str, article_file: str, now=None) -> s
     """Move the draft to drafts/published/ (with the date), remove its note and record the article."""
     now = now or _now()
     name = os.path.basename(path)
+    k = key(path)
     os.makedirs(PUBLISHED_DIR, exist_ok=True)
     target = os.path.join(PUBLISHED_DIR, f"{now:%Y-%m-%d}-{name}")
     n = 2
@@ -226,8 +267,8 @@ def published(path: str, log: dict, text: str, article_file: str, now=None) -> s
     os.replace(path, target)
     if os.path.exists(note_path(path)):
         os.remove(note_path(path))
-    entry = log.pop(name, {})
-    log[os.path.basename(target)] = {"status": "published", "hash": digest(text), "article": article_file,
+    entry = log.pop(k, {})
+    log[key(target)] = {"status": "published", "hash": digest(text), "article": article_file,
                                      "first_seen": entry.get("first_seen", ""),
                                      "published": now.strftime("%Y-%m-%dT%H:%M:%SZ")}
     print(f"[drafts] PUBLISHED {name} as {article_file}; the draft is now {target}")
@@ -236,6 +277,6 @@ def published(path: str, log: dict, text: str, article_file: str, now=None) -> s
 
 def forget_missing(log: dict, folder=DRAFTS_DIR):
     """Drop log entries for drafts that were deleted (published ones are kept as the record)."""
-    for name in list(log):
-        if log[name].get("status") != "published" and not os.path.exists(os.path.join(folder, name)):
-            log.pop(name)
+    for k in list(log):
+        if log[k].get("status") != "published" and not os.path.exists(os.path.join(folder, k)):
+            log.pop(k)

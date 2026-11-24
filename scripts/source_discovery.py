@@ -176,8 +176,19 @@ def http_get(url):
 _TRAF_CONFIG = None
 
 
+SEC_UA = "ColdCaseTech research editor@coldcasetech.com"   # the SEC blocks automated readers that don't name themselves
+
+
 def fetch_html(url):
     global _TRAF_CONFIG
+    if host_of(url).endswith("sec.gov"):   # SEC filings: its fair-access rules require a named User-Agent
+        try:
+            r = requests.get(url, headers={"User-Agent": SEC_UA, "Accept-Encoding": "gzip, deflate"},
+                             timeout=int(FETCH_TIMEOUT))
+            r.raise_for_status()
+            return r.text
+        except Exception:
+            return None
     if trafilatura is None:
         return None
     if _TRAF_CONFIG is None:
