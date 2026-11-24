@@ -1,0 +1,31 @@
+{
+  "_readme": "Extra outlets accepted ONLY for the editor's own drafts (drafts/), on top of the approved list in data/sources.json. AI-written articles still use data/sources.json alone. 'newsroom' = an established news organisation (counts as one outlet for the rule 'one official source or two different outlets'). 'market data' = share-price tables, usable only for prices, closes and percentage changes; it never counts toward that rule. Paywalled pages usually cannot be read by the checker: lines that rest only on them are held. To add an outlet, copy one entry and change the name and domains.",
+  "outlets": [
+    {"name": "The Guardian", "kind": "newsroom", "domains": ["theguardian.com"]},
+    {"name": "BBC News", "kind": "newsroom", "domains": ["bbc.com", "bbc.co.uk"]},
+    {"name": "Al Jazeera", "kind": "newsroom", "domains": ["aljazeera.com"]},
+    {"name": "CNBC", "kind": "newsroom", "domains": ["cnbc.com"]},
+    {"name": "Bloomberg", "kind": "newsroom", "domains": ["bloomberg.com"]},
+    {"name": "The New York Times", "kind": "newsroom", "domains": ["nytimes.com"]},
+    {"name": "The Wall Street Journal", "kind": "newsroom", "domains": ["wsj.com"]},
+    {"name": "Financial Times", "kind": "newsroom", "domains": ["ft.com"]},
+    {"name": "The Washington Post", "kind": "newsroom", "domains": ["washingtonpost.com"]},
+    {"name": "Axios", "kind": "newsroom", "domains": ["axios.com"]},
+    {"name": "NPR", "kind": "newsroom", "domains": ["npr.org"]},
+    {"name": "CNN", "kind": "newsroom", "domains": ["cnn.com"]},
+    {"name": "The Times of India", "kind": "newsroom", "domains": ["timesofindia.indiatimes.com"]},
+    {"name": "Hindustan Times", "kind": "newsroom", "domains": ["hindustantimes.com"]},
+    {"name": "The Indian Express", "kind": "newsroom", "domains": ["indianexpress.com"]},
+    {"name": "The New Indian Express", "kind": "newsroom", "domains": ["newindianexpress.com"]},
+    {"name": "Financial Express", "kind": "newsroom", "domains": ["financialexpress.com"]},
+    {"name": "The Hindu", "kind": "newsroom", "domains": ["thehindu.com"]},
+    {"name": "Mint", "kind": "newsroom", "domains": ["livemint.com"]},
+    {"name": "The Straits Times", "kind": "newsroom", "domains": ["straitstimes.com"]},
+    {"name": "Nikkei Asia", "kind": "newsroom", "domains": ["asia.nikkei.com"]},
+    {"name": "SBS News (Korea)", "kind": "newsroom", "domains": ["news.sbs.co.kr"]},
+    {"name": "The Next Web", "kind": "newsroom", "domains": ["thenextweb.com"]},
+    {"name": "TweakTown", "kind": "newsroom", "domains": ["tweaktown.com"]},
+    {"name": "Stock Analysis", "kind": "market data", "domains": ["stockanalysis.com"]},
+    {"name": "Nasdaq", "kind": "market data", "domains": ["nasdaq.com"]}
+  ]
+}
