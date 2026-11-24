@@ -225,6 +225,21 @@ HOUSE STYLE (ColdCaseTech should read like the best wire service or financial ne
   exactly as people type them (e.g. "Apple iPhone 18", "OpenAI GPT-6", "Nvidia RTX 6090"), and keep the key fact in
   the first 60 characters. Plain words, never codenames or jargon readers would not search for.
 
+THE VOICE: elegant, composed and quietly assured, like an old, well-kept newspaper of record. Full, complete
+sentences, never fragments; unhurried, well-made prose in plain, well-chosen words (never showy vocabulary).
+EVERYTHING WRITTEN OUT IN FULL, in the headline, article, tables and social text alike. No abbreviations,
+acronyms, initials, short forms or contractions, except inside a direct quotation (quotations stay word for word)
+and in official product or company names as the company writes them ("RTX 5090", "GPT-6", "AMD", "AT&T"; but
+"PlayStation 5", not "PS5"). For example: "chief executive officer" then "chief executive" (never CEO, CFO, CTO,
+VP); "Harvey Jones" (no middle initials, no Mr or Dr); "the United States", "the United Kingdom", "the European
+Union" (never U.S., US, U.K., EU); "the Securities and Exchange Commission" then "the Commission" (never SEC, FBI,
+FTC, DOJ: write the full name); "artificial intelligence", "graphics processors", "gigabytes", "hertz" (never AI,
+GPU, GB, Hz); "November 17, 2026" (never Nov. 17); "the third quarter of its 2027 fiscal year" (never Q3 FY27);
+"10 in the morning, Pacific time" (never 10 a.m. PT); "per cent" (never %); "and" (never &, except inside names);
+"against" or "compared with" (never vs.); "for example", "that is" (never e.g., i.e., etc.); no Inc., Corp. or
+Ltd.; "did not", "it is" (never contractions). Figures stay as figures exactly as the source gives them
+("31.48 per cent", "$165.05", "512 gigabytes").
+
 THE HOUSE VOICE (the headline and social_hook ONLY; the article body always stays calm and plain)
 - ColdCaseTech has a dry, well-mannered wit, like a quietly amused old newspaper or a classic commercial parody. It
   sets true facts side by side and lets the reader see the joke. It never explains the joke or says it out loud.
@@ -587,7 +602,9 @@ FIELDS
 - reel_lines: exactly 3 spoken lines under 90 characters (the news with who said it; where it stands; one striking
   stated fact). No questions, hashtags, links or the name ColdCaseTech.
 Rules: no opinions, no maths, no em dashes, no facts beyond the ARTICLE and SOURCES. Every number and date you
-write must appear in them exactly.
+write must appear in them exactly. Write everything out in full in the house voice, as the article does: no
+abbreviations, acronyms, initials or contractions (direct quotations and official product names excepted;
+figures stay as figures). Full, complete sentences.
 OUTPUT: one JSON object with exactly these keys, nothing else.
 """
     meta = call_ai(prompt, schema=ReadyMeta, purpose="write", model=POLISH_MODEL)
@@ -925,7 +942,8 @@ CHECKS
 1. unsupported_claims (ARTICLE only, not SOCIAL): every statement (names, numbers, dates, quotes, causes, outcomes, who said what, and every
    citation) that the cited source does not clearly state. A claim cited to the wrong source counts. A company's own
    promise or claim presented as proof that it was delivered or works as claimed counts. Any figure or comparison the
-   sources do not state counts. Hype words the sources do not use count. One short line each.
+   sources do not state counts. Hype words the sources do not use count. Writing a name, title, place, unit or date
+   out in full, or dropping a middle initial, is NOT a change and does not count. One short line each.
 2. conclusion_or_opinion_sentences (ARTICLE only): every sentence that draws a conclusion, gives advice, a lesson, a prediction,
    an opinion or speculation instead of reporting what a source states.
 3. verdict_supported: true only if the sources support "{article.verdict_score}":

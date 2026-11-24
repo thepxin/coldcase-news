@@ -163,7 +163,7 @@ LEADING_CITATION = re.compile(r"^\(?\s*(?:LINKREF\s*[,;]?\s*)+\)?[.!?]?\s*")
 # A full stop after these is not the end of a sentence ("Harvey C. Jones", "the U.S. Commerce Department", "Nov. 17").
 ABBREVIATION_END = re.compile(
     r"(?:\b[A-Z]|\b(?:[A-Z]\.)+[A-Z]|\b(?:Inc|Corp|Co|Ltd|Jr|Sr|Dr|Mr|Mrs|Ms|St|No|vs|etc|approx|Gen|Gov|Sen|Rep|"
-    r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec))\.$")
+    r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|a\.m|p\.m|e\.g|i\.e))\.$")
 
 
 def _split_sentences(masked):
