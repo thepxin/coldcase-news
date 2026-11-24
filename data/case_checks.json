@@ -47,7 +47,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-24",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-24",
@@ -102,9 +102,6 @@
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim",
-  "2026-11-22-gta-6-evs-vice-city-electrify-america",
   "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
   "2026-11-20-nvidia-rtx-spark-compact-desktops-available",
   "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
@@ -124,9 +121,9 @@
    "day": "2026-11-24"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-   "stamp": "ddc7c733a9a632eb",
+   "stamp": "fe0b63faa9ce0665",
    "why": "nothing new",
-   "day": "2026-11-22"
+   "day": "2026-11-24"
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
@@ -196,6 +193,17 @@
   },
   "2026-11-14-apple-arcade-four-new-games-december-3": {
    "stamp": "a2cdd12cbc31c1df",
+   "why": "nothing new",
+   "day": "2026-11-24"
+  },
+  "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim": {
+   "stamp": "93eb8cca4807baf2",
+   "why": "failed checks",
+   "tries": 1,
+   "day": "2026-11-24"
+  },
+  "2026-11-22-gta-6-evs-vice-city-electrify-america": {
+   "stamp": "d39a426cbfd9fe2f",
    "why": "nothing new",
    "day": "2026-11-24"
   }
