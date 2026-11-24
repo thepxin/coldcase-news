@@ -1,28 +1,28 @@
 ================================================================
-Samsung Odyssey G6 G60H hits 1,100Hz. The resolution is 1,280 x 720.
+PHP phpAfterShell flaw rated 9.2 critical, fixed the day it was disclosed
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (123/280):
-Samsung's new 27-inch monitor reaches 1,100Hz. At 1,280 x 720.
+X (161/280):
+The PHP fix for phpAfterShell arrived the day it was disclosed. So did 16 other security fixes.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-24-samsung-odyssey-g6-g60h-1100hz-monitor/
+Every line sourced: https://coldcasetech.com/posts/2026-11-24-php-aftershell-critical-flaw-fixed-same-day/
 
-#Samsung #G60H
+#PHP #phpAfterShell
 
 INSTAGRAM (post this caption with the image from the share kit):
-Samsung's new 27-inch monitor reaches 1,100Hz. At 1,280 x 720.
+The PHP fix for phpAfterShell arrived the day it was disclosed. So did 16 other security fixes.
 
-Samsung announced the 27-inch Odyssey G6 G60H gaming monitor, which reaches 1,100Hz in HD mode and 600Hz at QHD, with price and release date still to come.
+PHP fixed the phpAfterShell flaw, rated 9.2 under CVSS 4.0, on November 19, 2026, and Cloudflare said its WAF blocks known attack patterns.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #samsung #g60h #hz #odysseyg6 #gaming #technews #tech
+#coldcasetech #php #phpaftershell #software #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. Samsung lists 600Hz at QHD and 1100Hz at HD. Engadget reports the monitor cannot offer its top resolution and top refresh rate together.
-2. Price and release date for the Odyssey G6 G60H are still to be determined, according to Engadget. Samsung's page lists FreeSync Premium as not supporting 1100Hz.
-3. Samsung says the 1ms response time needs the Extreme mode setting, and 600Hz is not supported on macOS. Would you use a monitor that only reaches its top refresh rate in HD?
+1. The same PHP releases fixed 16 other security flaws on November 19. Six of them are also rated critical, according to Cloudflare.
+2. phpAfterShell is rated 9.2 out of 10 under CVSS 4.0. PHP fixed it in 8.2.36, 8.3.37, 8.4.28, 8.5.13 and 8.6.0. Cloudflare says only a PHP upgrade and worker restart fully fixes it.
+3. Cloudflare says none of the 17 PHP flaws was in CISA's exploited catalog as of November 19. Has your team already moved to a fixed PHP release?

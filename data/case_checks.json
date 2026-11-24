@@ -5,7 +5,7 @@
  },
  "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
   "checked": "2026-11-24",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
   "checked": "2026-11-24",
@@ -47,7 +47,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-24",
-  "result": "new coverage found; first in line for the next run"
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-24",
@@ -55,7 +55,7 @@
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
   "checked": "2026-11-24",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-24",
@@ -63,7 +63,7 @@
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-24",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription": {
   "checked": "2026-11-24",
@@ -102,9 +102,6 @@
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-11-14-apple-arcade-four-new-games-december-3",
-  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10",
-  "2026-10-28-apple-siri-ai-new-languages-end-of-year",
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
   "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim",
   "2026-11-22-gta-6-evs-vice-city-electrify-america",
@@ -157,14 +154,14 @@
    "day": "2026-11-21"
   },
   "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
-   "stamp": "970b9207f319e9bd",
+   "stamp": "430590c27210123f",
    "why": "nothing new",
-   "day": "2026-11-22"
+   "day": "2026-11-24"
   },
   "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
-   "stamp": "c27fb52994af168a",
+   "stamp": "fb985d7921ab5862",
    "why": "nothing new",
-   "day": "2026-11-20"
+   "day": "2026-11-24"
   },
   "2026-11-08-apple-health-app-redesign-ios-27-3-beta": {
    "stamp": "34a76c46f9478240",
@@ -196,6 +193,11 @@
    "stamp": "2cf5e5c45b14a399",
    "why": "nothing new",
    "day": "2026-11-21"
+  },
+  "2026-11-14-apple-arcade-four-new-games-december-3": {
+   "stamp": "a2cdd12cbc31c1df",
+   "why": "nothing new",
+   "day": "2026-11-24"
   }
  }
 }
