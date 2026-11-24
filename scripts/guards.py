@@ -160,11 +160,27 @@ TABLE_SEPARATOR = re.compile(r"^\|?\s*:?-{3,}")
 LEADING_CITATION = re.compile(r"^\(?\s*(?:LINKREF\s*[,;]?\s*)+\)?[.!?]?\s*")
 
 
-def _sentences(masked):
-    """Split a line into sentences. A citation written just after the full stop ("... Virginia. ([NASA](url))")
-    belongs to the sentence before it, not to the next one."""
+# A full stop after these is not the end of a sentence ("Harvey C. Jones", "the U.S. Commerce Department", "Nov. 17").
+ABBREVIATION_END = re.compile(
+    r"(?:\b[A-Z]|\b(?:[A-Z]\.)+[A-Z]|\b(?:Inc|Corp|Co|Ltd|Jr|Sr|Dr|Mr|Mrs|Ms|St|No|vs|etc|approx|Gen|Gov|Sen|Rep|"
+    r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec))\.$")
+
+
+def _split_sentences(masked):
     out = []
     for part in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", masked):
+        if out and ABBREVIATION_END.search(out[-1].rstrip()):
+            out[-1] += " " + part
+        else:
+            out.append(part)
+    return out
+
+
+def _sentences(masked):
+    """Split a line into sentences. A citation written just after the full stop ("... Virginia. ([NASA](url))")
+    belongs to the sentence before it, not to the next one. Initials and abbreviations do not end a sentence."""
+    out = []
+    for part in _split_sentences(masked):
         m = LEADING_CITATION.match(part)
         if m and "LINKREF" in m.group(0) and out:
             out[-1] += " " + m.group(0)
@@ -229,7 +245,7 @@ def strip_uncited(body, header_rows=1):
         prefix = re.match(r"^\s*(?:[-*]\s+|\d+\.\s+|>\s*)?", raw).group(0)
         text = raw[len(prefix):]
         parts = []
-        for part in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", text):
+        for part in _split_sentences(text):
             m = LEADING_LINKS.match(part)
             if m and LINK_RE.search(m.group(0)) and parts:
                 parts[-1] += " " + m.group(0).strip()
