@@ -1886,7 +1886,7 @@ def _run_ready(path, text, log, cfg, fields_done, used_urls, known):
                                       "where every sentence ends with [Outlet](URL)."])
         return "held"
     sources, notes = drafts.gather(r["links"], cfg, fetch_html, extract, outlet_for, host_of, parse_date, iso,
-                                   strip_tracking)
+                                   strip_tracking, headline=r["headline"])
     short = drafts.enough_sources(sources)
     if short:
         drafts.hold(path, log, text, [short], notes)
@@ -1979,7 +1979,7 @@ def run_drafts(used_urls: set, call_limit: int, known, want: int = 1, fields_tod
                                           "company's announcement, or an approved newsroom), anywhere in the text."])
             continue
         sources, notes = drafts.gather(d["links"], cfg, fetch_html, extract, outlet_for, host_of, parse_date, iso,
-                                       strip_tracking)
+                                       strip_tracking, headline=d["title"])
         short = drafts.enough_sources(sources)
         if short:
             drafts.hold(path, log, text, [short + " Add a link to the company's own announcement or to a second "

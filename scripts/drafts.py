@@ -170,10 +170,41 @@ def extra_outlet(url: str, extra: list[dict], host_of):
     return None
 
 
-def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, parse_date, iso, strip_tracking, extra=None):
+# Website names that are never a company's own site, even when the word appears in a headline.
+NOT_A_COMPANY = {"news", "blog", "blogs", "tech", "daily", "times", "post", "review", "reviews", "report", "wiki",
+                 "wikipedia", "medium", "substack", "reddit", "twitter", "youtube", "facebook", "instagram", "linkedin",
+                 "github", "google", "wordpress", "blogspot", "yahoo", "msn", "forbes", "motley", "seekingalpha"}
+_TWO_PART_ENDINGS = {"co.uk", "co.jp", "com.au", "co.in", "com.br", "co.kr", "com.cn", "co.nz", "com.sg", "com.hk",
+                     "co.za", "com.tw", "co.il"}
+
+
+def company_label(host: str) -> str:
+    """'decart' for decart.ai or www.decart.ai, 'sony' for sony.co.jp."""
+    parts = (host or "").lower().split(".")
+    if len(parts) < 2:
+        return ""
+    if ".".join(parts[-2:]) in _TWO_PART_ENDINGS and len(parts) >= 3:
+        return parts[-3]
+    return parts[-2]
+
+
+def own_site(url: str, headline: str, host_of) -> str:
+    """The company's name as written in the headline when the link is that company's own website (for example
+    decart.ai in a headline that names Decart). Returns "" otherwise. Only plain names of 4+ letters count."""
+    label = company_label(host_of(url))
+    if len(label) < 4 or not label.isalpha() or label in NOT_A_COMPANY:
+        return ""
+    m = re.search(r"\b" + re.escape(label) + r"\b", headline or "", re.I)
+    return m.group(0) if m else ""
+
+
+def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, parse_date, iso, strip_tracking, extra=None,
+           headline: str = ""):
     """Open each link. Returns (sources, notes). Outlets on the approved list (data/sources.json) keep their tier;
-    the extra draft-only outlets (data/draft_sources.json) count as Tier B newsrooms, or as market data that may be
-    cited for share prices only. The helpers are passed in from source_discovery so tests can replace the network."""
+    the extra draft-only outlets (data/draft_sources.json) count as Tier B newsrooms, as market data that may be
+    cited for share prices only, or (kind "company") as a company's own website. A company's own website also counts
+    when the headline names that company (decart.ai for a story about Decart): an official, Tier A source.
+    The helpers are passed in from source_discovery so tests can replace the network."""
     sources, notes = [], []
     extra = load_extra() if extra is None else extra
     for raw in links[:MAX_LINKS]:
@@ -184,12 +215,19 @@ def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, pars
             kind = "official" if o["tier"] == "A" else "newsroom"
         else:
             x = extra_outlet(url, extra, host_of)
-            if x:
+            if x and x.get("kind") == "company":
+                o, kind = {"name": x["name"], "tier": "A"}, "official"
+            elif x:
                 o = {"name": x["name"], "tier": "B"}
                 kind = MARKET_DATA if x.get("kind") == "market data" else "newsroom"
+            else:
+                own = own_site(url, headline, host_of)
+                if own:
+                    o, kind = {"name": own, "tier": "A"}, "official"
         if not o:
-            notes.append(f"Not used: {url} ({host_of(url)} is not on the approved or newsroom lists: "
-                         f"data/sources.json, data/draft_sources.json).")
+            notes.append(f"Not used: {url} ({host_of(url)} is not on the approved or newsroom lists, and it is not "
+                         "the own website of a company named in the headline. To accept it, add it to "
+                         "data/draft_sources.json; a company's own site uses \"kind\": \"company\").")
             continue
         try:
             html = fetch_html(url)
