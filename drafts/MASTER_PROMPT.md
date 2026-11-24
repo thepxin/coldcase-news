@@ -28,7 +28,8 @@ If an important claim has no readable allowed source, say which source would be 
 JOB 2 - CHECK EVERY CLAIM
 Table: # | claim (short) | source # | the exact supporting words from that source | status.
 Status: OK (the source states it) / NOT FOUND / CANNOT OPEN / CHANGED (give the source's version).
-Names, numbers, dates, years, quotes and who-said-what must match the source exactly. Quotes word for word.
+Names, numbers, dates, years, quotes and who-said-what must match the source exactly (writing a name, title,
+place or date out in full, or dropping a middle initial, is not a change). Quotes word for word.
 No maths: a number worked out by us (a difference, a total, "11 days") is NOT FOUND unless a source states it.
 
 JOB 3 - LIST WHAT MUST GO
@@ -43,12 +44,33 @@ Every line removed or changed, with the reason:
 
 JOB 4 - REWRITE IN THE HOUSE FORMAT AND VOICE
 Keep the editor's story, angle, chosen facts and order. Use only OK claims.
-Voice: like the best wire service: precise, calm, authoritative. Lead with the news in one strong sentence (who
-did what, when). Attribute once per paragraph; never use "said" twice in a paragraph; prefer exact verbs
-(announced, confirmed, filed, scheduled, reported). Name the organisation once, then "the company", "the
-chipmaker", "the board". Plain words, excellent grammar.
-Headline: sentence case, under 100 characters, starting with the names people search for (company, product,
-person), key fact in the first 60 characters. A dry, understated wit is allowed in the headline only when the
+THE VOICE: elegant, composed and quietly assured, like an old, well-kept newspaper of record. Full, complete
+sentences, never fragments. Unhurried, well-made prose with excellent grammar, in plain and well-chosen words
+(never showy vocabulary, never slang, never hype). Accuracy first: the elegance is in the writing, never in the
+facts. Lead with the news in one strong sentence (who did what, and when). Attribute once per paragraph; never
+use "said" twice in a paragraph; prefer exact verbs (announced, confirmed, filed, scheduled, reported). Name the
+organisation once, then "the company", "the chipmaker", "the board".
+EVERYTHING WRITTEN OUT IN FULL. No abbreviations, acronyms, short forms or contractions anywhere in the article,
+headline or tables, except inside a direct quotation (quotations stay word for word) and in official product or
+company names. Examples:
+- People: "Harvey Jones", not "Harvey C. Jones" (no middle initials). "Mr", "Dr" and similar titles are not used.
+- Titles: "chief executive officer" on first mention, then "chief executive"; "chief financial officer"; never
+  CEO, CFO, CTO or VP.
+- Places and bodies: "the United States", "the United Kingdom", "the European Union"; "the Securities and Exchange
+  Commission" on first mention, then "the Commission"; "the Federal Bureau of Investigation"; never U.S., US, U.K.,
+  EU, SEC, FBI, DOJ or FTC.
+- Technology: "artificial intelligence", "graphics processors", "gigabytes", "hertz"; never AI, GPU, GB or Hz.
+  Product and company names stay exactly as the company writes them ("DGX Spark", "RTX 5090", "GPT-6", "AMD"),
+  but use the full product name where one exists ("PlayStation 5", not "PS5").
+- Dates and times: "November 17, 2026", never "Nov. 17"; "the third quarter of its 2027 fiscal year", never
+  "Q3 FY27"; "10 in the morning, Pacific time", never "10 a.m. PT".
+- Words and symbols: "per cent", not "%"; "and", not "&" (except inside names such as "AT&T"); "against" or
+  "compared with", not "vs."; "for example" and "that is", never "e.g." or "i.e."; never "etc.", "approx.",
+  "Inc.", "Corp." or "Ltd." (simply use the company's name). Dollar and other currency signs stay: "$115.8 billion".
+- No contractions: "did not", "it is", "the company's" (a possessive is fine).
+Numbers stay as figures exactly as the source gives them ("31.48 per cent", "$165.05", "512 gigabytes").
+Headline: sentence case, under 100 characters, a complete statement written out in full (no abbreviations),
+starting with the names people search for (company, product, person), key fact in the first 60 characters. A dry, understated wit is allowed in the headline only when the
 facts set it up by themselves; never for serious stories. Every number or date in the headline must be in a source.
 Choose one type:
 - closed = a specific earlier promise or claim AND a later stated outcome, in sources at least 2 days apart.
@@ -59,7 +81,8 @@ Opening paragraph (no heading).
 closed: "## Promised vs. Delivered" (table: Item | Promised | Delivered | Source)
 open: "## Promised vs. Status Now" (table: Item | Promised | Status now | Source)
 report: "## Key Facts" (table: Item | Detail | Source)
-Three to six rows, short cells, no "|" inside a cell, a link in every Source cell.
+Three to six rows, short cells written in full words (no abbreviations), no "|" inside a cell, a link in every
+Source cell.
 "## Timeline": bullets, oldest first: - **YYYY-MM-DD**: what happened ([Outlet](URL)).
 "## Details (as Reported)": attributed bullets.
 "## What Is Not Yet Confirmed": open questions the sources themselves state; if none, write exactly
@@ -76,6 +99,8 @@ JOB 5 - MAKE IT PASS THE SITE'S AUTOMATIC CHECKS
   likely, will likely, probably, it remains to be seen, this shows that, highlights, underscores, serves as a
   reminder, wake-up call, needless to say, clearly demonstrates, proves that, game-changer, revolutionary, worth it.
 - Never write sentences about the sources, the draft or the article itself.
+- Before you output, read the article once more and write out in full every abbreviation, acronym, initial,
+  short form and contraction you find (direct quotations and official names excepted).
 
 OUTPUT, always in this order:
 1. Source table. 2. Claim table. 3. Removed or changed lines.
