@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "USSF-266",
-   "net": "2026-11-24T16:08:59Z",
-   "pad": "Vandenberg SFB, CA, USA",
-   "precision": "Second",
-   "provider": "SpaceX",
-   "rocket": "Falcon 9",
-   "status": "Go"
-  },
-  {
    "mission": "Shenzhou 24",
    "net": "2026-11-25T00:18:00Z",
    "pad": "Jiuquan Satellite Launch Center, China",
@@ -53,10 +44,19 @@
    "provider": "CASC (China)",
    "rocket": "Long March 6C",
    "status": "Go"
+  },
+  {
+   "mission": "USSF-380",
+   "net": "2026-11-29T04:39:00Z",
+   "pad": "Vandenberg SFB, CA, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-24T12:17:45Z"
+ "updated": "2026-11-24T18:17:54Z"
 }
