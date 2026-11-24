@@ -113,6 +113,8 @@ jobs:
           # "last checked" dates for open cases, and today's job log (used by the catch-up run)
           if [ -f data/case_checks.json ]; then git add data/case_checks.json; fi
           if [ -f data/daily_runs.json ]; then git add data/daily_runs.json; fi
+          if [ -d drafts ]; then git add -A drafts; fi   # published drafts move to drafts/published; held ones get a .NOTE.md
+          if [ -f data/drafts_log.json ]; then git add data/drafts_log.json; fi
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
           if git diff --staged --quiet; then
             echo "Nothing to publish today."
