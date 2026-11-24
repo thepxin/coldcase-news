@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-24T18:15:41Z",
+   "date": "2026-11-24T21:14:36Z",
+   "outlet": "NASA",
+   "title": "NASA+ Content Coming to Big Screen at Greenbelt, Maryland Cinema",
+   "url": "https://www.nasa.gov/nasa/nasa-content-coming-to-big-screen-at-greenbelt-maryland-cinema/"
+  },
+  {
+   "date": "2026-11-24T21:11:31Z",
+   "outlet": "9to5Mac",
+   "title": "New Gemini setting lets you keep chat history, but turn off AI training [U]",
+   "url": "https://9to5google.com/2026/11/24/gemini-history-ai-training/"
+  },
+  {
+   "date": "2026-11-24T21:11:00Z",
+   "outlet": "9to5Google",
+   "title": "New Gemini setting lets you keep chat history, but turn off AI training [U]",
+   "url": "https://9to5google.com/2026/11/24/gemini-history-ai-training/"
+  },
+  {
+   "date": "2026-11-24T21:04:32Z",
+   "outlet": "NASA",
+   "title": "Teams Lock in Mission Architecture for NASA’s SR-1 Freedom",
+   "url": "https://www.nasa.gov/general/nasa-locks-in-sr1-freedom-mission-architecture/"
+  },
+  {
+   "date": "2026-11-24T21:01:08Z",
+   "outlet": "9to5Mac",
+   "title": "Walmart drops Apple Pay support from its app and website",
+   "url": "https://9to5mac.com/2026/11/24/walmart-drops-apple-pay-support-from-its-app-and-website/"
+  },
+  {
+   "date": "2026-11-24T21:00:00Z",
    "outlet": "Engadget",
-   "title": "GTA 6 cloud streaming comes to PS5 and PlayStation Portal",
-   "url": "https://www.engadget.com/2326845/gta-6-cloud-streaming-comes-to-ps5-and-playstation-portal/"
+   "title": "This underrated Pixel feature is more versatile than you realize",
+   "url": "https://www.engadget.com/2321246/underrated-pixel-feature-more-versatile-realize-quick-tap/"
   },
   {
-   "date": "2026-11-24T18:15:00Z",
-   "outlet": "The Verge",
-   "title": "David Fincher is being dragged for suspected use of AI in his latest film",
-   "url": "https://www.theverge.com/entertainment/1041417/david-fincher-netflix-cliff-booth-ai-interpositive"
-  },
-  {
-   "date": "2026-11-24T18:03:58Z",
-   "outlet": "Ars Technica",
-   "title": "Kalshi makes “difficult decision” to halt Utah trading after losing court fights",
-   "url": "https://arstechnica.com/tech-policy/2026/11/kalshi-makes-difficult-decision-to-halt-utah-trading-after-losing-court-fights/"
-  },
-  {
-   "date": "2026-11-24T18:00:00Z",
-   "outlet": "Engadget",
-   "title": "Ways you can help your video doorbell stay charged in the winter",
-   "url": "https://www.engadget.com/2324749/video-doorbell-winter-charging-tips/"
-  },
-  {
-   "date": "2026-11-24T17:58:48Z",
+   "date": "2026-11-24T21:00:00Z",
    "outlet": "Tom's Hardware",
-   "title": "RAM price tracking 2026",
-   "url": "https://www.tomshardware.com/gift-guides-seasonal-sales/ram-price-tracking-2026-lowest-price-on-ddr5-and-ddr4-memory-of-all-capacities"
+   "title": "Frontier AI employees alarmed that unseen Open AI and Anthropic models are too powerful to release, report claims",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/frontier-ai-employees-alarmed-that-unseen-open-ai-and-anthropic-models-are-too-powerful-to-release-report-claims-worry-spreads-that-executives-are-out-of-touch-with-severity-of-risks-will-choose-profit-over-safety"
   },
   {
-   "date": "2026-11-24T17:58:40Z",
-   "outlet": "Electrek",
-   "title": "BYD in talks to buy Ineos’ French factory as Grenadier moves to US",
-   "url": "https://electrek.co/2026/11/24/byd-ineos-hambach-factory-france-grenadier-us/"
-  },
-  {
-   "date": "2026-11-24T17:57:41Z",
-   "outlet": "The Register",
-   "title": "Arm strongarms site that hosts ad-free documentation and it may disappear",
-   "url": "https://www.theregister.com/systems/2026/11/24/arm-strongarms-site-that-hosts-ad-free-documentation-and-it-may-disappear/5311925"
-  },
-  {
-   "date": "2026-11-24T17:50:08Z",
-   "outlet": "CoinDesk",
-   "title": "Utah moves to drop criminal pursuit of Kalshi after the firm halted services there",
-   "url": "https://www.coindesk.com/policy/2026/11/24/utah-moves-to-drop-criminal-pursuit-of-kalshi-after-the-firm-halted-services-there"
+   "date": "2026-11-24T20:36:07Z",
+   "outlet": "Tom's Hardware",
+   "title": "512GB MacBook Neo drops to $699 — comes with Touch ID, but only in pink",
+   "url": "https://www.tomshardware.com/laptops/macbooks/512gb-macbook-neo-drops-to-usd699-comes-with-touch-id-but-only-in-pink"
   }
  ],
  "status": "ok",
- "updated": "2026-11-24T18:17:51Z"
+ "updated": "2026-11-24T21:17:47Z"
 }
