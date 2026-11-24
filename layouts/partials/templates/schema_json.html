@@ -37,7 +37,7 @@
     "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
     "datePublished" (.PublishDate.Format "2006-01-02T15:04:05Z07:00")
     "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
-    "author" (slice (dict "@type" "Organization" "name" "ColdCaseTech" "url" $about))
+    "author" (cond (ne (.Params.byline | default "") "") (slice (dict "@type" "Person" "name" .Params.byline "url" (print $about "#editor"))) (slice (dict "@type" "Organization" "name" "ColdCaseTech" "url" $about)))
     "publisher" $org
     "inLanguage" "en"
     "isAccessibleForFree" true
