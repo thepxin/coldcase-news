@@ -174,10 +174,18 @@ ABBREVIATION_END = re.compile(
     r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|a\.m|p\.m|e\.g|i\.e))\.$")
 
 
+def _open_quote(text):
+    """True when a quotation is still open at the end of text (an odd number of straight quotes, or more opening
+    than closing curly quotes)."""
+    return text.count('"') % 2 == 1 or text.count("“") > text.count("”")
+
+
 def _split_sentences(masked):
+    """Split at sentence ends, but never inside a quotation ("... the product. They don't ...") and never after
+    an initial or abbreviation."""
     out = []
     for part in re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(])", masked):
-        if out and ABBREVIATION_END.search(out[-1].rstrip()):
+        if out and (ABBREVIATION_END.search(out[-1].rstrip()) or _open_quote(out[-1])):
             out[-1] += " " + part
         else:
             out.append(part)
