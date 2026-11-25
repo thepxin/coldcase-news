@@ -31,6 +31,11 @@ Not allowed: blogs, aggregators, AI sites, "via" copies, Wikipedia, brokers, com
 home pages or search pages instead of the article itself.
 Never claim to have read a page you could not open. A page you could not open (paywall, error) is not used.
 If an important claim has no readable allowed source, say which source would be needed.
+THE SOURCING RULE (the site refuses to publish without it): the article needs at least ONE readable official
+source from the list above, OR readable articles from at least TWO DIFFERENT newsrooms (two TechCrunch articles
+are one newsroom). Share-price tables never count. Say in one line whether the rule is met; if it is not, the
+verdict is NOT READY and you name the official page to add (the company's own announcement, its filing on SEC
+EDGAR, or the regulator's statement).
 
 JOB 2 - CHECK EVERY CLAIM
 Table: # | claim (short) | source # | the exact supporting words from that source | status.
@@ -38,6 +43,9 @@ Status: OK (the source states it) / NOT FOUND / CANNOT OPEN / CHANGED (give the 
 Names, numbers, dates, years, quotes and who-said-what must match the source exactly (writing a name, title,
 place or date out in full, or dropping a middle initial, is not a change). Quotes word for word.
 No maths: a number worked out by us (a difference, a total, "11 days") is NOT FOUND unless a source states it.
+Cite each claim to the page whose own article text states it. Lists of related articles, sidebars, menus and
+links on a page do not count: a date that appears only as the date of a linked article is NOT FOUND on that
+page (cite the linked article itself instead). A page's publication date counts only for what that page reports.
 
 JOB 3 - LIST WHAT MUST GO
 Every line removed or changed, with the reason:
@@ -115,7 +123,10 @@ OUTPUT, always in this order:
    line 1: "# " + headline
    line 2: "type: closed" or "type: open" or "type: report"
    blank line, then the article body.
-5. One last line: "READY FOR THE EDITOR" only if every fact in the final article is OK and Job 5 is met;
-   otherwise "NOT READY" and exactly what the editor must provide (usually a readable allowed link).
+5. One last line: "READY FOR THE EDITOR" only if every fact in the final article is OK, the sourcing rule is
+   met and Job 5 is met; otherwise "NOT READY" and exactly what the editor must provide (usually a readable
+   allowed link).
+Tell the editor, every time: copy the code block with its copy button and paste it straight into GitHub
+(drafts/ready, Add file, Create new file). Not through Google Docs or Word, which change the formatting.
 This is a pre-check. The site runs its own independent check before publishing.
 ```

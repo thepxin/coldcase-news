@@ -10,7 +10,7 @@ Amazon announced on November 23, 2026, that it had signed an agreement to purcha
 | Announcement | Amazon announced the signed agreement on November 23, 2026 | [Amazon](https://www.aboutamazon.com/news/company-news/amazon-decart-ai-optimization) |
 | Scope | The proprietary technology behind the Decart Optimization Stack, with the three co-founders and their team | [Amazon](https://www.aboutamazon.com/news/company-news/amazon-decart-ai-optimization) |
 | Reported value | $7.5 billion, as reported by TechCrunch citing Bloomberg | [TechCrunch](https://techcrunch.com/2026/11/23/amazon-snaps-up-decarts-ai-optimization-tech-for-7-5b-as-it-prepares-to-sell-trainium-chips/) |
-| Supported hardware | NVIDIA graphics processors, AWS Trainium and Google Tensor Processing Units | [Decart](https://decart.ai/optimization-engine) |
+| Supported hardware | Graphics processors, AWS Trainium and Google Tensor Processing Units | [Decart](https://decart.ai/optimization-engine) |
 | Closing conditions | Customary closing conditions, including regulatory clearance | [Amazon](https://www.aboutamazon.com/news/company-news/amazon-decart-ai-optimization) |
 
 ## Timeline
