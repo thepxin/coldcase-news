@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-25T08:35:47Z",
+   "outlet": "CoinDesk",
+   "title": "Live updates: Bitcoin slips back under $60,000 as HYPE leads altcoins lower",
+   "url": "https://www.coindesk.com/business/2026/11/25/live-updates-bitcoin-slips-back-under-usd60-000-as-hype-leads-altcoins-lower"
+  },
+  {
    "date": "2026-11-25T08:00:00Z",
    "outlet": "Samsung",
    "title": "A Day in the Life of a Dog With Galaxy SmartTag3 and SmartThings",
@@ -13,10 +19,10 @@
    "url": "https://www.coindesk.com/tech/2026/11/25/solana-developers-move-to-stop-validators-finishing-work-on-blocks-that-already-lost"
   },
   {
-   "date": "2026-11-25T06:15:08Z",
-   "outlet": "CoinDesk",
-   "title": "Just 10 accounts drove all of the XRP Ledger's trading growth last quarter",
-   "url": "https://www.coindesk.com/markets/2026/11/25/ten-accounts-drove-all-of-the-xrp-ledger-s-trading-growth-last-quarter"
+   "date": "2026-11-25T06:16:02Z",
+   "outlet": "The Register",
+   "title": "Jury finds Huawei stole US tech, laundered money, and broke sanctions",
+   "url": "https://www.theregister.com/legal/2026/11/25/jury-finds-huawei-stole-us-tech-laundered-money-and-broke-sanctions/5312024"
   },
   {
    "date": "2026-11-25T05:50:05Z",
@@ -41,14 +47,8 @@
    "outlet": "The Register",
    "title": "Nutanix CEO announces gradual departure, intent to complete set of storage links",
    "url": "https://www.theregister.com/virtualization/2026/11/25/nutanix-ceo-announces-gradual-departure-intent-to-complete-set-of-storage-links/5312010"
-  },
-  {
-   "date": "2026-11-25T01:17:30Z",
-   "outlet": "The Register",
-   "title": "Dell and HPE both say they’ve become ‘different companies’",
-   "url": "https://www.theregister.com/systems/2026/11/25/dell-and-hpe-both-say-theyve-become-different-companies/5312003"
   }
  ],
  "status": "ok",
- "updated": "2026-11-25T08:24:34Z"
+ "updated": "2026-11-25T09:17:49Z"
 }
