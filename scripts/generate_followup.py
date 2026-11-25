@@ -1913,6 +1913,12 @@ def _run_ready(path, text, log, cfg, fields_done, used_urls, known):
     fields = meta.model_dump()
     fields["case_status"] = r["type"] or meta.case_status
     fields.pop("area", None)
+    given = dict(r.get("fields") or {})   # the chat desk's own page-data lines win over the cheap model's
+    if "verdict_score" in given:
+        given["verdict_score"] = drafts.VERDICTS.get(given["verdict_score"].strip().lower(), given["verdict_score"])
+    fields.update(given)
+    if given:
+        print("[drafts] page data from the article file: " + ", ".join(sorted(given)))
     article = FollowUpArticle(has_meaningful_update=True, headline=r["headline"], plain_headline="",
                               markdown_body=r["body"], **fields)
     checked, report = fact_check(article, sources, strict=True, keep_text=True)

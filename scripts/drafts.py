@@ -25,7 +25,7 @@ PUBLISHED_DIR = os.path.join(DRAFTS_DIR, "published")
 READY_DIR = os.path.join(DRAFTS_DIR, "ready")   # articles the editor already approved (from the chat desk)
 LOG_PATH = os.path.join("data", "drafts_log.json")
 # Raise this when the site's own checks are fixed: every held draft is then tried once more without being edited.
-RULES = 2
+RULES = 4
 BYLINE = "Rishit K."
 DRAFT_EXT = (".md", ".txt")
 SKIP_NAMES = {"readme.md", "master_prompt.md"}
@@ -33,7 +33,7 @@ MAX_LINKS = 20                # links read per draft (the first 20 in the draft)
 EXTRA_PATH = os.path.join("data", "draft_sources.json")   # extra outlets accepted for drafts only
 MARKET_DATA = "market data (prices only)"
 MIN_WORDS = 60                # shorter drafts are held without spending an AI request
-EXCERPT_CHARS = 7000
+EXCERPT_CHARS = 20000   # about 3,000 words: the whole article text of almost any page
 
 URL_RE = re.compile(r"https?://[^\s<>()\[\]\"']+")
 
@@ -64,8 +64,9 @@ def digest(text: str) -> str:
 
 def is_draft_file(name: str) -> bool:
     low = name.lower()
-    return (low.endswith(DRAFT_EXT) and low not in SKIP_NAMES and not low.endswith(".note.md")
-            and not low.startswith((".", "_")))
+    no_ext = "." not in low   # "AA3" created on GitHub without ".md" still counts
+    return ((low.endswith(DRAFT_EXT) or no_ext) and low not in SKIP_NAMES and not low.endswith(".note.md")
+            and not low.startswith((".", "_")) and low not in ("readme", "license"))
 
 
 def key(path: str) -> str:
@@ -130,6 +131,14 @@ def unmangle(text: str) -> str:
     return re.sub(r"\n[ \t]*\n(?:[ \t]*\n)+", "\n\n", out)   # Docs' extra empty paragraphs
 
 
+# Page-data lines the chat desk writes under the type line. When present they are used exactly as written (and checked
+# like the article); when absent the site writes them. "verdict" is closed only; "due" and "due date" are open only.
+FIELD_KEYS = {"verdict": "verdict_score", "then": "original_claim", "now": "current_reality",
+              "summary": "summary_description", "due": "due_text", "due date": "due_date"}
+FIELD_LINE = re.compile(r"^(verdict|then|now|summary|due date|due_date|due)\s*:\s*(\S.*)$", re.I)
+VERDICTS = {"delivered": "Delivered", "partially delivered": "Partially Delivered", "not delivered": "Not Delivered"}
+
+
 def parse_ready(text: str) -> dict:
     """An approved article from the chat desk: first line "# Headline", then "type: closed|open|report" (optional),
     then the body with inline [Outlet](URL) citations. Code-fence lines (```) and any "## Sources" section are
@@ -140,13 +149,21 @@ def parse_ready(text: str) -> dict:
     while lines and not headline:
         headline = lines.pop(0).strip().lstrip("#").strip()
     headline = re.sub(r"^(title|headline)\s*:\s*", "", headline, flags=re.I)
-    while lines and not lines[0].strip():
-        lines.pop(0)
-    if lines:
-        m = re.match(r"^\s*type\s*:\s*(closed|open|report)\b", lines[0], re.I)
-        if m:
+    fields = {}
+    while lines:   # the type line and the optional page-data lines, in any order, before the article itself
+        line = lines[0].strip()
+        m = re.match(r"^type\s*:\s*(closed|open|report)\b", line, re.I)
+        f = FIELD_LINE.match(line)
+        if not line:
+            lines.pop(0)
+        elif m:
             kind = m.group(1).lower()
             lines.pop(0)
+        elif f:
+            fields[FIELD_KEYS[f.group(1).lower().replace("_", " ")]] = f.group(2).strip()
+            lines.pop(0)
+        else:
+            break
     body = "\n".join(lines).strip()
     body = re.split(r"(?mi)^#{1,3}\s*sources\s*$", body)[0].strip()
     links = []
@@ -154,7 +171,7 @@ def parse_ready(text: str) -> dict:
         u = u.rstrip(".,;:!?*_")
         if u not in links:
             links.append(u)
-    return {"headline": headline, "type": kind, "body": body, "links": links,
+    return {"headline": headline, "type": kind, "fields": fields, "body": body, "links": links,
             "words": len(re.sub(URL_RE, " ", body).split()), "html": bool(HTML_CITE.search(body))}
 
 

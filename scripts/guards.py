@@ -37,15 +37,24 @@ YEAR = re.compile(r"(?<![\d\-/.])((?:19|20)\d{2})(?![\d\-/])")
 NUMBER = re.compile(
     r"(?<![\w.\-/])([$€£₹])?\s?(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s?(%|percent\b|per cent\b|"
     r"thousand\b|million\b|billion\b|trillion\b|mn\b|bn\b|tn\b|[kKmMbB]\b)?", re.I)
+NEGATIVE_PCT = re.compile(r"(?<![\w.])[-−–]\s?(\d+(?:\.\d+)?)\s?(?:%|percent\b|per cent\b)", re.I)
 WORD_NUMBER = re.compile(r"\b(" + "|".join(WORD_NUMBERS) + r")\b(?:\s+(thousand|million|billion|trillion))?", re.I)
 
 
+TRACKING = re.compile(r"([?&])(utm_[a-z_]+|fbclid|gclid|dclid|mc_cid|mc_eid|ref_src|guccounter)=[^&#]*", re.I)
+
+
 def _norm_url(u):
-    return u.strip().rstrip("/.,;:").lower()
+    """Compare addresses without tracking codes, anchors or a trailing slash."""
+    u = u.strip().split("#")[0]
+    u = TRACKING.sub(r"\1", u)
+    u = re.sub(r"[?&]+$", "", re.sub(r"\?&+", "?", re.sub(r"&{2,}", "&", u)))
+    return u.rstrip("/.,;:").lower()
 
 
 def _strip_for_numbers(text):
-    t = MD_LINK.sub("]()", text)
+    t = re.sub(r"\[[^\]]*\]\([^)\s]+\)", " ", text)   # a whole citation link: outlet names like 9to5Mac are not figures
+    t = MD_LINK.sub("]()", t)
     t = BARE_URL.sub(" ", t)
     t = CVE.sub(" ", t)
     t = ISO_DATE.sub(" ", t)
@@ -145,6 +154,12 @@ def check_article(article_texts, sources, must_cite=None):
 
     # 4. numbers
     src_vals = _values(_strip_for_numbers(src_text), include_words=True)
+    # A fall written with a minus sign ("-4.34%" in a price table) is reported in words ("down 4.34 per cent").
+    for num in NEGATIVE_PCT.findall(src_text):
+        try:
+            src_vals.add(("pct", round(float(num.replace(",", "")), 4)))
+        except ValueError:
+            pass
     for kind, v in sorted(_values(_strip_for_numbers(text))):
         if (kind, v) not in src_vals:
             shown = f"{v:g}%" if kind == "pct" else (f"{v:,.0f}" if v == int(v) else f"{v:,}")
