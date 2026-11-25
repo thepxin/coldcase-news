@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-25T08:35:47Z",
-   "outlet": "CoinDesk",
-   "title": "Live updates: Bitcoin slips back under $60,000 as HYPE leads altcoins lower",
-   "url": "https://www.coindesk.com/business/2026/11/25/live-updates-bitcoin-slips-back-under-usd60-000-as-hype-leads-altcoins-lower"
-  },
-  {
-   "date": "2026-11-25T08:00:00Z",
+   "date": "2026-11-25T19:00:00Z",
    "outlet": "Samsung",
-   "title": "A Day in the Life of a Dog With Galaxy SmartTag3 and SmartThings",
-   "url": "https://news.samsung.com/global/a-day-in-the-life-of-a-dog-with-galaxy-smarttag3-and-smartthings"
+   "title": "[Video] [Voices of Galaxy] Meet the Physician From Mexico Whose Galaxy Watch Helped Him Care for His Mother — and Himself",
+   "url": "https://news.samsung.com/global/video-voices-of-galaxy-meet-the-physician-from-mexico-whose-galaxy-watch-helped-him-care-for-his-mother-and-himself"
   },
   {
-   "date": "2026-11-25T06:33:10Z",
+   "date": "2026-11-25T12:15:00Z",
+   "outlet": "9to5Google",
+   "title": "YouTube TV sale drops the price to $49.99/month for a limited time",
+   "url": "https://9to5google.com/2026/11/25/youtube-tv-black-friday-sale/"
+  },
+  {
+   "date": "2026-11-25T12:00:57Z",
+   "outlet": "9to5Mac",
+   "title": "An annoying ‘mistake’ in macOS was actually prep for the latest MacBook Pro",
+   "url": "https://9to5mac.com/2026/11/25/an-annoying-mistake-in-macos-was-actually-prep-for-the-latest-macbook-pro/"
+  },
+  {
+   "date": "2026-11-25T12:00:28Z",
+   "outlet": "Ars Technica",
+   "title": "AI can do the calculations. Theoretical physicists are figuring out what comes next.",
+   "url": "https://arstechnica.com/ai/2026/11/ai-can-do-the-calculations-physicists-are-figuring-out-what-comes-next/"
+  },
+  {
+   "date": "2026-11-25T12:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Google DeepMind AI engineers conjure mathematical proof of Signal's encryption protocol — AlphaProof Code framework powered human-bot cooper",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/google-deepmind-ai-engineers-conjure-mathematical-proof-of-signals-encryption-protocol-alphaproof-code-framework-powered-human-bot-cooperation-for-speedy-work"
+  },
+  {
+   "date": "2026-11-25T12:00:00Z",
+   "outlet": "Wired",
+   "title": "How Jump-Roping Toy Soldiers Accidentally Took Over Your FYP",
+   "url": "https://www.wired.com/story/hot-jump-roping-toy-soldiers-accidentally-made-their-own-psyop/"
+  },
+  {
+   "date": "2026-11-25T11:57:50Z",
    "outlet": "CoinDesk",
-   "title": "Solana developers move to stop validators finishing work on blocks that already lost",
-   "url": "https://www.coindesk.com/tech/2026/11/25/solana-developers-move-to-stop-validators-finishing-work-on-blocks-that-already-lost"
+   "title": "Ether, DeFi fall twice as hard as bitcoin as equities selloff resumes",
+   "url": "https://www.coindesk.com/markets/2026/11/25/ether-defi-fall-twice-as-hard-as-bitcoin-as-equities-selloff-resumes"
   },
   {
-   "date": "2026-11-25T06:16:02Z",
-   "outlet": "The Register",
-   "title": "Jury finds Huawei stole US tech, laundered money, and broke sanctions",
-   "url": "https://www.theregister.com/legal/2026/11/25/jury-finds-huawei-stole-us-tech-laundered-money-and-broke-sanctions/5312024"
-  },
-  {
-   "date": "2026-11-25T05:50:05Z",
-   "outlet": "Amazon",
-   "title": "Amazon Autos is coming to the UK—the first country outside the US",
-   "url": "https://www.aboutamazon.com/news/retail/amazon-autos-uk?utm_source=rss"
-  },
-  {
-   "date": "2026-11-25T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 25 – SPHEREx Seeing Through Dust",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-25-spherex-seeing-through-dust/"
-  },
-  {
-   "date": "2026-11-25T05:00:00Z",
-   "outlet": "NASA",
-   "title": "Georgia’s Pecan Belt",
-   "url": "https://science.nasa.gov/earth/earth-observatory/georgias-pecan-belt/"
-  },
-  {
-   "date": "2026-11-25T03:13:13Z",
-   "outlet": "The Register",
-   "title": "Nutanix CEO announces gradual departure, intent to complete set of storage links",
-   "url": "https://www.theregister.com/virtualization/2026/11/25/nutanix-ceo-announces-gradual-departure-intent-to-complete-set-of-storage-links/5312010"
+   "date": "2026-11-25T11:51:54Z",
+   "outlet": "CoinDesk",
+   "title": "Italy’s UniCredit launches six-year bitcoin certificate with gains capped at 65%",
+   "url": "https://www.coindesk.com/business/2026/11/25/italy-s-unicredit-debuts-six-year-bitcoin-certificate-with-100-capital-protection-and-65-cap"
   }
  ],
  "status": "ok",
- "updated": "2026-11-25T09:17:49Z"
+ "updated": "2026-11-25T12:17:44Z"
 }
