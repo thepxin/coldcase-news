@@ -1,22 +1,25 @@
 {
- "ready/AA.md": {
-  "checked": "2026-11-25T02:42:01Z",
+ "published/2026-11-25-Amazon.md": {
+  "article": "content/posts/2026-11-25-amazon-agrees-to-buy-decart-optimization-technology.md",
   "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "f5564e03f0a0b284",
+  "hash": "9d2178f95f2bf5e1",
+  "published": "2026-11-25T08:49:38Z",
+  "status": "published"
+ },
+ "ready/AA.md": {
+  "checked": "2026-11-25T08:44:32Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "cea3e066129e11e6",
   "reasons": [
-   "Every link in an approved article must be a readable, accepted source. Replace or remove these links and the sentences that rely on them:"
+   "The automatic checks stopped it (a number, date, name or link that your sources do not contain). Check these against your sources, or add the source that states them:",
+   "figure not found in any source: 4.34%",
+   "figure not found in any source: 14.01%"
   ],
+  "rules": 2,
   "status": "held"
  },
- "ready/Amazon.md": {
-  "checked": "2026-11-25T02:45:06Z",
-  "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "b665f9bccdbe428f",
-  "reasons": [
-   "The claim-by-claim check found lines your sources do not support (fix them, add a source, or delete them):",
-   "\"Key Facts table lists NVIDIA graphics processors, AWS Trainium and Google Tensor Processing Units as supported hardware, cited to Decart; the Decart page names GPUs, TPUs and Trainium but does not mention NVIDIA\""
-  ],
-  "status": "held"
+ "ready/AA2.md": {
+  "first_seen": "2026-11-25T08:41:49Z"
  },
  "ready/Anthropic.md": {
   "checked": "2026-11-25T02:45:07Z",
@@ -50,5 +53,8 @@
  },
  "ready/SatyaNadella.md": {
   "first_seen": "2026-11-25T02:42:00Z"
+ },
+ "ready/microsoft_update.md": {
+  "first_seen": "2026-11-25T08:41:49Z"
  }
 }

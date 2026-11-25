@@ -100,7 +100,6 @@
   "2026-11-08-nasa-moon-base-student-challenge-1-million",
   "2026-11-11-gemini-robotics-2-5-mercedes-benz-pilot",
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
-  "2026-11-20-nvidia-rtx-spark-compact-desktops-available",
   "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
@@ -207,6 +206,11 @@
    "stamp": "d39a426cbfd9fe2f",
    "why": "nothing new",
    "day": "2026-11-24"
+  },
+  "2026-11-20-nvidia-rtx-spark-compact-desktops-available": {
+   "stamp": "5fc5309116b95255",
+   "why": "nothing new",
+   "day": "2026-11-25"
   }
  }
 }
