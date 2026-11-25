@@ -1,20 +1,54 @@
 {
- "Anthropic IPO.md": {
-  "checked": "2026-11-24T13:23:32Z",
-  "first_seen": "2026-11-24T13:21:08Z",
-  "hash": "979e1add9e7e2ecf",
+ "ready/AA.md": {
+  "checked": "2026-11-25T02:42:01Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "f5564e03f0a0b284",
   "reasons": [
-   "Only one newsroom (The Guardian) could be read; the rule is one official source or two different outlets. Add a link to the company's own announcement or to a second approved outlet (the list is in data/sources.json)."
+   "Every link in an approved article must be a readable, accepted source. Replace or remove these links and the sentences that rely on them:"
   ],
   "status": "held"
  },
- "Nvidia-Ceo.md": {
-  "checked": "2026-11-24T13:23:32Z",
-  "first_seen": "2026-11-24T10:06:28Z",
-  "hash": "37b87b0100f7e4ee",
+ "ready/Amazon.md": {
+  "checked": "2026-11-25T02:45:06Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "b665f9bccdbe428f",
   "reasons": [
-   "The AI did not return a usable rewrite. Save the draft again (any small edit) to have it tried once more."
+   "The claim-by-claim check found lines your sources do not support (fix them, add a source, or delete them):",
+   "\"Key Facts table lists NVIDIA graphics processors, AWS Trainium and Google Tensor Processing Units as supported hardware, cited to Decart; the Decart page names GPUs, TPUs and Trainium but does not mention NVIDIA\""
   ],
   "status": "held"
+ },
+ "ready/Anthropic.md": {
+  "checked": "2026-11-25T02:45:07Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "6bf6f99dbb620b01",
+  "reasons": [
+   "Only one newsroom (TechCrunch) could be read; the rule is one official source or two different outlets."
+  ],
+  "status": "held"
+ },
+ "ready/Anthropic_Review.md": {
+  "checked": "2026-11-25T02:45:07Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "e2db6bfd302d31cb",
+  "reasons": [
+   "Only one newsroom (TechCrunch) could be read; the rule is one official source or two different outlets."
+  ],
+  "status": "held"
+ },
+ "ready/Meta_muse.md": {
+  "checked": "2026-11-25T02:46:12Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "1c0196c8efaf5a76",
+  "reasons": [
+   "The automatic checks stopped it (a number, date, name or link that your sources do not contain). Check these against your sources, or add the source that states them:",
+   "date not found in sources: 2026-11-23",
+   "date not found in sources: 2026-10-27",
+   "date not found in sources: 2026-11-17"
+  ],
+  "status": "held"
+ },
+ "ready/SatyaNadella.md": {
+  "first_seen": "2026-11-25T02:42:00Z"
  }
 }
