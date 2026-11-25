@@ -11,6 +11,7 @@ An article is rejected (not fixed) if ANY of these fail:
 These rules are deliberately strict: when in doubt, the article is not published.
 """
 import re
+from datetime import date, timedelta
 
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"], 1)}
@@ -122,6 +123,13 @@ def check_article(article_texts, sources, must_cite=None):
             y, mo, d = map(int, m.group(0).split("-"))
             s_full.add((y, mo, d))
             s_years.add(y)
+            # A page's publish time is stored in UTC: a US evening post (shown as November 23) is stored as
+            # November 24. The day before a source's own publish date therefore counts as that source's date too.
+            try:
+                prev = date(y, mo, d) - timedelta(days=1)
+                s_full.add((prev.year, prev.month, prev.day))
+            except ValueError:
+                pass
     s_years |= {y for y, _, _ in s_full}
     a_full, a_partial, a_years = _dates(MD_LINK.sub("]()", text))
     for (y, mo, d) in a_full:

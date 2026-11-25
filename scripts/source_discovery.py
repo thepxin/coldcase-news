@@ -104,7 +104,10 @@ apps app phone phones feature features model models chip chips plan plans deal d
 SECOND_LEVEL_SUFFIXES = {"co.uk", "co.jp", "com.au", "co.in", "com.br", "co.kr", "com.cn", "co.nz", "com.sg", "com.hk", "co.za", "com.tw", "gov.uk", "org.uk", "ac.uk"}
 CLAIM_PATTERN = re.compile(r"\b(claims?|claimed|allegedly|alleged|leak site|threatens to leak|says it (hacked|breached))\b", re.I)
 CVE_PATTERN = re.compile(r"\bCVE-\d{4}-\d{4,7}\b", re.I)
-DEAL_TITLE = re.compile(r"(\bsave (up to )?\$|\bdeals?\b|\d+% off|lowest price|all-time low|discount|coupon|best .* to buy|gift guide)", re.I)
+# Shopping, deal and opinion pieces: no promise to track, and their pages link to many unrelated stories.
+DEAL_TITLE = re.compile(r"(\bsave (up to )?\$|\bdeals?\b|\d+% off|\$[\d,.]+ off\b|lowest(-ever)? price|all-time low|discount|"
+                        r"coupon|best .* to buy|gift guide|\bPSA\b|back in stock|is a steal|\bon sale\b|price drop|"
+                        r"black friday|cyber monday|still a good buy|worth (it|buying)|\bmy favou?rite\b|\bdaily:)", re.I)
 JUNK_PATH = re.compile(r"^/?$|/(docs?|guides?|help|support|pricing|plans|careers|jobs|legal|privacy|terms|cookies?|login|signin|signup|register|download|contact|about/?$|products?/?$|store|shop|cart|account)(/|$)", re.I)
 INCIDENT_WORDS = re.compile(r"(security|incident|breach|outage|advisory|bulletin|status|statement|update|notice|post-?mortem|postmortem|disclosure|announce|press|news|blog|investor|filing|release|launch|recall|vulnerab|cve)", re.I)
 EXTORTION_PAGE = re.compile(r"(\.onion\b|will be (published|leaked|released)|pay (the )?ransom|before the deadline|data leak site|tox id|our (blog|site) will publish)", re.I)
@@ -201,16 +204,44 @@ def fetch_html(url):
     return trafilatura.fetch_url(url, config=_TRAF_CONFIG) if _TRAF_CONFIG else trafilatura.fetch_url(url)
 
 
-def extract(html, url):
-    """Readable text + publication date + title, using trafilatura's JSON output."""
-    if trafilatura is None or not html:
-        return None
+SEC_BLOCK_PAGE = re.compile(r"undeclared automated tool|request rate threshold|access denied", re.I)
+
+
+def plain_text(html):
+    """All visible text of a page, scripts and styles removed (for bare filing pages)."""
     try:
-        raw = trafilatura.extract(html, url=url, output_format="json", with_metadata=True,
-                                  include_comments=False, include_tables=True)
-        return json.loads(raw) if raw else None
+        from lxml import html as lxml_html
+        doc = lxml_html.fromstring(html)
+        for bad in doc.xpath("//script|//style|//noscript"):
+            bad.drop_tree()
+        return re.sub(r"\s+", " ", doc.text_content()).strip()
     except Exception:
+        return ""
+
+
+def extract(html, url):
+    """Readable text + publication date + title, using trafilatura's JSON output. SEC filing pages (EDGAR) are bare
+    documents that trafilatura often reads as almost empty; for those, all of the page's visible text is used."""
+    if not html:
         return None
+    data = None
+    if trafilatura is not None:
+        try:
+            raw = trafilatura.extract(html, url=url, output_format="json", with_metadata=True,
+                                      include_comments=False, include_tables=True)
+            data = json.loads(raw) if raw else None
+        except Exception:
+            data = None
+    host = host_of(url)
+    if (host == "sec.gov" or host.endswith(".sec.gov")) and len((data or {}).get("text") or "") < 300:
+        text = plain_text(html)
+        if len(text) >= 300 and not SEC_BLOCK_PAGE.search(text):
+            data = dict(data or {})
+            data["text"] = text
+            if not data.get("title"):
+                m = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+                data["title"] = re.sub(r"\s+", " ", m.group(1)).strip() if m else ""
+    return data
 
 
 # shop/affiliate and tracking tags that outlets add to links (e.g. amazon.com/...?tag=engadget-20)

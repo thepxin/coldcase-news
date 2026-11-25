@@ -24,6 +24,8 @@ DRAFTS_DIR = "drafts"
 PUBLISHED_DIR = os.path.join(DRAFTS_DIR, "published")
 READY_DIR = os.path.join(DRAFTS_DIR, "ready")   # articles the editor already approved (from the chat desk)
 LOG_PATH = os.path.join("data", "drafts_log.json")
+# Raise this when the site's own checks are fixed: every held draft is then tried once more without being edited.
+RULES = 2
 BYLINE = "Rishit K."
 DRAFT_EXT = (".md", ".txt")
 SKIP_NAMES = {"readme.md", "master_prompt.md"}
@@ -100,19 +102,39 @@ def pending(log: dict, folder=DRAFTS_DIR, now=None) -> list[str]:
             continue
         entry = log.setdefault(key(path), {})
         entry.setdefault("first_seen", now.strftime("%Y-%m-%dT%H:%M:%SZ"))
-        if entry.get("status") == "held" and entry.get("hash") == digest(text):
-            continue
+        if entry.get("status") == "held" and entry.get("hash") == digest(text) and entry.get("rules") == RULES:
+            continue   # held and unchanged; a fix to the site's checks (a new RULES) gives it one more try
         out.append(path)
     return sorted(out, key=lambda p: (log[key(p)]["first_seen"], os.path.basename(p)))
 
 
 HTML_CITE = re.compile(r"<\s*(sup|a|span)\b", re.I)
 
+DOCS_ESCAPE = re.compile(r"\\([\\`*_{}\[\]()#+\-.!|>~<])")
+
+
+def unmangle(text: str) -> str:
+    """Undo what Google Docs' "Download as Markdown" (and similar editors) do to a pasted article: every line made a
+    "# " heading, and Markdown signs escaped with a backslash (\\[Meta](...), \\*\\*bold\\*\\*, \\- list). The words
+    themselves are not changed."""
+    lines = text.splitlines()
+    filled = [l for l in lines if l.strip()]
+    headed = bool(filled) and sum(1 for l in filled if re.match(r"^#\s", l) or l.strip() == "#") >= 0.6 * len(filled)
+    if headed:
+        lines = [re.sub(r"^#(\s|$)", "", l, count=1) for l in lines]
+    out = "\n".join(lines)
+    if not (headed or DOCS_ESCAPE.search(out)):
+        return text
+    out = DOCS_ESCAPE.sub(r"\1", out)
+    out = re.sub(r"(?m)^([ \t]*\|.*\|)[ \t]*\n(?:[ \t]*\n)+(?=[ \t]*\|)", r"\1\n", out)   # table rows back together
+    return re.sub(r"\n[ \t]*\n(?:[ \t]*\n)+", "\n\n", out)   # Docs' extra empty paragraphs
+
 
 def parse_ready(text: str) -> dict:
     """An approved article from the chat desk: first line "# Headline", then "type: closed|open|report" (optional),
     then the body with inline [Outlet](URL) citations. Code-fence lines (```) and any "## Sources" section are
-    ignored, so the chat's code block can be pasted as it is."""
+    ignored, so the chat's code block can be pasted as it is. Text that went through Google Docs is repaired."""
+    text = unmangle(text)
     lines = [l for l in text.strip().splitlines() if not l.strip().startswith("```")]
     headline, kind = "", ""
     while lines and not headline:
@@ -138,7 +160,8 @@ def parse_ready(text: str) -> dict:
 
 def parse(text: str) -> dict:
     """Title = the first non-empty line (a leading # is fine). Body = the rest. Links = every http(s) address
-    in the draft, in order, without duplicates."""
+    in the draft, in order, without duplicates. Text that went through Google Docs is repaired."""
+    text = unmangle(text)
     lines = text.strip().splitlines()
     title = ""
     while lines and not title:
@@ -274,7 +297,7 @@ def hold(path: str, log: dict, text: str, reasons: list[str], notes=(), now=None
     now = now or _now()
     name = os.path.basename(path)
     entry = log.setdefault(key(path), {})
-    entry.update({"status": "held", "hash": digest(text), "checked": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    entry.update({"status": "held", "hash": digest(text), "rules": RULES, "checked": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
                   "reasons": list(reasons)[:12]})
     lines = [f"# Not published yet: {name}", "",
              f"Checked {now.strftime('%d %b %Y, %H:%M')} UTC. Nothing was published.", "",
