@@ -1,54 +1,54 @@
 {
  "items": [
   {
+   "date": "2026-11-25T08:00:00Z",
+   "outlet": "Samsung",
+   "title": "A Day in the Life of a Dog With Galaxy SmartTag3 and SmartThings",
+   "url": "https://news.samsung.com/global/a-day-in-the-life-of-a-dog-with-galaxy-smarttag3-and-smartthings"
+  },
+  {
+   "date": "2026-11-25T00:12:02Z",
+   "outlet": "TechCrunch",
+   "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion",
+   "url": "https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/"
+  },
+  {
+   "date": "2026-11-25T00:10:27Z",
+   "outlet": "TechCrunch",
+   "title": "Trump reportedly says pardoning Jensen Huang is ‘an option’",
+   "url": "https://techcrunch.com/2026/11/24/trump-reportedly-says-pardoning-jensen-huang-is-an-option-but-that-he-doesnt-think-it-will-be-necessary/"
+  },
+  {
+   "date": "2026-11-25T00:00:00Z",
+   "outlet": "Engadget",
+   "title": "You don't have to look at your Apple Watch to get the time",
+   "url": "https://www.engadget.com/2321251/apple-watch-tell-time-without-looking-haptic-feedback/"
+  },
+  {
+   "date": "2026-11-24T23:58:47Z",
+   "outlet": "9to5Mac",
+   "title": "9to5Mac Daily: November 24, 2026 – Apple Product(RED) gear is coming soon",
+   "url": "https://9to5mac.com/2026/11/24/daily-november-24-2026/"
+  },
+  {
+   "date": "2026-11-24T23:56:12Z",
+   "outlet": "9to5Mac",
+   "title": "Apple Mail added four convenient new features in iOS 27",
+   "url": "https://9to5mac.com/2026/11/24/heres-everything-new-for-apple-mail-in-ios-27/"
+  },
+  {
+   "date": "2026-11-24T23:54:33Z",
+   "outlet": "9to5Google",
+   "title": "Motorola Signature 27 delivery dates slip ahead of launch as it expands to more regions",
+   "url": "https://9to5google.com/2026/11/24/motorola-signature-27-delivery-dates-slip-ahead-of-launch-as-it-expands-to-more-regions/"
+  },
+  {
    "date": "2026-11-24T23:39:04Z",
    "outlet": "Wired",
    "title": "Jensen Huang’s Return Shows Nvidia Is Too Big to Police",
    "url": "https://www.wired.com/story/jensen-huang-nvidia-us-national-security-risks/"
-  },
-  {
-   "date": "2026-11-24T23:30:00Z",
-   "outlet": "Engadget",
-   "title": "The battery in your Fitbit Edge is replaceable, but it's not as easy as you'd think",
-   "url": "https://www.engadget.com/2321249/fitbit-edge-replaceable-battery-not-easy/"
-  },
-  {
-   "date": "2026-11-24T23:25:46Z",
-   "outlet": "The Verge",
-   "title": "Why the US Army is about to blow up nearly 10,000 pounds of unstable explosives in Iowa",
-   "url": "https://www.theverge.com/science/1041819/us-army-detonation-lead-explosives-iowa"
-  },
-  {
-   "date": "2026-11-24T23:21:40Z",
-   "outlet": "Engadget",
-   "title": "Australia to pass safety bill that could result in massive fines for tech platforms",
-   "url": "https://www.engadget.com/2327499/australia-to-pass-safety-bill-that-could-result-in-massive-fines-for-tech-platforms/"
-  },
-  {
-   "date": "2026-11-24T22:50:11Z",
-   "outlet": "Ars Technica",
-   "title": "Half of NASA's aging Mars fleet knocked offline by technical issues",
-   "url": "https://arstechnica.com/space/2026/11/half-of-nasas-aging-mars-fleet-knocked-offline-by-technical-issues/"
-  },
-  {
-   "date": "2026-11-24T22:36:28Z",
-   "outlet": "Ars Technica",
-   "title": "Microsoft's historic cloud outage exposed an engineering “fog of war”",
-   "url": "https://arstechnica.com/gadgets/2026/11/microsofts-historic-cloud-outage-exposed-an-engineering-fog-of-war/"
-  },
-  {
-   "date": "2026-11-24T22:30:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "US DOJ touts \"largest-ever\" crackdown on scammers across the globe as it seizes 14,000 devices and $17 billion in illicit funds",
-   "url": "https://www.tomshardware.com/tech-industry/cyber-security/us-doj-touts-largest-ever-crackdown-on-scammers-across-the-globe-as-it-seizes-14-000-devices-and-usd17-billion-in-illicit-funds-operation-results-in-800-defendants-and-frees-2-200-forced-laborers"
-  },
-  {
-   "date": "2026-11-24T22:27:52Z",
-   "outlet": "TechCrunch",
-   "title": "Jensen Huang still thinks a succession plan creates unnecessary hierarchy",
-   "url": "https://techcrunch.com/2026/11/24/jensen-huang-still-thinks-a-succession-plan-creates-unnecessary-hierarchy/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-24T23:52:50Z"
+ "updated": "2026-11-25T00:17:45Z"
 }

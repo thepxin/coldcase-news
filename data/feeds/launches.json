@@ -2,9 +2,9 @@
  "items": [
   {
    "mission": "Shenzhou 24",
-   "net": "2026-11-25T00:18:00Z",
+   "net": "2026-11-25T00:18:49Z",
    "pad": "Jiuquan Satellite Launch Center, China",
-   "precision": "Minute",
+   "precision": "Second",
    "provider": "CASC (China)",
    "rocket": "Long March 2F/G",
    "status": "Go"
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-24T18:17:54Z"
+ "updated": "2026-11-25T00:17:46Z"
 }
