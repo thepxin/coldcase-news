@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "Shenzhou 24",
-   "net": "2026-11-25T00:18:49Z",
-   "pad": "Jiuquan Satellite Launch Center, China",
-   "precision": "Second",
-   "provider": "CASC (China)",
-   "rocket": "Long March 2F/G",
-   "status": "Go"
-  },
-  {
    "mission": "Unknown Payload",
    "net": "2026-11-26T09:35:00Z",
    "pad": "Xichang Satellite Launch Center, China",
@@ -53,10 +44,19 @@
    "provider": "SpaceX",
    "rocket": "Falcon 9",
    "status": "Go"
+  },
+  {
+   "mission": "Cygnus CRS-2 NG-25",
+   "net": "2026-11-29T15:47:00Z",
+   "pad": "Cape Canaveral SFS, FL, USA",
+   "precision": "Minute",
+   "provider": "SpaceX",
+   "rocket": "Falcon 9",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-25T00:17:46Z"
+ "updated": "2026-11-25T03:17:44Z"
 }

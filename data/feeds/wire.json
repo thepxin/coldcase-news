@@ -7,9 +7,39 @@
    "url": "https://news.samsung.com/global/a-day-in-the-life-of-a-dog-with-galaxy-smarttag3-and-smartthings"
   },
   {
+   "date": "2026-11-25T01:17:30Z",
+   "outlet": "The Register",
+   "title": "Dell and HPE both say they’ve become ‘different companies’",
+   "url": "https://www.theregister.com/systems/2026/11/25/dell-and-hpe-both-say-theyve-become-different-companies/5312003"
+  },
+  {
+   "date": "2026-11-25T01:08:37Z",
+   "outlet": "9to5Mac",
+   "title": "PrismML’s Bonsai 2.5 brings better coding and tool use to on-device AI",
+   "url": "https://9to5mac.com/2026/11/24/prismmls-bonsai-2-5-brings-better-coding-and-tool-use-to-on-device-ai/"
+  },
+  {
+   "date": "2026-11-25T01:00:00Z",
+   "outlet": "Engadget",
+   "title": "Change this Roku TV setting to watch movies how they were filmed",
+   "url": "https://www.engadget.com/2321254/change-roku-tv-setting-watch-movies-how-filmed/"
+  },
+  {
+   "date": "2026-11-25T01:00:00Z",
+   "outlet": "The Verge",
+   "title": "US financial crimes bureau discloses ‘cybersecurity incident’",
+   "url": "https://www.theverge.com/policy/1041957/fincen-treasury-cybersecurity-incident"
+  },
+  {
+   "date": "2026-11-25T00:30:00Z",
+   "outlet": "Engadget",
+   "title": "This helpful Apple Watch feature works seamlessly with Apple CarPlay",
+   "url": "https://www.engadget.com/2321253/haptic-navigation-helpful-apple-watch-feature-works-seamlessly-carplay/"
+  },
+  {
    "date": "2026-11-25T00:12:02Z",
    "outlet": "TechCrunch",
-   "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to U.S. industrial might — not a champion",
+   "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to US industrial might — not a champion",
    "url": "https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/"
   },
   {
@@ -17,38 +47,8 @@
    "outlet": "TechCrunch",
    "title": "Trump reportedly says pardoning Jensen Huang is ‘an option’",
    "url": "https://techcrunch.com/2026/11/24/trump-reportedly-says-pardoning-jensen-huang-is-an-option-but-that-he-doesnt-think-it-will-be-necessary/"
-  },
-  {
-   "date": "2026-11-25T00:00:00Z",
-   "outlet": "Engadget",
-   "title": "You don't have to look at your Apple Watch to get the time",
-   "url": "https://www.engadget.com/2321251/apple-watch-tell-time-without-looking-haptic-feedback/"
-  },
-  {
-   "date": "2026-11-24T23:58:47Z",
-   "outlet": "9to5Mac",
-   "title": "9to5Mac Daily: November 24, 2026 – Apple Product(RED) gear is coming soon",
-   "url": "https://9to5mac.com/2026/11/24/daily-november-24-2026/"
-  },
-  {
-   "date": "2026-11-24T23:56:12Z",
-   "outlet": "9to5Mac",
-   "title": "Apple Mail added four convenient new features in iOS 27",
-   "url": "https://9to5mac.com/2026/11/24/heres-everything-new-for-apple-mail-in-ios-27/"
-  },
-  {
-   "date": "2026-11-24T23:54:33Z",
-   "outlet": "9to5Google",
-   "title": "Motorola Signature 27 delivery dates slip ahead of launch as it expands to more regions",
-   "url": "https://9to5google.com/2026/11/24/motorola-signature-27-delivery-dates-slip-ahead-of-launch-as-it-expands-to-more-regions/"
-  },
-  {
-   "date": "2026-11-24T23:39:04Z",
-   "outlet": "Wired",
-   "title": "Jensen Huang’s Return Shows Nvidia Is Too Big to Police",
-   "url": "https://www.wired.com/story/jensen-huang-nvidia-us-national-security-risks/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-25T00:17:45Z"
+ "updated": "2026-11-25T03:17:44Z"
 }
