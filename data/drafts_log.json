@@ -1,4 +1,11 @@
 {
+ "published/2026-11-25-AA.md": {
+  "article": "content/posts/2026-11-25-nvidia-reinstates-jensen-huang-chief-executive.md",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "cea3e066129e11e6",
+  "published": "2026-11-25T11:48:00Z",
+  "status": "published"
+ },
  "published/2026-11-25-Amazon.md": {
   "article": "content/posts/2026-11-25-amazon-agrees-to-buy-decart-optimization-technology.md",
   "first_seen": "2026-11-25T02:42:00Z",
@@ -6,20 +13,11 @@
   "published": "2026-11-25T08:49:38Z",
   "status": "published"
  },
- "ready/AA.md": {
-  "checked": "2026-11-25T08:44:32Z",
-  "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "cea3e066129e11e6",
-  "reasons": [
-   "The automatic checks stopped it (a number, date, name or link that your sources do not contain). Check these against your sources, or add the source that states them:",
-   "figure not found in any source: 4.34%",
-   "figure not found in any source: 14.01%"
-  ],
-  "rules": 2,
-  "status": "held"
- },
  "ready/AA2.md": {
   "first_seen": "2026-11-25T08:41:49Z"
+ },
+ "ready/AA3": {
+  "first_seen": "2026-11-25T11:44:14Z"
  },
  "ready/Anthropic.md": {
   "checked": "2026-11-25T02:45:07Z",
