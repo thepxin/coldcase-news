@@ -9,6 +9,22 @@ They are published **word for word**, before any plain draft, one per publishing
    Copy it with the code block's copy button and paste it **straight here**. Going through Google Docs or Word turns
    every line into a heading and adds backslashes; the site repairs that, but a straight paste is safest.
 
+**The shape of the file** (the chat writes all of it; paste it as it is):
+
+```
+# Headline
+type: closed
+verdict: Not Delivered
+then: The earlier promise, who made it and when ([Outlet](URL)).
+now: What happened ([Outlet](URL)).
+summary: One factual sentence for search results and social posts.
+
+The article body...
+```
+
+The `verdict`, `then`, `now` and `summary` lines are optional (older files without them still work; the site then
+writes them itself), but with them nothing on the page comes from anyone except you and the chat.
+
 **Sourcing rule:** at least one official source (the company's own page, an SEC filing, a regulator) or articles
 from two different newsrooms. Two TechCrunch articles count as one newsroom.
 
