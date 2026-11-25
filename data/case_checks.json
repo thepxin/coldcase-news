@@ -9,7 +9,7 @@
  },
  "2026-10-29-apple-ipad-mini-oled-november-6": {
   "checked": "2026-11-25",
-  "result": "new coverage found; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed on the update: date not found in sources: month 11, day 6; source never cited in the article: 9to5Goo)"
  },
  "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
   "checked": "2026-11-25",
@@ -45,7 +45,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-25",
-  "result": "new coverage found; first in line for the next run"
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-25",
@@ -57,11 +57,11 @@
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-25",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-25",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription": {
   "checked": "2026-11-25",
@@ -102,17 +102,14 @@
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
-  "2026-10-29-apple-ipad-mini-oled-november-6",
-  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16",
-  "2026-11-14-apple-arcade-four-new-games-december-3",
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
   "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim"
  ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
-   "stamp": "0bf47f2c1714755a",
+   "stamp": "128975588e009be6",
    "why": "nothing new",
-   "day": "2026-11-19"
+   "day": "2026-11-25"
   },
   "2026-10-31-world-of-warcraft-forever-geforce-now-nov-4": {
    "stamp": "bac9e080d06b0798",
@@ -135,9 +132,10 @@
    "day": "2026-11-18"
   },
   "2026-10-29-apple-ipad-mini-oled-november-6": {
-   "stamp": "93ece9d46e9bab92",
-   "why": "nothing new",
-   "day": "2026-11-24"
+   "stamp": "ca7a35bd2e8cc5ea",
+   "why": "failed checks",
+   "tries": 1,
+   "day": "2026-11-25"
   },
   "2026-10-30-apple-14-inch-macbook-pro-m6-november-6": {
    "stamp": "b4c15f85947bba1f",
@@ -186,9 +184,9 @@
    "day": "2026-11-21"
   },
   "2026-11-14-apple-arcade-four-new-games-december-3": {
-   "stamp": "a2cdd12cbc31c1df",
+   "stamp": "5db94c0daa376956",
    "why": "nothing new",
-   "day": "2026-11-24"
+   "day": "2026-11-25"
   },
   "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim": {
    "stamp": "93eb8cca4807baf2",
