@@ -1,16 +1,10 @@
 {
- "date": "2026-11-25",
+ "date": "2026-11-26",
  "jobs": {
-  "updates": "done",
-  "tech": "published"
+  "updates": "done"
  },
- "ai_day": "2026-11-25",
- "ai_calls": 23,
+ "ai_day": "2026-11-26",
+ "ai_calls": 5,
  "gemini_day": "2026-11-25",
- "gemini_calls": 0,
- "tech_published": 3,
- "tech_fields": [
-  "ai",
-  "chips and silicon"
- ]
+ "gemini_calls": 0
 }
