@@ -613,5 +613,10 @@
   "attempts": 1,
   "devto": "https://dev.to/coldcasetech/nvidia-reinstates-jensen-huang-as-chief-executive-officer-after-saying-it-would-not-3c86",
   "done": true
+ },
+ "content/posts/2026-11-26-anthropic-launches-claude-ship-github-code-reviews.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/anthropic-launches-claude-ship-to-review-fix-and-approve-code-changes-on-github-4lf6",
+  "done": true
  }
 }
