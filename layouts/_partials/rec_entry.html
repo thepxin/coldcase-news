@@ -20,11 +20,11 @@
   {{- if and $lead $p.Params.then $p.Params.now }}
   {{- $l := partial "tv_labels.html" $p }}
   <dl class="rec-ledger">
-    <div><dt>{{ index $l 0 }}</dt><dd>{{ $p.Params.then }}</dd></div>
+    <div><dt>{{ index $l 0 }}</dt><dd>{{ $p.Params.then | markdownify | plainify }}</dd></div>
     {{- if $s.open }}
     <div><dt>Outcome</dt><dd>{{ if $s.pastdue }}Was due {{ $p.Params.due }}. No verdict until a source confirms what happened.{{ else }}Due {{ $p.Params.due }}. We check every day and will close the case.{{ end }}</dd></div>
     {{- else }}
-    <div><dt>{{ index $l 1 }}</dt><dd>{{ $p.Params.now }}</dd></div>
+    <div><dt>{{ index $l 1 }}</dt><dd>{{ $p.Params.now | markdownify | plainify }}</dd></div>
     {{- end }}
   </dl>
   {{- end }}
