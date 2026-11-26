@@ -202,6 +202,16 @@ def load_extra(path=EXTRA_PATH) -> list[dict]:
         return []
 
 
+def load_editor_list(path=EXTRA_PATH) -> set:
+    """The outlets from data/sources.json the editor's articles may use (proven readable by the chat desk and the
+    robot). Empty means no restriction."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            return set(json.load(f).get("editor_list") or [])
+    except (OSError, ValueError, AttributeError):
+        return set()
+
+
 def extra_outlet(url: str, extra: list[dict], host_of):
     host = host_of(url)
     for o in extra:
@@ -241,7 +251,7 @@ def own_site(url: str, headline: str, host_of) -> str:
 
 
 def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, parse_date, iso, strip_tracking, extra=None,
-           headline: str = ""):
+           headline: str = "", editor=None):
     """Open each link. Returns (sources, notes). Outlets on the approved list (data/sources.json) keep their tier;
     the extra draft-only outlets (data/draft_sources.json) count as Tier B newsrooms, as market data that may be
     cited for share prices only, or (kind "company") as a company's own website. A company's own website also counts
@@ -249,9 +259,12 @@ def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, pars
     The helpers are passed in from source_discovery so tests can replace the network."""
     sources, notes = [], []
     extra = load_extra() if extra is None else extra
+    editor = load_editor_list() if editor is None else editor
     for raw in links[:MAX_LINKS]:
         url = strip_tracking(raw)
         o = outlet_for(url, cfg)
+        if o and editor and o["name"] not in editor:
+            o = None   # approved for the AI desk, but not on the editor's list (the chat desk or the robot cannot read it)
         kind = None
         if o:
             kind = "official" if o["tier"] == "A" else "newsroom"
@@ -267,9 +280,9 @@ def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, pars
                 if own:
                     o, kind = {"name": own, "tier": "A"}, "official"
         if not o:
-            notes.append(f"Not used: {url} ({host_of(url)} is not on the approved or newsroom lists, and it is not "
-                         "the own website of a company named in the headline. To accept it, add it to "
-                         "data/draft_sources.json; a company's own site uses \"kind\": \"company\").")
+            notes.append(f"Not used: {url} ({host_of(url)} is not on the editor's list of sources, and it is not the "
+                         "own website of a company named in the headline. The list is on the About page and in "
+                         "data/draft_sources.json).")
             continue
         try:
             html = fetch_html(url)
