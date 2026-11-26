@@ -14,6 +14,7 @@ Settings (GitHub > Settings > Secrets and variables > Actions):
   variable VERDICT_EMAIL_MODE   send (default: Kit sends it ~15 minutes later) or draft (it waits in Kit for you)
 Usage: python scripts/verdict_alerts.py [--dry-run]
 """
+import re
 import html
 import json
 import os
@@ -32,6 +33,14 @@ UTM = "?utm_source=verdict-alert&utm_medium=email"
 TAG_PREFIX = "Verdict: "
 GIVE_UP_DAYS = 7   # a case nobody confirmed for within a week of closing is marked done (0 emails)
 
+
+
+MD_LINK_TEXT = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
+
+
+def plain(text) -> str:
+    """'... ([Engadget](https://...))' becomes '... (Engadget)': emails show the source name, not link code."""
+    return MD_LINK_TEXT.sub(r"\1", text or "")
 
 def esc(t):
     return html.escape(str(t or ""), quote=True)
@@ -106,9 +115,9 @@ def email_for(case):
         f"<p><b>Verdict: {esc(verdict)}</b></p>",
     ]
     if case.get("then"):
-        parts.append(f"<p><b>Promised:</b> {esc(case['then'])}</p>")
+        parts.append(f"<p><b>Promised:</b> {esc(plain(case['then']))}</p>")
     if case.get("now"):
-        parts.append(f"<p><b>What happened:</b> {esc(case['now'])}</p>")
+        parts.append(f"<p><b>What happened:</b> {esc(plain(case['now']))}</p>")
     parts.append(f'<p><a href="{esc(url + UTM)}">Read the verdict and every source</a></p>')
     parts.append("<p>This is the only email about this case. ColdCase Weekly continues as usual. "
                  "Spotted an error? Reply to this email.</p>")

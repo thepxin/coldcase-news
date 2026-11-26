@@ -15,6 +15,7 @@ Usage (from .github/workflows/weekly_email.yml):
   python scripts/weekly_email.py send      -> schedules it in Kit to go out 15 minutes later
 Needs the GitHub secret KIT_API_KEY (a Kit V4 API key) for draft and send.
 """
+import re
 import html
 import json
 import os
@@ -92,6 +93,14 @@ def nice(v):
     return d.strftime("%b %-d") if d else str(v or "")
 
 
+
+MD_LINK_TEXT = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
+
+
+def plain(text) -> str:
+    """'... ([Engadget](https://...))' becomes '... (Engadget)': emails show the source name, not link code."""
+    return MD_LINK_TEXT.sub(r"\1", text or "")
+
 def esc(t):
     return html.escape(str(t or ""), quote=True)
 
@@ -157,7 +166,7 @@ def build(verdicts, new_cases, other, watching, now, picture=None):
         for c in new_cases:
             parts.append(f'<li><a href="{esc(url_for(c))}{UTM}"><strong>{esc(c.get("title"))}</strong></a><br>'
                          f'{esc(desk(c))} &middot; {esc(label(c))}<br>'
-                         f'<em>Then:</em> {esc(c.get("then"))}<br><em>Now:</em> {esc(c.get("now"))}</li>')
+                         f'<em>Then:</em> {esc(plain(c.get("then")))}<br><em>Now:</em> {esc(plain(c.get("now")))}</li>')
             md.append(f"- **{c.get('title')}** ({desk(c)}, {label(c)})")
         parts.append("</ul>")
 
