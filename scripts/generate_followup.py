@@ -1142,7 +1142,7 @@ def _apply_fixes(article: FollowUpArticle, fixes: list) -> list[tuple[str, str]]
     return done
 
 
-def fact_check_editor(article: FollowUpArticle, sources: list[dict], site_lines: bool = False):
+def fact_check_editor(article: FollowUpArticle, sources: list[dict], site_lines: bool = False, dropped=()):
     """The editor's approved article. Instead of holding it for a slip, the lines the checker finds wrong are fixed
     with the smallest change (the source's own wording, or deleted), and the whole article is then checked again by
     a fresh, independent check. Held only when a fix cannot settle it. Returns (article, report, fixes) or
@@ -1171,6 +1171,11 @@ def fact_check_editor(article: FollowUpArticle, sources: list[dict], site_lines:
     left = lambda: min(AI_BUDGET, DESK_CALL_LIMIT) - AI_CALLS
     for round_no in range(EDITOR_FIX_ROUNDS + 1):
         problems = _hard_checks(article, sources)   # includes every sentence without a source link
+        gone = {guards._norm_url(u) for u in dropped}
+        problems = [(f"the site could not read this source, so it cannot be used: {p.split(': ', 1)[1]}. Re-cite every "
+                     "sentence, bullet or table row that uses it to another of the SOURCES that states the same thing, "
+                     "or delete it") if p.startswith("link not among the approved sources: ")
+                    and guards._norm_url(p.split(": ", 1)[1]) in gone else p for p in problems]
         if not problems:
             if left() < 1:
                 return None, "the AI budget ran out during the check", fixes_done
@@ -2080,10 +2085,13 @@ def _run_ready(path, text, log, cfg, fields_done, used_urls, known):
         drafts.hold(path, log, text, [short], notes)
         return "held"
     skipped = [n for n in notes if n.startswith("Not used")]
-    if skipped:   # every cited link must be readable and accepted, or its sentences would be unchecked
-        drafts.hold(path, log, text, ["Every link in an approved article must be a readable, accepted source. "
-                                      "Replace or remove these links and the sentences that rely on them:"], notes)
-        return "held"
+    dropped = re.findall(r"Not used: (\S+)", "\n".join(skipped))
+    if skipped:
+        # A link the site could not read (or that is not on its lists) no longer holds the whole article: the
+        # sentences that rely on it are re-cited to a source the site did read, or deleted, like any other slip.
+        print("[drafts] links the site could not use; the sentences that rely on them will be re-sourced or removed:")
+        for n in skipped:
+            print("    " + n)
     print("[drafts] sources: " + ", ".join(f"{s['outlet']} ({s['tier']})" for s in sources))
     if min(AI_BUDGET, DESK_CALL_LIMIT) - AI_CALLS < 2:
         print("[drafts] Not enough AI requests left in today's budget for the page data and the check; the "
@@ -2110,7 +2118,7 @@ def _run_ready(path, text, log, cfg, fields_done, used_urls, known):
     article = FollowUpArticle(has_meaningful_update=True, headline=r["headline"], plain_headline="",
                               markdown_body=r["body"], **fields)
     checked, report, fixes = fact_check_editor(
-        article, sources, site_lines=not ({"original_claim", "current_reality"} & set(given)))
+        article, sources, site_lines=not ({"original_claim", "current_reality"} & set(given)), dropped=dropped)
     if checked is None:
         if AI_EXHAUSTED or AI_BUSY or DESK_OUT or report.startswith("the AI budget ran out"):
             print("[drafts] Stopped during the check: the AI is busy or out of budget. The article stays waiting.")

@@ -221,7 +221,8 @@ def plain_text(html):
 
 def extract(html, url):
     """Readable text + publication date + title, using trafilatura's JSON output. SEC filing pages (EDGAR) are bare
-    documents that trafilatura often reads as almost empty; for those, all of the page's visible text is used."""
+    documents that trafilatura often reads as almost empty; for those (and other government pages, and plain-text
+    documents such as an FCC order in .txt), all of the page's visible text is used."""
     if not html:
         return None
     data = None
@@ -233,7 +234,16 @@ def extract(html, url):
         except Exception:
             data = None
     host = host_of(url)
-    if (host == "sec.gov" or host.endswith(".sec.gov")) and len((data or {}).get("text") or "") < 300:
+    head = html[:3000].lower()
+    if (url.lower().split("?")[0].endswith(".txt") or not re.search(r"<(html|body|p|div|article)\b", head)) \
+            and len((data or {}).get("text") or "") < 300:
+        # a plain-text document (for example an FCC order as .txt): its text is the page
+        text = re.sub(r"[ \t]+", " ", html).strip()
+        if len(text) >= 300:
+            first = next((l.strip() for l in text.splitlines() if l.strip()), "")
+            return {**(data or {}), "text": text, "title": (data or {}).get("title") or first[:200]}
+    gov = host == "sec.gov" or host.endswith(".sec.gov") or host.endswith(".gov") or host.endswith(".gov.uk")
+    if gov and len((data or {}).get("text") or "") < 300:
         text = plain_text(html)
         if len(text) >= 300 and not SEC_BLOCK_PAGE.search(text):
             data = dict(data or {})
