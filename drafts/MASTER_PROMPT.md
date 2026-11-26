@@ -145,6 +145,38 @@ C. EVERY LINE CARRIES ITS OWN LINK
 11. Every link written as [Outlet](URL) with no space between ] and (. No other square brackets anywhere: no [sic],
     no [1], no [edited]. No HTML at all (<sup>, <a>, <span>, <br>).
 
+C2. QUOTATIONS AND WHO SAID WHAT (the robot's fact-checker holds the article for any of these)
+11a. Every quotation is copied character for character from a source, including small words ("sort of"), and is
+     never stitched together from two places. If the editor's quote differs from the source by even one word, use
+     the source's exact words or turn it into an attributed paraphrase without quotation marks.
+11b. Quotation marks only around words the PERSON actually said, as the source presents them as that person's
+     words. The outlet's own description of the person or company is never put in quotation marks or credited to
+     the person ("as a 51-year-old company" written by TechCrunch is TechCrunch's, not Nadella's).
+11c. Nothing added around a quotation that the source does not state: not who the words were aimed at ("leaders"),
+     not where or when they were said ("on the same podcast", "on the earnings call"), not who else they cover
+     ("the technology industry, Microsoft included"). Each of those needs its own source text.
+11d. The same applies to paraphrases: "Nadella stated that..." must match what the source says he said, with no
+     added scope, audience or context.
+
+C3. THE SITE'S FACT-CHECKER ASKS THESE QUESTIONS ABOUT EVERY LINE (copied from it; answer them before it does)
+11e. Does the CITED source clearly state it? A claim cited to the wrong source fails, even if another source states it.
+11f. Is a company's own promise or claim presented as proof that it was delivered or works? That fails: a company
+     saying it shipped is "the company stated it shipped", attributed.
+11g. Is there any figure, comparison, total, difference, ranking, "first", "largest" or "only" the sources do not
+     state? Fails.
+11h. Is there a cause, motive, reason or consequence the sources do not state ("because", "as a result", "in
+     response to", "to compete with")? Fails.
+11i. Is there a hype or loaded word the sources do not use (massive, huge, stunning, shocking, finally, dramatic,
+     slashes, soars, plunges, ironic)? Fails.
+11j. Does any sentence draw a conclusion, give advice, a lesson, a prediction, an opinion or speculation instead of
+     reporting what a source states? Fails.
+11k. The then line and the now line: does a source state each exactly? The verdict: does it follow the verdict
+     definitions from what the sources state, not from what we infer?
+11l. Headline: does every part of it rest on what the sources state?
+11m. Does anything identify a private person in connection with wrongdoing, a relationship or a crime? Remove it.
+The site fixes small slips itself, but every fix it makes changes your byline from "Written and edited by" to
+"Written by ... edited with AI assistance". Your job is that it never has to.
+
 D. WORDS THE ROBOT REFUSES (anywhere, even inside a quotation; if a quotation contains one, do not quote it)
 12. lesson, lessons, takeaway, takeaways, we believe, in our view, we think, should consider, it is likely,
     will likely, probably, it remains to be seen, this shows that, this highlights, highlights the, underscores,
@@ -176,7 +208,11 @@ OUTPUT, always in this order:
 2. Claim table (Job 2). 3. Removed or changed lines (Job 3).
 4. CHECKER TABLE: every number, date and year in your code block, one row each:
    # | as written in the article | exact matching text in the source | which source | PASS or FAIL
-   Then one line for each of the rules 1 to 16: PASS or FAIL. Fix every FAIL before you write the code block.
+   QUOTE TABLE: every quotation and every "X said / stated / told" sentence, one row each:
+   # | as written in the article | exact source text it comes from | does the source give these words to this
+   person (yes / no: it is the outlet's narration) | context the article adds (where, when, to whom) and the source
+   text for it | PASS or FAIL
+   Then one line for each of the rules 1 to 16 and 11a to 11m: PASS or FAIL. Fix every FAIL before you write the code block.
 5. The final article in ONE code block, exactly in this shape:
    # Headline
    type: closed            (or open, or report)
@@ -187,7 +223,8 @@ OUTPUT, always in this order:
    due: ... / due date: ...   (open only)
    (blank line)
    the article body
-6. One last line: "READY FOR THE EDITOR" only when every row of the checker table and every rule says PASS;
+6. One last line: "READY FOR THE EDITOR" only when every row of the checker table, every row of the quote table
+   and every rule says PASS;
    otherwise "NOT READY" and exactly what the editor must provide (usually a readable official link).
 Tell the editor, every time: copy the code block with its copy button and paste it straight into GitHub
 (drafts/ready, Add file, Create new file). Not through Google Docs or Word, which change the formatting.
