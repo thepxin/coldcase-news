@@ -13,21 +13,19 @@ robot checker the first time, so the editor never has to send it back.
 
 JOB 1 - OPEN THE SOURCES
 Open every link yourself. Report a table: # | outlet | date | could you read it (yes/no) | allowed (yes/no).
-Allowed, official (the site's Tier A list, as shown on coldcasetech.com/about/): the US SEC (including EDGAR
-filings), US FTC, US Department of Justice, US FCC, US NHTSA, US FAA, US Treasury, UK ICO, ENISA, the European
-Commission, NASA, ESA, ISRO, India MeitY and TRAI; and the own websites (newsroom, blog, investor site) of Google,
-Google Cloud, AWS, Amazon, Microsoft, Xbox, GitHub, Cloudflare, NVIDIA, Apple, OpenAI, Anthropic, Meta, AMD, Intel,
-Samsung, Qualcomm, Tesla, SpaceX, PlayStation (Sony), Rockstar Games and Take-Two Interactive.
-Also allowed, official: the official website of the company the article is about, when the headline names that
-company (for example decart.ai in a story whose headline names Decart).
-Any other company site, regulator, government agency or court is NOT allowed yet. If the article needs one, say in
-your verdict: "Add <name> (<domain>) to data/draft_sources.json with kind company before publishing."
-Allowed, newsrooms: Reuters, AP, The Verge, TechCrunch, Ars Technica, Engadget, Wired, Tom's Hardware, The
-Register, IEEE Spectrum, MIT Technology Review, CoinDesk, Electrek, 9to5Mac, 9to5Google, The Guardian, BBC,
-Al Jazeera, CNBC, Bloomberg, The New York Times, The Wall Street Journal, Financial Times, The Washington Post,
-Axios, NPR, CNN, The Times of India, Hindustan Times, The Indian Express, The New Indian Express, Financial
-Express, The Hindu, Mint, The Straits Times, Nikkei Asia, SBS News, The Next Web, TweakTown.
-Allowed for share prices and percentage changes only: Stock Analysis, Nasdaq.
+THE GREEN LIST. Use ONLY these sources. Each one has been proven readable by BOTH this chat and the site's robot.
+Anything else is not allowed, even if it is a famous newspaper: the robot or this chat cannot read it, and the
+article would come back. (Not allowed because one of the two cannot read them: The Verge, Wired, Ars Technica,
+Reuters, AP, The Guardian, BBC, Bloomberg, The New York Times, The Wall Street Journal, Financial Times,
+The Washington Post, CNBC, Nikkei Asia, The Straits Times and all Indian newspapers.)
+Green newsrooms: TechCrunch, Engadget, 9to5Mac, 9to5Google, Electrek, Tom's Hardware, The Register, IEEE Spectrum.
+Green official sources: NVIDIA (blogs.nvidia.com, nvidianews.nvidia.com, investor.nvidia.com), Apple (Apple
+Newsroom), OpenAI, Anthropic, Meta (about.fb.com), Google (blog.google), Amazon (aboutamazon.com), AWS, Microsoft
+(news.microsoft.com, blogs.microsoft.com), Xbox (news.xbox.com), PlayStation (blog.playstation.com), Take-Two
+Interactive, Cloudflare, Samsung, NASA, the UK ICO, and filings on SEC EDGAR (sec.gov).
+Also green: the official website of the company the article is about, when the headline names that company (for
+example decart.ai in a story whose headline names Decart), if you can open the page yourself.
+Green for share prices and percentage changes only: Stock Analysis (stockanalysis.com). Not Nasdaq.
 Not allowed: blogs, aggregators, AI sites, "via" copies, Wikipedia, brokers, commentary (e.g. Motley Fool),
 home pages or search pages instead of the article itself.
 Never claim to have read a page you could not open. A page you could not open (paywall, error) is not used.
@@ -112,11 +110,10 @@ So you apply these rules exactly as the robot does, to EVERY line of the code bl
 body, tables, timeline, bullets), including words inside quotations.
 
 A. SOURCES THE ROBOT CAN OPEN
-1. Only links on the allowed lists above. At most 12 different links.
-2. The robot opens each link itself and reads the page's article text (about the first 3,000 words). If it cannot
-   read a page, the WHOLE article is held. It usually CANNOT read paywalled pages: Bloomberg, The Wall Street
-   Journal, Financial Times, The New York Times, The Washington Post, Nikkei Asia. Never rely on those; use an
-   official page or an open newsroom instead. Never link a home page, search page, video, image or PDF.
+1. Only links from THE GREEN LIST above. At most 12 different links.
+2. The robot opens each link itself and reads the page's article text (about the first 3,000 words). A page it
+   cannot read is dropped and every sentence that relies on it is removed or re-sourced, so a non-green link costs
+   the editor his "Written and edited by" byline. Never link a home page, search page, video, image or PDF.
 3. Use each page's clean address: no "utm_" or other tracking parameters, no "#" anchors.
 4. Sourcing rule (above) met by readable pages.
 5. A fact counts only if it is in the page's article text. Not in menus, sidebars, "related articles" lists,
