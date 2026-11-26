@@ -40,8 +40,8 @@
     {{- if and .Params.then .Params.now }}
     {{- $l := partial "tv_labels.html" . }}
     <dl class="rec-ledger">
-      <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then }}</dd></div>
-      <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now }}</dd></div>
+      <div><dt>{{ index $l 0 }}</dt><dd>{{ .Params.then | markdownify }}</dd></div>
+      <div><dt>{{ index $l 1 }}</dt><dd>{{ .Params.now | markdownify }}</dd></div>
     </dl>
     {{- end }}
   </header>
