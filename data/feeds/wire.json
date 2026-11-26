@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-11-26T02:12:24Z",
+   "outlet": "9to5Mac",
+   "title": "Apple pulls popular Chinese AI chatbot from the App Store amid child safety concerns",
+   "url": "https://9to5mac.com/2026/11/25/apple-pulls-popular-chinese-ai-chatbot-from-the-app-store-amid-child-safety-concerns/"
+  },
+  {
+   "date": "2026-11-26T00:35:52Z",
+   "outlet": "9to5Mac",
+   "title": "Wispr Flow improves dictation accuracy with new Canto-2 speech-to-text model",
+   "url": "https://9to5mac.com/2026/11/25/wispr-flow-improves-dictation-accuracy-with-new-canto-2-speech-to-text-model/"
+  },
+  {
    "date": "2026-11-26T00:04:34Z",
    "outlet": "The Verge",
    "title": "Now Google’s Familiar Faces AI feature works on Walmart’s $35 smart home camera too",
@@ -19,10 +31,10 @@
    "url": "https://9to5google.com/2026/11/25/googles-pixelsnap-ring-stand-gets-first-sale-that-includes-new-pixel-11-colors/"
   },
   {
-   "date": "2026-11-25T23:30:05Z",
-   "outlet": "9to5Mac",
-   "title": "1Password confirms security incident, here’s what you need to know",
-   "url": "https://9to5mac.com/2026/11/25/1password-confirms-security-incident-heres-what-you-need-to-know/"
+   "date": "2026-11-25T22:54:07Z",
+   "outlet": "The Register",
+   "title": "The sky was once full of stars, kids; then the FCC let Elon Musk launch a million datacenter satellites",
+   "url": "https://www.theregister.com/off-prem/2026/11/25/the-sky-was-once-full-of-stars-kids-then-the-fcc-let-elon-musk-launch-a-million-datacenter-satellites/5312268"
   },
   {
    "date": "2026-11-25T22:44:32Z",
@@ -35,20 +47,8 @@
    "outlet": "Ars Technica",
    "title": "European spacecraft finds chaotic scene after asteroid deflection experiment",
    "url": "https://arstechnica.com/space/2026/11/europes-hera-mission-returns-to-the-chaotic-scene-of-a-cosmic-smashup/"
-  },
-  {
-   "date": "2026-11-25T22:25:23Z",
-   "outlet": "Electrek",
-   "title": "ChargePoint and PistenBully have a charging plan for ski resorts",
-   "url": "https://electrek.co/2026/11/25/chargepoint-and-pistenbully-have-a-charging-plan-for-ski-resorts/"
-  },
-  {
-   "date": "2026-11-25T22:16:14Z",
-   "outlet": "9to5Mac",
-   "title": "Major developers, legal experts, and 32 states back Epic in Apple’s SCOTUS appeal",
-   "url": "https://9to5mac.com/2026/11/25/major-developers-legal-experts-and-32-states-back-epic-in-apples-scotus-appeal/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-26T00:17:44Z"
+ "updated": "2026-11-26T03:17:49Z"
 }
