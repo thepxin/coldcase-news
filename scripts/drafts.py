@@ -25,7 +25,7 @@ PUBLISHED_DIR = os.path.join(DRAFTS_DIR, "published")
 READY_DIR = os.path.join(DRAFTS_DIR, "ready")   # articles the editor already approved (from the chat desk)
 LOG_PATH = os.path.join("data", "drafts_log.json")
 # Raise this when the site's own checks are fixed: every held draft is then tried once more without being edited.
-RULES = 4
+RULES = 5
 BYLINE = "Rishit K."
 DRAFT_EXT = (".md", ".txt")
 SKIP_NAMES = {"readme.md", "master_prompt.md"}
@@ -213,7 +213,9 @@ def extra_outlet(url: str, extra: list[dict], host_of):
 # Website names that are never a company's own site, even when the word appears in a headline.
 NOT_A_COMPANY = {"news", "blog", "blogs", "tech", "daily", "times", "post", "review", "reviews", "report", "wiki",
                  "wikipedia", "medium", "substack", "reddit", "twitter", "youtube", "facebook", "instagram", "linkedin",
-                 "github", "google", "wordpress", "blogspot", "yahoo", "msn", "forbes", "motley", "seekingalpha"}
+                 "github", "google", "wordpress", "blogspot", "yahoo", "msn", "forbes", "motley", "seekingalpha",
+                 "the", "new", "now", "app", "web", "get", "top", "big", "all", "one", "out", "who", "how", "why",
+                 "abc", "cbs", "nbc", "fox", "aol", "ign"}
 _TWO_PART_ENDINGS = {"co.uk", "co.jp", "com.au", "co.in", "com.br", "co.kr", "com.cn", "co.nz", "com.sg", "com.hk",
                      "co.za", "com.tw", "co.il"}
 
@@ -230,9 +232,9 @@ def company_label(host: str) -> str:
 
 def own_site(url: str, headline: str, host_of) -> str:
     """The company's name as written in the headline when the link is that company's own website (for example
-    decart.ai in a headline that names Decart). Returns "" otherwise. Only plain names of 4+ letters count."""
+    decart.ai in a headline that names Decart). Returns "" otherwise. Only plain names of 3+ letters count."""
     label = company_label(host_of(url))
-    if len(label) < 4 or not label.isalpha() or label in NOT_A_COMPANY:
+    if len(label) < 3 or not label.isalpha() or label in NOT_A_COMPANY:   # 3 letters: NIO, AMD, IBM, BYD
         return ""
     m = re.search(r"\b" + re.escape(label) + r"\b", headline or "", re.I)
     return m.group(0) if m else ""
@@ -351,6 +353,21 @@ def published(path: str, log: dict, text: str, article_file: str, now=None) -> s
                                      "published": now.strftime("%Y-%m-%dT%H:%M:%SZ")}
     print(f"[drafts] PUBLISHED {name} as {article_file}; the draft is now {target}")
     return target
+
+
+def write_changes(target: str, article_file: str, fixes: list) -> str:
+    """List every line the site changed in an approved article, next to the published draft."""
+    path = os.path.splitext(target)[0] + ".CHANGES.md"
+    out = [f"# Lines the site changed before publishing", "",
+           f"Published as `{article_file}`. Your approved text is `{os.path.basename(target)}`.",
+           "Because lines were changed, the page says \"Written by Rishit K. · edited with AI assistance\".", ""]
+    for i, (old, new) in enumerate(fixes, 1):
+        out += [f"## {i}", "", "Was:", "", f"> {old}", "", "Now:", "", f"> {new}" if new else "> (deleted)", ""]
+    out += ["If a change is wrong, edit the article file in `content/posts/` (and tell the checker why next time)."]
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(out) + "\n")
+    print(f"[drafts] the site changed {len(fixes)} line(s); the list is in {path}")
+    return path
 
 
 def forget_missing(log: dict, folder=DRAFTS_DIR):

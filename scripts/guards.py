@@ -37,6 +37,7 @@ YEAR = re.compile(r"(?<![\d\-/.])((?:19|20)\d{2})(?![\d\-/])")
 NUMBER = re.compile(
     r"(?<![\w.\-/])([$€£₹])?\s?(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s?(%|percent\b|per cent\b|"
     r"thousand\b|million\b|billion\b|trillion\b|mn\b|bn\b|tn\b|[kKmMbB]\b)?", re.I)
+DIGIT_OUTLETS = {"9to5Mac", "9to5Google", "9to5Toys", "404 Media", "1Password"}
 NEGATIVE_PCT = re.compile(r"(?<![\w.])[-−–]\s?(\d+(?:\.\d+)?)\s?(?:%|percent\b|per cent\b)", re.I)
 WORD_NUMBER = re.compile(r"\b(" + "|".join(WORD_NUMBERS) + r")\b(?:\s+(thousand|million|billion|trillion))?", re.I)
 
@@ -160,7 +161,12 @@ def check_article(article_texts, sources, must_cite=None):
             src_vals.add(("pct", round(float(num.replace(",", "")), 4)))
         except ValueError:
             pass
-    for kind, v in sorted(_values(_strip_for_numbers(text))):
+    # Outlet names that contain digits ("according to 9to5Google") are names, not figures.
+    named = text
+    for name in sorted({(x.get("outlet") or "").strip() for x in sources} | DIGIT_OUTLETS, key=len, reverse=True):
+        if name and re.search(r"\d", name):
+            named = re.sub(re.escape(name), " ", named, flags=re.I)
+    for kind, v in sorted(_values(_strip_for_numbers(named))):
         if (kind, v) not in src_vals:
             shown = f"{v:g}%" if kind == "pct" else (f"{v:,.0f}" if v == int(v) else f"{v:,}")
             problems.append(f"figure not found in any source: {shown}")
