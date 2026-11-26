@@ -27,9 +27,9 @@ Speaking at the DealBook Summit, the chief executive told Andrew Ross Sorkin tha
 
 ## Details (as Reported)
 
-- Nadella noted that "Microsoft, as a 51-year-old company, didn't grow up as an AI-first company" ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
-- On The Pragmatic Engineer podcast with Gergely Orosz the previous week, Nadella stated that the way the technology industry, Microsoft included, has talked about artificial intelligence had created "enormous anxiety" among people who feel they do not have control of their own destiny ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
-- On the same podcast, he stated that leaders "have to sort of walk the hard walk of really making the structural changes, getting people slotted, giving them opportunity" ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
+- TechCrunch observed that Microsoft, as a 51-year-old company, did not grow up as a company built first around artificial intelligence ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
+- On The Pragmatic Engineer podcast with Gergely Orosz the previous week, Nadella said, "We have created enormous anxiety in people sort of feeling that they don't have control," and tied it to "the way we have talked about this AI revolution" ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
+- Nadella also said, "You have to sort of walk the hard walk of really making the structural changes" ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
 - TechCrunch reported that, in Nadella's view, every employee will eventually become a manager of artificial intelligence agents ([TechCrunch](https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/)).
 
 ## What Is Not Yet Confirmed
