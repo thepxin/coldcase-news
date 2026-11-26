@@ -27,11 +27,21 @@
   "published": "2026-11-26T02:45:22Z",
   "status": "published"
  },
+ "published/2026-11-26-Meta_muse.md": {
+  "article": "content/posts/2026-11-26-meta-muse-launches-united-kingdom-monitoring.md",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "06e263cc1cb9e21f",
+  "published": "2026-11-26T11:38:50Z",
+  "status": "published"
+ },
  "ready/AA2.md": {
   "first_seen": "2026-11-25T08:41:49Z"
  },
  "ready/AA3.md": {
   "first_seen": "2026-11-26T02:41:58Z"
+ },
+ "ready/AI_Export.md": {
+  "first_seen": "2026-11-26T11:29:36Z"
  },
  "ready/ChatGPT_Unified.md": {
   "first_seen": "2026-11-26T02:41:58Z"
@@ -44,16 +54,6 @@
  },
  "ready/GG_apple.md": {
   "first_seen": "2026-11-26T02:41:58Z"
- },
- "ready/Meta_muse.md": {
-  "checked": "2026-11-26T08:45:51Z",
-  "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "06e263cc1cb9e21f",
-  "reasons": [
-   "Main claim (Then/Now lines) not supported by the sources."
-  ],
-  "rules": 4,
-  "status": "held"
  },
  "ready/NIO_2030.md": {
   "first_seen": "2026-11-26T02:41:58Z"

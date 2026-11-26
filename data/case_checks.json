@@ -47,7 +47,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-26",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-26",
@@ -104,8 +104,6 @@
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim",
   "2026-11-20-nvidia-rtx-spark-compact-desktops-available"
  ],
  "_seen": {
@@ -120,9 +118,9 @@
    "day": "2026-11-24"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-   "stamp": "5d0743a32bd9949f",
+   "stamp": "be8f8d9ff10f9b04",
    "why": "nothing new",
-   "day": "2026-11-25"
+   "day": "2026-11-26"
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
@@ -190,12 +188,6 @@
    "stamp": "9cc860f8d2c5a89f",
    "why": "nothing new",
    "day": "2026-11-26"
-  },
-  "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim": {
-   "stamp": "aeb87f3a8e991716",
-   "why": "failed checks",
-   "tries": 1,
-   "day": "2026-11-25"
   },
   "2026-11-22-gta-6-evs-vice-city-electrify-america": {
    "stamp": "d39a426cbfd9fe2f",
