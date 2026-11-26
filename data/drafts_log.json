@@ -20,20 +20,30 @@
   "published": "2026-11-25T14:45:54Z",
   "status": "published"
  },
+ "published/2026-11-26-Anthropic_Review.md": {
+  "article": "content/posts/2026-11-26-anthropic-launches-claude-ship-github-code-reviews.md",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "a6f5a06fc7a9185c",
+  "published": "2026-11-26T02:45:22Z",
+  "status": "published"
+ },
  "ready/AA2.md": {
   "first_seen": "2026-11-25T08:41:49Z"
  },
- "ready/AA3": {
-  "first_seen": "2026-11-25T11:44:14Z"
+ "ready/AA3.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
  },
- "ready/Anthropic_Review.md": {
-  "checked": "2026-11-25T02:45:07Z",
-  "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "e2db6bfd302d31cb",
-  "reasons": [
-   "Only one newsroom (TechCrunch) could be read; the rule is one official source or two different outlets."
-  ],
-  "status": "held"
+ "ready/ChatGPT_Unified.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
+ },
+ "ready/Dept_justice.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
+ },
+ "ready/FCC_SpaceX.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
+ },
+ "ready/GG_apple.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
  },
  "ready/Meta_muse.md": {
   "checked": "2026-11-25T02:46:12Z",
@@ -47,10 +57,16 @@
   ],
   "status": "held"
  },
+ "ready/NIO_2030.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
+ },
  "ready/SatyaNadella.md": {
   "first_seen": "2026-11-25T02:42:00Z"
  },
  "ready/microsoft_update.md": {
   "first_seen": "2026-11-25T08:41:49Z"
+ },
+ "ready/todoist_breach.md": {
+  "first_seen": "2026-11-26T02:41:58Z"
  }
 }

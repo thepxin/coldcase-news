@@ -1,25 +1,28 @@
 ================================================================
-Anthropic raises $81.3 billion, with $1.05 trillion to $1.08 trillion in infrastructure commitments
+Anthropic launches Claude Ship to review, fix and approve code changes on GitHub
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (192/280):
-Anthropic became a public company on Nasdaq after raising $81.3 billion in its record initial public offering.
+X (170/280):
+Anthropic launched Claude Ship in beta, letting AI agents review, fix and approve code changes on GitHub.
 
-Verdict: Delivered.
+Every line sourced: https://coldcasetech.com/posts/2026-11-26-anthropic-launches-claude-ship-github-code-reviews/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-25-anthropic-ipo-nasdaq-trading-debut/
-
-#Anthropic #AI
+#Anthropic #Claude
 
 INSTAGRAM (post this caption with the image from the share kit):
-Anthropic became a public company on Nasdaq after raising $81.3 billion in its record initial public offering.
+Anthropic launched Claude Ship in beta, letting AI agents review, fix and approve code changes on GitHub.
 
-Verdict: Delivered.
+Anthropic launches Claude Ship in beta, a suite of agents that reviews, fixes and approves code changes on GitHub.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #anthropic #ai #technews #tech
+#coldcasetech #anthropic #claude #claudeship #github #ai #technews #tech
+
+X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
+1. Anthropic announced Claude Ship on November 23, 2026, a beta suite that reviews, fixes and approves pull requests on GitHub.
+2. Claude Ship is rolling out to Claude Team and Enterprise plans, and Code Review is already generally available.
+3. Claude Approvals applies a policy each team writes as a file in the repository. Will teams start in observe-only mode first?

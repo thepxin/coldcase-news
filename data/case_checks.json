@@ -47,7 +47,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-26",
-  "result": "new coverage found; first in line for the next run"
+  "result": "new coverage found, but the writer was not available; first in line for the next run"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-26",
@@ -55,7 +55,7 @@
  },
  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
   "checked": "2026-11-26",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
   "checked": "2026-11-26",
@@ -63,7 +63,7 @@
  },
  "2026-11-14-apple-arcade-four-new-games-december-3": {
   "checked": "2026-11-26",
-  "result": "new coverage found; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription": {
   "checked": "2026-11-26",
@@ -104,8 +104,6 @@
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
-  "2026-11-14-apple-arcade-four-new-games-december-3",
-  "2026-11-12-google-intelligent-eyewear-pre-orders-december-10",
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
   "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim",
   "2026-11-20-nvidia-rtx-spark-compact-desktops-available"
@@ -153,9 +151,9 @@
    "day": "2026-11-21"
   },
   "2026-11-12-google-intelligent-eyewear-pre-orders-december-10": {
-   "stamp": "430590c27210123f",
+   "stamp": "e3b8932241dbd3d0",
    "why": "nothing new",
-   "day": "2026-11-24"
+   "day": "2026-11-26"
   },
   "2026-10-28-apple-siri-ai-new-languages-end-of-year": {
    "stamp": "fb985d7921ab5862",
@@ -189,9 +187,9 @@
    "day": "2026-11-21"
   },
   "2026-11-14-apple-arcade-four-new-games-december-3": {
-   "stamp": "5db94c0daa376956",
+   "stamp": "9cc860f8d2c5a89f",
    "why": "nothing new",
-   "day": "2026-11-25"
+   "day": "2026-11-26"
   },
   "2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim": {
    "stamp": "aeb87f3a8e991716",
