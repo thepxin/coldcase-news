@@ -46,22 +46,30 @@
   "first_seen": "2026-11-26T02:41:58Z"
  },
  "ready/Meta_muse.md": {
-  "checked": "2026-11-25T02:46:12Z",
+  "checked": "2026-11-26T08:45:51Z",
   "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "1c0196c8efaf5a76",
+  "hash": "06e263cc1cb9e21f",
   "reasons": [
-   "The automatic checks stopped it (a number, date, name or link that your sources do not contain). Check these against your sources, or add the source that states them:",
-   "date not found in sources: 2026-11-23",
-   "date not found in sources: 2026-10-27",
-   "date not found in sources: 2026-11-17"
+   "Main claim (Then/Now lines) not supported by the sources."
   ],
+  "rules": 4,
   "status": "held"
  },
  "ready/NIO_2030.md": {
   "first_seen": "2026-11-26T02:41:58Z"
  },
  "ready/SatyaNadella.md": {
-  "first_seen": "2026-11-25T02:42:00Z"
+  "checked": "2026-11-26T08:50:16Z",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "65a63adc6a84e3a5",
+  "reasons": [
+   "The claim-by-claim check found lines your sources do not support (fix them, add a source, or delete them):",
+   "\"The article puts \"Microsoft, as a 51-year-old company, didn't grow up as an AI-first company\" in quotation marks as something Nadella noted. In the source, this is TechCrunch's own narration, not a Nadella quote.\"",
+   "\"The article says Nadella stated that the way \"the technology industry, Microsoft included,\" has talked about AI created \"enormous anxiety\". The source quote says only \"we have talked about this AI revolution\" and never names the technology industry.\"",
+   "\"The article says that on the same podcast Nadella stated that \"leaders\" have to walk the hard walk. The source gives the line as \"You have to sort of walk the hard walk\", does not say it came from the podcast, and does not mention leaders.\""
+  ],
+  "rules": 4,
+  "status": "held"
  },
  "ready/microsoft_update.md": {
   "first_seen": "2026-11-25T08:41:49Z"
