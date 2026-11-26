@@ -1,31 +1,41 @@
 {
-  "_readme": "Extra outlets accepted ONLY for the editor's own drafts (drafts/), on top of the approved list in data/sources.json. AI-written articles still use data/sources.json alone. 'newsroom' = an established news organisation (counts as one outlet for the rule 'one official source or two different outlets'). 'market data' = share-price tables, usable only for prices, closes and percentage changes; it never counts toward that rule. Paywalled pages usually cannot be read by the checker: lines that rest only on them are held. 'company' = an official website (a company's own site, or a regulator or court not on the approved list), accepted as an official source and shown on the About page. Not needed for the company the article is about when the headline names it: a site like decart.ai in a story whose headline names Decart is accepted automatically. To add an outlet, copy one entry and change the name and domains.",
+  "_readme": "The editor's sources. Articles written by the editor may use ONLY the outlets named in editor_list (they are defined in data/sources.json), the official website of the company the article is about (when the headline names it), entries here with kind 'company', and 'market data' (share-price tables, for prices, closes and percentage changes only; they never count toward the rule 'one official source or two different outlets'). editor_list holds only sources proven readable by both the chat desk and the site's robot. AI-written articles use data/sources.json alone. To add an outlet to editor_list, first check that the chat desk and the robot can both read it. The About page shows this list automatically.",
   "outlets": [
-    {"name": "The Guardian", "kind": "newsroom", "domains": ["theguardian.com"]},
-    {"name": "BBC News", "kind": "newsroom", "domains": ["bbc.com", "bbc.co.uk"]},
-    {"name": "Al Jazeera", "kind": "newsroom", "domains": ["aljazeera.com"]},
-    {"name": "CNBC", "kind": "newsroom", "domains": ["cnbc.com"]},
-    {"name": "Bloomberg", "kind": "newsroom", "domains": ["bloomberg.com"]},
-    {"name": "The New York Times", "kind": "newsroom", "domains": ["nytimes.com"]},
-    {"name": "The Wall Street Journal", "kind": "newsroom", "domains": ["wsj.com"]},
-    {"name": "Financial Times", "kind": "newsroom", "domains": ["ft.com"]},
-    {"name": "The Washington Post", "kind": "newsroom", "domains": ["washingtonpost.com"]},
-    {"name": "Axios", "kind": "newsroom", "domains": ["axios.com"]},
-    {"name": "NPR", "kind": "newsroom", "domains": ["npr.org"]},
-    {"name": "CNN", "kind": "newsroom", "domains": ["cnn.com"]},
-    {"name": "The Times of India", "kind": "newsroom", "domains": ["timesofindia.indiatimes.com"]},
-    {"name": "Hindustan Times", "kind": "newsroom", "domains": ["hindustantimes.com"]},
-    {"name": "The Indian Express", "kind": "newsroom", "domains": ["indianexpress.com"]},
-    {"name": "The New Indian Express", "kind": "newsroom", "domains": ["newindianexpress.com"]},
-    {"name": "Financial Express", "kind": "newsroom", "domains": ["financialexpress.com"]},
-    {"name": "The Hindu", "kind": "newsroom", "domains": ["thehindu.com"]},
-    {"name": "Mint", "kind": "newsroom", "domains": ["livemint.com"]},
-    {"name": "The Straits Times", "kind": "newsroom", "domains": ["straitstimes.com"]},
-    {"name": "Nikkei Asia", "kind": "newsroom", "domains": ["asia.nikkei.com"]},
-    {"name": "SBS News (Korea)", "kind": "newsroom", "domains": ["news.sbs.co.kr"]},
-    {"name": "The Next Web", "kind": "newsroom", "domains": ["thenextweb.com"]},
-    {"name": "TweakTown", "kind": "newsroom", "domains": ["tweaktown.com"]},
-    {"name": "Stock Analysis", "kind": "market data", "domains": ["stockanalysis.com"]},
-    {"name": "Nasdaq", "kind": "market data", "domains": ["nasdaq.com"]}
+    {
+      "name": "Stock Analysis",
+      "kind": "market data",
+      "domains": [
+        "stockanalysis.com"
+      ]
+    }
+  ],
+  "editor_list": [
+    "TechCrunch",
+    "Engadget",
+    "9to5Mac",
+    "9to5Google",
+    "Electrek",
+    "Tom's Hardware",
+    "The Register",
+    "IEEE Spectrum",
+    "NVIDIA",
+    "Apple",
+    "OpenAI",
+    "Anthropic",
+    "Meta",
+    "Google",
+    "Amazon",
+    "AWS",
+    "Microsoft",
+    "Xbox (Microsoft)",
+    "PlayStation (Sony)",
+    "Take-Two Interactive",
+    "Cloudflare",
+    "Samsung",
+    "NASA",
+    "UK ICO",
+    "US SEC",
+    "US Department of Justice",
+    "US FCC"
   ]
 }
