@@ -650,8 +650,15 @@
   "telegram": "104",
   "youtube": "https://youtu.be/hTAqzihWdVg"
  },
+ "2026-11-26-meta-muse-launches-united-kingdom-monitoring": {
+  "at": "2026-11-26T11:49:18Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n37m5npnbs2g",
+  "facebook": "1489437024244341_122111471037546323",
+  "instagram": "17890747659690334",
+  "telegram": "105"
+ },
  "_last_post": {
-  "facebook": "2026-11-26T02:53:10Z",
-  "instagram": "2026-11-26T02:54:19Z"
+  "facebook": "2026-11-26T11:49:10Z",
+  "instagram": "2026-11-26T11:49:18Z"
  }
 }
