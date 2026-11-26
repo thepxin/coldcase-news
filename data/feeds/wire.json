@@ -1,6 +1,42 @@
 {
  "items": [
   {
+   "date": "2026-11-26T06:02:48Z",
+   "outlet": "Engadget",
+   "title": "New York state bans AI chatbot toys for kids",
+   "url": "https://www.engadget.com/2328996/new-york-state-bans-ai-chatbot-toys-for-kids/"
+  },
+  {
+   "date": "2026-11-26T05:30:38Z",
+   "outlet": "CoinDesk",
+   "title": "Ripple is worth $90 a share to one fund and $300 to another, SEC filings show",
+   "url": "https://www.coindesk.com/markets/2026/11/26/ripple-is-worth-usd90-a-share-to-one-fund-and-usd300-to-another-sec-filings-show"
+  },
+  {
+   "date": "2026-11-26T05:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 November 26 – Eye in the Sky: The Milky Way over Lençóis",
+   "url": "https://science.nasa.gov/image-article/apod-2026-november-26-eye-in-the-sky-the-milky-way-over-lencois/"
+  },
+  {
+   "date": "2026-11-26T05:01:00Z",
+   "outlet": "NASA",
+   "title": "Seeking Refuge on Resolution Island",
+   "url": "https://science.nasa.gov/earth/earth-observatory/seeking-refuge-on-resolution-island/"
+  },
+  {
+   "date": "2026-11-26T04:46:01Z",
+   "outlet": "CoinDesk",
+   "title": "Bill to lock up U.S. government bitcoin for 20 years advances to full House",
+   "url": "https://www.coindesk.com/policy/2026/11/26/strategic-bitcoin-reserve-bill-to-lock-up-u-s-government-held-bitcoin-for-20-years-goes-to-full-house"
+  },
+  {
+   "date": "2026-11-26T03:42:56Z",
+   "outlet": "The Register",
+   "title": "India’s government ponders cradle to grave AI oversight",
+   "url": "https://www.theregister.com/public-sector/2026/11/26/indias-government-ponders-cradle-to-grave-ai-oversight/5312275"
+  },
+  {
    "date": "2026-11-26T02:12:24Z",
    "outlet": "9to5Mac",
    "title": "Apple pulls popular Chinese AI chatbot from the App Store amid child safety concerns",
@@ -11,44 +47,8 @@
    "outlet": "9to5Mac",
    "title": "Wispr Flow improves dictation accuracy with new Canto-2 speech-to-text model",
    "url": "https://9to5mac.com/2026/11/25/wispr-flow-improves-dictation-accuracy-with-new-canto-2-speech-to-text-model/"
-  },
-  {
-   "date": "2026-11-26T00:04:34Z",
-   "outlet": "The Verge",
-   "title": "Now Google’s Familiar Faces AI feature works on Walmart’s $35 smart home camera too",
-   "url": "https://www.theverge.com/tech/1042938/google-home-familiar-faces-onn-cameras"
-  },
-  {
-   "date": "2026-11-25T23:56:44Z",
-   "outlet": "The Verge",
-   "title": "Amazon loses its latest attempt to get out of handling more recall notices",
-   "url": "https://www.theverge.com/tech/1042870/amazon-recall-order-cpsc"
-  },
-  {
-   "date": "2026-11-25T23:35:00Z",
-   "outlet": "9to5Google",
-   "title": "Google’s Pixelsnap Ring Stand gets first sale that includes new Pixel 11 colors",
-   "url": "https://9to5google.com/2026/11/25/googles-pixelsnap-ring-stand-gets-first-sale-that-includes-new-pixel-11-colors/"
-  },
-  {
-   "date": "2026-11-25T22:54:07Z",
-   "outlet": "The Register",
-   "title": "The sky was once full of stars, kids; then the FCC let Elon Musk launch a million datacenter satellites",
-   "url": "https://www.theregister.com/off-prem/2026/11/25/the-sky-was-once-full-of-stars-kids-then-the-fcc-let-elon-musk-launch-a-million-datacenter-satellites/5312268"
-  },
-  {
-   "date": "2026-11-25T22:44:32Z",
-   "outlet": "TechCrunch",
-   "title": "S&P considers Nvidia credit downgrade over governance and ‘key man’ risks",
-   "url": "https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/"
-  },
-  {
-   "date": "2026-11-25T22:36:45Z",
-   "outlet": "Ars Technica",
-   "title": "European spacecraft finds chaotic scene after asteroid deflection experiment",
-   "url": "https://arstechnica.com/space/2026/11/europes-hera-mission-returns-to-the-chaotic-scene-of-a-cosmic-smashup/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-26T03:17:49Z"
+ "updated": "2026-11-26T06:17:54Z"
 }
