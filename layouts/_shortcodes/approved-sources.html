@@ -1,4 +1,4 @@
-{{- /* Lists the approved sources from data/sources.json (and the editor's extra newsroom list, data/draft_sources.json), so the About page always matches what the generator uses. */ -}}
+{{- /* Lists the approved sources from data/sources.json, and the editor's own list (editor_list in data/draft_sources.json), so the About page always matches what the site enforces. */ -}}
 {{- $o := where hugo.Data.sources.outlets "desks" "intersect" (slice "tech") -}}
 <div class="cct-approved">
   <h4>Tier A: the company or organisation itself, or an official body</h4>
@@ -7,10 +7,10 @@
   <h4>Tier B: established newsrooms</h4>
   <ul>{{ range where $o "tier" "B" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
   {{- with hugo.Data.draft_sources }}
-  <h4>Also for articles written by our editor: established newsrooms</h4>
-  <ul>{{ range where .outlets "kind" "newsroom" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
-  <h4>Also for articles written by our editor: official websites</h4>
-  <ul><li>The official website of the company the article is about (the company named in the headline)</li>{{ range where .outlets "kind" "company" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
+  {{- $all := hugo.Data.sources.outlets }}
+  <h4>Articles written by our editor: only these sources</h4>
+  <ul>{{ range .editor_list }}{{ range first 1 (where $all "name" .) }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}{{ end }}
+    <li>The official website of the company the article is about (the company named in the headline)</li>{{ range where .outlets "kind" "company" }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
   {{- with where .outlets "kind" "market data" }}
   <h4>Share-price tables (for prices only)</h4>
   <ul>{{ range . }}<li>{{ .name }} <span>({{ delimit .domains ", " }})</span></li>{{ end }}</ul>
