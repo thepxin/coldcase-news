@@ -1,16 +1,28 @@
 {
  "items": [
   {
+   "date": "2026-11-26T08:01:33Z",
+   "outlet": "CoinDesk",
+   "title": "$7 billion of bitcoin options expire Friday, and the biggest bets look starkly different from October",
+   "url": "https://www.coindesk.com/markets/2026/11/26/usd7-billion-of-bitcoin-options-expire-friday-and-the-biggest-bets-look-starkly-different-from-october"
+  },
+  {
+   "date": "2026-11-26T07:28:21Z",
+   "outlet": "Engadget",
+   "title": "Neuralink receives FDA approval for 'pivotal' brain implant trial in ALS patients",
+   "url": "https://www.engadget.com/2329008/neuralink-receives-fda-approval-for-brain-implant-trial-in-als-patients/"
+  },
+  {
+   "date": "2026-11-26T07:09:25Z",
+   "outlet": "CoinDesk",
+   "title": "Zcash developers want users to move $300 million out of an older privacy system",
+   "url": "https://www.coindesk.com/tech/2026/11/26/zcash-developers-want-users-to-move-usd300-million-out-of-an-older-privacy-system"
+  },
+  {
    "date": "2026-11-26T06:02:48Z",
    "outlet": "Engadget",
    "title": "New York state bans AI chatbot toys for kids",
    "url": "https://www.engadget.com/2328996/new-york-state-bans-ai-chatbot-toys-for-kids/"
-  },
-  {
-   "date": "2026-11-26T05:30:38Z",
-   "outlet": "CoinDesk",
-   "title": "Ripple is worth $90 a share to one fund and $300 to another, SEC filings show",
-   "url": "https://www.coindesk.com/markets/2026/11/26/ripple-is-worth-usd90-a-share-to-one-fund-and-usd300-to-another-sec-filings-show"
   },
   {
    "date": "2026-11-26T05:05:00Z",
@@ -25,12 +37,6 @@
    "url": "https://science.nasa.gov/earth/earth-observatory/seeking-refuge-on-resolution-island/"
   },
   {
-   "date": "2026-11-26T04:46:01Z",
-   "outlet": "CoinDesk",
-   "title": "Bill to lock up U.S. government bitcoin for 20 years advances to full House",
-   "url": "https://www.coindesk.com/policy/2026/11/26/strategic-bitcoin-reserve-bill-to-lock-up-u-s-government-held-bitcoin-for-20-years-goes-to-full-house"
-  },
-  {
    "date": "2026-11-26T03:42:56Z",
    "outlet": "The Register",
    "title": "India’s government ponders cradle to grave AI oversight",
@@ -41,14 +47,8 @@
    "outlet": "9to5Mac",
    "title": "Apple pulls popular Chinese AI chatbot from the App Store amid child safety concerns",
    "url": "https://9to5mac.com/2026/11/25/apple-pulls-popular-chinese-ai-chatbot-from-the-app-store-amid-child-safety-concerns/"
-  },
-  {
-   "date": "2026-11-26T00:35:52Z",
-   "outlet": "9to5Mac",
-   "title": "Wispr Flow improves dictation accuracy with new Canto-2 speech-to-text model",
-   "url": "https://9to5mac.com/2026/11/25/wispr-flow-improves-dictation-accuracy-with-new-canto-2-speech-to-text-model/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-26T06:17:54Z"
+ "updated": "2026-11-26T09:17:48Z"
 }
