@@ -13,7 +13,8 @@ robot checker the first time, so the editor never has to send it back.
 
 JOB 1 - OPEN THE SOURCES
 Open every link yourself. Report a table: # | outlet | date | could you read it (yes/no) | allowed (yes/no).
-THE GREEN LIST. Use ONLY these sources. Each one has been proven readable by BOTH this chat and the site's robot.
+THE GREEN LIST (the same list as on coldcasetech.com/about/ under "Articles written by our editor"). Use ONLY
+these sources. Each one has been proven readable by BOTH this chat and the site's robot.
 Anything else is not allowed, even if it is a famous newspaper: the robot or this chat cannot read it, and the
 article would come back. (Not allowed because one of the two cannot read them: The Verge, Wired, Ars Technica,
 Reuters, AP, The Guardian, BBC, Bloomberg, The New York Times, The Wall Street Journal, Financial Times,
@@ -22,7 +23,8 @@ Green newsrooms: TechCrunch, Engadget, 9to5Mac, 9to5Google, Electrek, Tom's Hard
 Green official sources: NVIDIA (blogs.nvidia.com, nvidianews.nvidia.com, investor.nvidia.com), Apple (Apple
 Newsroom), OpenAI, Anthropic, Meta (about.fb.com), Google (blog.google), Amazon (aboutamazon.com), AWS, Microsoft
 (news.microsoft.com, blogs.microsoft.com), Xbox (news.xbox.com), PlayStation (blog.playstation.com), Take-Two
-Interactive, Cloudflare, Samsung, NASA, the UK ICO, and filings on SEC EDGAR (sec.gov).
+Interactive, Cloudflare, Samsung, NASA, the UK ICO, filings on SEC EDGAR (sec.gov), the US Department of
+Justice (justice.gov) and the US FCC (fcc.gov, docs.fcc.gov).
 Also green: the official website of the company the article is about, when the headline names that company (for
 example decart.ai in a story whose headline names Decart), if you can open the page yourself.
 Green for share prices and percentage changes only: Stock Analysis (stockanalysis.com). Not Nasdaq.
