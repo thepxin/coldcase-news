@@ -34,6 +34,13 @@
   "published": "2026-11-26T11:38:50Z",
   "status": "published"
  },
+ "published/2026-11-26-SatyaNadella.md": {
+  "article": "content/posts/2026-11-26-satya-nadella-explains-microsoft-buyout-offers.md",
+  "first_seen": "2026-11-25T02:42:00Z",
+  "hash": "461260c4aebd93c6",
+  "published": "2026-11-26T14:46:18Z",
+  "status": "published"
+ },
  "ready/AA2.md": {
   "first_seen": "2026-11-25T08:41:49Z"
  },
@@ -42,6 +49,9 @@
  },
  "ready/AI_Export.md": {
   "first_seen": "2026-11-26T11:29:36Z"
+ },
+ "ready/Amazon_India.md": {
+  "first_seen": "2026-11-26T14:41:52Z"
  },
  "ready/ChatGPT_Unified.md": {
   "first_seen": "2026-11-26T02:41:58Z"
@@ -58,21 +68,11 @@
  "ready/NIO_2030.md": {
   "first_seen": "2026-11-26T02:41:58Z"
  },
- "ready/SatyaNadella.md": {
-  "checked": "2026-11-26T08:50:16Z",
-  "first_seen": "2026-11-25T02:42:00Z",
-  "hash": "65a63adc6a84e3a5",
-  "reasons": [
-   "The claim-by-claim check found lines your sources do not support (fix them, add a source, or delete them):",
-   "\"The article puts \"Microsoft, as a 51-year-old company, didn't grow up as an AI-first company\" in quotation marks as something Nadella noted. In the source, this is TechCrunch's own narration, not a Nadella quote.\"",
-   "\"The article says Nadella stated that the way \"the technology industry, Microsoft included,\" has talked about AI created \"enormous anxiety\". The source quote says only \"we have talked about this AI revolution\" and never names the technology industry.\"",
-   "\"The article says that on the same podcast Nadella stated that \"leaders\" have to walk the hard walk. The source gives the line as \"You have to sort of walk the hard walk\", does not say it came from the podcast, and does not mention leaders.\""
-  ],
-  "rules": 4,
-  "status": "held"
- },
  "ready/microsoft_update.md": {
   "first_seen": "2026-11-25T08:41:49Z"
+ },
+ "ready/neurallink.md": {
+  "first_seen": "2026-11-26T14:41:52Z"
  },
  "ready/todoist_breach.md": {
   "first_seen": "2026-11-26T02:41:58Z"
