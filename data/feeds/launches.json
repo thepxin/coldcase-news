@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "Unknown Payload",
-   "net": "2026-11-26T09:35:00Z",
-   "pad": "Xichang Satellite Launch Center, China",
-   "precision": "Hour",
-   "provider": "CASC (China)",
-   "rocket": "Long March 2D",
-   "status": "Go"
-  },
-  {
    "mission": "Night Owls Never Sleep (StriX Launch 14)",
    "net": "2026-11-27T00:05:00Z",
    "pad": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
@@ -53,10 +44,19 @@
    "provider": "SpaceX",
    "rocket": "Falcon 9",
    "status": "Go"
+  },
+  {
+   "mission": "Demo Flight",
+   "net": "2026-11-30T00:00:00Z",
+   "pad": "Sea Launch",
+   "precision": "Month",
+   "provider": "Agency for Defense Development",
+   "rocket": "Mir",
+   "status": "TBD"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-25T03:17:44Z"
+ "updated": "2026-11-26T12:17:46Z"
 }
