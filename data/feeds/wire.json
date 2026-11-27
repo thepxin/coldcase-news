@@ -1,6 +1,18 @@
 {
  "items": [
   {
+   "date": "2026-11-26T22:56:12Z",
+   "outlet": "9to5Mac",
+   "title": "South Korea proceeds with case over allegedly misleading Apple Intelligence ads",
+   "url": "https://9to5mac.com/2026/11/26/south-korea-proceeds-with-case-over-allegedly-misleading-apple-intelligence-ads/"
+  },
+  {
+   "date": "2026-11-26T21:59:37Z",
+   "outlet": "PlayStation (Sony)",
+   "title": "Infinity Nikki Version 3.0 “Of Yesterday and Tomorrow” update live today on PS5",
+   "url": "https://blog.playstation.com/2026/11/26/infinity-nikki-version-3-0-of-yesterday-and-tomorrow-update-live-today-on-ps5/"
+  },
+  {
    "date": "2026-11-26T21:09:36Z",
    "outlet": "9to5Mac",
    "title": "Report: Apple accounted for 57% of US smartphone shipments in Q3",
@@ -25,12 +37,6 @@
    "url": "https://www.theverge.com/entertainment/1043489/midnight-diner-season3"
   },
   {
-   "date": "2026-11-26T20:30:32Z",
-   "outlet": "9to5Mac",
-   "title": "Readdle’s Documents app adds voice recording with transcripts, summaries, more",
-   "url": "https://9to5mac.com/2026/11/26/readdles-documents-app-adds-voice-recording-with-transcripts-summaries-more/"
-  },
-  {
    "date": "2026-11-26T20:03:54Z",
    "outlet": "TechCrunch",
    "title": "Nvidia hits pause on chip shipments to Southeast Asia",
@@ -41,14 +47,8 @@
    "outlet": "TechCrunch",
    "title": "Is Alice Huang a spy or not?",
    "url": "https://techcrunch.com/2026/11/26/is-alice-huang-a-spy-or-not/"
-  },
-  {
-   "date": "2026-11-26T19:00:00Z",
-   "outlet": "The Verge",
-   "title": "The Garmin Forerunner 265S is down to $300, its best price of the year",
-   "url": "https://www.theverge.com/gadgets/1042483/garmin-forerunner-265s-fitness-tracker-wearable-deal-sale-black-friday"
   }
  ],
  "status": "ok",
- "updated": "2026-11-26T21:17:46Z"
+ "updated": "2026-11-27T00:17:53Z"
 }

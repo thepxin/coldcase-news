@@ -2,12 +2,12 @@
  "items": [
   {
    "mission": "Night Owls Never Sleep (StriX Launch 14)",
-   "net": "2026-11-27T00:05:00Z",
+   "net": "2026-11-27T00:15:00Z",
    "pad": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
    "precision": "Minute",
    "provider": "Rocket Lab",
    "rocket": "Electron",
-   "status": "Go"
+   "status": "In Flight"
   },
   {
    "mission": "Unknown Payload",
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-26T12:17:46Z"
+ "updated": "2026-11-27T00:17:54Z"
 }
