@@ -37,15 +37,6 @@
    "status": "Go"
   },
   {
-   "mission": "Demo Flight",
-   "net": "2026-11-30T00:00:00Z",
-   "pad": "Sea Launch",
-   "precision": "Month",
-   "provider": "Agency for Defense Development",
-   "rocket": "Mir",
-   "status": "TBD"
-  },
-  {
    "mission": "Unknown Payload",
    "net": "2026-12-01T01:45:00Z",
    "pad": "Haiyang Oriental Spaceport",
@@ -53,10 +44,19 @@
    "provider": "CAS Space",
    "rocket": "Kinetica 1",
    "status": "Go"
+  },
+  {
+   "mission": "Unknown Payload",
+   "net": "2026-12-02T11:55:00Z",
+   "pad": "Jiuquan Satellite Launch Center, China",
+   "precision": "Hour",
+   "provider": "ExPace",
+   "rocket": "Kuaizhou 11",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-27T01:42:02Z"
+ "updated": "2026-11-27T06:17:54Z"
 }

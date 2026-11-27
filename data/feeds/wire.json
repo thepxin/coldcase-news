@@ -1,10 +1,40 @@
 {
  "items": [
   {
-   "date": "2026-11-27T01:00:00Z",
+   "date": "2026-11-27T05:13:32Z",
    "outlet": "The Register",
-   "title": "The token factory never sleeps",
-   "url": "https://www.theregister.com/ai-and-ml/2026/11/27/sponsored-the-token-factory-never-sleeps/5311612"
+   "title": "AWS adds virtual iPhones to its cloud",
+   "url": "https://www.theregister.com/off-prem/2026/11/27/aws-adds-virtual-iphones-to-its-cloud/5312457"
+  },
+  {
+   "date": "2026-11-27T05:06:32Z",
+   "outlet": "CoinDesk",
+   "title": "Ripple's lending plan moves closer to tapping XRP Ledger's $800 million in stablecoins",
+   "url": "https://www.coindesk.com/markets/2026/11/27/ripple-s-lending-plan-moves-closer-to-tapping-xrp-ledger-s-usd950-million-in-stablecoins"
+  },
+  {
+   "date": "2026-11-27T05:05:00Z",
+   "outlet": "NASA",
+   "title": "APOD: 2026 November 27 – The Moon Watchers",
+   "url": "https://science.nasa.gov/image-article/apod-2026-november-27-the-moon-watchers/"
+  },
+  {
+   "date": "2026-11-27T05:01:00Z",
+   "outlet": "NASA",
+   "title": "Shivelyuch Socked In",
+   "url": "https://science.nasa.gov/earth/earth-observatory/shivelyuch-socked-in/"
+  },
+  {
+   "date": "2026-11-27T04:45:47Z",
+   "outlet": "CoinDesk",
+   "title": "Binance says customer withdrawals are fully restored, four weeks after the $6.3 billion hack",
+   "url": "https://www.coindesk.com/markets/2026/11/27/binance-says-its-withdrawal-suspension-is-over-four-weeks-after-a-usd6-3-billion-hack"
+  },
+  {
+   "date": "2026-11-27T01:19:31Z",
+   "outlet": "The Register",
+   "title": "Free e-government platform that serves two billion people in ten countries has critical SQL injection bug",
+   "url": "https://www.theregister.com/security/2026/11/27/free-e-government-platform-that-serves-two-billion-people-in-ten-countries-has-critical-sql-injection-bug/5312449"
   },
   {
    "date": "2026-11-26T22:56:12Z",
@@ -17,38 +47,8 @@
    "outlet": "PlayStation (Sony)",
    "title": "Infinity Nikki Version 3.0 “Of Yesterday and Tomorrow” update live today on PS5",
    "url": "https://blog.playstation.com/2026/11/26/infinity-nikki-version-3-0-of-yesterday-and-tomorrow-update-live-today-on-ps5/"
-  },
-  {
-   "date": "2026-11-26T21:09:36Z",
-   "outlet": "9to5Mac",
-   "title": "Report: Apple accounted for 57% of US smartphone shipments in Q3",
-   "url": "https://9to5mac.com/2026/11/26/report-apple-accounted-for-57-of-us-smartphone-shipments-in-q3/"
-  },
-  {
-   "date": "2026-11-26T21:00:00Z",
-   "outlet": "Samsung",
-   "title": "Small Actions, Big Impact: Give Back This Holiday Season With the Samsung Global Goals App",
-   "url": "https://news.samsung.com/global/small-actions-big-impact-give-back-this-holiday-season-with-the-samsung-global-goals-app"
-  },
-  {
-   "date": "2026-11-26T21:00:00Z",
-   "outlet": "Tom's Hardware",
-   "title": "Denny’s touts renewed support for Nvidia CEO Jensen Huang following reinstatement",
-   "url": "https://www.tomshardware.com/tech-industry/big-tech/dennys-touts-renewed-support-for-nvidia-ceo-jensen-huang-following-reinstatement-says-some-things-you-just-dont-take-off-the-menu"
-  },
-  {
-   "date": "2026-11-26T21:00:00Z",
-   "outlet": "The Verge",
-   "title": "Netflix’s coziest show has made a very quiet return",
-   "url": "https://www.theverge.com/entertainment/1043489/midnight-diner-season3"
-  },
-  {
-   "date": "2026-11-26T20:03:54Z",
-   "outlet": "TechCrunch",
-   "title": "Nvidia hits pause on chip shipments to Southeast Asia",
-   "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-27T01:42:00Z"
+ "updated": "2026-11-27T06:17:53Z"
 }
