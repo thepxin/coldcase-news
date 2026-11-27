@@ -40,7 +40,7 @@
  },
  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
   "checked": "2026-11-27",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "an update was written but did not pass the checks (hard checks failed on the update: source never cited in the article: Electrek https://electrek.co/2026/11/23/tesla-fsd-v)"
  },
  "2026-11-08-apple-health-app-redesign-ios-27-3-beta": {
   "checked": "2026-11-27",
@@ -107,9 +107,6 @@
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
   "2026-11-20-nvidia-rtx-spark-compact-desktops-available",
-  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027",
-  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
-  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19",
   "2026-11-25-nvidia-reinstates-jensen-huang-chief-executive",
   "2026-10-27-gta-6-release-date-november-19-2026"
  ],
@@ -204,6 +201,24 @@
    "stamp": "5fc5309116b95255",
    "why": "nothing new",
    "day": "2026-11-25"
+  },
+  "2026-11-06-tesla-cybertruck-production-wind-down-mid-2027": {
+   "stamp": "26fd3f0f14e44f80",
+   "why": "failed checks",
+   "tries": 1,
+   "day": "2026-11-27"
+  },
+  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
+   "stamp": "30e6607907a4f47c",
+   "why": "failed checks",
+   "tries": 1,
+   "day": "2026-11-27"
+  },
+  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
+   "stamp": "30e6607907a4f47c",
+   "why": "failed checks",
+   "tries": 1,
+   "day": "2026-11-27"
   }
  }
 }

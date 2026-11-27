@@ -48,8 +48,12 @@
   "published": "2026-11-27T02:45:57Z",
   "status": "published"
  },
- "ready/AA3.md": {
-  "first_seen": "2026-11-26T02:41:58Z"
+ "published/2026-11-27-AA3.md": {
+  "article": "content/posts/2026-11-27-jensen-huang-reinstated-nvidia-staff-meeting.md",
+  "first_seen": "2026-11-26T02:41:58Z",
+  "hash": "fec43903947d92c1",
+  "published": "2026-11-27T08:51:41Z",
+  "status": "published"
  },
  "ready/AI_Export.md": {
   "first_seen": "2026-11-26T11:29:36Z"
@@ -73,7 +77,14 @@
   "first_seen": "2026-11-26T02:41:58Z"
  },
  "ready/microsoft_update.md": {
-  "first_seen": "2026-11-25T08:41:49Z"
+  "checked": "2026-11-27T08:45:12Z",
+  "first_seen": "2026-11-25T08:41:49Z",
+  "hash": "7bee94205eb85951",
+  "reasons": [
+   "The site could not fix these lines: date not found in sources: month 9, day 23."
+  ],
+  "rules": 5,
+  "status": "held"
  },
  "ready/neurallink.md": {
   "first_seen": "2026-11-26T14:41:52Z"
