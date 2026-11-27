@@ -1110,6 +1110,12 @@ HOW TO FIX
 """
 
 
+def _words_only(text: str) -> str:
+    """A line without its source links, for telling a rewording apart from a re-citation."""
+    t = re.sub(r"\(?\[[^\]]*\]\([^)\s]+\)\)?", " ", text or "")
+    return re.sub(r"[\s|.,;:]+", " ", t).strip().lower()
+
+
 def _apply_fixes(article: FollowUpArticle, fixes: list) -> list[tuple[str, str]]:
     """Apply only fixes whose "old" text is found exactly once. Returns the (old, new) pairs applied."""
     done = []
@@ -1228,9 +1234,12 @@ def fact_check_editor(article: FollowUpArticle, sources: list[dict], site_lines:
         short = drafts.enough_sources(sources)
         if short:
             return None, "after the site's fixes the sourcing rule fails: " + short, fixes_done
-        changed = sum(len(o.split()) for o, _ in fixes_done)
-        if len(fixes_done) > EDITOR_FIX_MAX_LINES or changed > EDITOR_FIX_MAX_SHARE * original_words:
-            return None, ("too much would change (" + f"{len(fixes_done)} lines): " + " | ".join(problems[:8])), fixes_done
+        # Only changes to the words count toward the limits: a line that keeps its words and only gets a different
+        # source link (re-cited to a page the site could read) is not a rewrite.
+        reworded = [(o, n) for o, n in fixes_done if _words_only(o) != _words_only(n)]
+        changed = sum(len(_words_only(o).split()) for o, _ in reworded)
+        if len(reworded) > EDITOR_FIX_MAX_LINES or changed > EDITOR_FIX_MAX_SHARE * original_words:
+            return None, ("too much would change (" + f"{len(reworded)} lines reworded): " + " | ".join(problems[:8])), fixes_done
     return None, "still wrong after the site's fixes", fixes_done
 
 
@@ -2085,6 +2094,13 @@ def _run_ready(path, text, log, cfg, fields_done, used_urls, known):
         drafts.hold(path, log, text, [short], notes)
         return "held"
     skipped = [n for n in notes if n.startswith("Not used")]
+    if drafts.should_wait(log, path, text, notes):
+        waits = log.get(drafts.key(path), {}).get("waits", 1)
+        print(f"[drafts] WAIT {name}: a source page did not open (usually a brief block or timeout), so the article "
+              f"waits for the next run instead of being changed (wait {waits} of {drafts.MAX_WAITS}); no AI used:")
+        for n in skipped:
+            print("    " + n)
+        return "wait"
     dropped = re.findall(r"Not used: (\S+)", "\n".join(skipped))
     if skipped:
         # A link the site could not read (or that is not on its lists) no longer holds the whole article: the
@@ -2169,7 +2185,7 @@ def run_drafts(used_urls: set, call_limit: int, known, want: int = 1, fields_tod
             result = _run_ready(path, text, log, cfg, fields_done, used_urls, known)
             if result == "stop":
                 break
-            if result != "held":
+            if result not in ("held", "wait"):
                 tries += 1
                 if result != "spent":
                     published.append(result)

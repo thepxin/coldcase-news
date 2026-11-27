@@ -16,6 +16,7 @@ be tested on its own.
 """
 import hashlib
 import json
+import time
 import os
 import re
 from datetime import datetime, timezone
@@ -25,7 +26,10 @@ PUBLISHED_DIR = os.path.join(DRAFTS_DIR, "published")
 READY_DIR = os.path.join(DRAFTS_DIR, "ready")   # articles the editor already approved (from the chat desk)
 LOG_PATH = os.path.join("data", "drafts_log.json")
 # Raise this when the site's own checks are fixed: every held draft is then tried once more without being edited.
-RULES = 5
+RULES = 6
+FETCH_TRIES = 2          # each source page is tried twice in a run, RETRY_PAUSE seconds apart
+RETRY_PAUSE = 10
+MAX_WAITS = 2            # a page that will not open makes the article wait this many runs before it is re-sourced
 BYLINE = "Rishit K."
 DRAFT_EXT = (".md", ".txt")
 SKIP_NAMES = {"readme.md", "master_prompt.md", "writer_prompt.md"}
@@ -284,12 +288,17 @@ def gather(links: list[str], cfg, fetch_html, extract, outlet_for, host_of, pars
                          "own website of a company named in the headline. The list is on the About page and in "
                          "data/draft_sources.json).")
             continue
-        try:
-            html = fetch_html(url)
-        except Exception:
-            html = None
-        data = extract(html, url) if html else None
-        text = (data or {}).get("text") or ""
+        for attempt in range(FETCH_TRIES):   # a green source that fails once is usually a brief block or timeout
+            try:
+                html = fetch_html(url)
+            except Exception:
+                html = None
+            data = extract(html, url) if html else None
+            text = (data or {}).get("text") or ""
+            if html and len(text) >= 300:
+                break
+            if attempt + 1 < FETCH_TRIES:
+                time.sleep(RETRY_PAUSE)
         if not html:
             notes.append(f"Not used: {url} (the page did not open: blocked, moved or timed out).")
             continue
@@ -366,6 +375,23 @@ def published(path: str, log: dict, text: str, article_file: str, now=None) -> s
                                      "published": now.strftime("%Y-%m-%dT%H:%M:%SZ")}
     print(f"[drafts] PUBLISHED {name} as {article_file}; the draft is now {target}")
     return target
+
+
+def should_wait(log: dict, path: str, text: str, notes: list) -> bool:
+    """A source on the editor's list that did not open (or showed almost no text) is usually a temporary block or
+    timeout. Instead of re-sourcing the editor's lines at once, the article waits for the next run, up to MAX_WAITS
+    times; after that the unreadable source is dropped and its lines are re-sourced or removed."""
+    temporary = [n for n in notes if n.startswith("Not used") and ("did not open" in n or "too little readable" in n)]
+    if not temporary:
+        return False
+    entry = log.setdefault(key(path), {})
+    if entry.get("waits_hash") != digest(text):
+        entry["waits_hash"], entry["waits"] = digest(text), 0
+    if entry.get("waits", 0) >= MAX_WAITS:
+        return False
+    entry["waits"] = entry.get("waits", 0) + 1
+    save_log(log)
+    return True
 
 
 def write_changes(target: str, article_file: str, fixes: list) -> str:
