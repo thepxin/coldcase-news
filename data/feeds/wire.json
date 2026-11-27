@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-27T01:00:00Z",
+   "outlet": "The Register",
+   "title": "The token factory never sleeps",
+   "url": "https://www.theregister.com/ai-and-ml/2026/11/27/sponsored-the-token-factory-never-sleeps/5311612"
+  },
+  {
    "date": "2026-11-26T22:56:12Z",
    "outlet": "9to5Mac",
    "title": "South Korea proceeds with case over allegedly misleading Apple Intelligence ads",
@@ -41,14 +47,8 @@
    "outlet": "TechCrunch",
    "title": "Nvidia hits pause on chip shipments to Southeast Asia",
    "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/"
-  },
-  {
-   "date": "2026-11-26T20:00:00Z",
-   "outlet": "TechCrunch",
-   "title": "Is Alice Huang a spy or not?",
-   "url": "https://techcrunch.com/2026/11/26/is-alice-huang-a-spy-or-not/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-27T00:17:53Z"
+ "updated": "2026-11-27T01:42:00Z"
 }

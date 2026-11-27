@@ -1,15 +1,6 @@
 {
  "items": [
   {
-   "mission": "Night Owls Never Sleep (StriX Launch 14)",
-   "net": "2026-11-27T00:15:00Z",
-   "pad": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-   "precision": "Minute",
-   "provider": "Rocket Lab",
-   "rocket": "Electron",
-   "status": "In Flight"
-  },
-  {
    "mission": "Unknown Payload",
    "net": "2026-11-27T13:00:00Z",
    "pad": "Taiyuan Satellite Launch Center, China",
@@ -53,10 +44,19 @@
    "provider": "Agency for Defense Development",
    "rocket": "Mir",
    "status": "TBD"
+  },
+  {
+   "mission": "Unknown Payload",
+   "net": "2026-12-01T01:45:00Z",
+   "pad": "Haiyang Oriental Spaceport",
+   "precision": "Hour",
+   "provider": "CAS Space",
+   "rocket": "Kinetica 1",
+   "status": "Go"
   }
  ],
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-27T00:17:54Z"
+ "updated": "2026-11-27T01:42:02Z"
 }
