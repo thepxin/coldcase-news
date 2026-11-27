@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-27T09:15:00Z",
-   "outlet": "The Register",
-   "title": "Royal Navy orders £142M in minehunting drones from US supplier",
-   "url": "https://www.theregister.com/offbeat/2026/11/27/royal-navy-orders-142m-in-minehunting-drones-from-us-supplier/5312291"
-  },
-  {
-   "date": "2026-11-27T08:49:57Z",
+   "date": "2026-11-27T12:00:00Z",
    "outlet": "Tom's Hardware",
-   "title": "Save a huge $1,020 on a 240Hz OLED gaming laptop from Lenovo with an RTX 5070 Ti, now just $1,999",
-   "url": "https://www.tomshardware.com/laptops/gaming-laptops/save-a-huge-usd1-020-on-a-240hz-oled-gaming-laptop-from-lenovo-with-an-rtx-5070-ti-now-just-usd1-999-portable-legion-5i-rig-features-an-18-core-intel-cpu-and-a-1tb-ssd"
+   "title": "Kioxia's 3rd-gen XL-Flash hits Optane-class 3-microsecond read latency with 70% higher density",
+   "url": "https://www.tomshardware.com/pc-components/ssds/kioxias-3rd-gen-xl-flash-hits-optane-class-3-microsecond-read-latency-with-70-percent-higher-density-samples-march-2027-ahead-of-18-million-iops-gp2-ssds"
   },
   {
-   "date": "2026-11-27T08:00:53Z",
-   "outlet": "Ars Technica",
-   "title": "Volvo's big batteries: We drive its updated 2028 plug-in hybrids",
-   "url": "https://arstechnica.com/cars/2026/11/volvos-big-batteries-we-drive-its-updated-2028-plug-in-hybrids/"
+   "date": "2026-11-27T11:45:47Z",
+   "outlet": "CoinDesk",
+   "title": "Bitcoin on course to end seven-week losing streak while trailing stock rebound",
+   "url": "https://www.coindesk.com/markets/2026/11/27/bitcoin-on-course-to-end-seven-week-losing-streak-while-trailing-stock-rebound"
   },
   {
-   "date": "2026-11-27T07:34:00Z",
+   "date": "2026-11-27T11:34:37Z",
+   "outlet": "CoinDesk",
+   "title": "Live news: Bitcoin rebounds above $61,000 as AI stocks lead premarket gains",
+   "url": "https://www.coindesk.com/tech/2026/11/27/live-news-bitcoin-rebounds-above-usd61-000-as-ai-stocks-lead-premarket-gains"
+  },
+  {
+   "date": "2026-11-27T11:32:00Z",
    "outlet": "The Register",
-   "title": "Support team put in an emergency order for vodka – lots of vodka – to bring PCs back online",
-   "url": "https://www.theregister.com/on-prem/2026/11/27/support-team-put-in-an-emergency-order-for-vodka-lots-of-vodka-to-bring-pcs-back-online/5312283"
+   "title": "Europe's AI sovereignty push: Lots of cloud, not much silver lining",
+   "url": "https://www.theregister.com/ai-and-ml/2026/11/27/europes-ai-sovereignty-push-lots-of-cloud-not-much-silver-lining/5312120"
   },
   {
-   "date": "2026-11-27T07:33:01Z",
-   "outlet": "CoinDesk",
-   "title": "Monero suffers biggest single-day slide in over 5 months. Here’s why",
-   "url": "https://www.coindesk.com/markets/2026/11/27/monero-suffers-biggest-single-day-slide-in-over-5-months-here-s-why"
+   "date": "2026-11-27T11:30:04Z",
+   "outlet": "Ars Technica",
+   "title": "Books, bikes, and The Burbs: These are Ars staff’s holiday gift picks for 2026",
+   "url": "https://arstechnica.com/shopping/2026/11/books-bikes-and-the-burbs-these-are-ars-staffs-holiday-gift-picks-for-2026/"
   },
   {
-   "date": "2026-11-27T07:00:00Z",
+   "date": "2026-11-27T11:30:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "Nvidia agrees to $290 million settlement over 2018 crypto mining GPU sales",
+   "url": "https://www.tomshardware.com/tech-industry/big-tech/nvidia-agrees-to-usd290-million-settlement-over-2018-crypto-mining-gpu-sales-ends-eight-year-investor-lawsuit-without-admitting-wrongdoing"
+  },
+  {
+   "date": "2026-11-27T11:30:00Z",
    "outlet": "Wired",
-   "title": "A New Breed of Chip Runs AI Models Using Waves of Light",
-   "url": "https://www.wired.com/story/a-new-breed-of-chip-runs-ai-models-using-waves-of-light/"
+   "title": "Welcome to the Repair Café, Where Neighbors Fight Throwaway Culture",
+   "url": "https://www.wired.com/story/welcome-to-the-repair-cafe-where-neighbors-fight-throw-away-culture/"
   },
   {
-   "date": "2026-11-27T05:06:32Z",
-   "outlet": "CoinDesk",
-   "title": "Ripple's lending plan moves closer to tapping XRP Ledger's $800 million in stablecoins",
-   "url": "https://www.coindesk.com/markets/2026/11/27/ripple-s-lending-plan-moves-closer-to-tapping-xrp-ledger-s-usd950-million-in-stablecoins"
-  },
-  {
-   "date": "2026-11-27T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 27 – The Moon Watchers",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-27-the-moon-watchers/"
+   "date": "2026-11-27T11:24:13Z",
+   "outlet": "Electrek",
+   "title": "Congress just passed a major e-bike safety law. Here’s what it actually means",
+   "url": "https://electrek.co/2026/11/27/congress-just-passed-a-major-e-bike-safety-law-heres-what-it-actually-means/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-27T09:17:46Z"
+ "updated": "2026-11-27T12:07:56Z"
 }
