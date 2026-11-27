@@ -41,8 +41,12 @@
   "published": "2026-11-26T14:46:18Z",
   "status": "published"
  },
- "ready/AA2.md": {
-  "first_seen": "2026-11-25T08:41:49Z"
+ "published/2026-11-27-AA2.md": {
+  "article": "content/posts/2026-11-27-nvidia-national-security-oversight-committee-huang.md",
+  "first_seen": "2026-11-25T08:41:49Z",
+  "hash": "409cfa908ff80195",
+  "published": "2026-11-27T02:45:57Z",
+  "status": "published"
  },
  "ready/AA3.md": {
   "first_seen": "2026-11-26T02:41:58Z"
