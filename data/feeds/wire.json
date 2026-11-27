@@ -1,10 +1,40 @@
 {
  "items": [
   {
-   "date": "2026-11-27T05:13:32Z",
+   "date": "2026-11-27T09:15:00Z",
    "outlet": "The Register",
-   "title": "AWS adds virtual iPhones to its cloud",
-   "url": "https://www.theregister.com/off-prem/2026/11/27/aws-adds-virtual-iphones-to-its-cloud/5312457"
+   "title": "Royal Navy orders £142M in minehunting drones from US supplier",
+   "url": "https://www.theregister.com/offbeat/2026/11/27/royal-navy-orders-142m-in-minehunting-drones-from-us-supplier/5312291"
+  },
+  {
+   "date": "2026-11-27T08:49:57Z",
+   "outlet": "Tom's Hardware",
+   "title": "Save a huge $1,020 on a 240Hz OLED gaming laptop from Lenovo with an RTX 5070 Ti, now just $1,999",
+   "url": "https://www.tomshardware.com/laptops/gaming-laptops/save-a-huge-usd1-020-on-a-240hz-oled-gaming-laptop-from-lenovo-with-an-rtx-5070-ti-now-just-usd1-999-portable-legion-5i-rig-features-an-18-core-intel-cpu-and-a-1tb-ssd"
+  },
+  {
+   "date": "2026-11-27T08:00:53Z",
+   "outlet": "Ars Technica",
+   "title": "Volvo's big batteries: We drive its updated 2028 plug-in hybrids",
+   "url": "https://arstechnica.com/cars/2026/11/volvos-big-batteries-we-drive-its-updated-2028-plug-in-hybrids/"
+  },
+  {
+   "date": "2026-11-27T07:34:00Z",
+   "outlet": "The Register",
+   "title": "Support team put in an emergency order for vodka – lots of vodka – to bring PCs back online",
+   "url": "https://www.theregister.com/on-prem/2026/11/27/support-team-put-in-an-emergency-order-for-vodka-lots-of-vodka-to-bring-pcs-back-online/5312283"
+  },
+  {
+   "date": "2026-11-27T07:33:01Z",
+   "outlet": "CoinDesk",
+   "title": "Monero suffers biggest single-day slide in over 5 months. Here’s why",
+   "url": "https://www.coindesk.com/markets/2026/11/27/monero-suffers-biggest-single-day-slide-in-over-5-months-here-s-why"
+  },
+  {
+   "date": "2026-11-27T07:00:00Z",
+   "outlet": "Wired",
+   "title": "A New Breed of Chip Runs AI Models Using Waves of Light",
+   "url": "https://www.wired.com/story/a-new-breed-of-chip-runs-ai-models-using-waves-of-light/"
   },
   {
    "date": "2026-11-27T05:06:32Z",
@@ -17,38 +47,8 @@
    "outlet": "NASA",
    "title": "APOD: 2026 November 27 – The Moon Watchers",
    "url": "https://science.nasa.gov/image-article/apod-2026-november-27-the-moon-watchers/"
-  },
-  {
-   "date": "2026-11-27T05:01:00Z",
-   "outlet": "NASA",
-   "title": "Shivelyuch Socked In",
-   "url": "https://science.nasa.gov/earth/earth-observatory/shivelyuch-socked-in/"
-  },
-  {
-   "date": "2026-11-27T04:45:47Z",
-   "outlet": "CoinDesk",
-   "title": "Binance says customer withdrawals are fully restored, four weeks after the $6.3 billion hack",
-   "url": "https://www.coindesk.com/markets/2026/11/27/binance-says-its-withdrawal-suspension-is-over-four-weeks-after-a-usd6-3-billion-hack"
-  },
-  {
-   "date": "2026-11-27T01:19:31Z",
-   "outlet": "The Register",
-   "title": "Free e-government platform that serves two billion people in ten countries has critical SQL injection bug",
-   "url": "https://www.theregister.com/security/2026/11/27/free-e-government-platform-that-serves-two-billion-people-in-ten-countries-has-critical-sql-injection-bug/5312449"
-  },
-  {
-   "date": "2026-11-26T22:56:12Z",
-   "outlet": "9to5Mac",
-   "title": "South Korea proceeds with case over allegedly misleading Apple Intelligence ads",
-   "url": "https://9to5mac.com/2026/11/26/south-korea-proceeds-with-case-over-allegedly-misleading-apple-intelligence-ads/"
-  },
-  {
-   "date": "2026-11-26T21:59:37Z",
-   "outlet": "PlayStation (Sony)",
-   "title": "Infinity Nikki Version 3.0 “Of Yesterday and Tomorrow” update live today on PS5",
-   "url": "https://blog.playstation.com/2026/11/26/infinity-nikki-version-3-0-of-yesterday-and-tomorrow-update-live-today-on-ps5/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-27T06:17:53Z"
+ "updated": "2026-11-27T09:17:46Z"
 }
