@@ -1,6 +1,24 @@
 {
  "items": [
   {
+   "date": "2026-11-28T12:00:20Z",
+   "outlet": "Ars Technica",
+   "title": "2026 Kindle Paperwhite review: Page-turn buttons are back, for a price",
+   "url": "https://arstechnica.com/gadgets/2026/11/2026-kindle-paperwhite-review-page-turn-buttons-are-back-for-a-price/"
+  },
+  {
+   "date": "2026-11-28T12:00:00Z",
+   "outlet": "Tom's Hardware",
+   "title": "AI enthusiast deletes Linux for a 24KB pure assembly OS that boots in 74 milliseconds",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-enthusiast-deletes-linux-to-run-qwen3-on-a-24kb-pure-x86-64-assembly-os-28-000-times-smaller-than-model-system-boots-in-74-milliseconds-runs-llms-up-to-54-percent-faster"
+  },
+  {
+   "date": "2026-11-28T12:00:00Z",
+   "outlet": "Wired",
+   "title": "7 Pro Tips to Get More Out of the Google Health App",
+   "url": "https://www.wired.com/story/7-pro-tips-to-get-more-out-of-the-google-health-app/"
+  },
+  {
    "date": "2026-11-28T11:30:00Z",
    "outlet": "Tom's Hardware",
    "title": "Makita power tool battery pack adapter tested as portable laptop power solution",
@@ -11,18 +29,6 @@
    "outlet": "Wired",
    "title": "Swift Saw the Secrets of Space Before Falling to Earth",
    "url": "https://www.wired.com/story/swift-saw-the-secrets-of-space-before-falling-to-earth/"
-  },
-  {
-   "date": "2026-11-28T11:16:34Z",
-   "outlet": "Tom's Hardware",
-   "title": "This nifty $35 dual hard drive dock can support up to 64TB of storage for your PC",
-   "url": "https://www.tomshardware.com/pc-components/this-nifty-usd35-dual-hard-drive-dock-can-support-up-to-64tb-of-storage-for-your-pc-clone-duplicate-and-connect-2-5-inch-and-3-5-inch-ssds-and-hdds-with-ease"
-  },
-  {
-   "date": "2026-11-28T10:00:00Z",
-   "outlet": "Wired",
-   "title": "Dark Matter Might Have Its Own Periodic Table of Invisible Particles",
-   "url": "https://www.wired.com/story/dark-matter-might-have-its-own-periodic-table-of-invisible-particles/"
   },
   {
    "date": "2026-11-28T09:32:51Z",
@@ -41,14 +47,8 @@
    "outlet": "The Register",
    "title": "Unkernel and Trynix just transported computing to 2035",
    "url": "https://www.theregister.com/software/2026/11/28/unkernel-and-trynix-just-transported-computing-to-2035/5313200"
-  },
-  {
-   "date": "2026-11-28T05:05:00Z",
-   "outlet": "NASA",
-   "title": "APOD: 2026 November 28 – Apollo 17 VIP Site Anaglyph",
-   "url": "https://science.nasa.gov/image-article/apod-2026-november-28-apollo-17-vip-site-anaglyph/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-28T11:51:22Z"
+ "updated": "2026-11-28T12:17:49Z"
 }
