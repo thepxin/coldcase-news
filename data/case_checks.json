@@ -49,7 +49,7 @@
  },
  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
   "checked": "2026-11-28",
-  "result": "new coverage found, but the writer was not available; first in line for the next run"
+  "result": "coverage found, but no new development"
  },
  "2026-11-11-ring-robotics-rover-cam-drone-cam-dates": {
   "checked": "2026-11-28",
@@ -107,10 +107,7 @@
   "2026-11-10-anthropic-claude-fable-5-2-launch-price",
   "2026-11-17-google-wallet-launches-ios-us-no-tap-to-pay",
   "2026-11-17-xbox-25th-anniversary-bundle-series-x25",
-  "2026-11-20-nvidia-rtx-spark-compact-desktops-available",
-  "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027",
-  "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19",
-  "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19"
+  "2026-11-20-nvidia-rtx-spark-compact-desktops-available"
  ],
  "_seen": {
   "2026-11-13-xbox-doom-dark-ages-slaughter-mode-november-16": {
@@ -124,9 +121,9 @@
    "day": "2026-11-24"
   },
   "2026-11-09-nasa-escapade-earth-flybys-mars-september-2027": {
-   "stamp": "be8f8d9ff10f9b04",
+   "stamp": "c16014fd7ea9db57",
    "why": "nothing new",
-   "day": "2026-11-26"
+   "day": "2026-11-28"
   },
   "2026-11-15-deepseek-kimi-weights-nvidia-blackwell-fingerprint": {
    "stamp": "418b713021a074de",
@@ -211,16 +208,16 @@
    "day": "2026-11-28"
   },
   "2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19": {
-   "stamp": "30e6607907a4f47c",
+   "stamp": "d805b5033503bbfe",
    "why": "failed checks",
    "tries": 1,
-   "day": "2026-11-27"
+   "day": "2026-11-28"
   },
   "2026-11-16-grand-theft-auto-vi-ps5-preload-november-19": {
-   "stamp": "30e6607907a4f47c",
+   "stamp": "d805b5033503bbfe",
    "why": "failed checks",
    "tries": 1,
-   "day": "2026-11-27"
+   "day": "2026-11-28"
   }
  }
 }
