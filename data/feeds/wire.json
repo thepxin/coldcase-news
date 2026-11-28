@@ -1,6 +1,12 @@
 {
  "items": [
   {
+   "date": "2026-11-28T03:07:04Z",
+   "outlet": "9to5Mac",
+   "title": "Product(RED) HomePod mini 2 seemingly surfaces ahead of rumored announcement [U]",
+   "url": "https://9to5mac.com/2026/11/27/productred-homepod-mini-2-seemingly-surfaces-ahead-of-rumored-announcement/"
+  },
+  {
    "date": "2026-11-28T00:02:49Z",
    "outlet": "The Verge",
    "title": "This purple electric Chinese minivan can go up to 559 miles on a charge",
@@ -31,12 +37,6 @@
    "url": "https://www.engadget.com/2329851/la-school-district-blocks-google-ai-search-features/"
   },
   {
-   "date": "2026-11-27T21:49:17Z",
-   "outlet": "9to5Mac",
-   "title": "Apple claims six of China’s 10 bestselling smartphones during Singles’ Day",
-   "url": "https://9to5mac.com/2026/11/27/apple-claims-six-of-chinas-10-bestselling-smartphones-during-singles-day/"
-  },
-  {
    "date": "2026-11-27T21:30:00Z",
    "outlet": "9to5Google",
    "title": "Pixelated 127: Nobody reads, nobody writes",
@@ -50,5 +50,5 @@
   }
  ],
  "status": "ok",
- "updated": "2026-11-28T00:17:45Z"
+ "updated": "2026-11-28T03:16:51Z"
 }
