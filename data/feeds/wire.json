@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-28T12:00:20Z",
-   "outlet": "Ars Technica",
-   "title": "2026 Kindle Paperwhite review: Page-turn buttons are back, for a price",
-   "url": "https://arstechnica.com/gadgets/2026/11/2026-kindle-paperwhite-review-page-turn-buttons-are-back-for-a-price/"
+   "date": "2026-11-28T15:00:00Z",
+   "outlet": "Engadget",
+   "title": "Why AirDrop isn't working on your Apple devices (and how to fix it)",
+   "url": "https://www.engadget.com/2325544/how-to-fix-airdrop-not-working-iphone-ipad-mac/"
   },
   {
-   "date": "2026-11-28T12:00:00Z",
+   "date": "2026-11-28T14:45:00Z",
+   "outlet": "Engadget",
+   "title": "The most important Gemini security settings you should probably be using",
+   "url": "https://www.engadget.com/2325814/important-gemini-security-settings-should-be-using/"
+  },
+  {
+   "date": "2026-11-28T14:40:57Z",
+   "outlet": "9to5Mac",
+   "title": "Telegram issues security warning to iPhone users running older iOS versions",
+   "url": "https://9to5mac.com/2026/11/28/telegram-issues-security-warning-to-iphone-users-running-older-ios-versions/"
+  },
+  {
+   "date": "2026-11-28T14:33:00Z",
+   "outlet": "9to5Mac",
+   "title": "Apple @ Work: Apple quietly fixes the Rosetta problem it created in Golden Gate",
+   "url": "https://9to5mac.com/2026/11/28/apple-quietly-fixes-the-rosetta-problem-it-created-in-golden-gate/"
+  },
+  {
+   "date": "2026-11-28T14:30:00Z",
    "outlet": "Tom's Hardware",
-   "title": "AI enthusiast deletes Linux for a 24KB pure assembly OS that boots in 74 milliseconds",
-   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-enthusiast-deletes-linux-to-run-qwen3-on-a-24kb-pure-x86-64-assembly-os-28-000-times-smaller-than-model-system-boots-in-74-milliseconds-runs-llms-up-to-54-percent-faster"
+   "title": "$120 wearable LED pin acts as a 'watermark for humans' to fight deepfakes",
+   "url": "https://www.tomshardware.com/peripherals/wearable-tech/usd120-wearable-led-pin-acts-as-a-watermark-for-humans-to-fight-deepfakes-esp32-s3-powered-protector-flashes-secret-time-synced-light-codes-every-second"
   },
   {
-   "date": "2026-11-28T12:00:00Z",
-   "outlet": "Wired",
-   "title": "7 Pro Tips to Get More Out of the Google Health App",
-   "url": "https://www.wired.com/story/7-pro-tips-to-get-more-out-of-the-google-health-app/"
+   "date": "2026-11-28T14:00:13Z",
+   "outlet": "Electrek",
+   "title": "Not sold on Tesla Powerwall? There are great battery alternatives out there [update]",
+   "url": "https://electrek.co/2026/11/28/not-sold-on-tesla-powerwall-there-are-some-great-home-battery-alternatives-out-there/"
   },
   {
-   "date": "2026-11-28T11:30:00Z",
+   "date": "2026-11-28T14:00:00Z",
+   "outlet": "TechCrunch",
+   "title": "Sakana AI’s CEO says its homegrown models are about more than Japan’s national security",
+   "url": "https://techcrunch.com/2026/11/28/sakana-ais-ceo-says-its-homegrown-models-are-about-more-than-japans-national-security/"
+  },
+  {
+   "date": "2026-11-28T14:00:00Z",
    "outlet": "Tom's Hardware",
-   "title": "Makita power tool battery pack adapter tested as portable laptop power solution",
-   "url": "https://www.tomshardware.com/peripherals/usb/makita-power-tool-battery-pack-adapter-tested-as-portable-laptop-power-solution-usd44-adp15-charges-a-thinkpad-at-60w-and-iphone-17-pro-max-at-37w"
-  },
-  {
-   "date": "2026-11-28T11:30:00Z",
-   "outlet": "Wired",
-   "title": "Swift Saw the Secrets of Space Before Falling to Earth",
-   "url": "https://www.wired.com/story/swift-saw-the-secrets-of-space-before-falling-to-earth/"
-  },
-  {
-   "date": "2026-11-28T09:32:51Z",
-   "outlet": "CoinDesk",
-   "title": "Trump-linked crypto token WLFI plunges 50% to record lows",
-   "url": "https://www.coindesk.com/markets/2026/11/28/trump-linked-crypto-token-wlfi-plunges-over-50"
-  },
-  {
-   "date": "2026-11-28T09:24:00Z",
-   "outlet": "The Register",
-   "title": "Quantum: 'Five years, that's all we got…'",
-   "url": "https://www.theregister.com/hpc/2026/11/28/quantum-five-years-thats-all-we-got/5312034"
-  },
-  {
-   "date": "2026-11-28T08:34:00Z",
-   "outlet": "The Register",
-   "title": "Unkernel and Trynix just transported computing to 2035",
-   "url": "https://www.theregister.com/software/2026/11/28/unkernel-and-trynix-just-transported-computing-to-2035/5313200"
+   "title": "Caveman repurposes old mining rig for local AI, pools 72GB VRAM across mismatched GPUs",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/caveman-repurposes-old-mining-rig-for-local-ai-pools-72gb-vram-across-mismatched-gpus-pcie-x1-slot-hits-just-10-percent-load-while-running-a-120b-model"
   }
  ],
  "status": "ok",
- "updated": "2026-11-28T12:17:49Z"
+ "updated": "2026-11-28T15:17:47Z"
 }
