@@ -69,6 +69,13 @@
   "published": "2026-11-28T08:45:24Z",
   "status": "published"
  },
+ "published/2026-11-28-GG_apple.md": {
+  "article": "content/posts/2026-11-28-gg-technologies-sues-apple-india-namedrop.md",
+  "first_seen": "2026-11-26T02:41:58Z",
+  "hash": "33929e5a114a9d85",
+  "published": "2026-11-28T14:50:09Z",
+  "status": "published"
+ },
  "ready/AI_Export.md": {
   "first_seen": "2026-11-26T11:29:36Z"
  },
@@ -87,11 +94,8 @@
   ],
   "rules": 5,
   "status": "held",
-  "waits": 1,
+  "waits": 2,
   "waits_hash": "0bc807b575ace550"
- },
- "ready/GG_apple.md": {
-  "first_seen": "2026-11-26T02:41:58Z"
  },
  "ready/Huawei_convicted.md": {
   "first_seen": "2026-11-27T14:41:49Z"
