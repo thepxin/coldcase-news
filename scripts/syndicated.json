@@ -648,5 +648,10 @@
   "attempts": 1,
   "devto": "https://dev.to/coldcasetech/openai-begins-merging-chat-and-work-in-chatgpt-and-warns-its-heaviest-users-may-hit-limits-sooner-1kgg",
   "done": true
+ },
+ "content/posts/2026-11-28-spacex-conditional-approval-orbital-data-center-satelli.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/spacex-wins-conditional-approval-for-up-to-1-million-orbital-data-center-satellites-2m93",
+  "done": true
  }
 }
