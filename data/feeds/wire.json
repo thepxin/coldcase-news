@@ -1,54 +1,54 @@
 {
  "items": [
   {
-   "date": "2026-11-27T21:08:01Z",
+   "date": "2026-11-28T00:02:49Z",
+   "outlet": "The Verge",
+   "title": "This purple electric Chinese minivan can go up to 559 miles on a charge",
+   "url": "https://www.theverge.com/transportation/1044706/this-purple-electric-chinese-minivan-can-go-up-to-559-miles-on-a-charge"
+  },
+  {
+   "date": "2026-11-27T23:30:32Z",
+   "outlet": "The Verge",
+   "title": "Yooka-Laylee’s free upgrade is skipping Xbox",
+   "url": "https://www.theverge.com/games/1044715/yooka-laylees-free-upgrade-is-skipping-xbox"
+  },
+  {
+   "date": "2026-11-27T22:46:29Z",
+   "outlet": "Engadget",
+   "title": "5 ways to make sure your console isn't holding back your GTA 6 performance",
+   "url": "https://www.engadget.com/2329878/gta-6-performance-ways-make-sure-console-not-holding-back/"
+  },
+  {
+   "date": "2026-11-27T22:30:06Z",
    "outlet": "9to5Mac",
-   "title": "MacWhisper now remembers speakers’ voices across recordings",
-   "url": "https://9to5mac.com/2026/11/27/macwhisper-now-remembers-speakers-voices-across-recordings/"
+   "title": "WhatsApp announces travel eSIMs, tests view-once texts and a cleaner interface",
+   "url": "https://9to5mac.com/2026/11/27/whatsapp-announces-travel-esims-tests-view-once-texts-and-a-cleaner-interface/"
+  },
+  {
+   "date": "2026-11-27T22:00:08Z",
+   "outlet": "Engadget",
+   "title": "LA school district blocks Google's AI search features",
+   "url": "https://www.engadget.com/2329851/la-school-district-blocks-google-ai-search-features/"
+  },
+  {
+   "date": "2026-11-27T21:49:17Z",
+   "outlet": "9to5Mac",
+   "title": "Apple claims six of China’s 10 bestselling smartphones during Singles’ Day",
+   "url": "https://9to5mac.com/2026/11/27/apple-claims-six-of-chinas-10-bestselling-smartphones-during-singles-day/"
+  },
+  {
+   "date": "2026-11-27T21:30:00Z",
+   "outlet": "9to5Google",
+   "title": "Pixelated 127: Nobody reads, nobody writes",
+   "url": "https://9to5google.com/2026/11/27/pixelated-127-nobody-reads-nobody-writes/"
   },
   {
    "date": "2026-11-27T21:06:27Z",
    "outlet": "Tom's Hardware",
    "title": "Samsung's 49-inch OLED gaming monitor drops to a new low price of $854",
    "url": "https://www.tomshardware.com/monitors/gaming-monitors/samsungs-49-inch-oled-gaming-monitor-returns-to-its-lowest-price-ever-at-amazon-take-your-gpu-on-an-ultrawide-odyssey-for-usd854"
-  },
-  {
-   "date": "2026-11-27T20:58:02Z",
-   "outlet": "Electrek",
-   "title": "Podcast: Tesla FSD v15, Volvo XC60/90 PHEVs, Porsche Boxster EV, and more",
-   "url": "https://electrek.co/2026/11/27/podcast-tesla-fsd-v15-volvo-xc60-90-phevs-porsche-boxster-ev-and-more/"
-  },
-  {
-   "date": "2026-11-27T20:51:59Z",
-   "outlet": "Electrek",
-   "title": "Volvo A40 Electric articulated haul trucks get to work in the UK",
-   "url": "https://electrek.co/2026/11/27/volvo-a40-electric-articulated-haul-trucks-get-to-work-in-the-uk/"
-  },
-  {
-   "date": "2026-11-27T20:31:12Z",
-   "outlet": "9to5Mac",
-   "title": "Apple faces potential $80 million fine and App Store overhaul in Chile",
-   "url": "https://9to5mac.com/2026/11/27/apple-faces-potential-80-million-fine-and-app-store-overhaul-in-chile/"
-  },
-  {
-   "date": "2026-11-27T20:06:02Z",
-   "outlet": "Engadget",
-   "title": "Samsung is reportedly giving its camera app an AI mode",
-   "url": "https://www.engadget.com/2329765/samsung-is-reportedly-giving-its-camera-app-an-ai-mode/"
-  },
-  {
-   "date": "2026-11-27T19:49:01Z",
-   "outlet": "Tom's Hardware",
-   "title": "Get a Sony WH-1000 XM5 headset with ANC for only $169.99 — aural bliss for your games and movies",
-   "url": "https://www.tomshardware.com/pc-components/get-a-sony-wh-1000-mx5-headset-with-anc-for-only-usd169-99-aural-bliss-for-your-games-and-movies"
-  },
-  {
-   "date": "2026-11-27T19:45:23Z",
-   "outlet": "Engadget",
-   "title": "Restricted NVIDIA chips were installed at a Chinese data center linked to Alice Huang",
-   "url": "https://www.engadget.com/2329748/restricted-nvidia-chips-were-installed-at-a-chinese-data-center-linked-to-alice-huang/"
   }
  ],
  "status": "ok",
- "updated": "2026-11-27T21:11:24Z"
+ "updated": "2026-11-28T00:17:45Z"
 }
