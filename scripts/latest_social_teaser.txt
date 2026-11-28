@@ -1,32 +1,28 @@
 ================================================================
-OpenAI begins merging Chat and Work in ChatGPT and warns its heaviest users may hit limits sooner
+SpaceX wins conditional approval for up to 1 million orbital data center satellites
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (213/280):
-OpenAI has started rolling out a combined Chat and Work experience in ChatGPT. The heaviest users may hit their usage limits sooner.
+X (163/280):
+SpaceX won conditional approval for up to 1 million orbital data center satellites despite objections.
 
-Verdict: Delivered.
+Every line sourced: https://coldcasetech.com/posts/2026-11-28-spacex-conditional-approval-orbital-data-center-satelli/
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt/
-
-#OpenAI #Chat
+#SpaceX #Space
 
 INSTAGRAM (post this caption with the image from the share kit):
-OpenAI has started rolling out a combined Chat and Work experience in ChatGPT. The heaviest users may hit their usage limits sooner.
+SpaceX won conditional approval for up to 1 million orbital data center satellites despite objections.
 
-OpenAI has begun rolling out a combined Chat and Work experience in ChatGPT to a small group of Pro subscribers, as its earlier email described.
-
-Verdict: Delivered.
+SpaceX has conditional approval from the Federal Communications Commission for Starmind, a constellation of up to 1 million data center satellites.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #openai #chat #work #chatgpt #ai #technews #tech
+#coldcasetech #spacex #space #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. The receipt: OpenAI told users by email that it would begin testing a combined Chat and Work experience in the coming weeks, as 9to5Mac reported on November 2, 2026.
-2. The clock: the rollout to a small group of Pro subscribers began, as TechCrunch reported on November 25, 2026. Verdict: Delivered.
-3. One fact: Instant conversations remain unlimited and outside the shared allowance. Will shared usage limits reach more users in December?
+1. Receipt: TechCrunch reported on November 25, 2026 that the Federal Communications Commission gave SpaceX conditional approval for up to 1 million satellites.
+2. No verdict yet. The authorization gives SpaceX seven years to place its first operational satellite in orbit and 14 years to deploy the entire constellation.
+3. The Commission has not yet approved SpaceX's orbital debris plans for satellites above 600 kilometers. Will those plans be approved next?

@@ -62,6 +62,13 @@
   "published": "2026-11-28T02:53:43Z",
   "status": "published"
  },
+ "published/2026-11-28-FCC_SpaceX.md": {
+  "article": "content/posts/2026-11-28-spacex-conditional-approval-orbital-data-center-satelli.md",
+  "first_seen": "2026-11-26T02:41:58Z",
+  "hash": "ac02abeae276e894",
+  "published": "2026-11-28T08:45:24Z",
+  "status": "published"
+ },
  "ready/AI_Export.md": {
   "first_seen": "2026-11-26T11:29:36Z"
  },
@@ -79,10 +86,9 @@
    "Too much would change (17 lines): the site could not read this source, so it cannot be used: https://www.justice.gov/usao-ri/pr/florida-data-recovery-company-co-founder-charged-defrauding-ransomware-victims. Re-cite every sentence, bullet or table row that uses it to another of the SOURCES that states the same thing, or delete it | date not found in sources: 2026-11-18."
   ],
   "rules": 5,
-  "status": "held"
- },
- "ready/FCC_SpaceX.md": {
-  "first_seen": "2026-11-26T02:41:58Z"
+  "status": "held",
+  "waits": 1,
+  "waits_hash": "0bc807b575ace550"
  },
  "ready/GG_apple.md": {
   "first_seen": "2026-11-26T02:41:58Z"
