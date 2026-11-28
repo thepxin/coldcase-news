@@ -11,9 +11,9 @@
   },
   {
    "mission": "USSF-380",
-   "net": "2026-11-29T04:39:00Z",
+   "net": "2026-11-29T04:39:03Z",
    "pad": "Vandenberg SFB, CA, USA",
-   "precision": "Minute",
+   "precision": "Second",
    "provider": "SpaceX",
    "rocket": "Falcon 9",
    "status": "Go"
@@ -58,5 +58,5 @@
  "source": "The Space Devs (Launch Library 2)",
  "source_url": "https://thespacedevs.com/llapi",
  "status": "ok",
- "updated": "2026-11-27T15:17:47Z"
+ "updated": "2026-11-28T06:17:53Z"
 }
