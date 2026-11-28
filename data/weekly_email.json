@@ -85,15 +85,42 @@
   "case|2026-11-20-apple-macos-27-3-full-disk-access-changes|2026-11-20",
   "case|2026-11-20-apple-tv-f1-academy-us-streaming-2027|2026-11-20",
   "case|2026-11-20-nvidia-rtx-spark-compact-desktops-available|2026-11-20",
+  "case|2026-11-21-amplitude-wave-agent-ships-fixes-1-2-days|2026-11-21",
   "case|2026-11-21-nvidia-vera-cpu-racks-early-2027|2026-11-21",
   "case|2026-11-21-youtube-3-billion-school-district-settlement|2026-11-21",
+  "case|2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim|2026-11-22",
+  "case|2026-11-22-gta-6-evs-vice-city-electrify-america|2026-11-22",
+  "case|2026-11-22-guild-saga-vanished-worlds-ps5-may-2027|2026-11-22",
+  "case|2026-11-23-nintendo-switch-2-bundle-50-off-december-5|2026-11-23",
+  "case|2026-11-23-nvidia-dgx-spark-hpc-developer-kit-four-nodes|2026-11-23",
+  "case|2026-11-23-openai-gpt-6-2-astra-sol-launch|2026-11-23",
+  "case|2026-11-24-php-aftershell-critical-flaw-fixed-same-day|2026-11-24",
+  "case|2026-11-24-samsung-odyssey-g6-g60h-1100hz-monitor|2026-11-24",
+  "case|2026-11-24-uber-recorded-rides-pilot-four-cities|2026-11-24",
+  "case|2026-11-25-amazon-agrees-to-buy-decart-optimization-technology|2026-11-25",
+  "case|2026-11-25-anthropic-ipo-nasdaq-trading-debut|2026-11-25",
+  "case|2026-11-25-nvidia-reinstates-jensen-huang-chief-executive|2026-11-25",
+  "case|2026-11-26-anthropic-launches-claude-ship-github-code-reviews|2026-11-26",
+  "case|2026-11-26-meta-muse-launches-united-kingdom-monitoring|2026-11-26",
+  "case|2026-11-26-satya-nadella-explains-microsoft-buyout-offers|2026-11-26",
+  "case|2026-11-27-jensen-huang-reinstated-nvidia-staff-meeting|2026-11-27",
+  "case|2026-11-27-nvidia-national-security-oversight-committee-huang|2026-11-27",
+  "case|2026-11-27-tesla-cybertruck-tighter-turning-2027-only|2026-11-27",
+  "case|2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt|2026-11-28",
+  "case|2026-11-28-spacex-conditional-approval-orbital-data-center-satelli|2026-11-28",
   "update|2026-10-27-apple-oled-ipad-mini-m6-imac-macbook-pro|2026-10-31",
+  "update|2026-10-27-gta-6-release-date-november-19-2026|2026-11-24",
   "update|2026-10-30-apple-macbook-pro-proled-xdr-november-6|2026-11-21",
+  "update|2026-11-01-xbox-new-games-november-2-to-6|2026-11-26",
   "update|2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19|2026-11-19",
+  "update|2026-11-04-grand-theft-auto-vi-ps5-pre-download-november-19|2026-11-25",
   "update|2026-11-14-tesla-cybercab-pre-orders-299-monthly-subscription|2026-11-19",
   "update|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-19",
   "update|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-21",
-  "update|2026-11-17-apple-homeview-on-sale-299-siri-ai|2026-11-20"
+  "update|2026-11-16-grand-theft-auto-vi-ps5-preload-november-19|2026-11-25",
+  "update|2026-11-17-apple-homeview-on-sale-299-siri-ai|2026-11-20",
+  "update|2026-11-22-anthropic-claude-riemann-hypothesis-proof-claim|2026-11-26",
+  "update|2026-11-25-nvidia-reinstates-jensen-huang-chief-executive|2026-11-27"
  ],
  "emails": [
   {
@@ -130,6 +157,13 @@
    "subject": "ColdCase Weekly: 2 verdicts in, 21 new cases",
    "broadcast_id": 27200178,
    "items": 28
+  },
+  {
+   "date": "2026-11-28",
+   "mode": "draft",
+   "subject": "ColdCase Weekly: 1 verdict in, 21 new cases",
+   "broadcast_id": 27336839,
+   "items": 27
   }
  ]
 }
