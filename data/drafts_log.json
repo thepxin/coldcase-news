@@ -55,6 +55,13 @@
   "published": "2026-11-27T08:51:41Z",
   "status": "published"
  },
+ "published/2026-11-28-ChatGPT_Unified.md": {
+  "article": "content/posts/2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt.md",
+  "first_seen": "2026-11-26T02:41:58Z",
+  "hash": "6038a9a2cd56f6e0",
+  "published": "2026-11-28T02:53:43Z",
+  "status": "published"
+ },
  "ready/AI_Export.md": {
   "first_seen": "2026-11-26T11:29:36Z"
  },
@@ -63,16 +70,6 @@
  },
  "ready/Amazon_India.md": {
   "first_seen": "2026-11-26T14:41:52Z"
- },
- "ready/ChatGPT_Unified.md": {
-  "checked": "2026-11-27T14:44:54Z",
-  "first_seen": "2026-11-26T02:41:58Z",
-  "hash": "6038a9a2cd56f6e0",
-  "reasons": [
-   "Too much would change (8 lines): the site could not read this source, so it cannot be used: https://9to5mac.com/2026/11/02/openai-is-retiring-chatgpt-classic-app-will-soon-combine-chat-and-work-tabs-in-new-app/. Re-cite every sentence, bullet or table row that uses it to another of the SOURCES that states the same thing, or delete it | date not found in sources: 2026-11-02."
-  ],
-  "rules": 5,
-  "status": "held"
  },
  "ready/Dept_justice.md": {
   "checked": "2026-11-27T14:49:21Z",
@@ -93,6 +90,9 @@
  "ready/Huawei_convicted.md": {
   "first_seen": "2026-11-27T14:41:49Z"
  },
+ "ready/NASA_lunar.md": {
+  "first_seen": "2026-11-28T02:41:48Z"
+ },
  "ready/NIO_2030.md": {
   "first_seen": "2026-11-26T02:41:58Z"
  },
@@ -100,13 +100,13 @@
   "first_seen": "2026-11-27T14:41:49Z"
  },
  "ready/microsoft_update.md": {
-  "checked": "2026-11-27T08:45:12Z",
+  "checked": "2026-11-28T02:45:14Z",
   "first_seen": "2026-11-25T08:41:49Z",
   "hash": "7bee94205eb85951",
   "reasons": [
    "The site could not fix these lines: date not found in sources: month 9, day 23."
   ],
-  "rules": 5,
+  "rules": 6,
   "status": "held"
  },
  "ready/neurallink.md": {

@@ -1,6 +1,6 @@
 # Not published yet: microsoft_update.md
 
-Checked 27 Nov 2026, 08:45 UTC. Nothing was published.
+Checked 28 Nov 2026, 02:45 UTC. Nothing was published.
 
 ## What to fix
 

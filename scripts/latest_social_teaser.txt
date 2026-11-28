@@ -1,32 +1,32 @@
 ================================================================
-Tesla Cybertruck turning update arrives for 2027 model year trucks only
+OpenAI begins merging Chat and Work in ChatGPT and warns its heaviest users may hit limits sooner
 Share kit with buttons and the Instagram image: https://coldcasetech.com/share/
 (Bluesky and Telegram post automatically.)
 ================================================================
 
-X (217/280):
-Tesla's tighter Cybertruck turn needs software 2026.44 and a 2027 model year truck. Production is due to end next summer.
+X (213/280):
+OpenAI has started rolling out a combined Chat and Work experience in ChatGPT. The heaviest users may hit their usage limits sooner.
 
-Verdict: Partially Delivered.
+Verdict: Delivered.
 
-Every line sourced: https://coldcasetech.com/posts/2026-11-27-tesla-cybertruck-tighter-turning-2027-only/
+Every line sourced: https://coldcasetech.com/posts/2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt/
 
-#Tesla #Cybertruck
+#OpenAI #Chat
 
 INSTAGRAM (post this caption with the image from the share kit):
-Tesla's tighter Cybertruck turn needs software 2026.44 and a 2027 model year truck. Production is due to end next summer.
+OpenAI has started rolling out a combined Chat and Work experience in ChatGPT. The heaviest users may hit their usage limits sooner.
 
-Tesla is rolling out a software update that tightens the Cybertruck turning circle, but it applies only to model year 2027 trucks, Electrek reported.
+OpenAI has begun rolling out a combined Chat and Work experience in ChatGPT to a small group of Pro subscribers, as its earlier email described.
 
-Verdict: Partially Delivered.
+Verdict: Delivered.
 
 Full story and every source: link in bio.
 
 ColdCaseTech · An independent record of technology's promises
 
-#coldcasetech #tesla #cybertruck #ev #technews #tech
+#coldcasetech #openai #chat #work #chatgpt #ai #technews #tech
 
 X REPLIES (post under big accounts' posts about this story; the share kit says which accounts):
-1. In early 2024 a Tesla engineer said software would take the rear wheels to 10 degrees. Tesla has not said whether this update reaches that figure.
-2. Partially delivered. The tighter turn needs software 2026.44 or newer and, Tesla said, applies only to model year 2027 Cybertrucks.
-3. Electrek lists the Cybertruck at about 43.5 feet curb to curb before the update, with no new figure from Tesla. Does the model year limit matter to you?
+1. The receipt: OpenAI told users by email that it would begin testing a combined Chat and Work experience in the coming weeks, as 9to5Mac reported on November 2, 2026.
+2. The clock: the rollout to a small group of Pro subscribers began, as TechCrunch reported on November 25, 2026. Verdict: Delivered.
+3. One fact: Instant conversations remain unlimited and outside the shared allowance. Will shared usage limits reach more users in December?
