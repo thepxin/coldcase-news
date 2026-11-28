@@ -688,8 +688,15 @@
   "telegram": "109",
   "youtube": "https://youtu.be/-bhcxuqi65I"
  },
+ "2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt": {
+  "at": "2026-11-28T02:57:07Z",
+  "bluesky": "at://did:plc:ca76u45nqt47k3zbddt7aqoc/app.bsky.feed.post/3n3dpdn5hoo2w",
+  "facebook": "1489437024244341_122112245571546323",
+  "instagram": "18154930672624252",
+  "telegram": "110"
+ },
  "_last_post": {
-  "facebook": "2026-11-27T14:58:48Z",
-  "instagram": "2026-11-27T14:59:30Z"
+  "facebook": "2026-11-28T02:56:48Z",
+  "instagram": "2026-11-28T02:57:07Z"
  }
 }
