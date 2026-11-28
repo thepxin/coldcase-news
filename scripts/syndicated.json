@@ -643,5 +643,10 @@
   "attempts": 1,
   "devto": "https://dev.to/coldcasetech/tesla-cybertruck-turning-update-arrives-for-2027-model-year-trucks-only-8b4",
   "done": true
+ },
+ "content/posts/2026-11-28-openai-begins-merging-chat-and-work-in-chatgpt.md": {
+  "attempts": 1,
+  "devto": "https://dev.to/coldcasetech/openai-begins-merging-chat-and-work-in-chatgpt-and-warns-its-heaviest-users-may-hit-limits-sooner-1kgg",
+  "done": true
  }
 }
